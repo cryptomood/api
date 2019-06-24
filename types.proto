@@ -1,0 +1,404 @@
+// Read https://developers.google.com/protocol-buffers/docs/style
+
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+message BaseModel {
+    string id = 1;
+    string title = 2;
+    string content = 3;
+    string crawler = 4;
+    google.protobuf.Timestamp pub_date = 5;
+    google.protobuf.Timestamp created = 6;
+    string source = 7;
+    string excerpt = 8;
+    repeated string videos = 9;
+    repeated string images = 10;
+    repeated string links = 11;
+    string author = 12;
+    string lang = 13;
+    double weight = 14;
+}
+
+message SentimentModel {
+    double sentiment = 1;
+    double market_impact = 2;
+}
+
+message CryptopanicEntrySource {
+    string title = 1;
+    string region = 2;
+    string domain = 3;
+    string path = 4;
+}
+
+message CryptopanicEntryVotes {
+    int32 negative = 1;
+    int32 positive = 2;
+    int32 important = 3;
+    int32 liked = 4;
+    int32 disliked = 5;
+    int32 lol = 6;
+    int32 toxic = 7;
+    int32 saved = 8;
+}
+
+message CryptopanicEntryMetadata {
+    string message = 1;
+    string description = 2;
+}
+
+message CryptopanicRawEntry {
+    string kind = 1;
+    string domain = 2;
+    CryptopanicEntrySource source = 3;
+    string title = 4;
+    string published_at = 5;
+    string slug = 6;
+    int32 id = 7;
+    string url = 8;
+    string created_at = 9;
+    CryptopanicEntryVotes votes = 10;
+    CryptopanicEntryMetadata metadata = 11;
+}
+
+message CryptopanicFeed {
+    int32 count = 1;
+    repeated CryptopanicRawEntry results = 2;
+}
+
+message CryptopanicPost {
+    CryptopanicRawEntry cryptopanic_raw_entry = 1;
+    Article article = 2;
+}
+
+enum NamedEntity {
+    ASSET_ENTITY = 0;
+    PERSON_ENTITY = 1;
+    LOCATION_ENTITY = 2;
+    COMPANY_ENTITY = 3;
+    EXCHANGE_ENTITY = 4;
+    MISC_ENTITY = 5;
+    ORGANIZATION_ENTITY = 6;
+}
+
+
+message NamedEntityOccurrence {
+    // Represents NamedEntity element
+    NamedEntity label = 1;
+
+    // Start position of occurrence
+    uint32 start = 2;
+
+    // End position of occurrence
+    uint32 end = 3;
+
+    // Matched text
+    string text = 4;
+}
+
+
+message NamedEntitiesModel {
+    repeated string symbols = 1;
+    repeated NamedEntityOccurrence assets = 2;
+    repeated NamedEntityOccurrence persons = 3;
+    repeated NamedEntityOccurrence companies = 4;
+    repeated NamedEntityOccurrence organizations = 5;
+    repeated NamedEntityOccurrence locations = 6;
+    repeated NamedEntityOccurrence exchanges = 7;
+    repeated NamedEntityOccurrence misc = 8;
+    repeated string tags = 9;
+    map<string, int32> asset_mentions = 10;
+    string source_text = 11;
+}
+
+message Article {
+    BaseModel base = 1;
+    SentimentModel sentiment = 2;
+    NamedEntitiesModel named_entities = 3;
+    NamedEntitiesModel title_data = 4;
+}
+
+message UserMessage {
+    BaseModel base = 1;
+    SentimentModel sentiment = 2;
+    NamedEntitiesModel named_entities = 3;
+
+    string user = 4;
+    string message = 5;
+}
+
+message BitmexUserMessage {
+    UserMessage user_message = 1;
+}
+
+message TelegramUserMessage {
+    UserMessage user_message = 1;
+
+    repeated string symbols_backup = 2;
+    int32 channel_id = 3;
+    int32 channel_subscriber_count = 4;
+    int64 message_id = 5;
+}
+
+message DiscordUserMessage {
+    UserMessage user_message = 1;
+
+    string channel_id = 2;
+    string guild_id = 3;
+}
+
+message CommentCountTimeSnapshot {
+    google.protobuf.Timestamp time = 1;
+    int32 comment_count = 2;
+}
+
+message Comment {
+    string ID = 1;
+    string name = 2;
+    string permalink = 3;
+    uint64 createdUTC = 4;
+    bool deleted = 5;
+    int32 ups = 14;
+    int32 downs = 15;
+    bool likes = 16;
+    string body = 6;
+    string subreddit = 7;
+    repeated Comment replies = 8;
+}
+message RedditPostModel {
+    string ID = 1;
+    uint64 createdUTC = 2;
+    string title = 3;
+    string URL = 4;
+    string author = 5;
+    string self_text = 6;
+    string name = 11;
+    string permalink = 12;
+    bool deleted = 13;
+    int32 ups = 14;
+    int32 downs = 15;
+    bool likes = 16;
+    int32 num_comments = 17;
+    int32 score = 18;
+    repeated Comment replies = 19;
+    string domain = 20;
+    string SubredditID = 21;
+    bool hidden = 22;
+    bool locked = 23;
+    string thumbnail = 24;
+    int32 gilded = 25;
+    string distinguished = 26;
+    bool stickied = 27;
+    bool is_reddit_media_domain = 28;
+    // Stores time/count snapshot of Reddit post comment count
+    // this is mainly for measuring amount of added comments during period of time
+    repeated CommentCountTimeSnapshot comment_count_snapshot = 7;
+
+    // Reddit post actual hot rate in queue
+    double hot_rate = 8;
+
+    // Reference to parent subreddit
+    string subreddit = 9;
+
+    bool is_self = 10;
+}
+
+message RedditPost {
+    BaseModel base = 1;
+    SentimentModel sentiment = 2;
+    NamedEntitiesModel named_entities = 3;
+    NamedEntitiesModel title_data = 4;
+    RedditPostModel reddit_post = 5;
+}
+
+message ExtendedTweet {
+    int32 favourite_count = 1;
+    string filter_level = 2;
+    string id_str = 3;
+    string in_reply_to_screen_name = 4;
+    string in_reply_to_status_id_str = 5;
+    string in_reply_to_user_id_str = 6;
+    string is_quote_status = 7;
+    string lang = 8;
+    bool possibly_sensitive = 9;
+    int32 quote_count = 10;
+    int32 reply_count = 11;
+    int32 retweet_count = 12;
+    repeated string user_mentions = 13;
+    string source = 14;
+    string author_created_at = 15;
+    bool author_default_profile = 16;
+    bool author_default_profile_image = 17;
+    int32 author_followers_count = 18;
+    int32 author_friends_count = 19;
+    string author_id_str = 20;
+    string author_lang = 21;
+    string author_location = 22;
+    string author_name = 23;
+    string author_screen_name = 24;
+    string author_profile_image_url_http = 25;
+    int32 author_statuses_count = 26;
+    repeated string categories = 27;
+    bool truncated = 28;
+    string full_text = 29;
+}
+
+message Tweet {
+    BaseModel base = 1;
+    SentimentModel sentiment = 2;
+    NamedEntitiesModel named_entities = 3;
+    ExtendedTweet extended_tweet = 4;
+}
+
+message TimelineData {
+    string time = 1;
+    string formatted_time = 2;
+    repeated int32 value = 3;
+    repeated string formatted_value = 4;
+    int32 keywords_total_value = 5;
+}
+
+message GoogleTrendsUpdate {
+    BaseModel base = 1;
+    SentimentModel sentiment = 2;
+    NamedEntitiesModel named_entities = 3;
+
+    repeated TimelineData timeline_data = 4;
+}
+// VIDEO
+message ChannelLocalization {
+    string description = 1;
+    string title = 2;
+    repeated string force_send_fields = 3;
+    repeated string null_fields = 4;
+}
+message Thumbnail {
+    int64 height = 1;
+    string url = 2;
+    int64 width = 3;
+    repeated string force_send_fields = 4;
+    repeated string null_fields = 5;
+}
+message ThumbnailDetails {
+    Thumbnail default = 1;
+    Thumbnail high = 2;
+    Thumbnail maxres = 3;
+    Thumbnail medium = 4;
+    Thumbnail standard = 5;
+    repeated string force_send_fields = 6;
+    repeated string null_fields = 7;
+}
+message ChannelSnippet {
+    string country = 1;
+    string custom_url = 2;
+    string default_language = 3;
+    string description = 4;
+    ChannelLocalization localized = 5;
+    string published_at = 6;
+    ThumbnailDetails thumbnails = 7;
+    string title = 8;
+    repeated string force_send_fields = 9;
+    repeated string null_fields = 10;
+}
+message ChannelStatistics {
+    uint64 comment_count = 1;
+    bool hidden_subscriber_count = 2;
+    uint64 subscriber_count = 3;
+    uint64 video_count = 4;
+    uint64 view_count = 5;
+    repeated string force_send_fields = 9;
+    repeated string null_fields = 10;
+}
+message VideoStatistics {
+    uint64 comment_count = 1;
+    uint64 dislike_count = 2;
+    uint64 favorite_count = 3;
+    uint64 like_count = 4;
+    uint64 view_count = 5;
+    repeated string force_send_fields = 9;
+    repeated string null_fields = 10;
+}
+message Video {
+    repeated google.protobuf.Timestamp mentions = 1;
+    float trend = 2;
+    ChannelSnippet channel = 3;
+    ChannelStatistics channel_statistics = 4;
+    VideoStatistics statistics = 5;
+    BaseModel base = 6;
+    SentimentModel sentiment = 7;
+    NamedEntitiesModel named_entities = 8;
+}
+
+service ArticleProcessor {
+    rpc Process (Article) returns (Article) {
+    }
+}
+
+service RedditProcessor {
+    rpc Process (RedditPost) returns (RedditPost) {
+    }
+}
+
+service TwitterProcessor {
+    rpc Process (Tweet) returns (Tweet) {
+    }
+}
+
+service UserMessageProcessor {
+    rpc Process (UserMessage) returns (UserMessage) {
+    }
+}
+
+service YoutubeProcessor {
+    rpc Process (Video) returns (Video) {
+    }
+}
+
+service Sentiment {
+    rpc GetSentiment (BaseModel) returns (SentimentModel) {
+    }
+}
+
+service NamedEntities {
+    rpc GetNamedEntities (BaseModel) returns (NamedEntitiesModel) {
+    }
+}
+
+message SentimentCandle {
+    string id = 1;
+    google.protobuf.Timestamp start_time = 2;
+    string resolution = 3;
+    string asset = 4;
+    double negative_sum = 5;
+    int32 negative_count = 6;
+    double positive_sum = 7;
+    int32 positive_count = 8;
+    double sentiment_avg = 9;
+    double open_sentiment_average = 10;
+    double high_sentiment_average = 11;
+    double low_sentiment_average = 12;
+    double close_sentiment_average = 13;
+    bool updated = 14;
+}
+
+service MessagesProxy {
+    rpc SubscribeArticle (google.protobuf.Empty) returns (stream Article) {
+    }
+    rpc SubscribeTweet (google.protobuf.Empty) returns (stream Tweet) {
+    }
+    rpc SubscribeReddit (google.protobuf.Empty) returns (stream RedditPost) {
+    }
+    rpc SubscribeDiscord (google.protobuf.Empty) returns (stream DiscordUserMessage) {
+    }
+    rpc SubscribeTelegram (google.protobuf.Empty) returns (stream TelegramUserMessage) {
+    }
+    rpc SubscribeBitmex (google.protobuf.Empty) returns (stream BitmexUserMessage) {
+    }
+    rpc SubscribeNewsSentiment (google.protobuf.Empty) returns (stream SentimentCandle) {
+    }
+    rpc SubscribeSocialSentiment (google.protobuf.Empty) returns (stream SentimentCandle) {
+    }
+}
