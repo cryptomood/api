@@ -5,25 +5,62 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
+/**
+Base model for messages or news, contains basic data like title, content, source, published date etc..
+*/
 message BaseModel {
+
+    // unique identifier with schema
     string id = 1;
+
+    // title of article
     string title = 2;
+
+    // full content stripped of unnecessary characters(js, html tags...)
     string content = 3;
+
+    //
     string crawler = 4;
+
+    // timestamp representing the datetime, when the article has been published
     google.protobuf.Timestamp pub_date = 5;
+
+    // timestamp representing acquisition datetime
     google.protobuf.Timestamp created = 6;
+
+    // url of article
     string source = 7;
+
+    // summary provided by the domain
     string excerpt = 8;
+
+    // list of video sources
     repeated string videos = 9;
+
+    // list of image sources
     repeated string images = 10;
+
+    // list of off-page hyperlinks
     repeated string links = 11;
+
+    // author of article
     string author = 12;
+
+    // identified language
     string lang = 13;
+
+    // importance of the article's creator
     double weight = 14;
 }
 
+/**
+Group data that refers to sentiment of message
+*/
 message SentimentModel {
+    // analyzed sentiment <-10, 10>
     double sentiment = 1;
+
+    // analyzed impact in the respective area
     double market_impact = 2;
 }
 
@@ -74,6 +111,9 @@ message CryptopanicPost {
     Article article = 2;
 }
 
+/**
+Types of named entities
+*/
 enum NamedEntity {
     ASSET_ENTITY = 0;
     PERSON_ENTITY = 1;
@@ -84,7 +124,10 @@ enum NamedEntity {
     ORGANIZATION_ENTITY = 6;
 }
 
-
+/**
+Occurrence od named entity.
+contains position, matched text, category
+*/
 message NamedEntityOccurrence {
     // Represents NamedEntity element
     NamedEntity label = 1;
@@ -100,61 +143,125 @@ message NamedEntityOccurrence {
 }
 
 
+/**
+Groups all types of named entities we support.
+*/
 message NamedEntitiesModel {
+    // list of crypto assets
     repeated string symbols = 1;
+
+    // recognized cryptocurrencies
     repeated NamedEntityOccurrence assets = 2;
+
+    // recognized persons
     repeated NamedEntityOccurrence persons = 3;
+
+    // recognized companies
     repeated NamedEntityOccurrence companies = 4;
+
+    // recognized organizations
     repeated NamedEntityOccurrence organizations = 5;
+
+    // recognized locations
     repeated NamedEntityOccurrence locations = 6;
+
+    // recognized exchanges
     repeated NamedEntityOccurrence exchanges = 7;
+
+    // recognized misc objects
     repeated NamedEntityOccurrence misc = 8;
+
+    // list of assigned tags
     repeated string tags = 9;
+
+    // mapped asset to its mention count
     map<string, int32> asset_mentions = 10;
+
+    // cleaned text which uses NER
     string source_text = 11;
 }
 
+/**
+Basic model for News, articles.
+It's weight depends on Alexa ranks
+*/
 message Article {
     BaseModel base = 1;
     SentimentModel sentiment = 2;
+
+    // named entities from content
     NamedEntitiesModel named_entities = 3;
+
+    // named entities from title
     NamedEntitiesModel title_data = 4;
 }
 
+/**
+Basic model for media where the messages are wrote by regular user
+*/
 message UserMessage {
     BaseModel base = 1;
     SentimentModel sentiment = 2;
     NamedEntitiesModel named_entities = 3;
 
+    // nickname of user
     string user = 4;
+
+    // text of message
     string message = 5;
 }
 
+/**
+User message from bitmex
+*/
 message BitmexUserMessage {
     UserMessage user_message = 1;
 }
 
+/**
+Message from telegram channel
+Weight is calculated from number of members in channel
+*/
 message TelegramUserMessage {
     UserMessage user_message = 1;
 
+    // symbols loaded from db
     repeated string symbols_backup = 2;
+
+    // telegram channel ID
     int32 channel_id = 3;
+
+    // telegram channel members
     int32 channel_subscriber_count = 4;
+
+    // telegram message ID
     int64 message_id = 5;
 }
 
+/**
+Message from discord chats
+*/
 message DiscordUserMessage {
     UserMessage user_message = 1;
 
+    // unique ID of discord channel
     string channel_id = 2;
+
     string guild_id = 3;
 }
 
+/**
+Stores time/count snapshot of Reddit post comment count
+this is mainly for measuring amount of added comments during period of time
+*/
 message CommentCountTimeSnapshot {
     google.protobuf.Timestamp time = 1;
     int32 comment_count = 2;
 }
 
+/**
+Reddit comment
+*/
 message Comment {
     string ID = 1;
     string name = 2;
@@ -168,6 +275,10 @@ message Comment {
     string subreddit = 7;
     repeated Comment replies = 8;
 }
+
+/**
+Stores useful data from original reddit post
+*/
 message RedditPostModel {
     string ID = 1;
     uint64 createdUTC = 2;
@@ -183,8 +294,12 @@ message RedditPostModel {
     bool likes = 16;
     int32 num_comments = 17;
     int32 score = 18;
+
+    //list of comments
     repeated Comment replies = 19;
     string domain = 20;
+
+    // unique ID of subreddit
     string SubredditID = 21;
     bool hidden = 22;
     bool locked = 23;
@@ -193,8 +308,8 @@ message RedditPostModel {
     string distinguished = 26;
     bool stickied = 27;
     bool is_reddit_media_domain = 28;
-    // Stores time/count snapshot of Reddit post comment count
-    // this is mainly for measuring amount of added comments during period of time
+
+    // time/count snapshot of Reddit post comment count
     repeated CommentCountTimeSnapshot comment_count_snapshot = 7;
 
     // Reddit post actual hot rate in queue
@@ -206,14 +321,26 @@ message RedditPostModel {
     bool is_self = 10;
 }
 
+/**
+TODO
+*/
 message RedditPost {
     BaseModel base = 1;
     SentimentModel sentiment = 2;
+
+    // named entities from content
     NamedEntitiesModel named_entities = 3;
+
+    // named entities from title
     NamedEntitiesModel title_data = 4;
+
+    // data from original reddit post
     RedditPostModel reddit_post = 5;
 }
 
+/**
+Stores some useful data form original tweet
+*/
 message ExtendedTweet {
     int32 favourite_count = 1;
     string filter_level = 2;
@@ -246,12 +373,18 @@ message ExtendedTweet {
     string full_text = 29;
 }
 
+/**
+TODO
+*/
 message Tweet {
     BaseModel base = 1;
     SentimentModel sentiment = 2;
     NamedEntitiesModel named_entities = 3;
+
+    // data from original tweet
     ExtendedTweet extended_tweet = 4;
 }
+
 
 message TimelineData {
     string time = 1;
@@ -332,31 +465,6 @@ message Video {
     NamedEntitiesModel named_entities = 8;
 }
 
-service ArticleProcessor {
-    rpc Process (Article) returns (Article) {
-    }
-}
-
-service RedditProcessor {
-    rpc Process (RedditPost) returns (RedditPost) {
-    }
-}
-
-service TwitterProcessor {
-    rpc Process (Tweet) returns (Tweet) {
-    }
-}
-
-service UserMessageProcessor {
-    rpc Process (UserMessage) returns (UserMessage) {
-    }
-}
-
-service YoutubeProcessor {
-    rpc Process (Video) returns (Video) {
-    }
-}
-
 service Sentiment {
     rpc GetSentiment (BaseModel) returns (SentimentModel) {
     }
@@ -367,23 +475,58 @@ service NamedEntities {
     }
 }
 
+/**
+Sentiment message holds informations about aggregated sentiment for specific time window.
+It is emitted every second for each asset and resolution. If your application needs to receive
+sentiment updates for only one specific asset, it need to be filtered on your side .
+*/
 message SentimentCandle {
+    // unique identifier
     string id = 1;
+
+    // timestamp representing start of the time frame
     google.protobuf.Timestamp start_time = 2;
+
+    // constant representing time frame width - M1 or H1
     string resolution = 3;
+
+    // crypto asset
     string asset = 4;
+
+    // sum of all negative values
     double negative_sum = 5;
+
+    // counted negative occurrences
     int32 negative_count = 6;
+
+    // sum of all positive values
     double positive_sum = 7;
+
+    // counted positive occurrences
     int32 positive_count = 8;
+
+    // average of sentiments
     double sentiment_avg = 9;
+
+    // value of sentiment at the start of candle
     double open_sentiment_average = 10;
+
+    // value of sentiment when the candle is highest
     double high_sentiment_average = 11;
+
+    // value of sentiment when the candle is lowest
     double low_sentiment_average = 12;
+
+    // value of sentiment at the end of candle
     double close_sentiment_average = 13;
+
+    // flag the signalizes that candle was updated
     bool updated = 14;
 }
 
+/**
+Service for pub-sub message model
+*/
 service MessagesProxy {
     rpc SubscribeArticle (google.protobuf.Empty) returns (stream Article) {
     }
@@ -401,4 +544,30 @@ service MessagesProxy {
     }
     rpc SubscribeSocialSentiment (google.protobuf.Empty) returns (stream SentimentCandle) {
     }
+}
+
+/**
+Each request for historic data should be limited by date
+*/
+message HistoricRequest {
+    // unix timestamp for start - included in results (greater or equal)
+    google.protobuf.Timestamp from = 1;
+    // unix timestamp for end - excluded from results (
+    google.protobuf.Timestamp to = 2;
+}
+
+/**
+Wrapped historic data
+*/
+message SentimentCandleItems {
+    // array with candles
+    repeated SentimentCandle items = 1;
+}
+
+/**
+Service for requesting historic data
+*/
+service HistoricData {
+    rpc HistoricSocialSentiment (HistoricRequest) returns (SentimentCandleItems) {}
+    rpc HistoricNewsSentiment (HistoricRequest) returns (SentimentCandleItems) {}
 }
