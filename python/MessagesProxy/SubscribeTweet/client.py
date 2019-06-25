@@ -1,3 +1,5 @@
+import sys; sys.path.append('../../') # for correct types inclusion,
+
 import grpc
 
 import types_pb2_grpc
@@ -20,7 +22,8 @@ def main():
     # Response-streaming RPC
     tweet_stream = stub.SubscribeTweet(empty_pb2.Empty())
     for tweet in tweet_stream:
-        print(tweet)
+        # attributes are same as defined in proto messages
+        print(tweet.base.id, tweet.base.content)
 
 
 if __name__ == '__main__':
