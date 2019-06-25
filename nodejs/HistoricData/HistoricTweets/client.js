@@ -2,7 +2,7 @@ const fs = require("fs");
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
 
-const SERVER = "api.awesome.cryptomood.com:30001";
+const SERVER = "SERVER";
 const CERT_FILE_PATH = "./cert.pem";
 const PROTO_FILE_PATH = "../../../types.proto";
 
