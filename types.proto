@@ -549,6 +549,20 @@ service MessagesProxy {
 /**
 Each request for historic data should be limited by date
 */
+message SentimentHistoricRequest {
+    // unix timestamp for start - included in results (greater or equal)
+    google.protobuf.Timestamp from = 1;
+    // unix timestamp for end - excluded from results (
+    google.protobuf.Timestamp to = 2;
+    // resolution for candle - M1/H1
+    string resolution = 3;
+    // name of the asset - ie. BTC
+    string asset = 4;
+}
+
+/**
+Each request for historic data should be limited by date
+*/
 message HistoricRequest {
     // unix timestamp for start - included in results (greater or equal)
     google.protobuf.Timestamp from = 1;
@@ -564,10 +578,22 @@ message SentimentCandleItems {
     repeated SentimentCandle items = 1;
 }
 
+message TweetItems {
+    // array with tweets
+    repeated Tweet items = 1;
+}
+
+message ArticleItems {
+    // array with articles
+    repeated Article items = 1;
+}
+
 /**
 Service for requesting historic data
 */
 service HistoricData {
-    rpc HistoricSocialSentiment (HistoricRequest) returns (SentimentCandleItems) {}
-    rpc HistoricNewsSentiment (HistoricRequest) returns (SentimentCandleItems) {}
+    rpc HistoricSocialSentiment (SentimentHistoricRequest) returns (SentimentCandleItems) {}
+    rpc HistoricNewsSentiment (SentimentHistoricRequest) returns (SentimentCandleItems) {}
+    rpc HistoricTweets (HistoricRequest) returns (TweetItems) {}
+    rpc HistoricArticles (HistoricRequest) returns (ArticleItems) {}
 }
