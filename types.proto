@@ -518,22 +518,28 @@ message SentimentCandle {
 Service for pub-sub message model
 */
 service MessagesProxy {
-    rpc SubscribeArticle (google.protobuf.Empty) returns (stream Article) {
+    rpc SubscribeArticle (AssetsFilter) returns (stream Article) {
     }
-    rpc SubscribeTweet (google.protobuf.Empty) returns (stream Tweet) {
+    rpc SubscribeTweet (AssetsFilter) returns (stream Tweet) {
     }
-    rpc SubscribeReddit (google.protobuf.Empty) returns (stream RedditPost) {
+    rpc SubscribeReddit (AssetsFilter) returns (stream RedditPost) {
     }
-    rpc SubscribeDiscord (google.protobuf.Empty) returns (stream DiscordUserMessage) {
+    rpc SubscribeDiscord (AssetsFilter) returns (stream DiscordUserMessage) {
     }
-    rpc SubscribeTelegram (google.protobuf.Empty) returns (stream TelegramUserMessage) {
+    rpc SubscribeTelegram (AssetsFilter) returns (stream TelegramUserMessage) {
     }
-    rpc SubscribeBitmex (google.protobuf.Empty) returns (stream BitmexUserMessage) {
+    rpc SubscribeBitmex (AssetsFilter) returns (stream BitmexUserMessage) {
     }
-    rpc SubscribeNewsSentiment (google.protobuf.Empty) returns (stream SentimentCandle) {
+    rpc SubscribeNewsSentiment (AssetsFilter) returns (stream SentimentCandle) {
     }
-    rpc SubscribeSocialSentiment (google.protobuf.Empty) returns (stream SentimentCandle) {
+    rpc SubscribeSocialSentiment (AssetsFilter) returns (stream SentimentCandle) {
     }
+}
+
+message AssetsFilter {
+    // name of the asset - ie. BTC
+    repeated string assets = 4;
+    bool allAssets = 5;
 }
 
 /**
@@ -548,6 +554,7 @@ message SentimentHistoricRequest {
     string resolution = 3;
     // name of the asset - ie. BTC
     string asset = 4;
+    bool allAssets = 5;
 }
 
 /**
@@ -558,32 +565,42 @@ message HistoricRequest {
     google.protobuf.Timestamp from = 1;
     // unix timestamp for end - excluded from results (
     google.protobuf.Timestamp to = 2;
+
+    AssetsFilter filter = 4;
+}
+
+// represent one asset
+message Asset {
+    // symbol
+    string symbol = 2;
+}
+
+message AssetItems {
+    repeated Asset assets = 1;
 }
 
 /**
-Wrapped historic data
+Service for requesting data from dataset
 */
-message SentimentCandleItems {
-    // array with candles
-    repeated SentimentCandle items = 1;
+service Dataset {
+    rpc Assets (google.protobuf.Empty) returns (AssetItems) {}
 }
 
-message TweetItems {
-    // array with tweets
-    repeated Tweet items = 1;
-}
-
-message ArticleItems {
-    // array with articles
-    repeated Article items = 1;
+message DateRange {
+    google.protobuf.Timestamp first = 1;
+    google.protobuf.Timestamp last = 2;
 }
 
 /**
 Service for requesting historic data
 */
 service HistoricData {
-    rpc HistoricSocialSentiment (SentimentHistoricRequest) returns (SentimentCandleItems) {}
-    rpc HistoricNewsSentiment (SentimentHistoricRequest) returns (SentimentCandleItems) {}
-    rpc HistoricTweets (HistoricRequest) returns (TweetItems) {}
-    rpc HistoricArticles (HistoricRequest) returns (ArticleItems) {}
+    rpc HistoricSocialSentiment (SentimentHistoricRequest) returns (stream SentimentCandle) {}
+    rpc HistoricNewsSentiment (SentimentHistoricRequest) returns (stream SentimentCandle) {}
+    rpc HistoricTweets (HistoricRequest) returns (stream Tweet) {}
+    rpc HistoricArticles (HistoricRequest) returns (stream Article) {}
+    rpc HistoricRedditPosts (HistoricRequest) returns (stream RedditPost) {}
+    rpc HistoricSocialSentimentRange (google.protobuf.Empty) returns (DateRange) {}
+    rpc HistoricNewsSentimentRange (google.protobuf.Empty) returns (DateRange) {}
+
 }
