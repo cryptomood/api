@@ -539,7 +539,7 @@ service MessagesProxy {
 message AssetsFilter {
     // name of the asset - ie. BTC
     repeated string assets = 4;
-    bool allAssets = 5;
+    bool all_assets = 5;
 }
 
 /**
@@ -554,7 +554,7 @@ message SentimentHistoricRequest {
     string resolution = 3;
     // name of the asset - ie. BTC
     string asset = 4;
-    bool allAssets = 5;
+    bool all_assets = 5;
 }
 
 /**
