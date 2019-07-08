@@ -25,7 +25,7 @@ func main() {
 	fmt.Println("Connected")
 
 	historicClient := types.NewHistoricDataClient(conn)
-	historicRequest := &types.SentimentHistoricRequest{From: &timestamp.Timestamp{Seconds: 1561400800}, To: &timestamp.Timestamp{Seconds: 1561428800}, Resolution: "H1", Asset: "BTC"}
+	historicRequest := &types.SentimentHistoricRequest{From: &timestamp.Timestamp{Seconds: 1561400800}, To: &timestamp.Timestamp{Seconds: 1561428800}, Resolution: "H1", Asset: "BTC", AllAssets: false}
 	sub, err := historicClient.HistoricNewsSentiment(context.Background(), historicRequest)
 	if err != nil {
 		panic(err)

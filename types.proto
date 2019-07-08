@@ -466,16 +466,6 @@ message Video {
     NamedEntitiesModel named_entities = 8;
 }
 
-service Sentiment {
-    rpc GetSentiment (BaseModel) returns (SentimentModel) {
-    }
-}
-
-service NamedEntities {
-    rpc GetNamedEntities (BaseModel) returns (NamedEntitiesModel) {
-    }
-}
-
 /**
 Sentiment message holds informations about aggregated sentiment for specific time window.
 It is emitted every second for each asset and resolution. If your application needs to receive

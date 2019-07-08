@@ -184,10 +184,20 @@ class HistoricDataStub(object):
         request_serializer=types__pb2.SentimentHistoricRequest.SerializeToString,
         response_deserializer=types__pb2.SentimentCandleItems.FromString,
         )
+    self.HistoricSocialSentimentRange = channel.unary_unary(
+        '/HistoricData/HistoricSocialSentimentRange',
+        request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        response_deserializer=types__pb2.DateRange.FromString,
+        )
     self.HistoricNewsSentiment = channel.unary_unary(
         '/HistoricData/HistoricNewsSentiment',
         request_serializer=types__pb2.SentimentHistoricRequest.SerializeToString,
         response_deserializer=types__pb2.SentimentCandleItems.FromString,
+        )
+    self.HistoricNewsSentimentRange = channel.unary_unary(
+        '/HistoricData/HistoricNewsSentimentRange',
+        request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        response_deserializer=types__pb2.DateRange.FromString,
         )
     self.HistoricTweets = channel.unary_unary(
         '/HistoricData/HistoricTweets',
@@ -213,7 +223,21 @@ class HistoricDataServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def HistoricSocialSentimentRange(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def HistoricNewsSentiment(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def HistoricNewsSentimentRange(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -242,10 +266,20 @@ def add_HistoricDataServicer_to_server(servicer, server):
           request_deserializer=types__pb2.SentimentHistoricRequest.FromString,
           response_serializer=types__pb2.SentimentCandleItems.SerializeToString,
       ),
+      'HistoricSocialSentimentRange': grpc.unary_unary_rpc_method_handler(
+          servicer.HistoricSocialSentimentRange,
+          request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+          response_serializer=types__pb2.DateRange.SerializeToString,
+      ),
       'HistoricNewsSentiment': grpc.unary_unary_rpc_method_handler(
           servicer.HistoricNewsSentiment,
           request_deserializer=types__pb2.SentimentHistoricRequest.FromString,
           response_serializer=types__pb2.SentimentCandleItems.SerializeToString,
+      ),
+      'HistoricNewsSentimentRange': grpc.unary_unary_rpc_method_handler(
+          servicer.HistoricNewsSentimentRange,
+          request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+          response_serializer=types__pb2.DateRange.SerializeToString,
       ),
       'HistoricTweets': grpc.unary_unary_rpc_method_handler(
           servicer.HistoricTweets,
