@@ -319,6 +319,7 @@ message RedditPostModel {
     string subreddit = 9;
 
     bool is_self = 10;
+    bool nsfw = 29;
 }
 
 /**
@@ -465,6 +466,16 @@ message Video {
     NamedEntitiesModel named_entities = 8;
 }
 
+service Sentiment {
+    rpc GetSentiment (BaseModel) returns (SentimentModel) {
+    }
+}
+
+service NamedEntities {
+    rpc GetNamedEntities (BaseModel) returns (NamedEntitiesModel) {
+    }
+}
+
 /**
 Sentiment message holds informations about aggregated sentiment for specific time window.
 It is emitted every second for each asset and resolution. If your application needs to receive
@@ -548,6 +559,7 @@ message SentimentHistoricRequest {
     string resolution = 3;
     // name of the asset - ie. BTC
     string asset = 4;
+    bool allAssets = 5;
 }
 
 /**
@@ -578,12 +590,19 @@ message ArticleItems {
     repeated Article items = 1;
 }
 
+message DateRange {
+    google.protobuf.Timestamp first = 1;
+    google.protobuf.Timestamp last = 2;
+}
+
 /**
 Service for requesting historic data
 */
 service HistoricData {
     rpc HistoricSocialSentiment (SentimentHistoricRequest) returns (SentimentCandleItems) {}
+    rpc HistoricSocialSentimentRange (google.protobuf.Empty) returns (DateRange) {}
     rpc HistoricNewsSentiment (SentimentHistoricRequest) returns (SentimentCandleItems) {}
+    rpc HistoricNewsSentimentRange (google.protobuf.Empty) returns (DateRange) {}
     rpc HistoricTweets (HistoricRequest) returns (TweetItems) {}
     rpc HistoricArticles (HistoricRequest) returns (ArticleItems) {}
 }
