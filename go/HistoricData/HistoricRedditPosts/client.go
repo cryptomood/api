@@ -33,20 +33,20 @@ func main() {
 	timestampNow, _ := ptypes.TimestampProto(now)
 	timestamp2HAgo, _ := ptypes.TimestampProto(twoHoursAgo)
 
-	historicRequest := &types.SentimentHistoricRequest{From: timestamp2HAgo, To: timestampNow , Resolution: "M1", Asset: "BTC", AllAssets:false}
-	sub, err := historicClient.HistoricSocialSentiment(context.Background(), historicRequest)
+	historicRequest := &types.HistoricRequest{From: timestamp2HAgo, To: timestampNow, Filter: &types.AssetsFilter{Assets: []string{"BTC", "ETH"}, AllAssets:false}}
+	sub, err := historicClient.HistoricRedditPosts(context.Background(), historicRequest)
 	if err != nil {
 		panic(err)
 	}
 	for {
-		candle, err := sub.Recv()
+		redditPost, err := sub.Recv()
 		if err == io.EOF {
 			break
 		}
 		if err != nil {
 			panic(err)
 		}
-
-		fmt.Println(candle)
+		fmt.Println(redditPost)
 	}
+
 }

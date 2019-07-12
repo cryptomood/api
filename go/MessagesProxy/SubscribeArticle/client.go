@@ -3,10 +3,10 @@ package main
 import (
 	types "../.."
 	"fmt"
-	"github.com/golang/protobuf/ptypes/empty"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
+	"io"
 	"time"
 )
 
@@ -25,12 +25,20 @@ func main() {
 	fmt.Println("Connected")
 
 	proxyClient := types.NewMessagesProxyClient(conn)
-	sub, err := proxyClient.SubscribeArticle(context.Background(), &empty.Empty{})
+
+	filter := &types.AssetsFilter{Assets: []string{"BTC", "ETH"}, AllAssets: false}
+	sub, err := proxyClient.SubscribeArticle(context.Background(), filter)
 	if err != nil {
 		panic(err)
 	}
 	for {
-		msg, _ := sub.Recv()
-		fmt.Println(msg)
+		article, err := sub.Recv()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println(article)
 	}
 }

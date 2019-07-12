@@ -3,10 +3,10 @@ package main
 import (
 	types "../.."
 	"fmt"
+	"github.com/golang/protobuf/ptypes/empty"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
-	"io"
 	"time"
 )
 
@@ -24,21 +24,14 @@ func main() {
 	}
 	fmt.Println("Connected")
 
-	proxyClient := types.NewMessagesProxyClient(conn)
-
-	req := &types.CandlesFilter{Resolution:"M1", AssetFilter: &types.AssetsFilter{Assets:[]string{"BTC", "ETH"},AllAssets:false}}
-	sub, err := proxyClient.SubscribeSocialSentiment(context.Background(), req)
+	datasetClient := types.NewDatasetClient(conn)
+	assetItems, err := datasetClient.Assets(context.Background(), &empty.Empty{})
 	if err != nil {
 		panic(err)
 	}
-	for {
-		msg, err := sub.Recv()
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			panic(err)
-		}
-		fmt.Println(msg)
+
+	fmt.Println(len(assetItems.Assets))
+	for _, asset := range assetItems.Assets[0:19] {
+		println(asset.Symbol)
 	}
 }
