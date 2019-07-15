@@ -2,8 +2,9 @@ import sys; sys.path.append('../../') # for correct types inclusion,
 
 import grpc
 
+import types_pb2
 import types_pb2_grpc
-from google.protobuf import empty_pb2
+
 
 SERVER_ADDRESS = 'SERVER'
 PATH_TO_CERT_FILE = './cert.pem'
@@ -19,8 +20,11 @@ def main():
     # create stub
     stub = types_pb2_grpc.MessagesProxyStub(channel)
 
+    # create request
+    req = types_pb2.CandlesFilter(resolution='M1', asset_filter=types_pb2.AssetsFilter(assets = ['BTC'], all_assets = False))
+   
     # Response-streaming RPC
-    candle_stream = stub.SubscribeSocialSentiment(empty_pb2.Empty())
+    candle_stream = stub.SubscribeSocialSentiment(req)
     for candle in candle_stream:
         # attributes are same as defined in proto messages
         print(candle.id, candle.sentiment_avg)

@@ -19,7 +19,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	conn, err := grpc.Dial(Server,grpc.WithTransportCredentials(creds), grpc.WithTimeout(15*time.Second), grpc.WithBlock())
+	conn, err := grpc.Dial(Server,grpc.WithTransportCredentials(creds), grpc.WithTimeout(5*time.Second), grpc.WithBlock())
 	if err != nil {
 		panic(fmt.Sprintf("did not connect: %v", err))
 	}
@@ -33,7 +33,7 @@ func main() {
 	timestampNow, _ := ptypes.TimestampProto(now)
 	timestamp2HAgo, _ := ptypes.TimestampProto(twoHoursAgo)
 
-	historicRequest := &types.HistoricRequest{From: timestamp2HAgo, To: timestampNow, Filter: &types.AssetsFilter{Assets: []string{"BTC"}, AllAssets: false}}
+	historicRequest := &types.HistoricRequest{From: timestamp2HAgo, To: timestampNow, Filter: &types.AssetsFilter{Assets: []string{"BTC", "ETH"}, AllAssets: false}}
 	sub, err := historicClient.HistoricTransactions(context.Background(), historicRequest)
 	if err != nil {
 		panic(err)

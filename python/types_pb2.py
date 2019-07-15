@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0btypes.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xa1\x02\n\tBaseModel\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x0f\n\x07\x63rawler\x18\x04 \x01(\t\x12,\n\x08pub_date\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x07\x63reated\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0e\n\x06source\x18\x07 \x01(\t\x12\x0f\n\x07\x65xcerpt\x18\x08 \x01(\t\x12\x0e\n\x06videos\x18\t \x03(\t\x12\x0e\n\x06images\x18\n \x03(\t\x12\r\n\x05links\x18\x0b \x03(\t\x12\x0e\n\x06\x61uthor\x18\x0c \x01(\t\x12\x0c\n\x04lang\x18\r \x01(\t\x12\x0e\n\x06weight\x18\x0e \x01(\x01\":\n\x0eSentimentModel\x12\x11\n\tsentiment\x18\x01 \x01(\x01\x12\x15\n\rmarket_impact\x18\x02 \x01(\x01\"U\n\x16\x43ryptopanicEntrySource\x12\r\n\x05title\x18\x01 \x01(\t\x12\x0e\n\x06region\x18\x02 \x01(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0c\n\x04path\x18\x04 \x01(\t\"\x9a\x01\n\x15\x43ryptopanicEntryVotes\x12\x10\n\x08negative\x18\x01 \x01(\x05\x12\x10\n\x08positive\x18\x02 \x01(\x05\x12\x11\n\timportant\x18\x03 \x01(\x05\x12\r\n\x05liked\x18\x04 \x01(\x05\x12\x10\n\x08\x64isliked\x18\x05 \x01(\x05\x12\x0b\n\x03lol\x18\x06 \x01(\x05\x12\r\n\x05toxic\x18\x07 \x01(\x05\x12\r\n\x05saved\x18\x08 \x01(\x05\"@\n\x18\x43ryptopanicEntryMetadata\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\"\x90\x02\n\x13\x43ryptopanicRawEntry\x12\x0c\n\x04kind\x18\x01 \x01(\t\x12\x0e\n\x06\x64omain\x18\x02 \x01(\t\x12\'\n\x06source\x18\x03 \x01(\x0b\x32\x17.CryptopanicEntrySource\x12\r\n\x05title\x18\x04 \x01(\t\x12\x14\n\x0cpublished_at\x18\x05 \x01(\t\x12\x0c\n\x04slug\x18\x06 \x01(\t\x12\n\n\x02id\x18\x07 \x01(\x05\x12\x0b\n\x03url\x18\x08 \x01(\t\x12\x12\n\ncreated_at\x18\t \x01(\t\x12%\n\x05votes\x18\n \x01(\x0b\x32\x16.CryptopanicEntryVotes\x12+\n\x08metadata\x18\x0b \x01(\x0b\x32\x19.CryptopanicEntryMetadata\"G\n\x0f\x43ryptopanicFeed\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\x12%\n\x07results\x18\x02 \x03(\x0b\x32\x14.CryptopanicRawEntry\"a\n\x0f\x43ryptopanicPost\x12\x33\n\x15\x63ryptopanic_raw_entry\x18\x01 \x01(\x0b\x32\x14.CryptopanicRawEntry\x12\x19\n\x07\x61rticle\x18\x02 \x01(\x0b\x32\x08.Article\"^\n\x15NamedEntityOccurrence\x12\x1b\n\x05label\x18\x01 \x01(\x0e\x32\x0c.NamedEntity\x12\r\n\x05start\x18\x02 \x01(\r\x12\x0b\n\x03\x65nd\x18\x03 \x01(\r\x12\x0c\n\x04text\x18\x04 \x01(\t\"\xe5\x03\n\x12NamedEntitiesModel\x12\x0f\n\x07symbols\x18\x01 \x03(\t\x12&\n\x06\x61ssets\x18\x02 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12\'\n\x07persons\x18\x03 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\tcompanies\x18\x04 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12-\n\rorganizations\x18\x05 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\tlocations\x18\x06 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\texchanges\x18\x07 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12$\n\x04misc\x18\x08 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12\x0c\n\x04tags\x18\t \x03(\t\x12>\n\x0e\x61sset_mentions\x18\n \x03(\x0b\x32&.NamedEntitiesModel.AssetMentionsEntry\x12\x13\n\x0bsource_text\x18\x0b \x01(\t\x1a\x34\n\x12\x41ssetMentionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"\x9d\x01\n\x07\x41rticle\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\'\n\ntitle_data\x18\x04 \x01(\x0b\x32\x13.NamedEntitiesModel\"\x97\x01\n\x0bUserMessage\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\x0c\n\x04user\x18\x04 \x01(\t\x12\x0f\n\x07message\x18\x05 \x01(\t\"7\n\x11\x42itmexUserMessage\x12\"\n\x0cuser_message\x18\x01 \x01(\x0b\x32\x0c.UserMessage\"\x9b\x01\n\x13TelegramUserMessage\x12\"\n\x0cuser_message\x18\x01 \x01(\x0b\x32\x0c.UserMessage\x12\x16\n\x0esymbols_backup\x18\x02 \x03(\t\x12\x12\n\nchannel_id\x18\x03 \x01(\x05\x12 \n\x18\x63hannel_subscriber_count\x18\x04 \x01(\x05\x12\x12\n\nmessage_id\x18\x05 \x01(\x03\"^\n\x12\x44iscordUserMessage\x12\"\n\x0cuser_message\x18\x01 \x01(\x0b\x32\x0c.UserMessage\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x10\n\x08guild_id\x18\x03 \x01(\t\"[\n\x18\x43ommentCountTimeSnapshot\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x15\n\rcomment_count\x18\x02 \x01(\x05\"\xc2\x01\n\x07\x43omment\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tpermalink\x18\x03 \x01(\t\x12\x12\n\ncreatedUTC\x18\x04 \x01(\x04\x12\x0f\n\x07\x64\x65leted\x18\x05 \x01(\x08\x12\x0b\n\x03ups\x18\x0e \x01(\x05\x12\r\n\x05\x64owns\x18\x0f \x01(\x05\x12\r\n\x05likes\x18\x10 \x01(\x08\x12\x0c\n\x04\x62ody\x18\x06 \x01(\t\x12\x11\n\tsubreddit\x18\x07 \x01(\t\x12\x19\n\x07replies\x18\x08 \x03(\x0b\x32\x08.Comment\"\xaf\x04\n\x0fRedditPostModel\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x12\n\ncreatedUTC\x18\x02 \x01(\x04\x12\r\n\x05title\x18\x03 \x01(\t\x12\x0b\n\x03URL\x18\x04 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x05 \x01(\t\x12\x11\n\tself_text\x18\x06 \x01(\t\x12\x0c\n\x04name\x18\x0b \x01(\t\x12\x11\n\tpermalink\x18\x0c \x01(\t\x12\x0f\n\x07\x64\x65leted\x18\r \x01(\x08\x12\x0b\n\x03ups\x18\x0e \x01(\x05\x12\r\n\x05\x64owns\x18\x0f \x01(\x05\x12\r\n\x05likes\x18\x10 \x01(\x08\x12\x14\n\x0cnum_comments\x18\x11 \x01(\x05\x12\r\n\x05score\x18\x12 \x01(\x05\x12\x19\n\x07replies\x18\x13 \x03(\x0b\x32\x08.Comment\x12\x0e\n\x06\x64omain\x18\x14 \x01(\t\x12\x13\n\x0bSubredditID\x18\x15 \x01(\t\x12\x0e\n\x06hidden\x18\x16 \x01(\x08\x12\x0e\n\x06locked\x18\x17 \x01(\x08\x12\x11\n\tthumbnail\x18\x18 \x01(\t\x12\x0e\n\x06gilded\x18\x19 \x01(\x05\x12\x15\n\rdistinguished\x18\x1a \x01(\t\x12\x10\n\x08stickied\x18\x1b \x01(\x08\x12\x1e\n\x16is_reddit_media_domain\x18\x1c \x01(\x08\x12\x39\n\x16\x63omment_count_snapshot\x18\x07 \x03(\x0b\x32\x19.CommentCountTimeSnapshot\x12\x10\n\x08hot_rate\x18\x08 \x01(\x01\x12\x11\n\tsubreddit\x18\t \x01(\t\x12\x0f\n\x07is_self\x18\n \x01(\x08\"\xc7\x01\n\nRedditPost\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\'\n\ntitle_data\x18\x04 \x01(\x0b\x32\x13.NamedEntitiesModel\x12%\n\x0breddit_post\x18\x05 \x01(\x0b\x32\x10.RedditPostModel\"\xf3\x05\n\rExtendedTweet\x12\x17\n\x0f\x66\x61vourite_count\x18\x01 \x01(\x05\x12\x14\n\x0c\x66ilter_level\x18\x02 \x01(\t\x12\x0e\n\x06id_str\x18\x03 \x01(\t\x12\x1f\n\x17in_reply_to_screen_name\x18\x04 \x01(\t\x12!\n\x19in_reply_to_status_id_str\x18\x05 \x01(\t\x12\x1f\n\x17in_reply_to_user_id_str\x18\x06 \x01(\t\x12\x17\n\x0fis_quote_status\x18\x07 \x01(\t\x12\x0c\n\x04lang\x18\x08 \x01(\t\x12\x1a\n\x12possibly_sensitive\x18\t \x01(\x08\x12\x13\n\x0bquote_count\x18\n \x01(\x05\x12\x13\n\x0breply_count\x18\x0b \x01(\x05\x12\x15\n\rretweet_count\x18\x0c \x01(\x05\x12\x15\n\ruser_mentions\x18\r \x03(\t\x12\x0e\n\x06source\x18\x0e \x01(\t\x12\x19\n\x11\x61uthor_created_at\x18\x0f \x01(\t\x12\x1e\n\x16\x61uthor_default_profile\x18\x10 \x01(\x08\x12$\n\x1c\x61uthor_default_profile_image\x18\x11 \x01(\x08\x12\x1e\n\x16\x61uthor_followers_count\x18\x12 \x01(\x05\x12\x1c\n\x14\x61uthor_friends_count\x18\x13 \x01(\x05\x12\x15\n\rauthor_id_str\x18\x14 \x01(\t\x12\x13\n\x0b\x61uthor_lang\x18\x15 \x01(\t\x12\x17\n\x0f\x61uthor_location\x18\x16 \x01(\t\x12\x13\n\x0b\x61uthor_name\x18\x17 \x01(\t\x12\x1a\n\x12\x61uthor_screen_name\x18\x18 \x01(\t\x12%\n\x1d\x61uthor_profile_image_url_http\x18\x19 \x01(\t\x12\x1d\n\x15\x61uthor_statuses_count\x18\x1a \x01(\x05\x12\x12\n\ncategories\x18\x1b \x03(\t\x12\x11\n\ttruncated\x18\x1c \x01(\x08\x12\x11\n\tfull_text\x18\x1d \x01(\t\"\x9a\x01\n\x05Tweet\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12&\n\x0e\x65xtended_tweet\x18\x04 \x01(\x0b\x32\x0e.ExtendedTweet\"z\n\x0cTimelineData\x12\x0c\n\x04time\x18\x01 \x01(\t\x12\x16\n\x0e\x66ormatted_time\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x03(\x05\x12\x17\n\x0f\x66ormatted_value\x18\x04 \x03(\t\x12\x1c\n\x14keywords_total_value\x18\x05 \x01(\x05\"\xa5\x01\n\x12GoogleTrendsUpdate\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12$\n\rtimeline_data\x18\x04 \x03(\x0b\x32\r.TimelineData\"i\n\x13\x43hannelLocalization\x12\x13\n\x0b\x64\x65scription\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x19\n\x11\x66orce_send_fields\x18\x03 \x03(\t\x12\x13\n\x0bnull_fields\x18\x04 \x03(\t\"g\n\tThumbnail\x12\x0e\n\x06height\x18\x01 \x01(\x03\x12\x0b\n\x03url\x18\x02 \x01(\t\x12\r\n\x05width\x18\x03 \x01(\x03\x12\x19\n\x11\x66orce_send_fields\x18\x04 \x03(\t\x12\x13\n\x0bnull_fields\x18\x05 \x03(\t\"\xcf\x01\n\x10ThumbnailDetails\x12\x1b\n\x07\x64\x65\x66\x61ult\x18\x01 \x01(\x0b\x32\n.Thumbnail\x12\x18\n\x04high\x18\x02 \x01(\x0b\x32\n.Thumbnail\x12\x1a\n\x06maxres\x18\x03 \x01(\x0b\x32\n.Thumbnail\x12\x1a\n\x06medium\x18\x04 \x01(\x0b\x32\n.Thumbnail\x12\x1c\n\x08standard\x18\x05 \x01(\x0b\x32\n.Thumbnail\x12\x19\n\x11\x66orce_send_fields\x18\x06 \x03(\t\x12\x13\n\x0bnull_fields\x18\x07 \x03(\t\"\x89\x02\n\x0e\x43hannelSnippet\x12\x0f\n\x07\x63ountry\x18\x01 \x01(\t\x12\x12\n\ncustom_url\x18\x02 \x01(\t\x12\x18\n\x10\x64\x65\x66\x61ult_language\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x04 \x01(\t\x12\'\n\tlocalized\x18\x05 \x01(\x0b\x32\x14.ChannelLocalization\x12\x14\n\x0cpublished_at\x18\x06 \x01(\t\x12%\n\nthumbnails\x18\x07 \x01(\x0b\x32\x11.ThumbnailDetails\x12\r\n\x05title\x18\x08 \x01(\t\x12\x19\n\x11\x66orce_send_fields\x18\t \x03(\t\x12\x13\n\x0bnull_fields\x18\n \x03(\t\"\xbe\x01\n\x11\x43hannelStatistics\x12\x15\n\rcomment_count\x18\x01 \x01(\x04\x12\x1f\n\x17hidden_subscriber_count\x18\x02 \x01(\x08\x12\x18\n\x10subscriber_count\x18\x03 \x01(\x04\x12\x13\n\x0bvideo_count\x18\x04 \x01(\x04\x12\x12\n\nview_count\x18\x05 \x01(\x04\x12\x19\n\x11\x66orce_send_fields\x18\t \x03(\t\x12\x13\n\x0bnull_fields\x18\n \x03(\t\"\xaf\x01\n\x0fVideoStatistics\x12\x15\n\rcomment_count\x18\x01 \x01(\x04\x12\x15\n\rdislike_count\x18\x02 \x01(\x04\x12\x16\n\x0e\x66\x61vorite_count\x18\x03 \x01(\x04\x12\x12\n\nlike_count\x18\x04 \x01(\x04\x12\x12\n\nview_count\x18\x05 \x01(\x04\x12\x19\n\x11\x66orce_send_fields\x18\t \x03(\t\x12\x13\n\x0bnull_fields\x18\n \x03(\t\"\xa7\x02\n\x05Video\x12,\n\x08mentions\x18\x01 \x03(\x0b\x32\x1a.google.protobuf.Timestamp\x12\r\n\x05trend\x18\x02 \x01(\x02\x12 \n\x07\x63hannel\x18\x03 \x01(\x0b\x32\x0f.ChannelSnippet\x12.\n\x12\x63hannel_statistics\x18\x04 \x01(\x0b\x32\x12.ChannelStatistics\x12$\n\nstatistics\x18\x05 \x01(\x0b\x32\x10.VideoStatistics\x12\x18\n\x04\x62\x61se\x18\x06 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x07 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x08 \x01(\x0b\x32\x13.NamedEntitiesModel\"\xf4\x02\n\x0fSentimentCandle\x12\n\n\x02id\x18\x01 \x01(\t\x12.\n\nstart_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\r\n\x05\x61sset\x18\x04 \x01(\t\x12\x14\n\x0cnegative_sum\x18\x05 \x01(\x01\x12\x16\n\x0enegative_count\x18\x06 \x01(\x05\x12\x14\n\x0cpositive_sum\x18\x07 \x01(\x01\x12\x16\n\x0epositive_count\x18\x08 \x01(\x05\x12\x15\n\rsentiment_avg\x18\t \x01(\x01\x12\x1e\n\x16open_sentiment_average\x18\n \x01(\x01\x12\x1e\n\x16high_sentiment_average\x18\x0b \x01(\x01\x12\x1d\n\x15low_sentiment_average\x18\x0c \x01(\x01\x12\x1f\n\x17\x63lose_sentiment_average\x18\r \x01(\x01\x12\x0f\n\x07updated\x18\x0e \x01(\x08\"\x8f\x01\n\x18SentimentHistoricRequest\x12(\n\x04\x66rom\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\r\n\x05\x61sset\x18\x04 \x01(\t\"c\n\x0fHistoricRequest\x12(\n\x04\x66rom\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"7\n\x14SentimentCandleItems\x12\x1f\n\x05items\x18\x01 \x03(\x0b\x32\x10.SentimentCandle\"#\n\nTweetItems\x12\x15\n\x05items\x18\x01 \x03(\x0b\x32\x06.Tweet\"\'\n\x0c\x41rticleItems\x12\x17\n\x05items\x18\x01 \x03(\x0b\x32\x08.Article*\x9a\x01\n\x0bNamedEntity\x12\x10\n\x0c\x41SSET_ENTITY\x10\x00\x12\x11\n\rPERSON_ENTITY\x10\x01\x12\x13\n\x0fLOCATION_ENTITY\x10\x02\x12\x12\n\x0e\x43OMPANY_ENTITY\x10\x03\x12\x13\n\x0f\x45XCHANGE_ENTITY\x10\x04\x12\x0f\n\x0bMISC_ENTITY\x10\x05\x12\x17\n\x13ORGANIZATION_ENTITY\x10\x06\x32\x9c\x04\n\rMessagesProxy\x12\x38\n\x10SubscribeArticle\x12\x16.google.protobuf.Empty\x1a\x08.Article\"\x00\x30\x01\x12\x34\n\x0eSubscribeTweet\x12\x16.google.protobuf.Empty\x1a\x06.Tweet\"\x00\x30\x01\x12:\n\x0fSubscribeReddit\x12\x16.google.protobuf.Empty\x1a\x0b.RedditPost\"\x00\x30\x01\x12\x43\n\x10SubscribeDiscord\x12\x16.google.protobuf.Empty\x1a\x13.DiscordUserMessage\"\x00\x30\x01\x12\x45\n\x11SubscribeTelegram\x12\x16.google.protobuf.Empty\x1a\x14.TelegramUserMessage\"\x00\x30\x01\x12\x41\n\x0fSubscribeBitmex\x12\x16.google.protobuf.Empty\x1a\x12.BitmexUserMessage\"\x00\x30\x01\x12\x46\n\x16SubscribeNewsSentiment\x12\x16.google.protobuf.Empty\x1a\x10.SentimentCandle\"\x00\x30\x01\x12H\n\x18SubscribeSocialSentiment\x12\x16.google.protobuf.Empty\x1a\x10.SentimentCandle\"\x00\x30\x01\x32\x94\x02\n\x0cHistoricData\x12M\n\x17HistoricSocialSentiment\x12\x19.SentimentHistoricRequest\x1a\x15.SentimentCandleItems\"\x00\x12K\n\x15HistoricNewsSentiment\x12\x19.SentimentHistoricRequest\x1a\x15.SentimentCandleItems\"\x00\x12\x31\n\x0eHistoricTweets\x12\x10.HistoricRequest\x1a\x0b.TweetItems\"\x00\x12\x35\n\x10HistoricArticles\x12\x10.HistoricRequest\x1a\r.ArticleItems\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0btypes.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xa1\x02\n\tBaseModel\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x0f\n\x07\x63rawler\x18\x04 \x01(\t\x12,\n\x08pub_date\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x07\x63reated\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0e\n\x06source\x18\x07 \x01(\t\x12\x0f\n\x07\x65xcerpt\x18\x08 \x01(\t\x12\x0e\n\x06videos\x18\t \x03(\t\x12\x0e\n\x06images\x18\n \x03(\t\x12\r\n\x05links\x18\x0b \x03(\t\x12\x0e\n\x06\x61uthor\x18\x0c \x01(\t\x12\x0c\n\x04lang\x18\r \x01(\t\x12\x0e\n\x06weight\x18\x0e \x01(\x01\":\n\x0eSentimentModel\x12\x11\n\tsentiment\x18\x01 \x01(\x01\x12\x15\n\rmarket_impact\x18\x02 \x01(\x01\"U\n\x16\x43ryptopanicEntrySource\x12\r\n\x05title\x18\x01 \x01(\t\x12\x0e\n\x06region\x18\x02 \x01(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0c\n\x04path\x18\x04 \x01(\t\"\x9a\x01\n\x15\x43ryptopanicEntryVotes\x12\x10\n\x08negative\x18\x01 \x01(\x05\x12\x10\n\x08positive\x18\x02 \x01(\x05\x12\x11\n\timportant\x18\x03 \x01(\x05\x12\r\n\x05liked\x18\x04 \x01(\x05\x12\x10\n\x08\x64isliked\x18\x05 \x01(\x05\x12\x0b\n\x03lol\x18\x06 \x01(\x05\x12\r\n\x05toxic\x18\x07 \x01(\x05\x12\r\n\x05saved\x18\x08 \x01(\x05\"@\n\x18\x43ryptopanicEntryMetadata\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\"\x90\x02\n\x13\x43ryptopanicRawEntry\x12\x0c\n\x04kind\x18\x01 \x01(\t\x12\x0e\n\x06\x64omain\x18\x02 \x01(\t\x12\'\n\x06source\x18\x03 \x01(\x0b\x32\x17.CryptopanicEntrySource\x12\r\n\x05title\x18\x04 \x01(\t\x12\x14\n\x0cpublished_at\x18\x05 \x01(\t\x12\x0c\n\x04slug\x18\x06 \x01(\t\x12\n\n\x02id\x18\x07 \x01(\x05\x12\x0b\n\x03url\x18\x08 \x01(\t\x12\x12\n\ncreated_at\x18\t \x01(\t\x12%\n\x05votes\x18\n \x01(\x0b\x32\x16.CryptopanicEntryVotes\x12+\n\x08metadata\x18\x0b \x01(\x0b\x32\x19.CryptopanicEntryMetadata\"G\n\x0f\x43ryptopanicFeed\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\x12%\n\x07results\x18\x02 \x03(\x0b\x32\x14.CryptopanicRawEntry\"a\n\x0f\x43ryptopanicPost\x12\x33\n\x15\x63ryptopanic_raw_entry\x18\x01 \x01(\x0b\x32\x14.CryptopanicRawEntry\x12\x19\n\x07\x61rticle\x18\x02 \x01(\x0b\x32\x08.Article\"^\n\x15NamedEntityOccurrence\x12\x1b\n\x05label\x18\x01 \x01(\x0e\x32\x0c.NamedEntity\x12\r\n\x05start\x18\x02 \x01(\r\x12\x0b\n\x03\x65nd\x18\x03 \x01(\r\x12\x0c\n\x04text\x18\x04 \x01(\t\"\xe5\x03\n\x12NamedEntitiesModel\x12\x0f\n\x07symbols\x18\x01 \x03(\t\x12&\n\x06\x61ssets\x18\x02 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12\'\n\x07persons\x18\x03 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\tcompanies\x18\x04 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12-\n\rorganizations\x18\x05 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\tlocations\x18\x06 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\texchanges\x18\x07 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12$\n\x04misc\x18\x08 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12\x0c\n\x04tags\x18\t \x03(\t\x12>\n\x0e\x61sset_mentions\x18\n \x03(\x0b\x32&.NamedEntitiesModel.AssetMentionsEntry\x12\x13\n\x0bsource_text\x18\x0b \x01(\t\x1a\x34\n\x12\x41ssetMentionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"\x9d\x01\n\x07\x41rticle\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\'\n\ntitle_data\x18\x04 \x01(\x0b\x32\x13.NamedEntitiesModel\"\x97\x01\n\x0bUserMessage\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\x0c\n\x04user\x18\x04 \x01(\t\x12\x0f\n\x07message\x18\x05 \x01(\t\"7\n\x11\x42itmexUserMessage\x12\"\n\x0cuser_message\x18\x01 \x01(\x0b\x32\x0c.UserMessage\"\x9b\x01\n\x13TelegramUserMessage\x12\"\n\x0cuser_message\x18\x01 \x01(\x0b\x32\x0c.UserMessage\x12\x16\n\x0esymbols_backup\x18\x02 \x03(\t\x12\x12\n\nchannel_id\x18\x03 \x01(\x05\x12 \n\x18\x63hannel_subscriber_count\x18\x04 \x01(\x05\x12\x12\n\nmessage_id\x18\x05 \x01(\x03\"^\n\x12\x44iscordUserMessage\x12\"\n\x0cuser_message\x18\x01 \x01(\x0b\x32\x0c.UserMessage\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x10\n\x08guild_id\x18\x03 \x01(\t\"[\n\x18\x43ommentCountTimeSnapshot\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x15\n\rcomment_count\x18\x02 \x01(\x05\"\xc2\x01\n\x07\x43omment\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tpermalink\x18\x03 \x01(\t\x12\x12\n\ncreatedUTC\x18\x04 \x01(\x04\x12\x0f\n\x07\x64\x65leted\x18\x05 \x01(\x08\x12\x0b\n\x03ups\x18\x0e \x01(\x05\x12\r\n\x05\x64owns\x18\x0f \x01(\x05\x12\r\n\x05likes\x18\x10 \x01(\x08\x12\x0c\n\x04\x62ody\x18\x06 \x01(\t\x12\x11\n\tsubreddit\x18\x07 \x01(\t\x12\x19\n\x07replies\x18\x08 \x03(\x0b\x32\x08.Comment\"\xaf\x04\n\x0fRedditPostModel\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x12\n\ncreatedUTC\x18\x02 \x01(\x04\x12\r\n\x05title\x18\x03 \x01(\t\x12\x0b\n\x03URL\x18\x04 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x05 \x01(\t\x12\x11\n\tself_text\x18\x06 \x01(\t\x12\x0c\n\x04name\x18\x0b \x01(\t\x12\x11\n\tpermalink\x18\x0c \x01(\t\x12\x0f\n\x07\x64\x65leted\x18\r \x01(\x08\x12\x0b\n\x03ups\x18\x0e \x01(\x05\x12\r\n\x05\x64owns\x18\x0f \x01(\x05\x12\r\n\x05likes\x18\x10 \x01(\x08\x12\x14\n\x0cnum_comments\x18\x11 \x01(\x05\x12\r\n\x05score\x18\x12 \x01(\x05\x12\x19\n\x07replies\x18\x13 \x03(\x0b\x32\x08.Comment\x12\x0e\n\x06\x64omain\x18\x14 \x01(\t\x12\x13\n\x0bSubredditID\x18\x15 \x01(\t\x12\x0e\n\x06hidden\x18\x16 \x01(\x08\x12\x0e\n\x06locked\x18\x17 \x01(\x08\x12\x11\n\tthumbnail\x18\x18 \x01(\t\x12\x0e\n\x06gilded\x18\x19 \x01(\x05\x12\x15\n\rdistinguished\x18\x1a \x01(\t\x12\x10\n\x08stickied\x18\x1b \x01(\x08\x12\x1e\n\x16is_reddit_media_domain\x18\x1c \x01(\x08\x12\x39\n\x16\x63omment_count_snapshot\x18\x07 \x03(\x0b\x32\x19.CommentCountTimeSnapshot\x12\x10\n\x08hot_rate\x18\x08 \x01(\x01\x12\x11\n\tsubreddit\x18\t \x01(\t\x12\x0f\n\x07is_self\x18\n \x01(\x08\"\xc7\x01\n\nRedditPost\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\'\n\ntitle_data\x18\x04 \x01(\x0b\x32\x13.NamedEntitiesModel\x12%\n\x0breddit_post\x18\x05 \x01(\x0b\x32\x10.RedditPostModel\"\xf3\x05\n\rExtendedTweet\x12\x17\n\x0f\x66\x61vourite_count\x18\x01 \x01(\x05\x12\x14\n\x0c\x66ilter_level\x18\x02 \x01(\t\x12\x0e\n\x06id_str\x18\x03 \x01(\t\x12\x1f\n\x17in_reply_to_screen_name\x18\x04 \x01(\t\x12!\n\x19in_reply_to_status_id_str\x18\x05 \x01(\t\x12\x1f\n\x17in_reply_to_user_id_str\x18\x06 \x01(\t\x12\x17\n\x0fis_quote_status\x18\x07 \x01(\t\x12\x0c\n\x04lang\x18\x08 \x01(\t\x12\x1a\n\x12possibly_sensitive\x18\t \x01(\x08\x12\x13\n\x0bquote_count\x18\n \x01(\x05\x12\x13\n\x0breply_count\x18\x0b \x01(\x05\x12\x15\n\rretweet_count\x18\x0c \x01(\x05\x12\x15\n\ruser_mentions\x18\r \x03(\t\x12\x0e\n\x06source\x18\x0e \x01(\t\x12\x19\n\x11\x61uthor_created_at\x18\x0f \x01(\t\x12\x1e\n\x16\x61uthor_default_profile\x18\x10 \x01(\x08\x12$\n\x1c\x61uthor_default_profile_image\x18\x11 \x01(\x08\x12\x1e\n\x16\x61uthor_followers_count\x18\x12 \x01(\x05\x12\x1c\n\x14\x61uthor_friends_count\x18\x13 \x01(\x05\x12\x15\n\rauthor_id_str\x18\x14 \x01(\t\x12\x13\n\x0b\x61uthor_lang\x18\x15 \x01(\t\x12\x17\n\x0f\x61uthor_location\x18\x16 \x01(\t\x12\x13\n\x0b\x61uthor_name\x18\x17 \x01(\t\x12\x1a\n\x12\x61uthor_screen_name\x18\x18 \x01(\t\x12%\n\x1d\x61uthor_profile_image_url_http\x18\x19 \x01(\t\x12\x1d\n\x15\x61uthor_statuses_count\x18\x1a \x01(\x05\x12\x12\n\ncategories\x18\x1b \x03(\t\x12\x11\n\ttruncated\x18\x1c \x01(\x08\x12\x11\n\tfull_text\x18\x1d \x01(\t\"\x9a\x01\n\x05Tweet\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12&\n\x0e\x65xtended_tweet\x18\x04 \x01(\x0b\x32\x0e.ExtendedTweet\"\xf4\x02\n\x0fSentimentCandle\x12\n\n\x02id\x18\x01 \x01(\t\x12.\n\nstart_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\r\n\x05\x61sset\x18\x04 \x01(\t\x12\x14\n\x0cnegative_sum\x18\x05 \x01(\x01\x12\x16\n\x0enegative_count\x18\x06 \x01(\x05\x12\x14\n\x0cpositive_sum\x18\x07 \x01(\x01\x12\x16\n\x0epositive_count\x18\x08 \x01(\x05\x12\x15\n\rsentiment_avg\x18\t \x01(\x01\x12\x1e\n\x16open_sentiment_average\x18\n \x01(\x01\x12\x1e\n\x16high_sentiment_average\x18\x0b \x01(\x01\x12\x1d\n\x15low_sentiment_average\x18\x0c \x01(\x01\x12\x1f\n\x17\x63lose_sentiment_average\x18\r \x01(\x01\x12\x0f\n\x07updated\x18\x0e \x01(\x08\"2\n\x0c\x41ssetsFilter\x12\x0e\n\x06\x61ssets\x18\x04 \x03(\t\x12\x12\n\nall_assets\x18\x05 \x01(\x08\"H\n\rCandlesFilter\x12\x12\n\nresolution\x18\x01 \x01(\t\x12#\n\x0c\x61sset_filter\x18\x02 \x01(\x0b\x32\r.AssetsFilter\"\xa3\x01\n\x18SentimentHistoricRequest\x12(\n\x04\x66rom\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\r\n\x05\x61sset\x18\x04 \x01(\t\x12\x12\n\nall_assets\x18\x05 \x01(\x08\"\x82\x01\n\x0fHistoricRequest\x12(\n\x04\x66rom\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1d\n\x06\x66ilter\x18\x04 \x01(\x0b\x32\r.AssetsFilter\"\x17\n\x05\x41sset\x12\x0e\n\x06symbol\x18\x02 \x01(\t\"$\n\nAssetItems\x12\x16\n\x06\x61ssets\x18\x01 \x03(\x0b\x32\x06.Asset\"`\n\tDateRange\x12)\n\x05\x66irst\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12(\n\x04last\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xc5\x01\n\x0bTransaction\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04hash\x18\x02 \x01(\t\x12\x14\n\x0c\x66rom_address\x18\x03 \x01(\t\x12\x12\n\nto_address\x18\x04 \x01(\t\x12\x12\n\nfrom_owner\x18\x05 \x01(\t\x12\x10\n\x08to_owner\x18\x06 \x01(\t\x12\x0c\n\x04time\x18\x07 \x01(\x03\x12\x0f\n\x07\x63omment\x18\x08 \x01(\t\x12\r\n\x05\x61sset\x18\t \x01(\t\x12\x0c\n\x04size\x18\n \x01(\x01\x12\x10\n\x08USD_size\x18\x0b \x01(\x01*\x9a\x01\n\x0bNamedEntity\x12\x10\n\x0c\x41SSET_ENTITY\x10\x00\x12\x11\n\rPERSON_ENTITY\x10\x01\x12\x13\n\x0fLOCATION_ENTITY\x10\x02\x12\x12\n\x0e\x43OMPANY_ENTITY\x10\x03\x12\x13\n\x0f\x45XCHANGE_ENTITY\x10\x04\x12\x0f\n\x0bMISC_ENTITY\x10\x05\x12\x17\n\x13ORGANIZATION_ENTITY\x10\x06\x32\xd6\x03\n\rMessagesProxy\x12/\n\x10SubscribeArticle\x12\r.AssetsFilter\x1a\x08.Article\"\x00\x30\x01\x12+\n\x0eSubscribeTweet\x12\r.AssetsFilter\x1a\x06.Tweet\"\x00\x30\x01\x12\x31\n\x0fSubscribeReddit\x12\r.AssetsFilter\x1a\x0b.RedditPost\"\x00\x30\x01\x12:\n\x10SubscribeDiscord\x12\r.AssetsFilter\x1a\x13.DiscordUserMessage\"\x00\x30\x01\x12<\n\x11SubscribeTelegram\x12\r.AssetsFilter\x1a\x14.TelegramUserMessage\"\x00\x30\x01\x12\x38\n\x0fSubscribeBitmex\x12\r.AssetsFilter\x1a\x12.BitmexUserMessage\"\x00\x30\x01\x12>\n\x16SubscribeNewsSentiment\x12\x0e.CandlesFilter\x1a\x10.SentimentCandle\"\x00\x30\x01\x12@\n\x18SubscribeSocialSentiment\x12\x0e.CandlesFilter\x1a\x10.SentimentCandle\"\x00\x30\x01\x32:\n\x07\x44\x61taset\x12/\n\x06\x41ssets\x12\x16.google.protobuf.Empty\x1a\x0b.AssetItems\"\x00\x32\x88\x04\n\x0cHistoricData\x12J\n\x17HistoricSocialSentiment\x12\x19.SentimentHistoricRequest\x1a\x10.SentimentCandle\"\x00\x30\x01\x12H\n\x15HistoricNewsSentiment\x12\x19.SentimentHistoricRequest\x1a\x10.SentimentCandle\"\x00\x30\x01\x12.\n\x0eHistoricTweets\x12\x10.HistoricRequest\x1a\x06.Tweet\"\x00\x30\x01\x12\x32\n\x10HistoricArticles\x12\x10.HistoricRequest\x1a\x08.Article\"\x00\x30\x01\x12\x38\n\x13HistoricRedditPosts\x12\x10.HistoricRequest\x1a\x0b.RedditPost\"\x00\x30\x01\x12\x44\n\x1cHistoricSocialSentimentRange\x12\x16.google.protobuf.Empty\x1a\n.DateRange\"\x00\x12\x42\n\x1aHistoricNewsSentimentRange\x12\x16.google.protobuf.Empty\x1a\n.DateRange\"\x00\x12:\n\x14HistoricTransactions\x12\x10.HistoricRequest\x1a\x0c.Transaction\"\x00\x30\x01\x62\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
 
@@ -64,8 +64,8 @@ _NAMEDENTITY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=6773,
-  serialized_end=6927,
+  serialized_start=5526,
+  serialized_end=5680,
 )
 _sym_db.RegisterEnumDescriptor(_NAMEDENTITY)
 
@@ -1720,621 +1720,6 @@ _TWEET = _descriptor.Descriptor(
 )
 
 
-_TIMELINEDATA = _descriptor.Descriptor(
-  name='TimelineData',
-  full_name='TimelineData',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='time', full_name='TimelineData.time', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='formatted_time', full_name='TimelineData.formatted_time', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='value', full_name='TimelineData.value', index=2,
-      number=3, type=5, cpp_type=1, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='formatted_value', full_name='TimelineData.formatted_value', index=3,
-      number=4, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='keywords_total_value', full_name='TimelineData.keywords_total_value', index=4,
-      number=5, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4364,
-  serialized_end=4486,
-)
-
-
-_GOOGLETRENDSUPDATE = _descriptor.Descriptor(
-  name='GoogleTrendsUpdate',
-  full_name='GoogleTrendsUpdate',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='base', full_name='GoogleTrendsUpdate.base', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='sentiment', full_name='GoogleTrendsUpdate.sentiment', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='named_entities', full_name='GoogleTrendsUpdate.named_entities', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='timeline_data', full_name='GoogleTrendsUpdate.timeline_data', index=3,
-      number=4, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4489,
-  serialized_end=4654,
-)
-
-
-_CHANNELLOCALIZATION = _descriptor.Descriptor(
-  name='ChannelLocalization',
-  full_name='ChannelLocalization',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='description', full_name='ChannelLocalization.description', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='title', full_name='ChannelLocalization.title', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='force_send_fields', full_name='ChannelLocalization.force_send_fields', index=2,
-      number=3, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='null_fields', full_name='ChannelLocalization.null_fields', index=3,
-      number=4, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4656,
-  serialized_end=4761,
-)
-
-
-_THUMBNAIL = _descriptor.Descriptor(
-  name='Thumbnail',
-  full_name='Thumbnail',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='height', full_name='Thumbnail.height', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='url', full_name='Thumbnail.url', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='width', full_name='Thumbnail.width', index=2,
-      number=3, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='force_send_fields', full_name='Thumbnail.force_send_fields', index=3,
-      number=4, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='null_fields', full_name='Thumbnail.null_fields', index=4,
-      number=5, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4763,
-  serialized_end=4866,
-)
-
-
-_THUMBNAILDETAILS = _descriptor.Descriptor(
-  name='ThumbnailDetails',
-  full_name='ThumbnailDetails',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='default', full_name='ThumbnailDetails.default', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='high', full_name='ThumbnailDetails.high', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='maxres', full_name='ThumbnailDetails.maxres', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='medium', full_name='ThumbnailDetails.medium', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='standard', full_name='ThumbnailDetails.standard', index=4,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='force_send_fields', full_name='ThumbnailDetails.force_send_fields', index=5,
-      number=6, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='null_fields', full_name='ThumbnailDetails.null_fields', index=6,
-      number=7, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4869,
-  serialized_end=5076,
-)
-
-
-_CHANNELSNIPPET = _descriptor.Descriptor(
-  name='ChannelSnippet',
-  full_name='ChannelSnippet',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='country', full_name='ChannelSnippet.country', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='custom_url', full_name='ChannelSnippet.custom_url', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='default_language', full_name='ChannelSnippet.default_language', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='description', full_name='ChannelSnippet.description', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='localized', full_name='ChannelSnippet.localized', index=4,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='published_at', full_name='ChannelSnippet.published_at', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='thumbnails', full_name='ChannelSnippet.thumbnails', index=6,
-      number=7, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='title', full_name='ChannelSnippet.title', index=7,
-      number=8, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='force_send_fields', full_name='ChannelSnippet.force_send_fields', index=8,
-      number=9, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='null_fields', full_name='ChannelSnippet.null_fields', index=9,
-      number=10, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=5079,
-  serialized_end=5344,
-)
-
-
-_CHANNELSTATISTICS = _descriptor.Descriptor(
-  name='ChannelStatistics',
-  full_name='ChannelStatistics',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='comment_count', full_name='ChannelStatistics.comment_count', index=0,
-      number=1, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='hidden_subscriber_count', full_name='ChannelStatistics.hidden_subscriber_count', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='subscriber_count', full_name='ChannelStatistics.subscriber_count', index=2,
-      number=3, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='video_count', full_name='ChannelStatistics.video_count', index=3,
-      number=4, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='view_count', full_name='ChannelStatistics.view_count', index=4,
-      number=5, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='force_send_fields', full_name='ChannelStatistics.force_send_fields', index=5,
-      number=9, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='null_fields', full_name='ChannelStatistics.null_fields', index=6,
-      number=10, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=5347,
-  serialized_end=5537,
-)
-
-
-_VIDEOSTATISTICS = _descriptor.Descriptor(
-  name='VideoStatistics',
-  full_name='VideoStatistics',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='comment_count', full_name='VideoStatistics.comment_count', index=0,
-      number=1, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='dislike_count', full_name='VideoStatistics.dislike_count', index=1,
-      number=2, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='favorite_count', full_name='VideoStatistics.favorite_count', index=2,
-      number=3, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='like_count', full_name='VideoStatistics.like_count', index=3,
-      number=4, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='view_count', full_name='VideoStatistics.view_count', index=4,
-      number=5, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='force_send_fields', full_name='VideoStatistics.force_send_fields', index=5,
-      number=9, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='null_fields', full_name='VideoStatistics.null_fields', index=6,
-      number=10, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=5540,
-  serialized_end=5715,
-)
-
-
-_VIDEO = _descriptor.Descriptor(
-  name='Video',
-  full_name='Video',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mentions', full_name='Video.mentions', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='trend', full_name='Video.trend', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='channel', full_name='Video.channel', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='channel_statistics', full_name='Video.channel_statistics', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='statistics', full_name='Video.statistics', index=4,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='base', full_name='Video.base', index=5,
-      number=6, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='sentiment', full_name='Video.sentiment', index=6,
-      number=7, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='named_entities', full_name='Video.named_entities', index=7,
-      number=8, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=5718,
-  serialized_end=6013,
-)
-
-
 _SENTIMENTCANDLE = _descriptor.Descriptor(
   name='SentimentCandle',
   full_name='SentimentCandle',
@@ -2452,8 +1837,84 @@ _SENTIMENTCANDLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6016,
-  serialized_end=6388,
+  serialized_start=4365,
+  serialized_end=4737,
+)
+
+
+_ASSETSFILTER = _descriptor.Descriptor(
+  name='AssetsFilter',
+  full_name='AssetsFilter',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='assets', full_name='AssetsFilter.assets', index=0,
+      number=4, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='all_assets', full_name='AssetsFilter.all_assets', index=1,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4739,
+  serialized_end=4789,
+)
+
+
+_CANDLESFILTER = _descriptor.Descriptor(
+  name='CandlesFilter',
+  full_name='CandlesFilter',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='resolution', full_name='CandlesFilter.resolution', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='asset_filter', full_name='CandlesFilter.asset_filter', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4791,
+  serialized_end=4863,
 )
 
 
@@ -2492,6 +1953,13 @@ _SENTIMENTHISTORICREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='all_assets', full_name='SentimentHistoricRequest.all_assets', index=4,
+      number=5, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2504,8 +1972,8 @@ _SENTIMENTHISTORICREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6391,
-  serialized_end=6534,
+  serialized_start=4866,
+  serialized_end=5029,
 )
 
 
@@ -2530,6 +1998,13 @@ _HISTORICREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='filter', full_name='HistoricRequest.filter', index=2,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2542,20 +2017,51 @@ _HISTORICREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6536,
-  serialized_end=6635,
+  serialized_start=5032,
+  serialized_end=5162,
 )
 
 
-_SENTIMENTCANDLEITEMS = _descriptor.Descriptor(
-  name='SentimentCandleItems',
-  full_name='SentimentCandleItems',
+_ASSET = _descriptor.Descriptor(
+  name='Asset',
+  full_name='Asset',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='items', full_name='SentimentCandleItems.items', index=0,
+      name='symbol', full_name='Asset.symbol', index=0,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=5164,
+  serialized_end=5187,
+)
+
+
+_ASSETITEMS = _descriptor.Descriptor(
+  name='AssetItems',
+  full_name='AssetItems',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='assets', full_name='AssetItems.assets', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -2573,22 +2079,29 @@ _SENTIMENTCANDLEITEMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6637,
-  serialized_end=6692,
+  serialized_start=5189,
+  serialized_end=5225,
 )
 
 
-_TWEETITEMS = _descriptor.Descriptor(
-  name='TweetItems',
-  full_name='TweetItems',
+_DATERANGE = _descriptor.Descriptor(
+  name='DateRange',
+  full_name='DateRange',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='items', full_name='TweetItems.items', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
+      name='first', full_name='DateRange.first', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='last', full_name='DateRange.last', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -2604,22 +2117,92 @@ _TWEETITEMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6694,
-  serialized_end=6729,
+  serialized_start=5227,
+  serialized_end=5323,
 )
 
 
-_ARTICLEITEMS = _descriptor.Descriptor(
-  name='ArticleItems',
-  full_name='ArticleItems',
+_TRANSACTION = _descriptor.Descriptor(
+  name='Transaction',
+  full_name='Transaction',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='items', full_name='ArticleItems.items', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
+      name='id', full_name='Transaction.id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='hash', full_name='Transaction.hash', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='from_address', full_name='Transaction.from_address', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='to_address', full_name='Transaction.to_address', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='from_owner', full_name='Transaction.from_owner', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='to_owner', full_name='Transaction.to_owner', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='time', full_name='Transaction.time', index=6,
+      number=7, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='comment', full_name='Transaction.comment', index=7,
+      number=8, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='asset', full_name='Transaction.asset', index=8,
+      number=9, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='size', full_name='Transaction.size', index=9,
+      number=10, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='USD_size', full_name='Transaction.USD_size', index=10,
+      number=11, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -2635,8 +2218,8 @@ _ARTICLEITEMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6731,
-  serialized_end=6770,
+  serialized_start=5326,
+  serialized_end=5523,
 )
 
 _BASEMODEL.fields_by_name['pub_date'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
@@ -2680,32 +2263,16 @@ _TWEET.fields_by_name['base'].message_type = _BASEMODEL
 _TWEET.fields_by_name['sentiment'].message_type = _SENTIMENTMODEL
 _TWEET.fields_by_name['named_entities'].message_type = _NAMEDENTITIESMODEL
 _TWEET.fields_by_name['extended_tweet'].message_type = _EXTENDEDTWEET
-_GOOGLETRENDSUPDATE.fields_by_name['base'].message_type = _BASEMODEL
-_GOOGLETRENDSUPDATE.fields_by_name['sentiment'].message_type = _SENTIMENTMODEL
-_GOOGLETRENDSUPDATE.fields_by_name['named_entities'].message_type = _NAMEDENTITIESMODEL
-_GOOGLETRENDSUPDATE.fields_by_name['timeline_data'].message_type = _TIMELINEDATA
-_THUMBNAILDETAILS.fields_by_name['default'].message_type = _THUMBNAIL
-_THUMBNAILDETAILS.fields_by_name['high'].message_type = _THUMBNAIL
-_THUMBNAILDETAILS.fields_by_name['maxres'].message_type = _THUMBNAIL
-_THUMBNAILDETAILS.fields_by_name['medium'].message_type = _THUMBNAIL
-_THUMBNAILDETAILS.fields_by_name['standard'].message_type = _THUMBNAIL
-_CHANNELSNIPPET.fields_by_name['localized'].message_type = _CHANNELLOCALIZATION
-_CHANNELSNIPPET.fields_by_name['thumbnails'].message_type = _THUMBNAILDETAILS
-_VIDEO.fields_by_name['mentions'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_VIDEO.fields_by_name['channel'].message_type = _CHANNELSNIPPET
-_VIDEO.fields_by_name['channel_statistics'].message_type = _CHANNELSTATISTICS
-_VIDEO.fields_by_name['statistics'].message_type = _VIDEOSTATISTICS
-_VIDEO.fields_by_name['base'].message_type = _BASEMODEL
-_VIDEO.fields_by_name['sentiment'].message_type = _SENTIMENTMODEL
-_VIDEO.fields_by_name['named_entities'].message_type = _NAMEDENTITIESMODEL
 _SENTIMENTCANDLE.fields_by_name['start_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_CANDLESFILTER.fields_by_name['asset_filter'].message_type = _ASSETSFILTER
 _SENTIMENTHISTORICREQUEST.fields_by_name['from'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _SENTIMENTHISTORICREQUEST.fields_by_name['to'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _HISTORICREQUEST.fields_by_name['from'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _HISTORICREQUEST.fields_by_name['to'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_SENTIMENTCANDLEITEMS.fields_by_name['items'].message_type = _SENTIMENTCANDLE
-_TWEETITEMS.fields_by_name['items'].message_type = _TWEET
-_ARTICLEITEMS.fields_by_name['items'].message_type = _ARTICLE
+_HISTORICREQUEST.fields_by_name['filter'].message_type = _ASSETSFILTER
+_ASSETITEMS.fields_by_name['assets'].message_type = _ASSET
+_DATERANGE.fields_by_name['first'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_DATERANGE.fields_by_name['last'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 DESCRIPTOR.message_types_by_name['BaseModel'] = _BASEMODEL
 DESCRIPTOR.message_types_by_name['SentimentModel'] = _SENTIMENTMODEL
 DESCRIPTOR.message_types_by_name['CryptopanicEntrySource'] = _CRYPTOPANICENTRYSOURCE
@@ -2727,21 +2294,15 @@ DESCRIPTOR.message_types_by_name['RedditPostModel'] = _REDDITPOSTMODEL
 DESCRIPTOR.message_types_by_name['RedditPost'] = _REDDITPOST
 DESCRIPTOR.message_types_by_name['ExtendedTweet'] = _EXTENDEDTWEET
 DESCRIPTOR.message_types_by_name['Tweet'] = _TWEET
-DESCRIPTOR.message_types_by_name['TimelineData'] = _TIMELINEDATA
-DESCRIPTOR.message_types_by_name['GoogleTrendsUpdate'] = _GOOGLETRENDSUPDATE
-DESCRIPTOR.message_types_by_name['ChannelLocalization'] = _CHANNELLOCALIZATION
-DESCRIPTOR.message_types_by_name['Thumbnail'] = _THUMBNAIL
-DESCRIPTOR.message_types_by_name['ThumbnailDetails'] = _THUMBNAILDETAILS
-DESCRIPTOR.message_types_by_name['ChannelSnippet'] = _CHANNELSNIPPET
-DESCRIPTOR.message_types_by_name['ChannelStatistics'] = _CHANNELSTATISTICS
-DESCRIPTOR.message_types_by_name['VideoStatistics'] = _VIDEOSTATISTICS
-DESCRIPTOR.message_types_by_name['Video'] = _VIDEO
 DESCRIPTOR.message_types_by_name['SentimentCandle'] = _SENTIMENTCANDLE
+DESCRIPTOR.message_types_by_name['AssetsFilter'] = _ASSETSFILTER
+DESCRIPTOR.message_types_by_name['CandlesFilter'] = _CANDLESFILTER
 DESCRIPTOR.message_types_by_name['SentimentHistoricRequest'] = _SENTIMENTHISTORICREQUEST
 DESCRIPTOR.message_types_by_name['HistoricRequest'] = _HISTORICREQUEST
-DESCRIPTOR.message_types_by_name['SentimentCandleItems'] = _SENTIMENTCANDLEITEMS
-DESCRIPTOR.message_types_by_name['TweetItems'] = _TWEETITEMS
-DESCRIPTOR.message_types_by_name['ArticleItems'] = _ARTICLEITEMS
+DESCRIPTOR.message_types_by_name['Asset'] = _ASSET
+DESCRIPTOR.message_types_by_name['AssetItems'] = _ASSETITEMS
+DESCRIPTOR.message_types_by_name['DateRange'] = _DATERANGE
+DESCRIPTOR.message_types_by_name['Transaction'] = _TRANSACTION
 DESCRIPTOR.enum_types_by_name['NamedEntity'] = _NAMEDENTITY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -2900,75 +2461,26 @@ Tweet = _reflection.GeneratedProtocolMessageType('Tweet', (_message.Message,), d
   ))
 _sym_db.RegisterMessage(Tweet)
 
-TimelineData = _reflection.GeneratedProtocolMessageType('TimelineData', (_message.Message,), dict(
-  DESCRIPTOR = _TIMELINEDATA,
-  __module__ = 'types_pb2'
-  # @@protoc_insertion_point(class_scope:TimelineData)
-  ))
-_sym_db.RegisterMessage(TimelineData)
-
-GoogleTrendsUpdate = _reflection.GeneratedProtocolMessageType('GoogleTrendsUpdate', (_message.Message,), dict(
-  DESCRIPTOR = _GOOGLETRENDSUPDATE,
-  __module__ = 'types_pb2'
-  # @@protoc_insertion_point(class_scope:GoogleTrendsUpdate)
-  ))
-_sym_db.RegisterMessage(GoogleTrendsUpdate)
-
-ChannelLocalization = _reflection.GeneratedProtocolMessageType('ChannelLocalization', (_message.Message,), dict(
-  DESCRIPTOR = _CHANNELLOCALIZATION,
-  __module__ = 'types_pb2'
-  # @@protoc_insertion_point(class_scope:ChannelLocalization)
-  ))
-_sym_db.RegisterMessage(ChannelLocalization)
-
-Thumbnail = _reflection.GeneratedProtocolMessageType('Thumbnail', (_message.Message,), dict(
-  DESCRIPTOR = _THUMBNAIL,
-  __module__ = 'types_pb2'
-  # @@protoc_insertion_point(class_scope:Thumbnail)
-  ))
-_sym_db.RegisterMessage(Thumbnail)
-
-ThumbnailDetails = _reflection.GeneratedProtocolMessageType('ThumbnailDetails', (_message.Message,), dict(
-  DESCRIPTOR = _THUMBNAILDETAILS,
-  __module__ = 'types_pb2'
-  # @@protoc_insertion_point(class_scope:ThumbnailDetails)
-  ))
-_sym_db.RegisterMessage(ThumbnailDetails)
-
-ChannelSnippet = _reflection.GeneratedProtocolMessageType('ChannelSnippet', (_message.Message,), dict(
-  DESCRIPTOR = _CHANNELSNIPPET,
-  __module__ = 'types_pb2'
-  # @@protoc_insertion_point(class_scope:ChannelSnippet)
-  ))
-_sym_db.RegisterMessage(ChannelSnippet)
-
-ChannelStatistics = _reflection.GeneratedProtocolMessageType('ChannelStatistics', (_message.Message,), dict(
-  DESCRIPTOR = _CHANNELSTATISTICS,
-  __module__ = 'types_pb2'
-  # @@protoc_insertion_point(class_scope:ChannelStatistics)
-  ))
-_sym_db.RegisterMessage(ChannelStatistics)
-
-VideoStatistics = _reflection.GeneratedProtocolMessageType('VideoStatistics', (_message.Message,), dict(
-  DESCRIPTOR = _VIDEOSTATISTICS,
-  __module__ = 'types_pb2'
-  # @@protoc_insertion_point(class_scope:VideoStatistics)
-  ))
-_sym_db.RegisterMessage(VideoStatistics)
-
-Video = _reflection.GeneratedProtocolMessageType('Video', (_message.Message,), dict(
-  DESCRIPTOR = _VIDEO,
-  __module__ = 'types_pb2'
-  # @@protoc_insertion_point(class_scope:Video)
-  ))
-_sym_db.RegisterMessage(Video)
-
 SentimentCandle = _reflection.GeneratedProtocolMessageType('SentimentCandle', (_message.Message,), dict(
   DESCRIPTOR = _SENTIMENTCANDLE,
   __module__ = 'types_pb2'
   # @@protoc_insertion_point(class_scope:SentimentCandle)
   ))
 _sym_db.RegisterMessage(SentimentCandle)
+
+AssetsFilter = _reflection.GeneratedProtocolMessageType('AssetsFilter', (_message.Message,), dict(
+  DESCRIPTOR = _ASSETSFILTER,
+  __module__ = 'types_pb2'
+  # @@protoc_insertion_point(class_scope:AssetsFilter)
+  ))
+_sym_db.RegisterMessage(AssetsFilter)
+
+CandlesFilter = _reflection.GeneratedProtocolMessageType('CandlesFilter', (_message.Message,), dict(
+  DESCRIPTOR = _CANDLESFILTER,
+  __module__ = 'types_pb2'
+  # @@protoc_insertion_point(class_scope:CandlesFilter)
+  ))
+_sym_db.RegisterMessage(CandlesFilter)
 
 SentimentHistoricRequest = _reflection.GeneratedProtocolMessageType('SentimentHistoricRequest', (_message.Message,), dict(
   DESCRIPTOR = _SENTIMENTHISTORICREQUEST,
@@ -2984,26 +2496,33 @@ HistoricRequest = _reflection.GeneratedProtocolMessageType('HistoricRequest', (_
   ))
 _sym_db.RegisterMessage(HistoricRequest)
 
-SentimentCandleItems = _reflection.GeneratedProtocolMessageType('SentimentCandleItems', (_message.Message,), dict(
-  DESCRIPTOR = _SENTIMENTCANDLEITEMS,
+Asset = _reflection.GeneratedProtocolMessageType('Asset', (_message.Message,), dict(
+  DESCRIPTOR = _ASSET,
   __module__ = 'types_pb2'
-  # @@protoc_insertion_point(class_scope:SentimentCandleItems)
+  # @@protoc_insertion_point(class_scope:Asset)
   ))
-_sym_db.RegisterMessage(SentimentCandleItems)
+_sym_db.RegisterMessage(Asset)
 
-TweetItems = _reflection.GeneratedProtocolMessageType('TweetItems', (_message.Message,), dict(
-  DESCRIPTOR = _TWEETITEMS,
+AssetItems = _reflection.GeneratedProtocolMessageType('AssetItems', (_message.Message,), dict(
+  DESCRIPTOR = _ASSETITEMS,
   __module__ = 'types_pb2'
-  # @@protoc_insertion_point(class_scope:TweetItems)
+  # @@protoc_insertion_point(class_scope:AssetItems)
   ))
-_sym_db.RegisterMessage(TweetItems)
+_sym_db.RegisterMessage(AssetItems)
 
-ArticleItems = _reflection.GeneratedProtocolMessageType('ArticleItems', (_message.Message,), dict(
-  DESCRIPTOR = _ARTICLEITEMS,
+DateRange = _reflection.GeneratedProtocolMessageType('DateRange', (_message.Message,), dict(
+  DESCRIPTOR = _DATERANGE,
   __module__ = 'types_pb2'
-  # @@protoc_insertion_point(class_scope:ArticleItems)
+  # @@protoc_insertion_point(class_scope:DateRange)
   ))
-_sym_db.RegisterMessage(ArticleItems)
+_sym_db.RegisterMessage(DateRange)
+
+Transaction = _reflection.GeneratedProtocolMessageType('Transaction', (_message.Message,), dict(
+  DESCRIPTOR = _TRANSACTION,
+  __module__ = 'types_pb2'
+  # @@protoc_insertion_point(class_scope:Transaction)
+  ))
+_sym_db.RegisterMessage(Transaction)
 
 
 _NAMEDENTITIESMODEL_ASSETMENTIONSENTRY._options = None
@@ -3014,15 +2533,15 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=6930,
-  serialized_end=7470,
+  serialized_start=5683,
+  serialized_end=6153,
   methods=[
   _descriptor.MethodDescriptor(
     name='SubscribeArticle',
     full_name='MessagesProxy.SubscribeArticle',
     index=0,
     containing_service=None,
-    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    input_type=_ASSETSFILTER,
     output_type=_ARTICLE,
     serialized_options=None,
   ),
@@ -3031,7 +2550,7 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
     full_name='MessagesProxy.SubscribeTweet',
     index=1,
     containing_service=None,
-    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    input_type=_ASSETSFILTER,
     output_type=_TWEET,
     serialized_options=None,
   ),
@@ -3040,7 +2559,7 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
     full_name='MessagesProxy.SubscribeReddit',
     index=2,
     containing_service=None,
-    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    input_type=_ASSETSFILTER,
     output_type=_REDDITPOST,
     serialized_options=None,
   ),
@@ -3049,7 +2568,7 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
     full_name='MessagesProxy.SubscribeDiscord',
     index=3,
     containing_service=None,
-    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    input_type=_ASSETSFILTER,
     output_type=_DISCORDUSERMESSAGE,
     serialized_options=None,
   ),
@@ -3058,7 +2577,7 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
     full_name='MessagesProxy.SubscribeTelegram',
     index=4,
     containing_service=None,
-    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    input_type=_ASSETSFILTER,
     output_type=_TELEGRAMUSERMESSAGE,
     serialized_options=None,
   ),
@@ -3067,7 +2586,7 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
     full_name='MessagesProxy.SubscribeBitmex',
     index=5,
     containing_service=None,
-    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    input_type=_ASSETSFILTER,
     output_type=_BITMEXUSERMESSAGE,
     serialized_options=None,
   ),
@@ -3076,7 +2595,7 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
     full_name='MessagesProxy.SubscribeNewsSentiment',
     index=6,
     containing_service=None,
-    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    input_type=_CANDLESFILTER,
     output_type=_SENTIMENTCANDLE,
     serialized_options=None,
   ),
@@ -3085,7 +2604,7 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
     full_name='MessagesProxy.SubscribeSocialSentiment',
     index=7,
     containing_service=None,
-    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    input_type=_CANDLESFILTER,
     output_type=_SENTIMENTCANDLE,
     serialized_options=None,
   ),
@@ -3095,14 +2614,38 @@ _sym_db.RegisterServiceDescriptor(_MESSAGESPROXY)
 DESCRIPTOR.services_by_name['MessagesProxy'] = _MESSAGESPROXY
 
 
+_DATASET = _descriptor.ServiceDescriptor(
+  name='Dataset',
+  full_name='Dataset',
+  file=DESCRIPTOR,
+  index=1,
+  serialized_options=None,
+  serialized_start=6155,
+  serialized_end=6213,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='Assets',
+    full_name='Dataset.Assets',
+    index=0,
+    containing_service=None,
+    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    output_type=_ASSETITEMS,
+    serialized_options=None,
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_DATASET)
+
+DESCRIPTOR.services_by_name['Dataset'] = _DATASET
+
+
 _HISTORICDATA = _descriptor.ServiceDescriptor(
   name='HistoricData',
   full_name='HistoricData',
   file=DESCRIPTOR,
-  index=1,
+  index=2,
   serialized_options=None,
-  serialized_start=7473,
-  serialized_end=7749,
+  serialized_start=6216,
+  serialized_end=6736,
   methods=[
   _descriptor.MethodDescriptor(
     name='HistoricSocialSentiment',
@@ -3110,7 +2653,7 @@ _HISTORICDATA = _descriptor.ServiceDescriptor(
     index=0,
     containing_service=None,
     input_type=_SENTIMENTHISTORICREQUEST,
-    output_type=_SENTIMENTCANDLEITEMS,
+    output_type=_SENTIMENTCANDLE,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
@@ -3119,7 +2662,7 @@ _HISTORICDATA = _descriptor.ServiceDescriptor(
     index=1,
     containing_service=None,
     input_type=_SENTIMENTHISTORICREQUEST,
-    output_type=_SENTIMENTCANDLEITEMS,
+    output_type=_SENTIMENTCANDLE,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
@@ -3128,7 +2671,7 @@ _HISTORICDATA = _descriptor.ServiceDescriptor(
     index=2,
     containing_service=None,
     input_type=_HISTORICREQUEST,
-    output_type=_TWEETITEMS,
+    output_type=_TWEET,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
@@ -3137,7 +2680,43 @@ _HISTORICDATA = _descriptor.ServiceDescriptor(
     index=3,
     containing_service=None,
     input_type=_HISTORICREQUEST,
-    output_type=_ARTICLEITEMS,
+    output_type=_ARTICLE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='HistoricRedditPosts',
+    full_name='HistoricData.HistoricRedditPosts',
+    index=4,
+    containing_service=None,
+    input_type=_HISTORICREQUEST,
+    output_type=_REDDITPOST,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='HistoricSocialSentimentRange',
+    full_name='HistoricData.HistoricSocialSentimentRange',
+    index=5,
+    containing_service=None,
+    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    output_type=_DATERANGE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='HistoricNewsSentimentRange',
+    full_name='HistoricData.HistoricNewsSentimentRange',
+    index=6,
+    containing_service=None,
+    input_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    output_type=_DATERANGE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='HistoricTransactions',
+    full_name='HistoricData.HistoricTransactions',
+    index=7,
+    containing_service=None,
+    input_type=_HISTORICREQUEST,
+    output_type=_TRANSACTION,
     serialized_options=None,
   ),
 ])

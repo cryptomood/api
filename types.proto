@@ -511,6 +511,20 @@ message DateRange {
     google.protobuf.Timestamp last = 2;
 }
 
+message Transaction {
+    string id = 1;
+    string hash = 2;
+    string from_address = 3;
+    string to_address = 4;
+    string from_owner = 5;
+    string to_owner = 6;
+    int64 time = 7;
+    string comment = 8;
+    string asset = 9;
+    double size = 10;
+    double USD_size = 11;
+}
+
 /**
 Service for requesting historic data
 */
@@ -529,5 +543,6 @@ service HistoricData {
     }
     rpc HistoricNewsSentimentRange (google.protobuf.Empty) returns (DateRange) {
     }
-
+    rpc HistoricTransactions (HistoricRequest) returns (stream Transaction) {
+    }
 }

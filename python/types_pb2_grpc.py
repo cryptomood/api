@@ -18,42 +18,42 @@ class MessagesProxyStub(object):
     """
     self.SubscribeArticle = channel.unary_stream(
         '/MessagesProxy/SubscribeArticle',
-        request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        request_serializer=types__pb2.AssetsFilter.SerializeToString,
         response_deserializer=types__pb2.Article.FromString,
         )
     self.SubscribeTweet = channel.unary_stream(
         '/MessagesProxy/SubscribeTweet',
-        request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        request_serializer=types__pb2.AssetsFilter.SerializeToString,
         response_deserializer=types__pb2.Tweet.FromString,
         )
     self.SubscribeReddit = channel.unary_stream(
         '/MessagesProxy/SubscribeReddit',
-        request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        request_serializer=types__pb2.AssetsFilter.SerializeToString,
         response_deserializer=types__pb2.RedditPost.FromString,
         )
     self.SubscribeDiscord = channel.unary_stream(
         '/MessagesProxy/SubscribeDiscord',
-        request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        request_serializer=types__pb2.AssetsFilter.SerializeToString,
         response_deserializer=types__pb2.DiscordUserMessage.FromString,
         )
     self.SubscribeTelegram = channel.unary_stream(
         '/MessagesProxy/SubscribeTelegram',
-        request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        request_serializer=types__pb2.AssetsFilter.SerializeToString,
         response_deserializer=types__pb2.TelegramUserMessage.FromString,
         )
     self.SubscribeBitmex = channel.unary_stream(
         '/MessagesProxy/SubscribeBitmex',
-        request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        request_serializer=types__pb2.AssetsFilter.SerializeToString,
         response_deserializer=types__pb2.BitmexUserMessage.FromString,
         )
     self.SubscribeNewsSentiment = channel.unary_stream(
         '/MessagesProxy/SubscribeNewsSentiment',
-        request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        request_serializer=types__pb2.CandlesFilter.SerializeToString,
         response_deserializer=types__pb2.SentimentCandle.FromString,
         )
     self.SubscribeSocialSentiment = channel.unary_stream(
         '/MessagesProxy/SubscribeSocialSentiment',
-        request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        request_serializer=types__pb2.CandlesFilter.SerializeToString,
         response_deserializer=types__pb2.SentimentCandle.FromString,
         )
 
@@ -124,47 +124,91 @@ def add_MessagesProxyServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'SubscribeArticle': grpc.unary_stream_rpc_method_handler(
           servicer.SubscribeArticle,
-          request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+          request_deserializer=types__pb2.AssetsFilter.FromString,
           response_serializer=types__pb2.Article.SerializeToString,
       ),
       'SubscribeTweet': grpc.unary_stream_rpc_method_handler(
           servicer.SubscribeTweet,
-          request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+          request_deserializer=types__pb2.AssetsFilter.FromString,
           response_serializer=types__pb2.Tweet.SerializeToString,
       ),
       'SubscribeReddit': grpc.unary_stream_rpc_method_handler(
           servicer.SubscribeReddit,
-          request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+          request_deserializer=types__pb2.AssetsFilter.FromString,
           response_serializer=types__pb2.RedditPost.SerializeToString,
       ),
       'SubscribeDiscord': grpc.unary_stream_rpc_method_handler(
           servicer.SubscribeDiscord,
-          request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+          request_deserializer=types__pb2.AssetsFilter.FromString,
           response_serializer=types__pb2.DiscordUserMessage.SerializeToString,
       ),
       'SubscribeTelegram': grpc.unary_stream_rpc_method_handler(
           servicer.SubscribeTelegram,
-          request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+          request_deserializer=types__pb2.AssetsFilter.FromString,
           response_serializer=types__pb2.TelegramUserMessage.SerializeToString,
       ),
       'SubscribeBitmex': grpc.unary_stream_rpc_method_handler(
           servicer.SubscribeBitmex,
-          request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+          request_deserializer=types__pb2.AssetsFilter.FromString,
           response_serializer=types__pb2.BitmexUserMessage.SerializeToString,
       ),
       'SubscribeNewsSentiment': grpc.unary_stream_rpc_method_handler(
           servicer.SubscribeNewsSentiment,
-          request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+          request_deserializer=types__pb2.CandlesFilter.FromString,
           response_serializer=types__pb2.SentimentCandle.SerializeToString,
       ),
       'SubscribeSocialSentiment': grpc.unary_stream_rpc_method_handler(
           servicer.SubscribeSocialSentiment,
-          request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+          request_deserializer=types__pb2.CandlesFilter.FromString,
           response_serializer=types__pb2.SentimentCandle.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
       'MessagesProxy', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
+
+class DatasetStub(object):
+  """*
+  Service for requesting data from dataset
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.Assets = channel.unary_unary(
+        '/Dataset/Assets',
+        request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        response_deserializer=types__pb2.AssetItems.FromString,
+        )
+
+
+class DatasetServicer(object):
+  """*
+  Service for requesting data from dataset
+  """
+
+  def Assets(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_DatasetServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'Assets': grpc.unary_unary_rpc_method_handler(
+          servicer.Assets,
+          request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+          response_serializer=types__pb2.AssetItems.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'Dataset', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -179,25 +223,45 @@ class HistoricDataStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.HistoricSocialSentiment = channel.unary_unary(
+    self.HistoricSocialSentiment = channel.unary_stream(
         '/HistoricData/HistoricSocialSentiment',
         request_serializer=types__pb2.SentimentHistoricRequest.SerializeToString,
-        response_deserializer=types__pb2.SentimentCandleItems.FromString,
+        response_deserializer=types__pb2.SentimentCandle.FromString,
         )
-    self.HistoricNewsSentiment = channel.unary_unary(
+    self.HistoricNewsSentiment = channel.unary_stream(
         '/HistoricData/HistoricNewsSentiment',
         request_serializer=types__pb2.SentimentHistoricRequest.SerializeToString,
-        response_deserializer=types__pb2.SentimentCandleItems.FromString,
+        response_deserializer=types__pb2.SentimentCandle.FromString,
         )
-    self.HistoricTweets = channel.unary_unary(
+    self.HistoricTweets = channel.unary_stream(
         '/HistoricData/HistoricTweets',
         request_serializer=types__pb2.HistoricRequest.SerializeToString,
-        response_deserializer=types__pb2.TweetItems.FromString,
+        response_deserializer=types__pb2.Tweet.FromString,
         )
-    self.HistoricArticles = channel.unary_unary(
+    self.HistoricArticles = channel.unary_stream(
         '/HistoricData/HistoricArticles',
         request_serializer=types__pb2.HistoricRequest.SerializeToString,
-        response_deserializer=types__pb2.ArticleItems.FromString,
+        response_deserializer=types__pb2.Article.FromString,
+        )
+    self.HistoricRedditPosts = channel.unary_stream(
+        '/HistoricData/HistoricRedditPosts',
+        request_serializer=types__pb2.HistoricRequest.SerializeToString,
+        response_deserializer=types__pb2.RedditPost.FromString,
+        )
+    self.HistoricSocialSentimentRange = channel.unary_unary(
+        '/HistoricData/HistoricSocialSentimentRange',
+        request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        response_deserializer=types__pb2.DateRange.FromString,
+        )
+    self.HistoricNewsSentimentRange = channel.unary_unary(
+        '/HistoricData/HistoricNewsSentimentRange',
+        request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+        response_deserializer=types__pb2.DateRange.FromString,
+        )
+    self.HistoricTransactions = channel.unary_stream(
+        '/HistoricData/HistoricTransactions',
+        request_serializer=types__pb2.HistoricRequest.SerializeToString,
+        response_deserializer=types__pb2.Transaction.FromString,
         )
 
 
@@ -234,28 +298,76 @@ class HistoricDataServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def HistoricRedditPosts(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def HistoricSocialSentimentRange(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def HistoricNewsSentimentRange(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def HistoricTransactions(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_HistoricDataServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'HistoricSocialSentiment': grpc.unary_unary_rpc_method_handler(
+      'HistoricSocialSentiment': grpc.unary_stream_rpc_method_handler(
           servicer.HistoricSocialSentiment,
           request_deserializer=types__pb2.SentimentHistoricRequest.FromString,
-          response_serializer=types__pb2.SentimentCandleItems.SerializeToString,
+          response_serializer=types__pb2.SentimentCandle.SerializeToString,
       ),
-      'HistoricNewsSentiment': grpc.unary_unary_rpc_method_handler(
+      'HistoricNewsSentiment': grpc.unary_stream_rpc_method_handler(
           servicer.HistoricNewsSentiment,
           request_deserializer=types__pb2.SentimentHistoricRequest.FromString,
-          response_serializer=types__pb2.SentimentCandleItems.SerializeToString,
+          response_serializer=types__pb2.SentimentCandle.SerializeToString,
       ),
-      'HistoricTweets': grpc.unary_unary_rpc_method_handler(
+      'HistoricTweets': grpc.unary_stream_rpc_method_handler(
           servicer.HistoricTweets,
           request_deserializer=types__pb2.HistoricRequest.FromString,
-          response_serializer=types__pb2.TweetItems.SerializeToString,
+          response_serializer=types__pb2.Tweet.SerializeToString,
       ),
-      'HistoricArticles': grpc.unary_unary_rpc_method_handler(
+      'HistoricArticles': grpc.unary_stream_rpc_method_handler(
           servicer.HistoricArticles,
           request_deserializer=types__pb2.HistoricRequest.FromString,
-          response_serializer=types__pb2.ArticleItems.SerializeToString,
+          response_serializer=types__pb2.Article.SerializeToString,
+      ),
+      'HistoricRedditPosts': grpc.unary_stream_rpc_method_handler(
+          servicer.HistoricRedditPosts,
+          request_deserializer=types__pb2.HistoricRequest.FromString,
+          response_serializer=types__pb2.RedditPost.SerializeToString,
+      ),
+      'HistoricSocialSentimentRange': grpc.unary_unary_rpc_method_handler(
+          servicer.HistoricSocialSentimentRange,
+          request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+          response_serializer=types__pb2.DateRange.SerializeToString,
+      ),
+      'HistoricNewsSentimentRange': grpc.unary_unary_rpc_method_handler(
+          servicer.HistoricNewsSentimentRange,
+          request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+          response_serializer=types__pb2.DateRange.SerializeToString,
+      ),
+      'HistoricTransactions': grpc.unary_stream_rpc_method_handler(
+          servicer.HistoricTransactions,
+          request_deserializer=types__pb2.HistoricRequest.FromString,
+          response_serializer=types__pb2.Transaction.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

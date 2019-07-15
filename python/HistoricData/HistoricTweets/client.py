@@ -4,7 +4,7 @@ import grpc
 
 import types_pb2
 import types_pb2_grpc
-from google.protobuf import empty_pb2, timestamp_pb2
+from google.protobuf import timestamp_pb2
 
 import time
 
@@ -22,6 +22,7 @@ def main():
     # create stub
     stub = types_pb2_grpc.HistoricDataStub(channel)
 
+    # create timeframe 
     now = time.time()
     seconds = int(now)
     to_time = timestamp_pb2.Timestamp(seconds=seconds)
@@ -30,11 +31,12 @@ def main():
     # in our case we have to use kwarg because `from` is
     # is recognized as python keyword so there would syntax be error
     # if you want get value you have to use getattr()
-    historic_request_kwargs = {'from': from_time, 'to': to_time}
+    historic_request_kwargs = { 'from': from_time, 'to': to_time, 
+                                'filter': types_pb2.AssetsFilter(assets=['BTC', 'ETH'], all_assets=False)}
     req = types_pb2.HistoricRequest(**historic_request_kwargs)
-    tweet_items = stub.HistoricTweets(req)
+    tweet_stream = stub.HistoricTweets(req)
 
-    for tweet in tweet_items.items:
+    for tweet in tweet_stream:
         print(tweet.base.id, tweet.base.content)
 
 
