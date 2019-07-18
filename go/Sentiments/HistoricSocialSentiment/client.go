@@ -25,7 +25,7 @@ func main() {
 	}
 	fmt.Println("Connected")
 
-	historicClient := types.NewHistoricDataClient(conn)
+	historicClient := types.NewSentimentsClient(conn)
 
 	// create time frame
 	now := time.Now()
@@ -33,7 +33,7 @@ func main() {
 	timestampNow, _ := ptypes.TimestampProto(now)
 	timestamp2HAgo, _ := ptypes.TimestampProto(twoHoursAgo)
 
-	historicRequest := &types.SentimentHistoricRequest{From: timestamp2HAgo, To: timestampNow , Resolution: "M1", Asset: "BTC", AllAssets:false}
+	historicRequest := &types.SentimentHistoricRequest{From: timestamp2HAgo, To: timestampNow , Resolution: "M1", Asset: "BTC"}
 	sub, err := historicClient.HistoricSocialSentiment(context.Background(), historicRequest)
 	if err != nil {
 		panic(err)

@@ -16,12 +16,11 @@ const proto = grpc.loadPackageDefinition(
     })
 );
 
-const client = new proto.MessagesProxy(
+const client = new proto.Dataset(
     SERVER,
     grpc.credentials.createSsl(fs.readFileSync(CERT_FILE_PATH))
 );
-
-let channel = client.SubscribeReddit({assets: ["BTC", "ETH"], all_assets: false});
-channel.on("data", function (message) {
-    console.log(message);
+client.Assets({from: {seconds: 1561400800}, to: {seconds: 1561428800}}, function (err, req) {
+    console.log(req, err)
 });
+

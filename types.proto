@@ -142,7 +142,6 @@ message NamedEntityOccurrence {
     string text = 4;
 }
 
-
 /**
 Groups all types of named entities we support.
 */
@@ -319,6 +318,7 @@ message RedditPostModel {
     string subreddit = 9;
 
     bool is_self = 10;
+    bool nsfw = 29;
 }
 
 message RedditPost {
@@ -444,10 +444,6 @@ service MessagesProxy {
     }
     rpc SubscribeBitmex (AssetsFilter) returns (stream BitmexUserMessage) {
     }
-    rpc SubscribeNewsSentiment (CandlesFilter) returns (stream SentimentCandle) {
-    }
-    rpc SubscribeSocialSentiment (CandlesFilter) returns (stream SentimentCandle) {
-    }
 }
 
 message AssetsFilter {
@@ -456,9 +452,10 @@ message AssetsFilter {
     bool all_assets = 5;
 }
 
-message CandlesFilter {
+message AggregationCandleFilter {
+    // resolution for candle - M1/H1
     string resolution = 1;
-    AssetsFilter asset_filter = 2;
+    AssetsFilter assets_filter = 2;
 }
 
 /**
@@ -472,9 +469,7 @@ message SentimentHistoricRequest {
     // resolution for candle - M1/H1
     string resolution = 3;
     // name of the asset - ie. BTC
-    string asset = 4;
-    bool all_assets = 5;
-}
+    string asset = 4;}
 
 /**
 Each request for historic data should be limited by date
@@ -484,7 +479,6 @@ message HistoricRequest {
     google.protobuf.Timestamp from = 1;
     // unix timestamp for end - excluded from results (
     google.protobuf.Timestamp to = 2;
-
     AssetsFilter filter = 4;
 }
 
@@ -506,43 +500,45 @@ service Dataset {
     }
 }
 
-message DateRange {
-    google.protobuf.Timestamp first = 1;
-    google.protobuf.Timestamp last = 2;
-}
-
-message Transaction {
-    string id = 1;
-    string hash = 2;
-    string from_address = 3;
-    string to_address = 4;
-    string from_owner = 5;
-    string to_owner = 6;
-    int64 time = 7;
-    string comment = 8;
-    string asset = 9;
-    double size = 10;
-    double USD_size = 11;
-}
-
 /**
 Service for requesting historic data
 */
 service HistoricData {
-    rpc HistoricSocialSentiment (SentimentHistoricRequest) returns (stream SentimentCandle) {
-    }
-    rpc HistoricNewsSentiment (SentimentHistoricRequest) returns (stream SentimentCandle) {
-    }
     rpc HistoricTweets (HistoricRequest) returns (stream Tweet) {
     }
     rpc HistoricArticles (HistoricRequest) returns (stream Article) {
     }
     rpc HistoricRedditPosts (HistoricRequest) returns (stream RedditPost) {
     }
-    rpc HistoricSocialSentimentRange (google.protobuf.Empty) returns (DateRange) {
+}
+
+service Sentiments {
+    rpc HistoricSocialSentiment (SentimentHistoricRequest) returns (stream AggregationCandle) {
     }
-    rpc HistoricNewsSentimentRange (google.protobuf.Empty) returns (DateRange) {
+    rpc HistoricNewsSentiment (SentimentHistoricRequest) returns (stream AggregationCandle) {
     }
-    rpc HistoricTransactions (HistoricRequest) returns (stream Transaction) {
+    rpc SubscribeSocialSentiment (AggregationCandleFilter) returns (stream AggregationCandle) {
+    }
+    rpc SubscribeNewsSentiment (AggregationCandleFilter) returns (stream AggregationCandle) {
     }
 }
+
+message AggId {
+    int32 year = 1;
+    int32 month = 2;
+    int32 day = 3;
+    int32 hour = 4;
+    int32 minute = 5;
+}
+
+message AggregationCandle {
+    AggId id = 1;
+    string asset = 2;
+    string resolution = 3;
+    int64 pv = 4;
+    int64 nv = 5;
+    double ps = 6;
+    double ns = 7;
+    double a = 8;
+}
+

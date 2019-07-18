@@ -24,10 +24,10 @@ func main() {
 	}
 	fmt.Println("Connected")
 
-	proxyClient := types.NewMessagesProxyClient(conn)
+	proxyClient := types.NewSentimentsClient(conn)
 
-	req := &types.CandlesFilter{Resolution:"M1", AssetFilter: &types.AssetsFilter{Assets:[]string{"BTC", "ETH"},AllAssets:false}}
-	sub, err := proxyClient.SubscribeNewsSentiment(context.Background(), req)
+	req := &types.AggregationCandleFilter{Resolution: "M1", AssetsFilter: &types.AssetsFilter{Assets: []string{"BTC", "ETH"}, AllAssets: false}}
+	sub, err := proxyClient.SubscribeSocialSentiment(context.Background(), req)
 	if err != nil {
 		panic(err)
 	}

@@ -18,7 +18,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	conn, err := grpc.Dial(Server, grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(20971520)), grpc.WithTransportCredentials(creds), grpc.WithTimeout(5*time.Second), grpc.WithBlock())
+	conn, err := grpc.Dial(Server, grpc.WithTransportCredentials(creds), grpc.WithTimeout(5*time.Second), grpc.WithBlock())
 	if err != nil {
 		panic(fmt.Sprintf("did not connect: %v", err))
 	}

@@ -20,7 +20,7 @@ def main():
     channel = grpc.secure_channel(SERVER_ADDRESS, creds)
 
     # create stub
-    stub = types_pb2_grpc.HistoricDataStub(channel)
+    stub = types_pb2_grpc.SentimentsStub(channel)
 
     # create timeframe 
     now = time.time()
@@ -31,13 +31,12 @@ def main():
     # in our case we have to use kwarg because `from` is
     # is recognized as python keyword so there would syntax be error
     # if you want get value you have to use getattr()
-    sentiment_historic_request_kwargs = {   'from': from_time, 'to': to_time, 'resolution': 'M1',
-                                            'asset': 'BTC', 'all_assets': False }
+    sentiment_historic_request_kwargs = { 'from': from_time, 'to': to_time, 'resolution': 'M1', 'asset': 'BTC' }
     req = types_pb2.SentimentHistoricRequest(**sentiment_historic_request_kwargs)
     
-    sentiment_candle_stream = stub.HistoricNewsSentiment(req)
-    for candle in sentiment_candle_stream:
-        print(candle.id, candle.sentiment_avg)
+    candle_stream = stub.HistoricNewsSentiment(req)
+    for candle in candle_stream:
+        print(candle.id, candle.a)
 
 
 
