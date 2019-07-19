@@ -1,10 +1,10 @@
-import sys; sys.path.append('../../')  # for correct types inclusion,
+import sys; sys.path.append('../../') # for correct types inclusion,
 
 import grpc
 
 import types_pb2
 import types_pb2_grpc
-from google.protobuf import empty_pb2, timestamp_pb2
+from google.protobuf import timestamp_pb2
 
 import time
 
@@ -22,21 +22,23 @@ def main():
     # create stub
     stub = types_pb2_grpc.HistoricDataStub(channel)
 
+    # create timeframe 
     now = time.time()
     seconds = int(now)
     to_time = timestamp_pb2.Timestamp(seconds=seconds)
-    from_time = timestamp_pb2.Timestamp(seconds=to_time.seconds - int(86400 / 24))  # last hour
+    from_time = timestamp_pb2.Timestamp(seconds=to_time.seconds - int(86400 / 4)) # last 6 hours
 
     # in our case we have to use kwarg because `from` is
     # is recognized as python keyword so there would syntax be error
     # if you want get value you have to use getattr()
-    sentiment_historic_request_kwargs = {'from': from_time, 'to': to_time, 'resolution': 'M1', 'asset': 'BTC',
-                                         'allAssets': False}
-    req = types_pb2.SentimentHistoricRequest(**sentiment_historic_request_kwargs)
-    sentiment_candle_items = stub.HistoricNewsSentiment(req)
+    historic_request_kwargs = { 'from': from_time, 'to': to_time, 
+                                'filter': types_pb2.AssetsFilter(assets=['BTC', 'ETH'], all_assets=False)}
+    req = types_pb2.HistoricRequest(**historic_request_kwargs)
+    reddit_stream = stub.HistoricRedditPosts(req)
 
-    for candle in sentiment_candle_items.items:
-        print(candle.id, candle.sentiment_avg)
+    for reddit in reddit_stream:
+        print(reddit.base.id, reddit.base.content)
+
 
 
 if __name__ == '__main__':

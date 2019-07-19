@@ -142,7 +142,6 @@ message NamedEntityOccurrence {
     string text = 4;
 }
 
-
 /**
 Groups all types of named entities we support.
 */
@@ -322,9 +321,6 @@ message RedditPostModel {
     bool nsfw = 29;
 }
 
-/**
-TODO
-*/
 message RedditPost {
     BaseModel base = 1;
     SentimentModel sentiment = 2;
@@ -374,9 +370,6 @@ message ExtendedTweet {
     string full_text = 29;
 }
 
-/**
-TODO
-*/
 message Tweet {
     BaseModel base = 1;
     SentimentModel sentiment = 2;
@@ -384,86 +377,6 @@ message Tweet {
 
     // data from original tweet
     ExtendedTweet extended_tweet = 4;
-}
-
-
-message TimelineData {
-    string time = 1;
-    string formatted_time = 2;
-    repeated int32 value = 3;
-    repeated string formatted_value = 4;
-    int32 keywords_total_value = 5;
-}
-
-message GoogleTrendsUpdate {
-    BaseModel base = 1;
-    SentimentModel sentiment = 2;
-    NamedEntitiesModel named_entities = 3;
-
-    repeated TimelineData timeline_data = 4;
-}
-// VIDEO
-message ChannelLocalization {
-    string description = 1;
-    string title = 2;
-    repeated string force_send_fields = 3;
-    repeated string null_fields = 4;
-}
-message Thumbnail {
-    int64 height = 1;
-    string url = 2;
-    int64 width = 3;
-    repeated string force_send_fields = 4;
-    repeated string null_fields = 5;
-}
-message ThumbnailDetails {
-    Thumbnail default = 1;
-    Thumbnail high = 2;
-    Thumbnail maxres = 3;
-    Thumbnail medium = 4;
-    Thumbnail standard = 5;
-    repeated string force_send_fields = 6;
-    repeated string null_fields = 7;
-}
-message ChannelSnippet {
-    string country = 1;
-    string custom_url = 2;
-    string default_language = 3;
-    string description = 4;
-    ChannelLocalization localized = 5;
-    string published_at = 6;
-    ThumbnailDetails thumbnails = 7;
-    string title = 8;
-    repeated string force_send_fields = 9;
-    repeated string null_fields = 10;
-}
-message ChannelStatistics {
-    uint64 comment_count = 1;
-    bool hidden_subscriber_count = 2;
-    uint64 subscriber_count = 3;
-    uint64 video_count = 4;
-    uint64 view_count = 5;
-    repeated string force_send_fields = 9;
-    repeated string null_fields = 10;
-}
-message VideoStatistics {
-    uint64 comment_count = 1;
-    uint64 dislike_count = 2;
-    uint64 favorite_count = 3;
-    uint64 like_count = 4;
-    uint64 view_count = 5;
-    repeated string force_send_fields = 9;
-    repeated string null_fields = 10;
-}
-message Video {
-    repeated google.protobuf.Timestamp mentions = 1;
-    float trend = 2;
-    ChannelSnippet channel = 3;
-    ChannelStatistics channel_statistics = 4;
-    VideoStatistics statistics = 5;
-    BaseModel base = 6;
-    SentimentModel sentiment = 7;
-    NamedEntitiesModel named_entities = 8;
 }
 
 /**
@@ -519,22 +432,30 @@ message SentimentCandle {
 Service for pub-sub message model
 */
 service MessagesProxy {
-    rpc SubscribeArticle (google.protobuf.Empty) returns (stream Article) {
+    rpc SubscribeArticle (AssetsFilter) returns (stream Article) {
     }
-    rpc SubscribeTweet (google.protobuf.Empty) returns (stream Tweet) {
+    rpc SubscribeTweet (AssetsFilter) returns (stream Tweet) {
     }
-    rpc SubscribeReddit (google.protobuf.Empty) returns (stream RedditPost) {
+    rpc SubscribeReddit (AssetsFilter) returns (stream RedditPost) {
     }
-    rpc SubscribeDiscord (google.protobuf.Empty) returns (stream DiscordUserMessage) {
+    rpc SubscribeDiscord (AssetsFilter) returns (stream DiscordUserMessage) {
     }
-    rpc SubscribeTelegram (google.protobuf.Empty) returns (stream TelegramUserMessage) {
+    rpc SubscribeTelegram (AssetsFilter) returns (stream TelegramUserMessage) {
     }
-    rpc SubscribeBitmex (google.protobuf.Empty) returns (stream BitmexUserMessage) {
+    rpc SubscribeBitmex (AssetsFilter) returns (stream BitmexUserMessage) {
     }
-    rpc SubscribeNewsSentiment (google.protobuf.Empty) returns (stream SentimentCandle) {
-    }
-    rpc SubscribeSocialSentiment (google.protobuf.Empty) returns (stream SentimentCandle) {
-    }
+}
+
+message AssetsFilter {
+    // name of the asset - ie. BTC
+    repeated string assets = 4;
+    bool all_assets = 5;
+}
+
+message AggregationCandleFilter {
+    // resolution for candle - M1/H1
+    string resolution = 1;
+    AssetsFilter assets_filter = 2;
 }
 
 /**
@@ -548,9 +469,7 @@ message SentimentHistoricRequest {
     // resolution for candle - M1/H1
     string resolution = 3;
     // name of the asset - ie. BTC
-    string asset = 4;
-    bool allAssets = 5;
-}
+    string asset = 4;}
 
 /**
 Each request for historic data should be limited by date
@@ -560,39 +479,65 @@ message HistoricRequest {
     google.protobuf.Timestamp from = 1;
     // unix timestamp for end - excluded from results (
     google.protobuf.Timestamp to = 2;
+    AssetsFilter filter = 4;
+}
+
+// represent one asset
+message Asset {
+    // symbol
+    string symbol = 2;
+}
+
+message AssetItems {
+    repeated Asset assets = 1;
 }
 
 /**
-Wrapped historic data
+Service for requesting data from dataset
 */
-message SentimentCandleItems {
-    // array with candles
-    repeated SentimentCandle items = 1;
-}
-
-message TweetItems {
-    // array with tweets
-    repeated Tweet items = 1;
-}
-
-message ArticleItems {
-    // array with articles
-    repeated Article items = 1;
-}
-
-message DateRange {
-    google.protobuf.Timestamp first = 1;
-    google.protobuf.Timestamp last = 2;
+service Dataset {
+    rpc Assets (google.protobuf.Empty) returns (AssetItems) {
+    }
 }
 
 /**
 Service for requesting historic data
 */
 service HistoricData {
-    rpc HistoricSocialSentiment (SentimentHistoricRequest) returns (SentimentCandleItems) {}
-    rpc HistoricSocialSentimentRange (google.protobuf.Empty) returns (DateRange) {}
-    rpc HistoricNewsSentiment (SentimentHistoricRequest) returns (SentimentCandleItems) {}
-    rpc HistoricNewsSentimentRange (google.protobuf.Empty) returns (DateRange) {}
-    rpc HistoricTweets (HistoricRequest) returns (TweetItems) {}
-    rpc HistoricArticles (HistoricRequest) returns (ArticleItems) {}
+    rpc HistoricTweets (HistoricRequest) returns (stream Tweet) {
+    }
+    rpc HistoricArticles (HistoricRequest) returns (stream Article) {
+    }
+    rpc HistoricRedditPosts (HistoricRequest) returns (stream RedditPost) {
+    }
+}
+
+service Sentiments {
+    rpc HistoricSocialSentiment (SentimentHistoricRequest) returns (stream AggregationCandle) {
+    }
+    rpc HistoricNewsSentiment (SentimentHistoricRequest) returns (stream AggregationCandle) {
+    }
+    rpc SubscribeSocialSentiment (AggregationCandleFilter) returns (stream AggregationCandle) {
+    }
+    rpc SubscribeNewsSentiment (AggregationCandleFilter) returns (stream AggregationCandle) {
+    }
+}
+
+message AggId {
+    int32 year = 1;
+    int32 month = 2;
+    int32 day = 3;
+    int32 hour = 4;
+    int32 minute = 5;
+}
+
+message AggregationCandle {
+    AggId id = 1;
+    string asset = 2;
+    string resolution = 3;
+    int64 pv = 4;
+    int64 nv = 5;
+    double ps = 6;
+    double ns = 7;
+    double a = 8;
 }

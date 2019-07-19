@@ -2,8 +2,8 @@ import sys; sys.path.append('../../') # for correct types inclusion,
 
 import grpc
 
+import types_pb2
 import types_pb2_grpc
-from google.protobuf import empty_pb2
 
 SERVER_ADDRESS = 'SERVER'
 PATH_TO_CERT_FILE = './cert.pem'
@@ -15,12 +15,15 @@ def main():
 
     # Initialize GRPC channel
     channel = grpc.secure_channel(SERVER_ADDRESS, creds)
-
+    
     # create stub
     stub = types_pb2_grpc.MessagesProxyStub(channel)
 
+    # create request
+    assets_filter = types_pb2.AssetsFilter(assets = ['BTC'], all_assets = False)
+
     # Response-streaming RPC
-    bitmex_stream = stub.SubscribeBitmex(empty_pb2.Empty())
+    bitmex_stream = stub.SubscribeBitmex(assets_filter)
     for bitmex in bitmex_stream:
         # attributes are same as defined in proto messages
         print(bitmex.user_message.base.id, bitmex.user_message.message)

@@ -18,19 +18,20 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	conn, err := grpc.Dial(Server, grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(20971520)), grpc.WithTransportCredentials(creds), grpc.WithTimeout(5*time.Second), grpc.WithBlock())
+	conn, err := grpc.Dial(Server, grpc.WithTransportCredentials(creds), grpc.WithTimeout(5*time.Second), grpc.WithBlock())
 	if err != nil {
 		panic(fmt.Sprintf("did not connect: %v", err))
 	}
 	fmt.Println("Connected")
 
-	proxyClient := types.NewMessagesProxyClient(conn)
-	sub, err := proxyClient.SubscribeSocialSentiment(context.Background(), &empty.Empty{})
+	datasetClient := types.NewDatasetClient(conn)
+	assetItems, err := datasetClient.Assets(context.Background(), &empty.Empty{})
 	if err != nil {
 		panic(err)
 	}
-	for {
-		msg, _ := sub.Recv()
-		fmt.Println(msg)
+
+	fmt.Println(len(assetItems.Assets))
+	for _, asset := range assetItems.Assets[0:19] {
+		println(asset.Symbol)
 	}
 }

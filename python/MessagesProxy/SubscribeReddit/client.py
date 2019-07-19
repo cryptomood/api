@@ -2,8 +2,8 @@ import sys; sys.path.append('../../') # for correct types inclusion,
 
 import grpc
 
+import types_pb2
 import types_pb2_grpc
-from google.protobuf import empty_pb2
 
 SERVER_ADDRESS = 'SERVER'
 PATH_TO_CERT_FILE = './cert.pem'
@@ -19,8 +19,11 @@ def main():
     # create stub
     stub = types_pb2_grpc.MessagesProxyStub(channel)
 
+    # create request
+    assets_filter = types_pb2.AssetsFilter(assets = ['BTC'], all_assets = False)
+
     # Response-streaming RPC
-    reddit_stream = stub.SubscribeReddit(empty_pb2.Empty())
+    reddit_stream = stub.SubscribeReddit(assets_filter)
     for reddit in reddit_stream:
         # attributes are same as defined in proto messages
         print(reddit.base.id, reddit.base.content)
