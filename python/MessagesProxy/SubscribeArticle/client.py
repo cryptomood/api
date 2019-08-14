@@ -23,7 +23,7 @@ def main():
     assets_filter = types_pb2.AssetsFilter(assets = ['BTC'], all_assets = False)
     
     # Response-streaming RPC
-    article_stream = stub.SubscribeArticle(asset_filter)
+    article_stream = stub.SubscribeArticle(assets_filter)
     for article in article_stream:
         # attributes are same as defined in proto messages
         print(article.base.id, article.base.content)

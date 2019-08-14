@@ -31,12 +31,7 @@ def main():
     # in our case we have to use kwarg because `from` is
     # is recognized as python keyword so there would syntax be error
     # if you want get value you have to use getattr()
-<<<<<<< HEAD:python/HistoricData/HistoricSocialSentiment/client.py
-    sentiment_historic_request_kwargs = {'from': from_time, 'to': to_time, 'resolution': 'M1', 'asset': 'BTC',
-                                         'allAssets': False}
-=======
     sentiment_historic_request_kwargs = { 'from': from_time, 'to': to_time, 'resolution': 'M1', 'asset': 'BTC' }
->>>>>>> new_requests:python/Sentiments/HistoricNewsSentiment/client.py
     req = types_pb2.SentimentHistoricRequest(**sentiment_historic_request_kwargs)
     
     candle_stream = stub.HistoricNewsSentiment(req)

@@ -51,6 +51,11 @@ message BaseModel {
 
     // importance of the article's creator
     double weight = 14;
+
+    // measured spam value
+    double spam = 15;
+
+    string domain = 16;
 }
 
 /**
@@ -62,6 +67,9 @@ message SentimentModel {
 
     // analyzed impact in the respective area
     double market_impact = 2;
+
+    // analyzed replies sentiment <-10, 10>
+    double sentiment_replies = 3;
 }
 
 message CryptopanicEntrySource {
@@ -273,6 +281,7 @@ message Comment {
     string body = 6;
     string subreddit = 7;
     repeated Comment replies = 8;
+    double sentiment = 9;
 }
 
 /**
@@ -319,6 +328,8 @@ message RedditPostModel {
 
     bool is_self = 10;
     bool nsfw = 29;
+    bool is_update = 30;
+    string subreddit_icon = 31;
 }
 
 message RedditPost {
@@ -368,6 +379,8 @@ message ExtendedTweet {
     repeated string categories = 27;
     bool truncated = 28;
     string full_text = 29;
+    bool retweeted_status = 30;
+    string retweet_source_id = 31;
 }
 
 message Tweet {
@@ -429,7 +442,7 @@ message SentimentCandle {
 }
 
 /**
-Service for pub-sub message model
+Service for entries streaming
 */
 service MessagesProxy {
     rpc SubscribeArticle (AssetsFilter) returns (stream Article) {
@@ -469,7 +482,8 @@ message SentimentHistoricRequest {
     // resolution for candle - M1/H1
     string resolution = 3;
     // name of the asset - ie. BTC
-    string asset = 4;}
+    string asset = 4;
+}
 
 /**
 Each request for historic data should be limited by date

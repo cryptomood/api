@@ -7,7 +7,7 @@ import types_pb2 as types__pb2
 
 class MessagesProxyStub(object):
   """*
-  Service for pub-sub message model
+  Service for entries streaming
   """
 
   def __init__(self, channel):
@@ -50,7 +50,7 @@ class MessagesProxyStub(object):
 
 class MessagesProxyServicer(object):
   """*
-  Service for pub-sub message model
+  Service for entries streaming
   """
 
   def SubscribeArticle(self, request, context):

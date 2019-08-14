@@ -4,7 +4,7 @@ import grpc
 
 import types_pb2
 import types_pb2_grpc
-from google.protobuf import timestamp_pb2, empty_pb2
+from google.protobuf import empty_pb2
 
 import time
 
