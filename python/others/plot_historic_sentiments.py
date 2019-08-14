@@ -12,7 +12,12 @@ from google.protobuf import timestamp_pb2
 from matplotlib import pyplot as plt
 
 SERVER_ADDRESS = 'SERVER'
-PATH_TO_CERT_FILE = 'PATH'
+PATH_TO_CERT_FILE = './cert.pem'
+
+
+def datetime_from_candle(val):
+    return datetime.datetime(year=val.id.year, month=val.id.month, day=val.id.day,
+                             hour=val.id.hour, minute=val.id.minute)
 
 
 def create_sentiment_historic_request(timestamp_from, timestamp_to, resolution, asset):
@@ -41,14 +46,13 @@ def plot_sentiments(candles_wrapper):
         asset = candles[0].asset
 
         # sort candles by start_time
-        candles = sorted(candles, key=lambda val: val.start_time.seconds)
+        candles = sorted(candles, key=lambda val: datetime_from_candle(val))
 
         # create lists of  datetime from google.protobuf.Timestamp
-        x = [datetime.datetime.fromtimestamp(timestamp) for timestamp in
-             [candle.start_time.seconds for candle in candles]]
+        x = [datetime_from_candle(candle) for candle in candles]
 
         # create lists of average sentiment values
-        y = [x.sentiment_avg for x in candles]
+        y = [x.a for x in candles]
 
         # plot graph
         plt.plot(x, y, line_types.pop(), label=asset)
@@ -60,13 +64,15 @@ def plot_sentiments(candles_wrapper):
 
 def get_historic_socials_sentiment(channel, requests):
     # create stub
-    stub = types_pb2_grpc.HistoricDataStub(channel=channel)
+    stub = types_pb2_grpc.SentimentsStub(channel=channel)
 
     candle_wrapper = []
 
-    for req in requests:
-        sentiment_candle_items = stub.HistoricSocialSentiment(req)
-        candle_wrapper.append(sentiment_candle_items.items)
+    for i, req in enumerate(requests):
+        candle_wrapper.append([])
+        candle_stream = stub.HistoricSocialSentiment(req)
+        for candle in candle_stream:
+            candle_wrapper[i].append(candle)
 
     return candle_wrapper
 

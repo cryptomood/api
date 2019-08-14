@@ -10,7 +10,7 @@ import time
 import pandas as pd
 
 SERVER_ADDRESS = 'SERVER'
-PATH_TO_CERT_FILE = 'PATH'
+PATH_TO_CERT_FILE = './cert.pem'
 
 
 def main():
@@ -31,13 +31,13 @@ def main():
     # in our case we have to use kwarg because `from` is
     # is recognized as python keyword so there would syntax be error
     # if you want get value you have to use getattr()
-    historic_request_kwargs = {'from': from_time, 'to': to_time}
+    historic_request_kwargs = {'from': from_time, 'to': to_time, 'filter': { 'all_assets': True}}
     req = types_pb2.HistoricRequest(**historic_request_kwargs)
-    tweet_items = stub.HistoricTweets(req)
+    tweet_stream = stub.HistoricTweets(req)
 
     # dataframe inputs
     inputs = []
-    for tweet in tweet_items.items:
+    for tweet in tweet_stream:
         # tweet attributes are defined in proto file
         author_name = tweet.extended_tweet.author_name
         content = tweet.base.content
