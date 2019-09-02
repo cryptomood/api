@@ -16,6 +16,31 @@ class MessagesProxyStub(object):
     Args:
       channel: A grpc.Channel.
     """
+    self.SubscribeBaseArticle = channel.unary_stream(
+        '/MessagesProxy/SubscribeBaseArticle',
+        request_serializer=types__pb2.AssetsFilter.SerializeToString,
+        response_deserializer=types__pb2.PublicModel.FromString,
+        )
+    self.SubscribeBaseTweet = channel.unary_stream(
+        '/MessagesProxy/SubscribeBaseTweet',
+        request_serializer=types__pb2.AssetsFilter.SerializeToString,
+        response_deserializer=types__pb2.PublicModel.FromString,
+        )
+    self.SubscribeBaseReddit = channel.unary_stream(
+        '/MessagesProxy/SubscribeBaseReddit',
+        request_serializer=types__pb2.AssetsFilter.SerializeToString,
+        response_deserializer=types__pb2.PublicModel.FromString,
+        )
+    self.SubscribeBaseTelegram = channel.unary_stream(
+        '/MessagesProxy/SubscribeBaseTelegram',
+        request_serializer=types__pb2.AssetsFilter.SerializeToString,
+        response_deserializer=types__pb2.PublicModel.FromString,
+        )
+    self.SubscribeBaseBitmex = channel.unary_stream(
+        '/MessagesProxy/SubscribeBaseBitmex',
+        request_serializer=types__pb2.AssetsFilter.SerializeToString,
+        response_deserializer=types__pb2.PublicModel.FromString,
+        )
     self.SubscribeArticle = channel.unary_stream(
         '/MessagesProxy/SubscribeArticle',
         request_serializer=types__pb2.AssetsFilter.SerializeToString,
@@ -30,11 +55,6 @@ class MessagesProxyStub(object):
         '/MessagesProxy/SubscribeReddit',
         request_serializer=types__pb2.AssetsFilter.SerializeToString,
         response_deserializer=types__pb2.RedditPost.FromString,
-        )
-    self.SubscribeDiscord = channel.unary_stream(
-        '/MessagesProxy/SubscribeDiscord',
-        request_serializer=types__pb2.AssetsFilter.SerializeToString,
-        response_deserializer=types__pb2.DiscordUserMessage.FromString,
         )
     self.SubscribeTelegram = channel.unary_stream(
         '/MessagesProxy/SubscribeTelegram',
@@ -53,6 +73,41 @@ class MessagesProxyServicer(object):
   Service for entries streaming
   """
 
+  def SubscribeBaseArticle(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SubscribeBaseTweet(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SubscribeBaseReddit(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SubscribeBaseTelegram(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SubscribeBaseBitmex(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def SubscribeArticle(self, request, context):
     # missing associated documentation comment in .proto file
     pass
@@ -68,13 +123,6 @@ class MessagesProxyServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def SubscribeReddit(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def SubscribeDiscord(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -98,6 +146,31 @@ class MessagesProxyServicer(object):
 
 def add_MessagesProxyServicer_to_server(servicer, server):
   rpc_method_handlers = {
+      'SubscribeBaseArticle': grpc.unary_stream_rpc_method_handler(
+          servicer.SubscribeBaseArticle,
+          request_deserializer=types__pb2.AssetsFilter.FromString,
+          response_serializer=types__pb2.PublicModel.SerializeToString,
+      ),
+      'SubscribeBaseTweet': grpc.unary_stream_rpc_method_handler(
+          servicer.SubscribeBaseTweet,
+          request_deserializer=types__pb2.AssetsFilter.FromString,
+          response_serializer=types__pb2.PublicModel.SerializeToString,
+      ),
+      'SubscribeBaseReddit': grpc.unary_stream_rpc_method_handler(
+          servicer.SubscribeBaseReddit,
+          request_deserializer=types__pb2.AssetsFilter.FromString,
+          response_serializer=types__pb2.PublicModel.SerializeToString,
+      ),
+      'SubscribeBaseTelegram': grpc.unary_stream_rpc_method_handler(
+          servicer.SubscribeBaseTelegram,
+          request_deserializer=types__pb2.AssetsFilter.FromString,
+          response_serializer=types__pb2.PublicModel.SerializeToString,
+      ),
+      'SubscribeBaseBitmex': grpc.unary_stream_rpc_method_handler(
+          servicer.SubscribeBaseBitmex,
+          request_deserializer=types__pb2.AssetsFilter.FromString,
+          response_serializer=types__pb2.PublicModel.SerializeToString,
+      ),
       'SubscribeArticle': grpc.unary_stream_rpc_method_handler(
           servicer.SubscribeArticle,
           request_deserializer=types__pb2.AssetsFilter.FromString,
@@ -112,11 +185,6 @@ def add_MessagesProxyServicer_to_server(servicer, server):
           servicer.SubscribeReddit,
           request_deserializer=types__pb2.AssetsFilter.FromString,
           response_serializer=types__pb2.RedditPost.SerializeToString,
-      ),
-      'SubscribeDiscord': grpc.unary_stream_rpc_method_handler(
-          servicer.SubscribeDiscord,
-          request_deserializer=types__pb2.AssetsFilter.FromString,
-          response_serializer=types__pb2.DiscordUserMessage.SerializeToString,
       ),
       'SubscribeTelegram': grpc.unary_stream_rpc_method_handler(
           servicer.SubscribeTelegram,
@@ -189,6 +257,21 @@ class HistoricDataStub(object):
     Args:
       channel: A grpc.Channel.
     """
+    self.HistoricBaseTweets = channel.unary_stream(
+        '/HistoricData/HistoricBaseTweets',
+        request_serializer=types__pb2.HistoricRequest.SerializeToString,
+        response_deserializer=types__pb2.PublicModel.FromString,
+        )
+    self.HistoricBaseArticles = channel.unary_stream(
+        '/HistoricData/HistoricBaseArticles',
+        request_serializer=types__pb2.HistoricRequest.SerializeToString,
+        response_deserializer=types__pb2.PublicModel.FromString,
+        )
+    self.HistoricBaseRedditPosts = channel.unary_stream(
+        '/HistoricData/HistoricBaseRedditPosts',
+        request_serializer=types__pb2.HistoricRequest.SerializeToString,
+        response_deserializer=types__pb2.PublicModel.FromString,
+        )
     self.HistoricTweets = channel.unary_stream(
         '/HistoricData/HistoricTweets',
         request_serializer=types__pb2.HistoricRequest.SerializeToString,
@@ -210,6 +293,27 @@ class HistoricDataServicer(object):
   """*
   Service for requesting historic data
   """
+
+  def HistoricBaseTweets(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def HistoricBaseArticles(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def HistoricBaseRedditPosts(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
 
   def HistoricTweets(self, request, context):
     # missing associated documentation comment in .proto file
@@ -235,6 +339,21 @@ class HistoricDataServicer(object):
 
 def add_HistoricDataServicer_to_server(servicer, server):
   rpc_method_handlers = {
+      'HistoricBaseTweets': grpc.unary_stream_rpc_method_handler(
+          servicer.HistoricBaseTweets,
+          request_deserializer=types__pb2.HistoricRequest.FromString,
+          response_serializer=types__pb2.PublicModel.SerializeToString,
+      ),
+      'HistoricBaseArticles': grpc.unary_stream_rpc_method_handler(
+          servicer.HistoricBaseArticles,
+          request_deserializer=types__pb2.HistoricRequest.FromString,
+          response_serializer=types__pb2.PublicModel.SerializeToString,
+      ),
+      'HistoricBaseRedditPosts': grpc.unary_stream_rpc_method_handler(
+          servicer.HistoricBaseRedditPosts,
+          request_deserializer=types__pb2.HistoricRequest.FromString,
+          response_serializer=types__pb2.PublicModel.SerializeToString,
+      ),
       'HistoricTweets': grpc.unary_stream_rpc_method_handler(
           servicer.HistoricTweets,
           request_deserializer=types__pb2.HistoricRequest.FromString,

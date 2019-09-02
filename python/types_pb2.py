@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0btypes.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xbf\x02\n\tBaseModel\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x0f\n\x07\x63rawler\x18\x04 \x01(\t\x12,\n\x08pub_date\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x07\x63reated\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0e\n\x06source\x18\x07 \x01(\t\x12\x0f\n\x07\x65xcerpt\x18\x08 \x01(\t\x12\x0e\n\x06videos\x18\t \x03(\t\x12\x0e\n\x06images\x18\n \x03(\t\x12\r\n\x05links\x18\x0b \x03(\t\x12\x0e\n\x06\x61uthor\x18\x0c \x01(\t\x12\x0c\n\x04lang\x18\r \x01(\t\x12\x0e\n\x06weight\x18\x0e \x01(\x01\x12\x0c\n\x04spam\x18\x0f \x01(\x01\x12\x0e\n\x06\x64omain\x18\x10 \x01(\t\"U\n\x0eSentimentModel\x12\x11\n\tsentiment\x18\x01 \x01(\x01\x12\x15\n\rmarket_impact\x18\x02 \x01(\x01\x12\x19\n\x11sentiment_replies\x18\x03 \x01(\x01\"U\n\x16\x43ryptopanicEntrySource\x12\r\n\x05title\x18\x01 \x01(\t\x12\x0e\n\x06region\x18\x02 \x01(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0c\n\x04path\x18\x04 \x01(\t\"\x9a\x01\n\x15\x43ryptopanicEntryVotes\x12\x10\n\x08negative\x18\x01 \x01(\x05\x12\x10\n\x08positive\x18\x02 \x01(\x05\x12\x11\n\timportant\x18\x03 \x01(\x05\x12\r\n\x05liked\x18\x04 \x01(\x05\x12\x10\n\x08\x64isliked\x18\x05 \x01(\x05\x12\x0b\n\x03lol\x18\x06 \x01(\x05\x12\r\n\x05toxic\x18\x07 \x01(\x05\x12\r\n\x05saved\x18\x08 \x01(\x05\"@\n\x18\x43ryptopanicEntryMetadata\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\"\x90\x02\n\x13\x43ryptopanicRawEntry\x12\x0c\n\x04kind\x18\x01 \x01(\t\x12\x0e\n\x06\x64omain\x18\x02 \x01(\t\x12\'\n\x06source\x18\x03 \x01(\x0b\x32\x17.CryptopanicEntrySource\x12\r\n\x05title\x18\x04 \x01(\t\x12\x14\n\x0cpublished_at\x18\x05 \x01(\t\x12\x0c\n\x04slug\x18\x06 \x01(\t\x12\n\n\x02id\x18\x07 \x01(\x05\x12\x0b\n\x03url\x18\x08 \x01(\t\x12\x12\n\ncreated_at\x18\t \x01(\t\x12%\n\x05votes\x18\n \x01(\x0b\x32\x16.CryptopanicEntryVotes\x12+\n\x08metadata\x18\x0b \x01(\x0b\x32\x19.CryptopanicEntryMetadata\"G\n\x0f\x43ryptopanicFeed\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\x12%\n\x07results\x18\x02 \x03(\x0b\x32\x14.CryptopanicRawEntry\"a\n\x0f\x43ryptopanicPost\x12\x33\n\x15\x63ryptopanic_raw_entry\x18\x01 \x01(\x0b\x32\x14.CryptopanicRawEntry\x12\x19\n\x07\x61rticle\x18\x02 \x01(\x0b\x32\x08.Article\"^\n\x15NamedEntityOccurrence\x12\x1b\n\x05label\x18\x01 \x01(\x0e\x32\x0c.NamedEntity\x12\r\n\x05start\x18\x02 \x01(\r\x12\x0b\n\x03\x65nd\x18\x03 \x01(\r\x12\x0c\n\x04text\x18\x04 \x01(\t\"\xe5\x03\n\x12NamedEntitiesModel\x12\x0f\n\x07symbols\x18\x01 \x03(\t\x12&\n\x06\x61ssets\x18\x02 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12\'\n\x07persons\x18\x03 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\tcompanies\x18\x04 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12-\n\rorganizations\x18\x05 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\tlocations\x18\x06 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\texchanges\x18\x07 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12$\n\x04misc\x18\x08 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12\x0c\n\x04tags\x18\t \x03(\t\x12>\n\x0e\x61sset_mentions\x18\n \x03(\x0b\x32&.NamedEntitiesModel.AssetMentionsEntry\x12\x13\n\x0bsource_text\x18\x0b \x01(\t\x1a\x34\n\x12\x41ssetMentionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"\x9d\x01\n\x07\x41rticle\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\'\n\ntitle_data\x18\x04 \x01(\x0b\x32\x13.NamedEntitiesModel\"\x97\x01\n\x0bUserMessage\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\x0c\n\x04user\x18\x04 \x01(\t\x12\x0f\n\x07message\x18\x05 \x01(\t\"7\n\x11\x42itmexUserMessage\x12\"\n\x0cuser_message\x18\x01 \x01(\x0b\x32\x0c.UserMessage\"\x9b\x01\n\x13TelegramUserMessage\x12\"\n\x0cuser_message\x18\x01 \x01(\x0b\x32\x0c.UserMessage\x12\x16\n\x0esymbols_backup\x18\x02 \x03(\t\x12\x12\n\nchannel_id\x18\x03 \x01(\x05\x12 \n\x18\x63hannel_subscriber_count\x18\x04 \x01(\x05\x12\x12\n\nmessage_id\x18\x05 \x01(\x03\"^\n\x12\x44iscordUserMessage\x12\"\n\x0cuser_message\x18\x01 \x01(\x0b\x32\x0c.UserMessage\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x10\n\x08guild_id\x18\x03 \x01(\t\"[\n\x18\x43ommentCountTimeSnapshot\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x15\n\rcomment_count\x18\x02 \x01(\x05\"\xd5\x01\n\x07\x43omment\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tpermalink\x18\x03 \x01(\t\x12\x12\n\ncreatedUTC\x18\x04 \x01(\x04\x12\x0f\n\x07\x64\x65leted\x18\x05 \x01(\x08\x12\x0b\n\x03ups\x18\x0e \x01(\x05\x12\r\n\x05\x64owns\x18\x0f \x01(\x05\x12\r\n\x05likes\x18\x10 \x01(\x08\x12\x0c\n\x04\x62ody\x18\x06 \x01(\t\x12\x11\n\tsubreddit\x18\x07 \x01(\t\x12\x19\n\x07replies\x18\x08 \x03(\x0b\x32\x08.Comment\x12\x11\n\tsentiment\x18\t \x01(\x01\"\xe8\x04\n\x0fRedditPostModel\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x12\n\ncreatedUTC\x18\x02 \x01(\x04\x12\r\n\x05title\x18\x03 \x01(\t\x12\x0b\n\x03URL\x18\x04 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x05 \x01(\t\x12\x11\n\tself_text\x18\x06 \x01(\t\x12\x0c\n\x04name\x18\x0b \x01(\t\x12\x11\n\tpermalink\x18\x0c \x01(\t\x12\x0f\n\x07\x64\x65leted\x18\r \x01(\x08\x12\x0b\n\x03ups\x18\x0e \x01(\x05\x12\r\n\x05\x64owns\x18\x0f \x01(\x05\x12\r\n\x05likes\x18\x10 \x01(\x08\x12\x14\n\x0cnum_comments\x18\x11 \x01(\x05\x12\r\n\x05score\x18\x12 \x01(\x05\x12\x19\n\x07replies\x18\x13 \x03(\x0b\x32\x08.Comment\x12\x0e\n\x06\x64omain\x18\x14 \x01(\t\x12\x13\n\x0bSubredditID\x18\x15 \x01(\t\x12\x0e\n\x06hidden\x18\x16 \x01(\x08\x12\x0e\n\x06locked\x18\x17 \x01(\x08\x12\x11\n\tthumbnail\x18\x18 \x01(\t\x12\x0e\n\x06gilded\x18\x19 \x01(\x05\x12\x15\n\rdistinguished\x18\x1a \x01(\t\x12\x10\n\x08stickied\x18\x1b \x01(\x08\x12\x1e\n\x16is_reddit_media_domain\x18\x1c \x01(\x08\x12\x39\n\x16\x63omment_count_snapshot\x18\x07 \x03(\x0b\x32\x19.CommentCountTimeSnapshot\x12\x10\n\x08hot_rate\x18\x08 \x01(\x01\x12\x11\n\tsubreddit\x18\t \x01(\t\x12\x0f\n\x07is_self\x18\n \x01(\x08\x12\x0c\n\x04nsfw\x18\x1d \x01(\x08\x12\x11\n\tis_update\x18\x1e \x01(\x08\x12\x16\n\x0esubreddit_icon\x18\x1f \x01(\t\"\xc7\x01\n\nRedditPost\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\'\n\ntitle_data\x18\x04 \x01(\x0b\x32\x13.NamedEntitiesModel\x12%\n\x0breddit_post\x18\x05 \x01(\x0b\x32\x10.RedditPostModel\"\xa8\x06\n\rExtendedTweet\x12\x17\n\x0f\x66\x61vourite_count\x18\x01 \x01(\x05\x12\x14\n\x0c\x66ilter_level\x18\x02 \x01(\t\x12\x0e\n\x06id_str\x18\x03 \x01(\t\x12\x1f\n\x17in_reply_to_screen_name\x18\x04 \x01(\t\x12!\n\x19in_reply_to_status_id_str\x18\x05 \x01(\t\x12\x1f\n\x17in_reply_to_user_id_str\x18\x06 \x01(\t\x12\x17\n\x0fis_quote_status\x18\x07 \x01(\t\x12\x0c\n\x04lang\x18\x08 \x01(\t\x12\x1a\n\x12possibly_sensitive\x18\t \x01(\x08\x12\x13\n\x0bquote_count\x18\n \x01(\x05\x12\x13\n\x0breply_count\x18\x0b \x01(\x05\x12\x15\n\rretweet_count\x18\x0c \x01(\x05\x12\x15\n\ruser_mentions\x18\r \x03(\t\x12\x0e\n\x06source\x18\x0e \x01(\t\x12\x19\n\x11\x61uthor_created_at\x18\x0f \x01(\t\x12\x1e\n\x16\x61uthor_default_profile\x18\x10 \x01(\x08\x12$\n\x1c\x61uthor_default_profile_image\x18\x11 \x01(\x08\x12\x1e\n\x16\x61uthor_followers_count\x18\x12 \x01(\x05\x12\x1c\n\x14\x61uthor_friends_count\x18\x13 \x01(\x05\x12\x15\n\rauthor_id_str\x18\x14 \x01(\t\x12\x13\n\x0b\x61uthor_lang\x18\x15 \x01(\t\x12\x17\n\x0f\x61uthor_location\x18\x16 \x01(\t\x12\x13\n\x0b\x61uthor_name\x18\x17 \x01(\t\x12\x1a\n\x12\x61uthor_screen_name\x18\x18 \x01(\t\x12%\n\x1d\x61uthor_profile_image_url_http\x18\x19 \x01(\t\x12\x1d\n\x15\x61uthor_statuses_count\x18\x1a \x01(\x05\x12\x12\n\ncategories\x18\x1b \x03(\t\x12\x11\n\ttruncated\x18\x1c \x01(\x08\x12\x11\n\tfull_text\x18\x1d \x01(\t\x12\x18\n\x10retweeted_status\x18\x1e \x01(\x08\x12\x19\n\x11retweet_source_id\x18\x1f \x01(\t\"\x9a\x01\n\x05Tweet\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12&\n\x0e\x65xtended_tweet\x18\x04 \x01(\x0b\x32\x0e.ExtendedTweet\"\xf4\x02\n\x0fSentimentCandle\x12\n\n\x02id\x18\x01 \x01(\t\x12.\n\nstart_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\r\n\x05\x61sset\x18\x04 \x01(\t\x12\x14\n\x0cnegative_sum\x18\x05 \x01(\x01\x12\x16\n\x0enegative_count\x18\x06 \x01(\x05\x12\x14\n\x0cpositive_sum\x18\x07 \x01(\x01\x12\x16\n\x0epositive_count\x18\x08 \x01(\x05\x12\x15\n\rsentiment_avg\x18\t \x01(\x01\x12\x1e\n\x16open_sentiment_average\x18\n \x01(\x01\x12\x1e\n\x16high_sentiment_average\x18\x0b \x01(\x01\x12\x1d\n\x15low_sentiment_average\x18\x0c \x01(\x01\x12\x1f\n\x17\x63lose_sentiment_average\x18\r \x01(\x01\x12\x0f\n\x07updated\x18\x0e \x01(\x08\"2\n\x0c\x41ssetsFilter\x12\x0e\n\x06\x61ssets\x18\x04 \x03(\t\x12\x12\n\nall_assets\x18\x05 \x01(\x08\"S\n\x17\x41ggregationCandleFilter\x12\x12\n\nresolution\x18\x01 \x01(\t\x12$\n\rassets_filter\x18\x02 \x01(\x0b\x32\r.AssetsFilter\"\x8f\x01\n\x18SentimentHistoricRequest\x12(\n\x04\x66rom\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\r\n\x05\x61sset\x18\x04 \x01(\t\"\x82\x01\n\x0fHistoricRequest\x12(\n\x04\x66rom\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1d\n\x06\x66ilter\x18\x04 \x01(\x0b\x32\r.AssetsFilter\"\x17\n\x05\x41sset\x12\x0e\n\x06symbol\x18\x02 \x01(\t\"$\n\nAssetItems\x12\x16\n\x06\x61ssets\x18\x01 \x03(\x0b\x32\x06.Asset\"O\n\x05\x41ggId\x12\x0c\n\x04year\x18\x01 \x01(\x05\x12\r\n\x05month\x18\x02 \x01(\x05\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\x05\x12\x0c\n\x04hour\x18\x04 \x01(\x05\x12\x0e\n\x06minute\x18\x05 \x01(\x05\"\x85\x01\n\x11\x41ggregationCandle\x12\x12\n\x02id\x18\x01 \x01(\x0b\x32\x06.AggId\x12\r\n\x05\x61sset\x18\x02 \x01(\t\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\n\n\x02pv\x18\x04 \x01(\x03\x12\n\n\x02nv\x18\x05 \x01(\x03\x12\n\n\x02ps\x18\x06 \x01(\x01\x12\n\n\x02ns\x18\x07 \x01(\x01\x12\t\n\x01\x61\x18\x08 \x01(\x01*\x9a\x01\n\x0bNamedEntity\x12\x10\n\x0c\x41SSET_ENTITY\x10\x00\x12\x11\n\rPERSON_ENTITY\x10\x01\x12\x13\n\x0fLOCATION_ENTITY\x10\x02\x12\x12\n\x0e\x43OMPANY_ENTITY\x10\x03\x12\x13\n\x0f\x45XCHANGE_ENTITY\x10\x04\x12\x0f\n\x0bMISC_ENTITY\x10\x05\x12\x17\n\x13ORGANIZATION_ENTITY\x10\x06\x32\xd4\x02\n\rMessagesProxy\x12/\n\x10SubscribeArticle\x12\r.AssetsFilter\x1a\x08.Article\"\x00\x30\x01\x12+\n\x0eSubscribeTweet\x12\r.AssetsFilter\x1a\x06.Tweet\"\x00\x30\x01\x12\x31\n\x0fSubscribeReddit\x12\r.AssetsFilter\x1a\x0b.RedditPost\"\x00\x30\x01\x12:\n\x10SubscribeDiscord\x12\r.AssetsFilter\x1a\x13.DiscordUserMessage\"\x00\x30\x01\x12<\n\x11SubscribeTelegram\x12\r.AssetsFilter\x1a\x14.TelegramUserMessage\"\x00\x30\x01\x12\x38\n\x0fSubscribeBitmex\x12\r.AssetsFilter\x1a\x12.BitmexUserMessage\"\x00\x30\x01\x32:\n\x07\x44\x61taset\x12/\n\x06\x41ssets\x12\x16.google.protobuf.Empty\x1a\x0b.AssetItems\"\x00\x32\xac\x01\n\x0cHistoricData\x12.\n\x0eHistoricTweets\x12\x10.HistoricRequest\x1a\x06.Tweet\"\x00\x30\x01\x12\x32\n\x10HistoricArticles\x12\x10.HistoricRequest\x1a\x08.Article\"\x00\x30\x01\x12\x38\n\x13HistoricRedditPosts\x12\x10.HistoricRequest\x1a\x0b.RedditPost\"\x00\x30\x01\x32\xc0\x02\n\nSentiments\x12L\n\x17HistoricSocialSentiment\x12\x19.SentimentHistoricRequest\x1a\x12.AggregationCandle\"\x00\x30\x01\x12J\n\x15HistoricNewsSentiment\x12\x19.SentimentHistoricRequest\x1a\x12.AggregationCandle\"\x00\x30\x01\x12L\n\x18SubscribeSocialSentiment\x12\x18.AggregationCandleFilter\x1a\x12.AggregationCandle\"\x00\x30\x01\x12J\n\x16SubscribeNewsSentiment\x12\x18.AggregationCandleFilter\x1a\x12.AggregationCandle\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x0btypes.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xbf\x02\n\tBaseModel\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x0f\n\x07\x63rawler\x18\x04 \x01(\t\x12,\n\x08pub_date\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x07\x63reated\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0e\n\x06source\x18\x07 \x01(\t\x12\x0f\n\x07\x65xcerpt\x18\x08 \x01(\t\x12\x0e\n\x06videos\x18\t \x03(\t\x12\x0e\n\x06images\x18\n \x03(\t\x12\r\n\x05links\x18\x0b \x03(\t\x12\x0e\n\x06\x61uthor\x18\x0c \x01(\t\x12\x0c\n\x04lang\x18\r \x01(\t\x12\x0e\n\x06weight\x18\x0e \x01(\x01\x12\x0c\n\x04spam\x18\x0f \x01(\x01\x12\x0e\n\x06\x64omain\x18\x10 \x01(\t\"U\n\x0eSentimentModel\x12\x11\n\tsentiment\x18\x01 \x01(\x01\x12\x15\n\rmarket_impact\x18\x02 \x01(\x01\x12\x19\n\x11sentiment_replies\x18\x03 \x01(\x01\"U\n\x16\x43ryptopanicEntrySource\x12\r\n\x05title\x18\x01 \x01(\t\x12\x0e\n\x06region\x18\x02 \x01(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0c\n\x04path\x18\x04 \x01(\t\"\x9a\x01\n\x15\x43ryptopanicEntryVotes\x12\x10\n\x08negative\x18\x01 \x01(\x05\x12\x10\n\x08positive\x18\x02 \x01(\x05\x12\x11\n\timportant\x18\x03 \x01(\x05\x12\r\n\x05liked\x18\x04 \x01(\x05\x12\x10\n\x08\x64isliked\x18\x05 \x01(\x05\x12\x0b\n\x03lol\x18\x06 \x01(\x05\x12\r\n\x05toxic\x18\x07 \x01(\x05\x12\r\n\x05saved\x18\x08 \x01(\x05\"@\n\x18\x43ryptopanicEntryMetadata\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\"\x90\x02\n\x13\x43ryptopanicRawEntry\x12\x0c\n\x04kind\x18\x01 \x01(\t\x12\x0e\n\x06\x64omain\x18\x02 \x01(\t\x12\'\n\x06source\x18\x03 \x01(\x0b\x32\x17.CryptopanicEntrySource\x12\r\n\x05title\x18\x04 \x01(\t\x12\x14\n\x0cpublished_at\x18\x05 \x01(\t\x12\x0c\n\x04slug\x18\x06 \x01(\t\x12\n\n\x02id\x18\x07 \x01(\x05\x12\x0b\n\x03url\x18\x08 \x01(\t\x12\x12\n\ncreated_at\x18\t \x01(\t\x12%\n\x05votes\x18\n \x01(\x0b\x32\x16.CryptopanicEntryVotes\x12+\n\x08metadata\x18\x0b \x01(\x0b\x32\x19.CryptopanicEntryMetadata\"G\n\x0f\x43ryptopanicFeed\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\x12%\n\x07results\x18\x02 \x03(\x0b\x32\x14.CryptopanicRawEntry\"a\n\x0f\x43ryptopanicPost\x12\x33\n\x15\x63ryptopanic_raw_entry\x18\x01 \x01(\x0b\x32\x14.CryptopanicRawEntry\x12\x19\n\x07\x61rticle\x18\x02 \x01(\x0b\x32\x08.Article\"^\n\x15NamedEntityOccurrence\x12\x1b\n\x05label\x18\x01 \x01(\x0e\x32\x0c.NamedEntity\x12\r\n\x05start\x18\x02 \x01(\r\x12\x0b\n\x03\x65nd\x18\x03 \x01(\r\x12\x0c\n\x04text\x18\x04 \x01(\t\"\xe5\x03\n\x12NamedEntitiesModel\x12\x0f\n\x07symbols\x18\x01 \x03(\t\x12&\n\x06\x61ssets\x18\x02 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12\'\n\x07persons\x18\x03 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\tcompanies\x18\x04 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12-\n\rorganizations\x18\x05 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\tlocations\x18\x06 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\texchanges\x18\x07 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12$\n\x04misc\x18\x08 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12\x0c\n\x04tags\x18\t \x03(\t\x12>\n\x0e\x61sset_mentions\x18\n \x03(\x0b\x32&.NamedEntitiesModel.AssetMentionsEntry\x12\x13\n\x0bsource_text\x18\x0b \x01(\t\x1a\x34\n\x12\x41ssetMentionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"\x9d\x01\n\x07\x41rticle\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\'\n\ntitle_data\x18\x04 \x01(\x0b\x32\x13.NamedEntitiesModel\"\x97\x01\n\x0bUserMessage\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\x0c\n\x04user\x18\x04 \x01(\t\x12\x0f\n\x07message\x18\x05 \x01(\t\"7\n\x11\x42itmexUserMessage\x12\"\n\x0cuser_message\x18\x01 \x01(\x0b\x32\x0c.UserMessage\"\x9b\x01\n\x13TelegramUserMessage\x12\"\n\x0cuser_message\x18\x01 \x01(\x0b\x32\x0c.UserMessage\x12\x16\n\x0esymbols_backup\x18\x02 \x03(\t\x12\x12\n\nchannel_id\x18\x03 \x01(\x05\x12 \n\x18\x63hannel_subscriber_count\x18\x04 \x01(\x05\x12\x12\n\nmessage_id\x18\x05 \x01(\x03\"[\n\x18\x43ommentCountTimeSnapshot\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x15\n\rcomment_count\x18\x02 \x01(\x05\"\xd5\x01\n\x07\x43omment\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tpermalink\x18\x03 \x01(\t\x12\x12\n\ncreatedUTC\x18\x04 \x01(\x04\x12\x0f\n\x07\x64\x65leted\x18\x05 \x01(\x08\x12\x0b\n\x03ups\x18\x0e \x01(\x05\x12\r\n\x05\x64owns\x18\x0f \x01(\x05\x12\r\n\x05likes\x18\x10 \x01(\x08\x12\x0c\n\x04\x62ody\x18\x06 \x01(\t\x12\x11\n\tsubreddit\x18\x07 \x01(\t\x12\x19\n\x07replies\x18\x08 \x03(\x0b\x32\x08.Comment\x12\x11\n\tsentiment\x18\t \x01(\x01\"\xe8\x04\n\x0fRedditPostModel\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x12\n\ncreatedUTC\x18\x02 \x01(\x04\x12\r\n\x05title\x18\x03 \x01(\t\x12\x0b\n\x03URL\x18\x04 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x05 \x01(\t\x12\x11\n\tself_text\x18\x06 \x01(\t\x12\x0c\n\x04name\x18\x0b \x01(\t\x12\x11\n\tpermalink\x18\x0c \x01(\t\x12\x0f\n\x07\x64\x65leted\x18\r \x01(\x08\x12\x0b\n\x03ups\x18\x0e \x01(\x05\x12\r\n\x05\x64owns\x18\x0f \x01(\x05\x12\r\n\x05likes\x18\x10 \x01(\x08\x12\x14\n\x0cnum_comments\x18\x11 \x01(\x05\x12\r\n\x05score\x18\x12 \x01(\x05\x12\x19\n\x07replies\x18\x13 \x03(\x0b\x32\x08.Comment\x12\x0e\n\x06\x64omain\x18\x14 \x01(\t\x12\x13\n\x0bSubredditID\x18\x15 \x01(\t\x12\x0e\n\x06hidden\x18\x16 \x01(\x08\x12\x0e\n\x06locked\x18\x17 \x01(\x08\x12\x11\n\tthumbnail\x18\x18 \x01(\t\x12\x0e\n\x06gilded\x18\x19 \x01(\x05\x12\x15\n\rdistinguished\x18\x1a \x01(\t\x12\x10\n\x08stickied\x18\x1b \x01(\x08\x12\x1e\n\x16is_reddit_media_domain\x18\x1c \x01(\x08\x12\x39\n\x16\x63omment_count_snapshot\x18\x07 \x03(\x0b\x32\x19.CommentCountTimeSnapshot\x12\x10\n\x08hot_rate\x18\x08 \x01(\x01\x12\x11\n\tsubreddit\x18\t \x01(\t\x12\x0f\n\x07is_self\x18\n \x01(\x08\x12\x0c\n\x04nsfw\x18\x1d \x01(\x08\x12\x11\n\tis_update\x18\x1e \x01(\x08\x12\x16\n\x0esubreddit_icon\x18\x1f \x01(\t\"\xc7\x01\n\nRedditPost\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\'\n\ntitle_data\x18\x04 \x01(\x0b\x32\x13.NamedEntitiesModel\x12%\n\x0breddit_post\x18\x05 \x01(\x0b\x32\x10.RedditPostModel\"\xa8\x06\n\rExtendedTweet\x12\x17\n\x0f\x66\x61vourite_count\x18\x01 \x01(\x05\x12\x14\n\x0c\x66ilter_level\x18\x02 \x01(\t\x12\x0e\n\x06id_str\x18\x03 \x01(\t\x12\x1f\n\x17in_reply_to_screen_name\x18\x04 \x01(\t\x12!\n\x19in_reply_to_status_id_str\x18\x05 \x01(\t\x12\x1f\n\x17in_reply_to_user_id_str\x18\x06 \x01(\t\x12\x17\n\x0fis_quote_status\x18\x07 \x01(\t\x12\x0c\n\x04lang\x18\x08 \x01(\t\x12\x1a\n\x12possibly_sensitive\x18\t \x01(\x08\x12\x13\n\x0bquote_count\x18\n \x01(\x05\x12\x13\n\x0breply_count\x18\x0b \x01(\x05\x12\x15\n\rretweet_count\x18\x0c \x01(\x05\x12\x15\n\ruser_mentions\x18\r \x03(\t\x12\x0e\n\x06source\x18\x0e \x01(\t\x12\x19\n\x11\x61uthor_created_at\x18\x0f \x01(\t\x12\x1e\n\x16\x61uthor_default_profile\x18\x10 \x01(\x08\x12$\n\x1c\x61uthor_default_profile_image\x18\x11 \x01(\x08\x12\x1e\n\x16\x61uthor_followers_count\x18\x12 \x01(\x05\x12\x1c\n\x14\x61uthor_friends_count\x18\x13 \x01(\x05\x12\x15\n\rauthor_id_str\x18\x14 \x01(\t\x12\x13\n\x0b\x61uthor_lang\x18\x15 \x01(\t\x12\x17\n\x0f\x61uthor_location\x18\x16 \x01(\t\x12\x13\n\x0b\x61uthor_name\x18\x17 \x01(\t\x12\x1a\n\x12\x61uthor_screen_name\x18\x18 \x01(\t\x12%\n\x1d\x61uthor_profile_image_url_http\x18\x19 \x01(\t\x12\x1d\n\x15\x61uthor_statuses_count\x18\x1a \x01(\x05\x12\x12\n\ncategories\x18\x1b \x03(\t\x12\x11\n\ttruncated\x18\x1c \x01(\x08\x12\x11\n\tfull_text\x18\x1d \x01(\t\x12\x18\n\x10retweeted_status\x18\x1e \x01(\x08\x12\x19\n\x11retweet_source_id\x18\x1f \x01(\t\"\x9a\x01\n\x05Tweet\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12&\n\x0e\x65xtended_tweet\x18\x04 \x01(\x0b\x32\x0e.ExtendedTweet\"\xf4\x02\n\x0fSentimentCandle\x12\n\n\x02id\x18\x01 \x01(\t\x12.\n\nstart_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\r\n\x05\x61sset\x18\x04 \x01(\t\x12\x14\n\x0cnegative_sum\x18\x05 \x01(\x01\x12\x16\n\x0enegative_count\x18\x06 \x01(\x05\x12\x14\n\x0cpositive_sum\x18\x07 \x01(\x01\x12\x16\n\x0epositive_count\x18\x08 \x01(\x05\x12\x15\n\rsentiment_avg\x18\t \x01(\x01\x12\x1e\n\x16open_sentiment_average\x18\n \x01(\x01\x12\x1e\n\x16high_sentiment_average\x18\x0b \x01(\x01\x12\x1d\n\x15low_sentiment_average\x18\x0c \x01(\x01\x12\x1f\n\x17\x63lose_sentiment_average\x18\r \x01(\x01\x12\x0f\n\x07updated\x18\x0e \x01(\x08\"2\n\x0c\x41ssetsFilter\x12\x0e\n\x06\x61ssets\x18\x04 \x03(\t\x12\x12\n\nall_assets\x18\x05 \x01(\x08\"S\n\x17\x41ggregationCandleFilter\x12\x12\n\nresolution\x18\x01 \x01(\t\x12$\n\rassets_filter\x18\x02 \x01(\x0b\x32\r.AssetsFilter\"\x8f\x01\n\x18SentimentHistoricRequest\x12(\n\x04\x66rom\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\r\n\x05\x61sset\x18\x04 \x01(\t\"\x82\x01\n\x0fHistoricRequest\x12(\n\x04\x66rom\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1d\n\x06\x66ilter\x18\x04 \x01(\x0b\x32\r.AssetsFilter\"\x17\n\x05\x41sset\x12\x0e\n\x06symbol\x18\x02 \x01(\t\"$\n\nAssetItems\x12\x16\n\x06\x61ssets\x18\x01 \x03(\x0b\x32\x06.Asset\"O\n\x05\x41ggId\x12\x0c\n\x04year\x18\x01 \x01(\x05\x12\r\n\x05month\x18\x02 \x01(\x05\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\x05\x12\x0c\n\x04hour\x18\x04 \x01(\x05\x12\x0e\n\x06minute\x18\x05 \x01(\x05\"\x85\x01\n\x11\x41ggregationCandle\x12\x12\n\x02id\x18\x01 \x01(\x0b\x32\x06.AggId\x12\r\n\x05\x61sset\x18\x02 \x01(\t\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\n\n\x02pv\x18\x04 \x01(\x03\x12\n\n\x02nv\x18\x05 \x01(\x03\x12\n\n\x02ps\x18\x06 \x01(\x01\x12\n\n\x02ns\x18\x07 \x01(\x01\x12\t\n\x01\x61\x18\x08 \x01(\x01\"\xf4\x01\n\x0bPublicModel\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12,\n\x08pub_date\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0e\n\x06source\x18\x07 \x01(\t\x12\x0f\n\x07\x65xcerpt\x18\x08 \x01(\t\x12\x0e\n\x06videos\x18\t \x03(\t\x12\x0e\n\x06images\x18\n \x03(\t\x12\r\n\x05links\x18\x0b \x03(\t\x12\x0e\n\x06\x64omain\x18\x10 \x01(\t\x12+\n\x07\x63reated\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp*\x9a\x01\n\x0bNamedEntity\x12\x10\n\x0c\x41SSET_ENTITY\x10\x00\x12\x11\n\rPERSON_ENTITY\x10\x01\x12\x13\n\x0fLOCATION_ENTITY\x10\x02\x12\x12\n\x0e\x43OMPANY_ENTITY\x10\x03\x12\x13\n\x0f\x45XCHANGE_ENTITY\x10\x04\x12\x0f\n\x0bMISC_ENTITY\x10\x05\x12\x17\n\x13ORGANIZATION_ENTITY\x10\x06\x32\xb2\x04\n\rMessagesProxy\x12\x37\n\x14SubscribeBaseArticle\x12\r.AssetsFilter\x1a\x0c.PublicModel\"\x00\x30\x01\x12\x35\n\x12SubscribeBaseTweet\x12\r.AssetsFilter\x1a\x0c.PublicModel\"\x00\x30\x01\x12\x36\n\x13SubscribeBaseReddit\x12\r.AssetsFilter\x1a\x0c.PublicModel\"\x00\x30\x01\x12\x38\n\x15SubscribeBaseTelegram\x12\r.AssetsFilter\x1a\x0c.PublicModel\"\x00\x30\x01\x12\x36\n\x13SubscribeBaseBitmex\x12\r.AssetsFilter\x1a\x0c.PublicModel\"\x00\x30\x01\x12/\n\x10SubscribeArticle\x12\r.AssetsFilter\x1a\x08.Article\"\x00\x30\x01\x12+\n\x0eSubscribeTweet\x12\r.AssetsFilter\x1a\x06.Tweet\"\x00\x30\x01\x12\x31\n\x0fSubscribeReddit\x12\r.AssetsFilter\x1a\x0b.RedditPost\"\x00\x30\x01\x12<\n\x11SubscribeTelegram\x12\r.AssetsFilter\x1a\x14.TelegramUserMessage\"\x00\x30\x01\x12\x38\n\x0fSubscribeBitmex\x12\r.AssetsFilter\x1a\x12.BitmexUserMessage\"\x00\x30\x01\x32:\n\x07\x44\x61taset\x12/\n\x06\x41ssets\x12\x16.google.protobuf.Empty\x1a\x0b.AssetItems\"\x00\x32\xe1\x02\n\x0cHistoricData\x12\x38\n\x12HistoricBaseTweets\x12\x10.HistoricRequest\x1a\x0c.PublicModel\"\x00\x30\x01\x12:\n\x14HistoricBaseArticles\x12\x10.HistoricRequest\x1a\x0c.PublicModel\"\x00\x30\x01\x12=\n\x17HistoricBaseRedditPosts\x12\x10.HistoricRequest\x1a\x0c.PublicModel\"\x00\x30\x01\x12.\n\x0eHistoricTweets\x12\x10.HistoricRequest\x1a\x06.Tweet\"\x00\x30\x01\x12\x32\n\x10HistoricArticles\x12\x10.HistoricRequest\x1a\x08.Article\"\x00\x30\x01\x12\x38\n\x13HistoricRedditPosts\x12\x10.HistoricRequest\x1a\x0b.RedditPost\"\x00\x30\x01\x32\xc0\x02\n\nSentiments\x12L\n\x17HistoricSocialSentiment\x12\x19.SentimentHistoricRequest\x1a\x12.AggregationCandle\"\x00\x30\x01\x12J\n\x15HistoricNewsSentiment\x12\x19.SentimentHistoricRequest\x1a\x12.AggregationCandle\"\x00\x30\x01\x12L\n\x18SubscribeSocialSentiment\x12\x18.AggregationCandleFilter\x1a\x12.AggregationCandle\"\x00\x30\x01\x12J\n\x16SubscribeNewsSentiment\x12\x18.AggregationCandleFilter\x1a\x12.AggregationCandle\"\x00\x30\x01\x62\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
 
@@ -64,8 +64,8 @@ _NAMEDENTITY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=5622,
-  serialized_end=5776,
+  serialized_start=5773,
+  serialized_end=5927,
 )
 _sym_db.RegisterEnumDescriptor(_NAMEDENTITY)
 
@@ -999,51 +999,6 @@ _TELEGRAMUSERMESSAGE = _descriptor.Descriptor(
 )
 
 
-_DISCORDUSERMESSAGE = _descriptor.Descriptor(
-  name='DiscordUserMessage',
-  full_name='DiscordUserMessage',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='user_message', full_name='DiscordUserMessage.user_message', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='channel_id', full_name='DiscordUserMessage.channel_id', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='guild_id', full_name='DiscordUserMessage.guild_id', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2356,
-  serialized_end=2450,
-)
-
-
 _COMMENTCOUNTTIMESNAPSHOT = _descriptor.Descriptor(
   name='CommentCountTimeSnapshot',
   full_name='CommentCountTimeSnapshot',
@@ -1077,8 +1032,8 @@ _COMMENTCOUNTTIMESNAPSHOT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2452,
-  serialized_end=2543,
+  serialized_start=2356,
+  serialized_end=2447,
 )
 
 
@@ -1185,8 +1140,8 @@ _COMMENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2546,
-  serialized_end=2759,
+  serialized_start=2450,
+  serialized_end=2663,
 )
 
 
@@ -1426,8 +1381,8 @@ _REDDITPOSTMODEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2762,
-  serialized_end=3378,
+  serialized_start=2666,
+  serialized_end=3282,
 )
 
 
@@ -1485,8 +1440,8 @@ _REDDITPOST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3381,
-  serialized_end=3580,
+  serialized_start=3285,
+  serialized_end=3484,
 )
 
 
@@ -1726,8 +1681,8 @@ _EXTENDEDTWEET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3583,
-  serialized_end=4391,
+  serialized_start=3487,
+  serialized_end=4295,
 )
 
 
@@ -1778,8 +1733,8 @@ _TWEET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4394,
-  serialized_end=4548,
+  serialized_start=4298,
+  serialized_end=4452,
 )
 
 
@@ -1900,8 +1855,8 @@ _SENTIMENTCANDLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4551,
-  serialized_end=4923,
+  serialized_start=4455,
+  serialized_end=4827,
 )
 
 
@@ -1938,8 +1893,8 @@ _ASSETSFILTER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4925,
-  serialized_end=4975,
+  serialized_start=4829,
+  serialized_end=4879,
 )
 
 
@@ -1976,8 +1931,8 @@ _AGGREGATIONCANDLEFILTER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4977,
-  serialized_end=5060,
+  serialized_start=4881,
+  serialized_end=4964,
 )
 
 
@@ -2028,8 +1983,8 @@ _SENTIMENTHISTORICREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5063,
-  serialized_end=5206,
+  serialized_start=4967,
+  serialized_end=5110,
 )
 
 
@@ -2073,8 +2028,8 @@ _HISTORICREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5209,
-  serialized_end=5339,
+  serialized_start=5113,
+  serialized_end=5243,
 )
 
 
@@ -2104,8 +2059,8 @@ _ASSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5341,
-  serialized_end=5364,
+  serialized_start=5245,
+  serialized_end=5268,
 )
 
 
@@ -2135,8 +2090,8 @@ _ASSETITEMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5366,
-  serialized_end=5402,
+  serialized_start=5270,
+  serialized_end=5306,
 )
 
 
@@ -2194,8 +2149,8 @@ _AGGID = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5404,
-  serialized_end=5483,
+  serialized_start=5308,
+  serialized_end=5387,
 )
 
 
@@ -2274,8 +2229,109 @@ _AGGREGATIONCANDLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5486,
-  serialized_end=5619,
+  serialized_start=5390,
+  serialized_end=5523,
+)
+
+
+_PUBLICMODEL = _descriptor.Descriptor(
+  name='PublicModel',
+  full_name='PublicModel',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='PublicModel.id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='title', full_name='PublicModel.title', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='content', full_name='PublicModel.content', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pub_date', full_name='PublicModel.pub_date', index=3,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='source', full_name='PublicModel.source', index=4,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='excerpt', full_name='PublicModel.excerpt', index=5,
+      number=8, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='videos', full_name='PublicModel.videos', index=6,
+      number=9, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='images', full_name='PublicModel.images', index=7,
+      number=10, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='links', full_name='PublicModel.links', index=8,
+      number=11, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='domain', full_name='PublicModel.domain', index=9,
+      number=16, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='created', full_name='PublicModel.created', index=10,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=5526,
+  serialized_end=5770,
 )
 
 _BASEMODEL.fields_by_name['pub_date'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
@@ -2305,7 +2361,6 @@ _USERMESSAGE.fields_by_name['sentiment'].message_type = _SENTIMENTMODEL
 _USERMESSAGE.fields_by_name['named_entities'].message_type = _NAMEDENTITIESMODEL
 _BITMEXUSERMESSAGE.fields_by_name['user_message'].message_type = _USERMESSAGE
 _TELEGRAMUSERMESSAGE.fields_by_name['user_message'].message_type = _USERMESSAGE
-_DISCORDUSERMESSAGE.fields_by_name['user_message'].message_type = _USERMESSAGE
 _COMMENTCOUNTTIMESNAPSHOT.fields_by_name['time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _COMMENT.fields_by_name['replies'].message_type = _COMMENT
 _REDDITPOSTMODEL.fields_by_name['replies'].message_type = _COMMENT
@@ -2328,6 +2383,8 @@ _HISTORICREQUEST.fields_by_name['to'].message_type = google_dot_protobuf_dot_tim
 _HISTORICREQUEST.fields_by_name['filter'].message_type = _ASSETSFILTER
 _ASSETITEMS.fields_by_name['assets'].message_type = _ASSET
 _AGGREGATIONCANDLE.fields_by_name['id'].message_type = _AGGID
+_PUBLICMODEL.fields_by_name['pub_date'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_PUBLICMODEL.fields_by_name['created'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 DESCRIPTOR.message_types_by_name['BaseModel'] = _BASEMODEL
 DESCRIPTOR.message_types_by_name['SentimentModel'] = _SENTIMENTMODEL
 DESCRIPTOR.message_types_by_name['CryptopanicEntrySource'] = _CRYPTOPANICENTRYSOURCE
@@ -2342,7 +2399,6 @@ DESCRIPTOR.message_types_by_name['Article'] = _ARTICLE
 DESCRIPTOR.message_types_by_name['UserMessage'] = _USERMESSAGE
 DESCRIPTOR.message_types_by_name['BitmexUserMessage'] = _BITMEXUSERMESSAGE
 DESCRIPTOR.message_types_by_name['TelegramUserMessage'] = _TELEGRAMUSERMESSAGE
-DESCRIPTOR.message_types_by_name['DiscordUserMessage'] = _DISCORDUSERMESSAGE
 DESCRIPTOR.message_types_by_name['CommentCountTimeSnapshot'] = _COMMENTCOUNTTIMESNAPSHOT
 DESCRIPTOR.message_types_by_name['Comment'] = _COMMENT
 DESCRIPTOR.message_types_by_name['RedditPostModel'] = _REDDITPOSTMODEL
@@ -2358,6 +2414,7 @@ DESCRIPTOR.message_types_by_name['Asset'] = _ASSET
 DESCRIPTOR.message_types_by_name['AssetItems'] = _ASSETITEMS
 DESCRIPTOR.message_types_by_name['AggId'] = _AGGID
 DESCRIPTOR.message_types_by_name['AggregationCandle'] = _AGGREGATIONCANDLE
+DESCRIPTOR.message_types_by_name['PublicModel'] = _PUBLICMODEL
 DESCRIPTOR.enum_types_by_name['NamedEntity'] = _NAMEDENTITY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -2467,13 +2524,6 @@ TelegramUserMessage = _reflection.GeneratedProtocolMessageType('TelegramUserMess
   })
 _sym_db.RegisterMessage(TelegramUserMessage)
 
-DiscordUserMessage = _reflection.GeneratedProtocolMessageType('DiscordUserMessage', (_message.Message,), {
-  'DESCRIPTOR' : _DISCORDUSERMESSAGE,
-  '__module__' : 'types_pb2'
-  # @@protoc_insertion_point(class_scope:DiscordUserMessage)
-  })
-_sym_db.RegisterMessage(DiscordUserMessage)
-
 CommentCountTimeSnapshot = _reflection.GeneratedProtocolMessageType('CommentCountTimeSnapshot', (_message.Message,), {
   'DESCRIPTOR' : _COMMENTCOUNTTIMESNAPSHOT,
   '__module__' : 'types_pb2'
@@ -2579,6 +2629,13 @@ AggregationCandle = _reflection.GeneratedProtocolMessageType('AggregationCandle'
   })
 _sym_db.RegisterMessage(AggregationCandle)
 
+PublicModel = _reflection.GeneratedProtocolMessageType('PublicModel', (_message.Message,), {
+  'DESCRIPTOR' : _PUBLICMODEL,
+  '__module__' : 'types_pb2'
+  # @@protoc_insertion_point(class_scope:PublicModel)
+  })
+_sym_db.RegisterMessage(PublicModel)
+
 
 _NAMEDENTITIESMODEL_ASSETMENTIONSENTRY._options = None
 
@@ -2588,13 +2645,58 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=5779,
-  serialized_end=6119,
+  serialized_start=5930,
+  serialized_end=6492,
   methods=[
+  _descriptor.MethodDescriptor(
+    name='SubscribeBaseArticle',
+    full_name='MessagesProxy.SubscribeBaseArticle',
+    index=0,
+    containing_service=None,
+    input_type=_ASSETSFILTER,
+    output_type=_PUBLICMODEL,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SubscribeBaseTweet',
+    full_name='MessagesProxy.SubscribeBaseTweet',
+    index=1,
+    containing_service=None,
+    input_type=_ASSETSFILTER,
+    output_type=_PUBLICMODEL,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SubscribeBaseReddit',
+    full_name='MessagesProxy.SubscribeBaseReddit',
+    index=2,
+    containing_service=None,
+    input_type=_ASSETSFILTER,
+    output_type=_PUBLICMODEL,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SubscribeBaseTelegram',
+    full_name='MessagesProxy.SubscribeBaseTelegram',
+    index=3,
+    containing_service=None,
+    input_type=_ASSETSFILTER,
+    output_type=_PUBLICMODEL,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SubscribeBaseBitmex',
+    full_name='MessagesProxy.SubscribeBaseBitmex',
+    index=4,
+    containing_service=None,
+    input_type=_ASSETSFILTER,
+    output_type=_PUBLICMODEL,
+    serialized_options=None,
+  ),
   _descriptor.MethodDescriptor(
     name='SubscribeArticle',
     full_name='MessagesProxy.SubscribeArticle',
-    index=0,
+    index=5,
     containing_service=None,
     input_type=_ASSETSFILTER,
     output_type=_ARTICLE,
@@ -2603,7 +2705,7 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeTweet',
     full_name='MessagesProxy.SubscribeTweet',
-    index=1,
+    index=6,
     containing_service=None,
     input_type=_ASSETSFILTER,
     output_type=_TWEET,
@@ -2612,25 +2714,16 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeReddit',
     full_name='MessagesProxy.SubscribeReddit',
-    index=2,
+    index=7,
     containing_service=None,
     input_type=_ASSETSFILTER,
     output_type=_REDDITPOST,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='SubscribeDiscord',
-    full_name='MessagesProxy.SubscribeDiscord',
-    index=3,
-    containing_service=None,
-    input_type=_ASSETSFILTER,
-    output_type=_DISCORDUSERMESSAGE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
     name='SubscribeTelegram',
     full_name='MessagesProxy.SubscribeTelegram',
-    index=4,
+    index=8,
     containing_service=None,
     input_type=_ASSETSFILTER,
     output_type=_TELEGRAMUSERMESSAGE,
@@ -2639,7 +2732,7 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='SubscribeBitmex',
     full_name='MessagesProxy.SubscribeBitmex',
-    index=5,
+    index=9,
     containing_service=None,
     input_type=_ASSETSFILTER,
     output_type=_BITMEXUSERMESSAGE,
@@ -2657,8 +2750,8 @@ _DATASET = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=1,
   serialized_options=None,
-  serialized_start=6121,
-  serialized_end=6179,
+  serialized_start=6494,
+  serialized_end=6552,
   methods=[
   _descriptor.MethodDescriptor(
     name='Assets',
@@ -2681,13 +2774,40 @@ _HISTORICDATA = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=2,
   serialized_options=None,
-  serialized_start=6182,
-  serialized_end=6354,
+  serialized_start=6555,
+  serialized_end=6908,
   methods=[
+  _descriptor.MethodDescriptor(
+    name='HistoricBaseTweets',
+    full_name='HistoricData.HistoricBaseTweets',
+    index=0,
+    containing_service=None,
+    input_type=_HISTORICREQUEST,
+    output_type=_PUBLICMODEL,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='HistoricBaseArticles',
+    full_name='HistoricData.HistoricBaseArticles',
+    index=1,
+    containing_service=None,
+    input_type=_HISTORICREQUEST,
+    output_type=_PUBLICMODEL,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='HistoricBaseRedditPosts',
+    full_name='HistoricData.HistoricBaseRedditPosts',
+    index=2,
+    containing_service=None,
+    input_type=_HISTORICREQUEST,
+    output_type=_PUBLICMODEL,
+    serialized_options=None,
+  ),
   _descriptor.MethodDescriptor(
     name='HistoricTweets',
     full_name='HistoricData.HistoricTweets',
-    index=0,
+    index=3,
     containing_service=None,
     input_type=_HISTORICREQUEST,
     output_type=_TWEET,
@@ -2696,7 +2816,7 @@ _HISTORICDATA = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='HistoricArticles',
     full_name='HistoricData.HistoricArticles',
-    index=1,
+    index=4,
     containing_service=None,
     input_type=_HISTORICREQUEST,
     output_type=_ARTICLE,
@@ -2705,7 +2825,7 @@ _HISTORICDATA = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='HistoricRedditPosts',
     full_name='HistoricData.HistoricRedditPosts',
-    index=2,
+    index=5,
     containing_service=None,
     input_type=_HISTORICREQUEST,
     output_type=_REDDITPOST,
@@ -2723,8 +2843,8 @@ _SENTIMENTS = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=3,
   serialized_options=None,
-  serialized_start=6357,
-  serialized_end=6677,
+  serialized_start=6911,
+  serialized_end=7231,
   methods=[
   _descriptor.MethodDescriptor(
     name='HistoricSocialSentiment',

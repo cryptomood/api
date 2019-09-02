@@ -3,6 +3,7 @@ package main
 import (
 	types "../.."
 	"fmt"
+	"github.com/golang/protobuf/ptypes"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
@@ -24,21 +25,28 @@ func main() {
 	}
 	fmt.Println("Connected")
 
-	proxyClient := types.NewMessagesProxyClient(conn)
+	historicClient := types.NewHistoricDataClient(conn)
 
-	filter := &types.AssetsFilter{Assets: []string{"BTC", "ETH"}, AllAssets: false}
-	sub, err := proxyClient.SubscribeDiscord(context.Background(), filter)
+	// create time frame
+	now := time.Now()
+	twoHoursAgo := now.Add(-2 * time.Hour)
+	timestampNow, _ := ptypes.TimestampProto(now)
+	timestamp2HAgo, _ := ptypes.TimestampProto(twoHoursAgo)
+
+	historicRequest := &types.HistoricRequest{From: timestamp2HAgo, To: timestampNow, Filter: &types.AssetsFilter{Assets: []string{"BTC", "ETH"}, AllAssets: false}}
+	sub, err := historicClient.HistoricBaseTweets(context.Background(), historicRequest)
 	if err != nil {
 		panic(err)
 	}
 	for {
-		msg, err := sub.Recv()
+		tweet, err := sub.Recv()
 		if err == io.EOF {
 			break
 		}
 		if err != nil {
 			panic(err)
 		}
-		fmt.Println(msg)
+
+		fmt.Println(tweet)
 	}
 }

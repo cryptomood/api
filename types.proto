@@ -246,18 +246,6 @@ message TelegramUserMessage {
 }
 
 /**
-Message from discord chats
-*/
-message DiscordUserMessage {
-    UserMessage user_message = 1;
-
-    // unique ID of discord channel
-    string channel_id = 2;
-
-    string guild_id = 3;
-}
-
-/**
 Stores time/count snapshot of Reddit post comment count
 this is mainly for measuring amount of added comments during period of time
 */
@@ -445,13 +433,21 @@ message SentimentCandle {
 Service for entries streaming
 */
 service MessagesProxy {
+    rpc SubscribeBaseArticle (AssetsFilter) returns (stream PublicModel) {
+    }
+    rpc SubscribeBaseTweet (AssetsFilter) returns (stream PublicModel) {
+    }
+    rpc SubscribeBaseReddit (AssetsFilter) returns (stream PublicModel) {
+    }
+    rpc SubscribeBaseTelegram (AssetsFilter) returns (stream PublicModel) {
+    }
+    rpc SubscribeBaseBitmex (AssetsFilter) returns (stream PublicModel) {
+    }
     rpc SubscribeArticle (AssetsFilter) returns (stream Article) {
     }
     rpc SubscribeTweet (AssetsFilter) returns (stream Tweet) {
     }
     rpc SubscribeReddit (AssetsFilter) returns (stream RedditPost) {
-    }
-    rpc SubscribeDiscord (AssetsFilter) returns (stream DiscordUserMessage) {
     }
     rpc SubscribeTelegram (AssetsFilter) returns (stream TelegramUserMessage) {
     }
@@ -518,6 +514,12 @@ service Dataset {
 Service for requesting historic data
 */
 service HistoricData {
+    rpc HistoricBaseTweets (HistoricRequest) returns (stream PublicModel) {
+    }
+    rpc HistoricBaseArticles (HistoricRequest) returns (stream PublicModel) {
+    }
+    rpc HistoricBaseRedditPosts (HistoricRequest) returns (stream PublicModel) {
+    }
     rpc HistoricTweets (HistoricRequest) returns (stream Tweet) {
     }
     rpc HistoricArticles (HistoricRequest) returns (stream Article) {
@@ -554,4 +556,39 @@ message AggregationCandle {
     double ps = 6;
     double ns = 7;
     double a = 8;
+}
+
+message PublicModel {
+    // unique identifier with schema
+    string id = 1;
+
+    // title of article
+    string title = 2;
+
+    // full content stripped of unnecessary characters(js, html tags...)
+    string content = 3;
+
+    // timestamp representing the datetime, when the article has been published
+    google.protobuf.Timestamp pub_date = 5;
+
+    // url of article
+    string source = 7;
+
+    // summary provided by the domain
+    string excerpt = 8;
+
+    // list of video sources
+    repeated string videos = 9;
+
+    // list of image sources
+    repeated string images = 10;
+
+    // list of off-page hyperlinks
+    repeated string links = 11;
+
+    string domain = 16;
+
+    // timestamp representing acquisition datetime
+    google.protobuf.Timestamp created = 6;
+
 }

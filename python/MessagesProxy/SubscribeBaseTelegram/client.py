@@ -23,10 +23,10 @@ def main():
     assets_filter = types_pb2.AssetsFilter(assets = ['BTC'], all_assets = False)
 
     # Response-streaming RPC
-    discord_stream = stub.SubscribeDiscord(assets_filter)
-    for discord in discord_stream:
+    telegram_stream = stub.SubscribeBaseTelegram(assets_filter)
+    for telegram in telegram_stream:
         # attributes are same as defined in proto messages
-        print(discord.user_message.base.id, discord.user_message.message)
+        print(telegram.id, telegram.content)
 
 
 if __name__ == '__main__':
