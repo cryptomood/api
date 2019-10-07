@@ -492,12 +492,16 @@ message HistoricRequest {
     AssetsFilter filter = 4;
 }
 
-// represent one asset
+/**
+Represent one asset.
+*/
 message Asset {
-    // symbol
+    string name = 1;
+    // symbol can be duplicated throughout the db
     string symbol = 2;
+    // unique field
+    string code = 3;
 }
-
 message AssetItems {
     repeated Asset assets = 1;
 }
@@ -571,6 +575,9 @@ message PublicModel {
     // timestamp representing the datetime, when the article has been published
     google.protobuf.Timestamp pub_date = 5;
 
+    // timestamp representing acquisition datetime
+    google.protobuf.Timestamp created = 6;
+
     // url of article
     string source = 7;
 
@@ -588,7 +595,12 @@ message PublicModel {
 
     string domain = 16;
 
-    // timestamp representing acquisition datetime
-    google.protobuf.Timestamp created = 6;
+    // additional fields, for now available only 'assets'
+    PublicModelExtensions extensions = 100;
+}
 
+// additional fields to public model
+message PublicModelExtensions {
+    // assets found in publication
+    repeated string assets = 1;
 }
