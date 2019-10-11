@@ -524,6 +524,8 @@ service HistoricData {
     }
     rpc HistoricBaseRedditPosts (HistoricRequest) returns (stream PublicModel) {
     }
+    rpc HistoricBaseTelegramMessages (HistoricRequest) returns (stream PublicModel) {
+    }
     rpc HistoricTweets (HistoricRequest) returns (stream Tweet) {
     }
     rpc HistoricArticles (HistoricRequest) returns (stream Article) {

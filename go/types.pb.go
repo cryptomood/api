@@ -40,13 +40,14 @@ It has these top-level messages:
 	PublicModel
 	PublicModelExtensions
 */
+
 package types
 
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import google_protobuf "github.com/golang/protobuf/ptypes/timestamp"
-import google_protobuf1 "github.com/golang/protobuf/ptypes/empty"
+import empty "github.com/golang/protobuf/ptypes/empty"
+import timestamp "github.com/golang/protobuf/ptypes/timestamp"
 
 import (
 	context "golang.org/x/net/context"
@@ -100,48 +101,72 @@ var NamedEntity_value = map[string]int32{
 func (x NamedEntity) String() string {
 	return proto.EnumName(NamedEntity_name, int32(x))
 }
-func (NamedEntity) EnumDescriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (NamedEntity) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{0}
+}
 
 // *
 // Base model for messages or news, contains basic data like title, content, source, published date etc..
 type BaseModel struct {
 	// unique identifier with schema
-	Id string `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"id" mapstructure:"id"`
 	// title of article
-	Title string `protobuf:"bytes,2,opt,name=title" json:"title,omitempty"`
+	Title string `protobuf:"bytes,2,opt,name=title,proto3" json:"title" bson:"title" mapstructure:"title"`
 	// full content stripped of unnecessary characters(js, html tags...)
-	Content string `protobuf:"bytes,3,opt,name=content" json:"content,omitempty"`
+	Content string `protobuf:"bytes,3,opt,name=content,proto3" json:"content" bson:"content" mapstructure:"content"`
 	//
-	Crawler string `protobuf:"bytes,4,opt,name=crawler" json:"crawler,omitempty"`
+	Crawler string `protobuf:"bytes,4,opt,name=crawler,proto3" json:"crawler" bson:"crawler" mapstructure:"crawler"`
 	// timestamp representing the datetime, when the article has been published
-	PubDate *google_protobuf.Timestamp `protobuf:"bytes,5,opt,name=pub_date,json=pubDate" json:"pub_date,omitempty"`
+	PubDate *timestamp.Timestamp `protobuf:"bytes,5,opt,name=pub_date,json=pubDate,proto3" json:"pub_date" bson:"pub_date" mapstructure:"pub_date"`
 	// timestamp representing acquisition datetime
-	Created *google_protobuf.Timestamp `protobuf:"bytes,6,opt,name=created" json:"created,omitempty"`
+	Created *timestamp.Timestamp `protobuf:"bytes,6,opt,name=created,proto3" json:"created" bson:"created" mapstructure:"created"`
 	// url of article
-	Source string `protobuf:"bytes,7,opt,name=source" json:"source,omitempty"`
+	Source string `protobuf:"bytes,7,opt,name=source,proto3" json:"source" bson:"source" mapstructure:"source"`
 	// summary provided by the domain
-	Excerpt string `protobuf:"bytes,8,opt,name=excerpt" json:"excerpt,omitempty"`
+	Excerpt string `protobuf:"bytes,8,opt,name=excerpt,proto3" json:"excerpt" bson:"excerpt" mapstructure:"excerpt"`
 	// list of video sources
-	Videos []string `protobuf:"bytes,9,rep,name=videos" json:"videos,omitempty"`
+	Videos []string `protobuf:"bytes,9,rep,name=videos,proto3" json:"videos" bson:"videos" mapstructure:"videos"`
 	// list of image sources
-	Images []string `protobuf:"bytes,10,rep,name=images" json:"images,omitempty"`
+	Images []string `protobuf:"bytes,10,rep,name=images,proto3" json:"images" bson:"images" mapstructure:"images"`
 	// list of off-page hyperlinks
-	Links []string `protobuf:"bytes,11,rep,name=links" json:"links,omitempty"`
+	Links []string `protobuf:"bytes,11,rep,name=links,proto3" json:"links" bson:"links" mapstructure:"links"`
 	// author of article
-	Author string `protobuf:"bytes,12,opt,name=author" json:"author,omitempty"`
+	Author string `protobuf:"bytes,12,opt,name=author,proto3" json:"author" bson:"author" mapstructure:"author"`
 	// identified language
-	Lang string `protobuf:"bytes,13,opt,name=lang" json:"lang,omitempty"`
+	Lang string `protobuf:"bytes,13,opt,name=lang,proto3" json:"lang" bson:"lang" mapstructure:"lang"`
 	// importance of the article's creator
-	Weight float64 `protobuf:"fixed64,14,opt,name=weight" json:"weight,omitempty"`
+	Weight float64 `protobuf:"fixed64,14,opt,name=weight,proto3" json:"weight" bson:"weight" mapstructure:"weight"`
 	// measured spam value
-	Spam   float64 `protobuf:"fixed64,15,opt,name=spam" json:"spam,omitempty"`
-	Domain string  `protobuf:"bytes,16,opt,name=domain" json:"domain,omitempty"`
+	Spam                 float64  `protobuf:"fixed64,15,opt,name=spam,proto3" json:"spam" bson:"spam" mapstructure:"spam"`
+	Domain               string   `protobuf:"bytes,16,opt,name=domain,proto3" json:"domain" bson:"domain" mapstructure:"domain"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *BaseModel) Reset()                    { *m = BaseModel{} }
-func (m *BaseModel) String() string            { return proto.CompactTextString(m) }
-func (*BaseModel) ProtoMessage()               {}
-func (*BaseModel) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (m *BaseModel) Reset()         { *m = BaseModel{} }
+func (m *BaseModel) String() string { return proto.CompactTextString(m) }
+func (*BaseModel) ProtoMessage()    {}
+func (*BaseModel) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{0}
+}
+func (m *BaseModel) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_BaseModel.Unmarshal(m, b)
+}
+func (m *BaseModel) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_BaseModel.Marshal(b, m, deterministic)
+}
+func (dst *BaseModel) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BaseModel.Merge(dst, src)
+}
+func (m *BaseModel) XXX_Size() int {
+	return xxx_messageInfo_BaseModel.Size(m)
+}
+func (m *BaseModel) XXX_DiscardUnknown() {
+	xxx_messageInfo_BaseModel.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BaseModel proto.InternalMessageInfo
 
 func (m *BaseModel) GetId() string {
 	if m != nil {
@@ -171,14 +196,14 @@ func (m *BaseModel) GetCrawler() string {
 	return ""
 }
 
-func (m *BaseModel) GetPubDate() *google_protobuf.Timestamp {
+func (m *BaseModel) GetPubDate() *timestamp.Timestamp {
 	if m != nil {
 		return m.PubDate
 	}
 	return nil
 }
 
-func (m *BaseModel) GetCreated() *google_protobuf.Timestamp {
+func (m *BaseModel) GetCreated() *timestamp.Timestamp {
 	if m != nil {
 		return m.Created
 	}
@@ -259,17 +284,39 @@ func (m *BaseModel) GetDomain() string {
 // Group data that refers to sentiment of message
 type SentimentModel struct {
 	// analyzed sentiment <-10, 10>
-	Sentiment float64 `protobuf:"fixed64,1,opt,name=sentiment" json:"sentiment,omitempty"`
+	Sentiment float64 `protobuf:"fixed64,1,opt,name=sentiment,proto3" json:"sentiment" bson:"sentiment" mapstructure:"sentiment"`
 	// analyzed impact in the respective area
-	MarketImpact float64 `protobuf:"fixed64,2,opt,name=market_impact,json=marketImpact" json:"market_impact,omitempty"`
+	MarketImpact float64 `protobuf:"fixed64,2,opt,name=market_impact,json=marketImpact,proto3" json:"market_impact" bson:"market_impact" mapstructure:"market_impact"`
 	// analyzed replies sentiment <-10, 10>
-	SentimentReplies float64 `protobuf:"fixed64,3,opt,name=sentiment_replies,json=sentimentReplies" json:"sentiment_replies,omitempty"`
+	SentimentReplies     float64  `protobuf:"fixed64,3,opt,name=sentiment_replies,json=sentimentReplies,proto3" json:"sentiment_replies" bson:"sentiment_replies" mapstructure:"sentiment_replies"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *SentimentModel) Reset()                    { *m = SentimentModel{} }
-func (m *SentimentModel) String() string            { return proto.CompactTextString(m) }
-func (*SentimentModel) ProtoMessage()               {}
-func (*SentimentModel) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (m *SentimentModel) Reset()         { *m = SentimentModel{} }
+func (m *SentimentModel) String() string { return proto.CompactTextString(m) }
+func (*SentimentModel) ProtoMessage()    {}
+func (*SentimentModel) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{1}
+}
+func (m *SentimentModel) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SentimentModel.Unmarshal(m, b)
+}
+func (m *SentimentModel) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SentimentModel.Marshal(b, m, deterministic)
+}
+func (dst *SentimentModel) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SentimentModel.Merge(dst, src)
+}
+func (m *SentimentModel) XXX_Size() int {
+	return xxx_messageInfo_SentimentModel.Size(m)
+}
+func (m *SentimentModel) XXX_DiscardUnknown() {
+	xxx_messageInfo_SentimentModel.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SentimentModel proto.InternalMessageInfo
 
 func (m *SentimentModel) GetSentiment() float64 {
 	if m != nil {
@@ -293,16 +340,38 @@ func (m *SentimentModel) GetSentimentReplies() float64 {
 }
 
 type CryptopanicEntrySource struct {
-	Title  string `protobuf:"bytes,1,opt,name=title" json:"title,omitempty"`
-	Region string `protobuf:"bytes,2,opt,name=region" json:"region,omitempty"`
-	Domain string `protobuf:"bytes,3,opt,name=domain" json:"domain,omitempty"`
-	Path   string `protobuf:"bytes,4,opt,name=path" json:"path,omitempty"`
+	Title                string   `protobuf:"bytes,1,opt,name=title,proto3" json:"title" bson:"title" mapstructure:"title"`
+	Region               string   `protobuf:"bytes,2,opt,name=region,proto3" json:"region" bson:"region" mapstructure:"region"`
+	Domain               string   `protobuf:"bytes,3,opt,name=domain,proto3" json:"domain" bson:"domain" mapstructure:"domain"`
+	Path                 string   `protobuf:"bytes,4,opt,name=path,proto3" json:"path" bson:"path" mapstructure:"path"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *CryptopanicEntrySource) Reset()                    { *m = CryptopanicEntrySource{} }
-func (m *CryptopanicEntrySource) String() string            { return proto.CompactTextString(m) }
-func (*CryptopanicEntrySource) ProtoMessage()               {}
-func (*CryptopanicEntrySource) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (m *CryptopanicEntrySource) Reset()         { *m = CryptopanicEntrySource{} }
+func (m *CryptopanicEntrySource) String() string { return proto.CompactTextString(m) }
+func (*CryptopanicEntrySource) ProtoMessage()    {}
+func (*CryptopanicEntrySource) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{2}
+}
+func (m *CryptopanicEntrySource) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CryptopanicEntrySource.Unmarshal(m, b)
+}
+func (m *CryptopanicEntrySource) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CryptopanicEntrySource.Marshal(b, m, deterministic)
+}
+func (dst *CryptopanicEntrySource) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CryptopanicEntrySource.Merge(dst, src)
+}
+func (m *CryptopanicEntrySource) XXX_Size() int {
+	return xxx_messageInfo_CryptopanicEntrySource.Size(m)
+}
+func (m *CryptopanicEntrySource) XXX_DiscardUnknown() {
+	xxx_messageInfo_CryptopanicEntrySource.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CryptopanicEntrySource proto.InternalMessageInfo
 
 func (m *CryptopanicEntrySource) GetTitle() string {
 	if m != nil {
@@ -333,20 +402,42 @@ func (m *CryptopanicEntrySource) GetPath() string {
 }
 
 type CryptopanicEntryVotes struct {
-	Negative  int32 `protobuf:"varint,1,opt,name=negative" json:"negative,omitempty"`
-	Positive  int32 `protobuf:"varint,2,opt,name=positive" json:"positive,omitempty"`
-	Important int32 `protobuf:"varint,3,opt,name=important" json:"important,omitempty"`
-	Liked     int32 `protobuf:"varint,4,opt,name=liked" json:"liked,omitempty"`
-	Disliked  int32 `protobuf:"varint,5,opt,name=disliked" json:"disliked,omitempty"`
-	Lol       int32 `protobuf:"varint,6,opt,name=lol" json:"lol,omitempty"`
-	Toxic     int32 `protobuf:"varint,7,opt,name=toxic" json:"toxic,omitempty"`
-	Saved     int32 `protobuf:"varint,8,opt,name=saved" json:"saved,omitempty"`
+	Negative             int32    `protobuf:"varint,1,opt,name=negative,proto3" json:"negative" bson:"negative" mapstructure:"negative"`
+	Positive             int32    `protobuf:"varint,2,opt,name=positive,proto3" json:"positive" bson:"positive" mapstructure:"positive"`
+	Important            int32    `protobuf:"varint,3,opt,name=important,proto3" json:"important" bson:"important" mapstructure:"important"`
+	Liked                int32    `protobuf:"varint,4,opt,name=liked,proto3" json:"liked" bson:"liked" mapstructure:"liked"`
+	Disliked             int32    `protobuf:"varint,5,opt,name=disliked,proto3" json:"disliked" bson:"disliked" mapstructure:"disliked"`
+	Lol                  int32    `protobuf:"varint,6,opt,name=lol,proto3" json:"lol" bson:"lol" mapstructure:"lol"`
+	Toxic                int32    `protobuf:"varint,7,opt,name=toxic,proto3" json:"toxic" bson:"toxic" mapstructure:"toxic"`
+	Saved                int32    `protobuf:"varint,8,opt,name=saved,proto3" json:"saved" bson:"saved" mapstructure:"saved"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *CryptopanicEntryVotes) Reset()                    { *m = CryptopanicEntryVotes{} }
-func (m *CryptopanicEntryVotes) String() string            { return proto.CompactTextString(m) }
-func (*CryptopanicEntryVotes) ProtoMessage()               {}
-func (*CryptopanicEntryVotes) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (m *CryptopanicEntryVotes) Reset()         { *m = CryptopanicEntryVotes{} }
+func (m *CryptopanicEntryVotes) String() string { return proto.CompactTextString(m) }
+func (*CryptopanicEntryVotes) ProtoMessage()    {}
+func (*CryptopanicEntryVotes) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{3}
+}
+func (m *CryptopanicEntryVotes) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CryptopanicEntryVotes.Unmarshal(m, b)
+}
+func (m *CryptopanicEntryVotes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CryptopanicEntryVotes.Marshal(b, m, deterministic)
+}
+func (dst *CryptopanicEntryVotes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CryptopanicEntryVotes.Merge(dst, src)
+}
+func (m *CryptopanicEntryVotes) XXX_Size() int {
+	return xxx_messageInfo_CryptopanicEntryVotes.Size(m)
+}
+func (m *CryptopanicEntryVotes) XXX_DiscardUnknown() {
+	xxx_messageInfo_CryptopanicEntryVotes.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CryptopanicEntryVotes proto.InternalMessageInfo
 
 func (m *CryptopanicEntryVotes) GetNegative() int32 {
 	if m != nil {
@@ -405,14 +496,36 @@ func (m *CryptopanicEntryVotes) GetSaved() int32 {
 }
 
 type CryptopanicEntryMetadata struct {
-	Message     string `protobuf:"bytes,1,opt,name=message" json:"message,omitempty"`
-	Description string `protobuf:"bytes,2,opt,name=description" json:"description,omitempty"`
+	Message              string   `protobuf:"bytes,1,opt,name=message,proto3" json:"message" bson:"message" mapstructure:"message"`
+	Description          string   `protobuf:"bytes,2,opt,name=description,proto3" json:"description" bson:"description" mapstructure:"description"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *CryptopanicEntryMetadata) Reset()                    { *m = CryptopanicEntryMetadata{} }
-func (m *CryptopanicEntryMetadata) String() string            { return proto.CompactTextString(m) }
-func (*CryptopanicEntryMetadata) ProtoMessage()               {}
-func (*CryptopanicEntryMetadata) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (m *CryptopanicEntryMetadata) Reset()         { *m = CryptopanicEntryMetadata{} }
+func (m *CryptopanicEntryMetadata) String() string { return proto.CompactTextString(m) }
+func (*CryptopanicEntryMetadata) ProtoMessage()    {}
+func (*CryptopanicEntryMetadata) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{4}
+}
+func (m *CryptopanicEntryMetadata) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CryptopanicEntryMetadata.Unmarshal(m, b)
+}
+func (m *CryptopanicEntryMetadata) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CryptopanicEntryMetadata.Marshal(b, m, deterministic)
+}
+func (dst *CryptopanicEntryMetadata) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CryptopanicEntryMetadata.Merge(dst, src)
+}
+func (m *CryptopanicEntryMetadata) XXX_Size() int {
+	return xxx_messageInfo_CryptopanicEntryMetadata.Size(m)
+}
+func (m *CryptopanicEntryMetadata) XXX_DiscardUnknown() {
+	xxx_messageInfo_CryptopanicEntryMetadata.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CryptopanicEntryMetadata proto.InternalMessageInfo
 
 func (m *CryptopanicEntryMetadata) GetMessage() string {
 	if m != nil {
@@ -429,23 +542,45 @@ func (m *CryptopanicEntryMetadata) GetDescription() string {
 }
 
 type CryptopanicRawEntry struct {
-	Kind        string                    `protobuf:"bytes,1,opt,name=kind" json:"kind,omitempty"`
-	Domain      string                    `protobuf:"bytes,2,opt,name=domain" json:"domain,omitempty"`
-	Source      *CryptopanicEntrySource   `protobuf:"bytes,3,opt,name=source" json:"source,omitempty"`
-	Title       string                    `protobuf:"bytes,4,opt,name=title" json:"title,omitempty"`
-	PublishedAt string                    `protobuf:"bytes,5,opt,name=published_at,json=publishedAt" json:"published_at,omitempty"`
-	Slug        string                    `protobuf:"bytes,6,opt,name=slug" json:"slug,omitempty"`
-	Id          int32                     `protobuf:"varint,7,opt,name=id" json:"id,omitempty"`
-	Url         string                    `protobuf:"bytes,8,opt,name=url" json:"url,omitempty"`
-	CreatedAt   string                    `protobuf:"bytes,9,opt,name=created_at,json=createdAt" json:"created_at,omitempty"`
-	Votes       *CryptopanicEntryVotes    `protobuf:"bytes,10,opt,name=votes" json:"votes,omitempty"`
-	Metadata    *CryptopanicEntryMetadata `protobuf:"bytes,11,opt,name=metadata" json:"metadata,omitempty"`
+	Kind                 string                    `protobuf:"bytes,1,opt,name=kind,proto3" json:"kind" bson:"kind" mapstructure:"kind"`
+	Domain               string                    `protobuf:"bytes,2,opt,name=domain,proto3" json:"domain" bson:"domain" mapstructure:"domain"`
+	Source               *CryptopanicEntrySource   `protobuf:"bytes,3,opt,name=source,proto3" json:"source" bson:"source" mapstructure:"source"`
+	Title                string                    `protobuf:"bytes,4,opt,name=title,proto3" json:"title" bson:"title" mapstructure:"title"`
+	PublishedAt          string                    `protobuf:"bytes,5,opt,name=published_at,json=publishedAt,proto3" json:"published_at" bson:"published_at" mapstructure:"published_at"`
+	Slug                 string                    `protobuf:"bytes,6,opt,name=slug,proto3" json:"slug" bson:"slug" mapstructure:"slug"`
+	Id                   int32                     `protobuf:"varint,7,opt,name=id,proto3" json:"id" bson:"id" mapstructure:"id"`
+	Url                  string                    `protobuf:"bytes,8,opt,name=url,proto3" json:"url" bson:"url" mapstructure:"url"`
+	CreatedAt            string                    `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at" bson:"created_at" mapstructure:"created_at"`
+	Votes                *CryptopanicEntryVotes    `protobuf:"bytes,10,opt,name=votes,proto3" json:"votes" bson:"votes" mapstructure:"votes"`
+	Metadata             *CryptopanicEntryMetadata `protobuf:"bytes,11,opt,name=metadata,proto3" json:"metadata" bson:"metadata" mapstructure:"metadata"`
+	XXX_NoUnkeyedLiteral struct{}                  `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte                    `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32                     `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *CryptopanicRawEntry) Reset()                    { *m = CryptopanicRawEntry{} }
-func (m *CryptopanicRawEntry) String() string            { return proto.CompactTextString(m) }
-func (*CryptopanicRawEntry) ProtoMessage()               {}
-func (*CryptopanicRawEntry) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+func (m *CryptopanicRawEntry) Reset()         { *m = CryptopanicRawEntry{} }
+func (m *CryptopanicRawEntry) String() string { return proto.CompactTextString(m) }
+func (*CryptopanicRawEntry) ProtoMessage()    {}
+func (*CryptopanicRawEntry) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{5}
+}
+func (m *CryptopanicRawEntry) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CryptopanicRawEntry.Unmarshal(m, b)
+}
+func (m *CryptopanicRawEntry) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CryptopanicRawEntry.Marshal(b, m, deterministic)
+}
+func (dst *CryptopanicRawEntry) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CryptopanicRawEntry.Merge(dst, src)
+}
+func (m *CryptopanicRawEntry) XXX_Size() int {
+	return xxx_messageInfo_CryptopanicRawEntry.Size(m)
+}
+func (m *CryptopanicRawEntry) XXX_DiscardUnknown() {
+	xxx_messageInfo_CryptopanicRawEntry.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CryptopanicRawEntry proto.InternalMessageInfo
 
 func (m *CryptopanicRawEntry) GetKind() string {
 	if m != nil {
@@ -525,14 +660,36 @@ func (m *CryptopanicRawEntry) GetMetadata() *CryptopanicEntryMetadata {
 }
 
 type CryptopanicFeed struct {
-	Count   int32                  `protobuf:"varint,1,opt,name=count" json:"count,omitempty"`
-	Results []*CryptopanicRawEntry `protobuf:"bytes,2,rep,name=results" json:"results,omitempty"`
+	Count                int32                  `protobuf:"varint,1,opt,name=count,proto3" json:"count" bson:"count" mapstructure:"count"`
+	Results              []*CryptopanicRawEntry `protobuf:"bytes,2,rep,name=results,proto3" json:"results" bson:"results" mapstructure:"results"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte                 `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32                  `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *CryptopanicFeed) Reset()                    { *m = CryptopanicFeed{} }
-func (m *CryptopanicFeed) String() string            { return proto.CompactTextString(m) }
-func (*CryptopanicFeed) ProtoMessage()               {}
-func (*CryptopanicFeed) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+func (m *CryptopanicFeed) Reset()         { *m = CryptopanicFeed{} }
+func (m *CryptopanicFeed) String() string { return proto.CompactTextString(m) }
+func (*CryptopanicFeed) ProtoMessage()    {}
+func (*CryptopanicFeed) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{6}
+}
+func (m *CryptopanicFeed) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CryptopanicFeed.Unmarshal(m, b)
+}
+func (m *CryptopanicFeed) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CryptopanicFeed.Marshal(b, m, deterministic)
+}
+func (dst *CryptopanicFeed) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CryptopanicFeed.Merge(dst, src)
+}
+func (m *CryptopanicFeed) XXX_Size() int {
+	return xxx_messageInfo_CryptopanicFeed.Size(m)
+}
+func (m *CryptopanicFeed) XXX_DiscardUnknown() {
+	xxx_messageInfo_CryptopanicFeed.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CryptopanicFeed proto.InternalMessageInfo
 
 func (m *CryptopanicFeed) GetCount() int32 {
 	if m != nil {
@@ -549,14 +706,36 @@ func (m *CryptopanicFeed) GetResults() []*CryptopanicRawEntry {
 }
 
 type CryptopanicPost struct {
-	CryptopanicRawEntry *CryptopanicRawEntry `protobuf:"bytes,1,opt,name=cryptopanic_raw_entry,json=cryptopanicRawEntry" json:"cryptopanic_raw_entry,omitempty"`
-	Article             *Article             `protobuf:"bytes,2,opt,name=article" json:"article,omitempty"`
+	CryptopanicRawEntry  *CryptopanicRawEntry `protobuf:"bytes,1,opt,name=cryptopanic_raw_entry,json=cryptopanicRawEntry,proto3" json:"cryptopanic_raw_entry" bson:"cryptopanic_raw_entry" mapstructure:"cryptopanic_raw_entry"`
+	Article              *Article             `protobuf:"bytes,2,opt,name=article,proto3" json:"article" bson:"article" mapstructure:"article"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte               `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32                `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *CryptopanicPost) Reset()                    { *m = CryptopanicPost{} }
-func (m *CryptopanicPost) String() string            { return proto.CompactTextString(m) }
-func (*CryptopanicPost) ProtoMessage()               {}
-func (*CryptopanicPost) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
+func (m *CryptopanicPost) Reset()         { *m = CryptopanicPost{} }
+func (m *CryptopanicPost) String() string { return proto.CompactTextString(m) }
+func (*CryptopanicPost) ProtoMessage()    {}
+func (*CryptopanicPost) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{7}
+}
+func (m *CryptopanicPost) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CryptopanicPost.Unmarshal(m, b)
+}
+func (m *CryptopanicPost) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CryptopanicPost.Marshal(b, m, deterministic)
+}
+func (dst *CryptopanicPost) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CryptopanicPost.Merge(dst, src)
+}
+func (m *CryptopanicPost) XXX_Size() int {
+	return xxx_messageInfo_CryptopanicPost.Size(m)
+}
+func (m *CryptopanicPost) XXX_DiscardUnknown() {
+	xxx_messageInfo_CryptopanicPost.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CryptopanicPost proto.InternalMessageInfo
 
 func (m *CryptopanicPost) GetCryptopanicRawEntry() *CryptopanicRawEntry {
 	if m != nil {
@@ -577,19 +756,41 @@ func (m *CryptopanicPost) GetArticle() *Article {
 // contains position, matched text, category
 type NamedEntityOccurrence struct {
 	// Represents NamedEntity element
-	Label NamedEntity `protobuf:"varint,1,opt,name=label,enum=NamedEntity" json:"label,omitempty"`
+	Label NamedEntity `protobuf:"varint,1,opt,name=label,proto3,enum=NamedEntity" json:"label" bson:"label" mapstructure:"label"`
 	// Start position of occurrence
-	Start uint32 `protobuf:"varint,2,opt,name=start" json:"start,omitempty"`
+	Start uint32 `protobuf:"varint,2,opt,name=start,proto3" json:"start" bson:"start" mapstructure:"start"`
 	// End position of occurrence
-	End uint32 `protobuf:"varint,3,opt,name=end" json:"end,omitempty"`
+	End uint32 `protobuf:"varint,3,opt,name=end,proto3" json:"end" bson:"end" mapstructure:"end"`
 	// Matched text
-	Text string `protobuf:"bytes,4,opt,name=text" json:"text,omitempty"`
+	Text                 string   `protobuf:"bytes,4,opt,name=text,proto3" json:"text" bson:"text" mapstructure:"text"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *NamedEntityOccurrence) Reset()                    { *m = NamedEntityOccurrence{} }
-func (m *NamedEntityOccurrence) String() string            { return proto.CompactTextString(m) }
-func (*NamedEntityOccurrence) ProtoMessage()               {}
-func (*NamedEntityOccurrence) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
+func (m *NamedEntityOccurrence) Reset()         { *m = NamedEntityOccurrence{} }
+func (m *NamedEntityOccurrence) String() string { return proto.CompactTextString(m) }
+func (*NamedEntityOccurrence) ProtoMessage()    {}
+func (*NamedEntityOccurrence) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{8}
+}
+func (m *NamedEntityOccurrence) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_NamedEntityOccurrence.Unmarshal(m, b)
+}
+func (m *NamedEntityOccurrence) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_NamedEntityOccurrence.Marshal(b, m, deterministic)
+}
+func (dst *NamedEntityOccurrence) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_NamedEntityOccurrence.Merge(dst, src)
+}
+func (m *NamedEntityOccurrence) XXX_Size() int {
+	return xxx_messageInfo_NamedEntityOccurrence.Size(m)
+}
+func (m *NamedEntityOccurrence) XXX_DiscardUnknown() {
+	xxx_messageInfo_NamedEntityOccurrence.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_NamedEntityOccurrence proto.InternalMessageInfo
 
 func (m *NamedEntityOccurrence) GetLabel() NamedEntity {
 	if m != nil {
@@ -623,33 +824,55 @@ func (m *NamedEntityOccurrence) GetText() string {
 // Groups all types of named entities we support.
 type NamedEntitiesModel struct {
 	// list of crypto assets
-	Symbols []string `protobuf:"bytes,1,rep,name=symbols" json:"symbols,omitempty"`
+	Symbols []string `protobuf:"bytes,1,rep,name=symbols,proto3" json:"symbols" bson:"symbols" mapstructure:"symbols"`
 	// recognized cryptocurrencies
-	Assets []*NamedEntityOccurrence `protobuf:"bytes,2,rep,name=assets" json:"assets,omitempty"`
+	Assets []*NamedEntityOccurrence `protobuf:"bytes,2,rep,name=assets,proto3" json:"assets" bson:"assets" mapstructure:"assets"`
 	// recognized persons
-	Persons []*NamedEntityOccurrence `protobuf:"bytes,3,rep,name=persons" json:"persons,omitempty"`
+	Persons []*NamedEntityOccurrence `protobuf:"bytes,3,rep,name=persons,proto3" json:"persons" bson:"persons" mapstructure:"persons"`
 	// recognized companies
-	Companies []*NamedEntityOccurrence `protobuf:"bytes,4,rep,name=companies" json:"companies,omitempty"`
+	Companies []*NamedEntityOccurrence `protobuf:"bytes,4,rep,name=companies,proto3" json:"companies" bson:"companies" mapstructure:"companies"`
 	// recognized organizations
-	Organizations []*NamedEntityOccurrence `protobuf:"bytes,5,rep,name=organizations" json:"organizations,omitempty"`
+	Organizations []*NamedEntityOccurrence `protobuf:"bytes,5,rep,name=organizations,proto3" json:"organizations" bson:"organizations" mapstructure:"organizations"`
 	// recognized locations
-	Locations []*NamedEntityOccurrence `protobuf:"bytes,6,rep,name=locations" json:"locations,omitempty"`
+	Locations []*NamedEntityOccurrence `protobuf:"bytes,6,rep,name=locations,proto3" json:"locations" bson:"locations" mapstructure:"locations"`
 	// recognized exchanges
-	Exchanges []*NamedEntityOccurrence `protobuf:"bytes,7,rep,name=exchanges" json:"exchanges,omitempty"`
+	Exchanges []*NamedEntityOccurrence `protobuf:"bytes,7,rep,name=exchanges,proto3" json:"exchanges" bson:"exchanges" mapstructure:"exchanges"`
 	// recognized misc objects
-	Misc []*NamedEntityOccurrence `protobuf:"bytes,8,rep,name=misc" json:"misc,omitempty"`
+	Misc []*NamedEntityOccurrence `protobuf:"bytes,8,rep,name=misc,proto3" json:"misc" bson:"misc" mapstructure:"misc"`
 	// list of assigned tags
-	Tags []string `protobuf:"bytes,9,rep,name=tags" json:"tags,omitempty"`
+	Tags []string `protobuf:"bytes,9,rep,name=tags,proto3" json:"tags" bson:"tags" mapstructure:"tags"`
 	// mapped asset to its mention count
-	AssetMentions map[string]int32 `protobuf:"bytes,10,rep,name=asset_mentions,json=assetMentions" json:"asset_mentions,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	AssetMentions map[string]int32 `protobuf:"bytes,10,rep,name=asset_mentions,json=assetMentions,proto3" json:"asset_mentions" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3" bson:"asset_mentions" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3" mapstructure:"asset_mentions" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
 	// cleaned text which uses NER
-	SourceText string `protobuf:"bytes,11,opt,name=source_text,json=sourceText" json:"source_text,omitempty"`
+	SourceText           string   `protobuf:"bytes,11,opt,name=source_text,json=sourceText,proto3" json:"source_text" bson:"source_text" mapstructure:"source_text"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *NamedEntitiesModel) Reset()                    { *m = NamedEntitiesModel{} }
-func (m *NamedEntitiesModel) String() string            { return proto.CompactTextString(m) }
-func (*NamedEntitiesModel) ProtoMessage()               {}
-func (*NamedEntitiesModel) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
+func (m *NamedEntitiesModel) Reset()         { *m = NamedEntitiesModel{} }
+func (m *NamedEntitiesModel) String() string { return proto.CompactTextString(m) }
+func (*NamedEntitiesModel) ProtoMessage()    {}
+func (*NamedEntitiesModel) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{9}
+}
+func (m *NamedEntitiesModel) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_NamedEntitiesModel.Unmarshal(m, b)
+}
+func (m *NamedEntitiesModel) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_NamedEntitiesModel.Marshal(b, m, deterministic)
+}
+func (dst *NamedEntitiesModel) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_NamedEntitiesModel.Merge(dst, src)
+}
+func (m *NamedEntitiesModel) XXX_Size() int {
+	return xxx_messageInfo_NamedEntitiesModel.Size(m)
+}
+func (m *NamedEntitiesModel) XXX_DiscardUnknown() {
+	xxx_messageInfo_NamedEntitiesModel.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_NamedEntitiesModel proto.InternalMessageInfo
 
 func (m *NamedEntitiesModel) GetSymbols() []string {
 	if m != nil {
@@ -732,18 +955,40 @@ func (m *NamedEntitiesModel) GetSourceText() string {
 // Basic model for News, articles.
 // It's weight depends on Alexa ranks
 type Article struct {
-	Base      *BaseModel      `protobuf:"bytes,1,opt,name=base" json:"base,omitempty"`
-	Sentiment *SentimentModel `protobuf:"bytes,2,opt,name=sentiment" json:"sentiment,omitempty"`
+	Base      *BaseModel      `protobuf:"bytes,1,opt,name=base,proto3" json:"base" bson:"base" mapstructure:"base"`
+	Sentiment *SentimentModel `protobuf:"bytes,2,opt,name=sentiment,proto3" json:"sentiment" bson:"sentiment" mapstructure:"sentiment"`
 	// named entities from content
-	NamedEntities *NamedEntitiesModel `protobuf:"bytes,3,opt,name=named_entities,json=namedEntities" json:"named_entities,omitempty"`
+	NamedEntities *NamedEntitiesModel `protobuf:"bytes,3,opt,name=named_entities,json=namedEntities,proto3" json:"named_entities" bson:"named_entities" mapstructure:"named_entities"`
 	// named entities from title
-	TitleData *NamedEntitiesModel `protobuf:"bytes,4,opt,name=title_data,json=titleData" json:"title_data,omitempty"`
+	TitleData            *NamedEntitiesModel `protobuf:"bytes,4,opt,name=title_data,json=titleData,proto3" json:"title_data" bson:"title_data" mapstructure:"title_data"`
+	XXX_NoUnkeyedLiteral struct{}            `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte              `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32               `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *Article) Reset()                    { *m = Article{} }
-func (m *Article) String() string            { return proto.CompactTextString(m) }
-func (*Article) ProtoMessage()               {}
-func (*Article) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{10} }
+func (m *Article) Reset()         { *m = Article{} }
+func (m *Article) String() string { return proto.CompactTextString(m) }
+func (*Article) ProtoMessage()    {}
+func (*Article) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{10}
+}
+func (m *Article) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Article.Unmarshal(m, b)
+}
+func (m *Article) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Article.Marshal(b, m, deterministic)
+}
+func (dst *Article) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Article.Merge(dst, src)
+}
+func (m *Article) XXX_Size() int {
+	return xxx_messageInfo_Article.Size(m)
+}
+func (m *Article) XXX_DiscardUnknown() {
+	xxx_messageInfo_Article.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Article proto.InternalMessageInfo
 
 func (m *Article) GetBase() *BaseModel {
 	if m != nil {
@@ -776,19 +1021,41 @@ func (m *Article) GetTitleData() *NamedEntitiesModel {
 // *
 // Basic model for media where the messages are wrote by regular user
 type UserMessage struct {
-	Base          *BaseModel          `protobuf:"bytes,1,opt,name=base" json:"base,omitempty"`
-	Sentiment     *SentimentModel     `protobuf:"bytes,2,opt,name=sentiment" json:"sentiment,omitempty"`
-	NamedEntities *NamedEntitiesModel `protobuf:"bytes,3,opt,name=named_entities,json=namedEntities" json:"named_entities,omitempty"`
+	Base          *BaseModel          `protobuf:"bytes,1,opt,name=base,proto3" json:"base" bson:"base" mapstructure:"base"`
+	Sentiment     *SentimentModel     `protobuf:"bytes,2,opt,name=sentiment,proto3" json:"sentiment" bson:"sentiment" mapstructure:"sentiment"`
+	NamedEntities *NamedEntitiesModel `protobuf:"bytes,3,opt,name=named_entities,json=namedEntities,proto3" json:"named_entities" bson:"named_entities" mapstructure:"named_entities"`
 	// nickname of user
-	User string `protobuf:"bytes,4,opt,name=user" json:"user,omitempty"`
+	User string `protobuf:"bytes,4,opt,name=user,proto3" json:"user" bson:"user" mapstructure:"user"`
 	// text of message
-	Message string `protobuf:"bytes,5,opt,name=message" json:"message,omitempty"`
+	Message              string   `protobuf:"bytes,5,opt,name=message,proto3" json:"message" bson:"message" mapstructure:"message"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *UserMessage) Reset()                    { *m = UserMessage{} }
-func (m *UserMessage) String() string            { return proto.CompactTextString(m) }
-func (*UserMessage) ProtoMessage()               {}
-func (*UserMessage) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{11} }
+func (m *UserMessage) Reset()         { *m = UserMessage{} }
+func (m *UserMessage) String() string { return proto.CompactTextString(m) }
+func (*UserMessage) ProtoMessage()    {}
+func (*UserMessage) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{11}
+}
+func (m *UserMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserMessage.Unmarshal(m, b)
+}
+func (m *UserMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserMessage.Marshal(b, m, deterministic)
+}
+func (dst *UserMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserMessage.Merge(dst, src)
+}
+func (m *UserMessage) XXX_Size() int {
+	return xxx_messageInfo_UserMessage.Size(m)
+}
+func (m *UserMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserMessage.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserMessage proto.InternalMessageInfo
 
 func (m *UserMessage) GetBase() *BaseModel {
 	if m != nil {
@@ -828,13 +1095,35 @@ func (m *UserMessage) GetMessage() string {
 // *
 // User message from bitmex
 type BitmexUserMessage struct {
-	UserMessage *UserMessage `protobuf:"bytes,1,opt,name=user_message,json=userMessage" json:"user_message,omitempty"`
+	UserMessage          *UserMessage `protobuf:"bytes,1,opt,name=user_message,json=userMessage,proto3" json:"user_message" bson:"user_message" mapstructure:"user_message"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte       `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32        `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *BitmexUserMessage) Reset()                    { *m = BitmexUserMessage{} }
-func (m *BitmexUserMessage) String() string            { return proto.CompactTextString(m) }
-func (*BitmexUserMessage) ProtoMessage()               {}
-func (*BitmexUserMessage) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{12} }
+func (m *BitmexUserMessage) Reset()         { *m = BitmexUserMessage{} }
+func (m *BitmexUserMessage) String() string { return proto.CompactTextString(m) }
+func (*BitmexUserMessage) ProtoMessage()    {}
+func (*BitmexUserMessage) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{12}
+}
+func (m *BitmexUserMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_BitmexUserMessage.Unmarshal(m, b)
+}
+func (m *BitmexUserMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_BitmexUserMessage.Marshal(b, m, deterministic)
+}
+func (dst *BitmexUserMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BitmexUserMessage.Merge(dst, src)
+}
+func (m *BitmexUserMessage) XXX_Size() int {
+	return xxx_messageInfo_BitmexUserMessage.Size(m)
+}
+func (m *BitmexUserMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_BitmexUserMessage.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BitmexUserMessage proto.InternalMessageInfo
 
 func (m *BitmexUserMessage) GetUserMessage() *UserMessage {
 	if m != nil {
@@ -847,21 +1136,43 @@ func (m *BitmexUserMessage) GetUserMessage() *UserMessage {
 // Message from telegram channel
 // Weight is calculated from number of members in channel
 type TelegramUserMessage struct {
-	UserMessage *UserMessage `protobuf:"bytes,1,opt,name=user_message,json=userMessage" json:"user_message,omitempty"`
+	UserMessage *UserMessage `protobuf:"bytes,1,opt,name=user_message,json=userMessage,proto3" json:"user_message" bson:"user_message" mapstructure:"user_message"`
 	// symbols loaded from db
-	SymbolsBackup []string `protobuf:"bytes,2,rep,name=symbols_backup,json=symbolsBackup" json:"symbols_backup,omitempty"`
+	SymbolsBackup []string `protobuf:"bytes,2,rep,name=symbols_backup,json=symbolsBackup,proto3" json:"symbols_backup" bson:"symbols_backup" mapstructure:"symbols_backup"`
 	// telegram channel ID
-	ChannelId int32 `protobuf:"varint,3,opt,name=channel_id,json=channelId" json:"channel_id,omitempty"`
+	ChannelId int32 `protobuf:"varint,3,opt,name=channel_id,json=channelId,proto3" json:"channel_id" bson:"channel_id" mapstructure:"channel_id"`
 	// telegram channel members
-	ChannelSubscriberCount int32 `protobuf:"varint,4,opt,name=channel_subscriber_count,json=channelSubscriberCount" json:"channel_subscriber_count,omitempty"`
+	ChannelSubscriberCount int32 `protobuf:"varint,4,opt,name=channel_subscriber_count,json=channelSubscriberCount,proto3" json:"channel_subscriber_count" bson:"channel_subscriber_count" mapstructure:"channel_subscriber_count"`
 	// telegram message ID
-	MessageId int64 `protobuf:"varint,5,opt,name=message_id,json=messageId" json:"message_id,omitempty"`
+	MessageId            int64    `protobuf:"varint,5,opt,name=message_id,json=messageId,proto3" json:"message_id" bson:"message_id" mapstructure:"message_id"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *TelegramUserMessage) Reset()                    { *m = TelegramUserMessage{} }
-func (m *TelegramUserMessage) String() string            { return proto.CompactTextString(m) }
-func (*TelegramUserMessage) ProtoMessage()               {}
-func (*TelegramUserMessage) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{13} }
+func (m *TelegramUserMessage) Reset()         { *m = TelegramUserMessage{} }
+func (m *TelegramUserMessage) String() string { return proto.CompactTextString(m) }
+func (*TelegramUserMessage) ProtoMessage()    {}
+func (*TelegramUserMessage) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{13}
+}
+func (m *TelegramUserMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TelegramUserMessage.Unmarshal(m, b)
+}
+func (m *TelegramUserMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TelegramUserMessage.Marshal(b, m, deterministic)
+}
+func (dst *TelegramUserMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TelegramUserMessage.Merge(dst, src)
+}
+func (m *TelegramUserMessage) XXX_Size() int {
+	return xxx_messageInfo_TelegramUserMessage.Size(m)
+}
+func (m *TelegramUserMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_TelegramUserMessage.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TelegramUserMessage proto.InternalMessageInfo
 
 func (m *TelegramUserMessage) GetUserMessage() *UserMessage {
 	if m != nil {
@@ -902,16 +1213,38 @@ func (m *TelegramUserMessage) GetMessageId() int64 {
 // Stores time/count snapshot of Reddit post comment count
 // this is mainly for measuring amount of added comments during period of time
 type CommentCountTimeSnapshot struct {
-	Time         *google_protobuf.Timestamp `protobuf:"bytes,1,opt,name=time" json:"time,omitempty"`
-	CommentCount int32                      `protobuf:"varint,2,opt,name=comment_count,json=commentCount" json:"comment_count,omitempty"`
+	Time                 *timestamp.Timestamp `protobuf:"bytes,1,opt,name=time,proto3" json:"time" bson:"time" mapstructure:"time"`
+	CommentCount         int32                `protobuf:"varint,2,opt,name=comment_count,json=commentCount,proto3" json:"comment_count" bson:"comment_count" mapstructure:"comment_count"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte               `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32                `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *CommentCountTimeSnapshot) Reset()                    { *m = CommentCountTimeSnapshot{} }
-func (m *CommentCountTimeSnapshot) String() string            { return proto.CompactTextString(m) }
-func (*CommentCountTimeSnapshot) ProtoMessage()               {}
-func (*CommentCountTimeSnapshot) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{14} }
+func (m *CommentCountTimeSnapshot) Reset()         { *m = CommentCountTimeSnapshot{} }
+func (m *CommentCountTimeSnapshot) String() string { return proto.CompactTextString(m) }
+func (*CommentCountTimeSnapshot) ProtoMessage()    {}
+func (*CommentCountTimeSnapshot) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{14}
+}
+func (m *CommentCountTimeSnapshot) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CommentCountTimeSnapshot.Unmarshal(m, b)
+}
+func (m *CommentCountTimeSnapshot) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CommentCountTimeSnapshot.Marshal(b, m, deterministic)
+}
+func (dst *CommentCountTimeSnapshot) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CommentCountTimeSnapshot.Merge(dst, src)
+}
+func (m *CommentCountTimeSnapshot) XXX_Size() int {
+	return xxx_messageInfo_CommentCountTimeSnapshot.Size(m)
+}
+func (m *CommentCountTimeSnapshot) XXX_DiscardUnknown() {
+	xxx_messageInfo_CommentCountTimeSnapshot.DiscardUnknown(m)
+}
 
-func (m *CommentCountTimeSnapshot) GetTime() *google_protobuf.Timestamp {
+var xxx_messageInfo_CommentCountTimeSnapshot proto.InternalMessageInfo
+
+func (m *CommentCountTimeSnapshot) GetTime() *timestamp.Timestamp {
 	if m != nil {
 		return m.Time
 	}
@@ -928,24 +1261,46 @@ func (m *CommentCountTimeSnapshot) GetCommentCount() int32 {
 // *
 // Reddit comment
 type Comment struct {
-	ID         string     `protobuf:"bytes,1,opt,name=ID" json:"ID,omitempty"`
-	Name       string     `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
-	Permalink  string     `protobuf:"bytes,3,opt,name=permalink" json:"permalink,omitempty"`
-	CreatedUTC uint64     `protobuf:"varint,4,opt,name=createdUTC" json:"createdUTC,omitempty"`
-	Deleted    bool       `protobuf:"varint,5,opt,name=deleted" json:"deleted,omitempty"`
-	Ups        int32      `protobuf:"varint,14,opt,name=ups" json:"ups,omitempty"`
-	Downs      int32      `protobuf:"varint,15,opt,name=downs" json:"downs,omitempty"`
-	Likes      bool       `protobuf:"varint,16,opt,name=likes" json:"likes,omitempty"`
-	Body       string     `protobuf:"bytes,6,opt,name=body" json:"body,omitempty"`
-	Subreddit  string     `protobuf:"bytes,7,opt,name=subreddit" json:"subreddit,omitempty"`
-	Replies    []*Comment `protobuf:"bytes,8,rep,name=replies" json:"replies,omitempty"`
-	Sentiment  float64    `protobuf:"fixed64,9,opt,name=sentiment" json:"sentiment,omitempty"`
+	ID                   string     `protobuf:"bytes,1,opt,name=ID,json=iD,proto3" json:"ID" bson:"ID" mapstructure:"ID"`
+	Name                 string     `protobuf:"bytes,2,opt,name=name,proto3" json:"name" bson:"name" mapstructure:"name"`
+	Permalink            string     `protobuf:"bytes,3,opt,name=permalink,proto3" json:"permalink" bson:"permalink" mapstructure:"permalink"`
+	CreatedUTC           uint64     `protobuf:"varint,4,opt,name=createdUTC,proto3" json:"createdUTC" bson:"createdUTC" mapstructure:"createdUTC"`
+	Deleted              bool       `protobuf:"varint,5,opt,name=deleted,proto3" json:"deleted" bson:"deleted" mapstructure:"deleted"`
+	Ups                  int32      `protobuf:"varint,14,opt,name=ups,proto3" json:"ups" bson:"ups" mapstructure:"ups"`
+	Downs                int32      `protobuf:"varint,15,opt,name=downs,proto3" json:"downs" bson:"downs" mapstructure:"downs"`
+	Likes                bool       `protobuf:"varint,16,opt,name=likes,proto3" json:"likes" bson:"likes" mapstructure:"likes"`
+	Body                 string     `protobuf:"bytes,6,opt,name=body,proto3" json:"body" bson:"body" mapstructure:"body"`
+	Subreddit            string     `protobuf:"bytes,7,opt,name=subreddit,proto3" json:"subreddit" bson:"subreddit" mapstructure:"subreddit"`
+	Replies              []*Comment `protobuf:"bytes,8,rep,name=replies,proto3" json:"replies" bson:"replies" mapstructure:"replies"`
+	Sentiment            float64    `protobuf:"fixed64,9,opt,name=sentiment,proto3" json:"sentiment" bson:"sentiment" mapstructure:"sentiment"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte     `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32      `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *Comment) Reset()                    { *m = Comment{} }
-func (m *Comment) String() string            { return proto.CompactTextString(m) }
-func (*Comment) ProtoMessage()               {}
-func (*Comment) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{15} }
+func (m *Comment) Reset()         { *m = Comment{} }
+func (m *Comment) String() string { return proto.CompactTextString(m) }
+func (*Comment) ProtoMessage()    {}
+func (*Comment) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{15}
+}
+func (m *Comment) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Comment.Unmarshal(m, b)
+}
+func (m *Comment) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Comment.Marshal(b, m, deterministic)
+}
+func (dst *Comment) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Comment.Merge(dst, src)
+}
+func (m *Comment) XXX_Size() int {
+	return xxx_messageInfo_Comment.Size(m)
+}
+func (m *Comment) XXX_DiscardUnknown() {
+	xxx_messageInfo_Comment.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Comment proto.InternalMessageInfo
 
 func (m *Comment) GetID() string {
 	if m != nil {
@@ -1034,48 +1389,70 @@ func (m *Comment) GetSentiment() float64 {
 // *
 // Stores useful data from original reddit post
 type RedditPostModel struct {
-	ID          string `protobuf:"bytes,1,opt,name=ID" json:"ID,omitempty"`
-	CreatedUTC  uint64 `protobuf:"varint,2,opt,name=createdUTC" json:"createdUTC,omitempty"`
-	Title       string `protobuf:"bytes,3,opt,name=title" json:"title,omitempty"`
-	URL         string `protobuf:"bytes,4,opt,name=URL" json:"URL,omitempty"`
-	Author      string `protobuf:"bytes,5,opt,name=author" json:"author,omitempty"`
-	SelfText    string `protobuf:"bytes,6,opt,name=self_text,json=selfText" json:"self_text,omitempty"`
-	Name        string `protobuf:"bytes,11,opt,name=name" json:"name,omitempty"`
-	Permalink   string `protobuf:"bytes,12,opt,name=permalink" json:"permalink,omitempty"`
-	Deleted     bool   `protobuf:"varint,13,opt,name=deleted" json:"deleted,omitempty"`
-	Ups         int32  `protobuf:"varint,14,opt,name=ups" json:"ups,omitempty"`
-	Downs       int32  `protobuf:"varint,15,opt,name=downs" json:"downs,omitempty"`
-	Likes       bool   `protobuf:"varint,16,opt,name=likes" json:"likes,omitempty"`
-	NumComments int32  `protobuf:"varint,17,opt,name=num_comments,json=numComments" json:"num_comments,omitempty"`
-	Score       int32  `protobuf:"varint,18,opt,name=score" json:"score,omitempty"`
+	ID          string `protobuf:"bytes,1,opt,name=ID,json=iD,proto3" json:"ID" bson:"ID" mapstructure:"ID"`
+	CreatedUTC  uint64 `protobuf:"varint,2,opt,name=createdUTC,proto3" json:"createdUTC" bson:"createdUTC" mapstructure:"createdUTC"`
+	Title       string `protobuf:"bytes,3,opt,name=title,proto3" json:"title" bson:"title" mapstructure:"title"`
+	URL         string `protobuf:"bytes,4,opt,name=URL,json=uRL,proto3" json:"URL" bson:"URL" mapstructure:"URL"`
+	Author      string `protobuf:"bytes,5,opt,name=author,proto3" json:"author" bson:"author" mapstructure:"author"`
+	SelfText    string `protobuf:"bytes,6,opt,name=self_text,json=selfText,proto3" json:"self_text" bson:"self_text" mapstructure:"self_text"`
+	Name        string `protobuf:"bytes,11,opt,name=name,proto3" json:"name" bson:"name" mapstructure:"name"`
+	Permalink   string `protobuf:"bytes,12,opt,name=permalink,proto3" json:"permalink" bson:"permalink" mapstructure:"permalink"`
+	Deleted     bool   `protobuf:"varint,13,opt,name=deleted,proto3" json:"deleted" bson:"deleted" mapstructure:"deleted"`
+	Ups         int32  `protobuf:"varint,14,opt,name=ups,proto3" json:"ups" bson:"ups" mapstructure:"ups"`
+	Downs       int32  `protobuf:"varint,15,opt,name=downs,proto3" json:"downs" bson:"downs" mapstructure:"downs"`
+	Likes       bool   `protobuf:"varint,16,opt,name=likes,proto3" json:"likes" bson:"likes" mapstructure:"likes"`
+	NumComments int32  `protobuf:"varint,17,opt,name=num_comments,json=numComments,proto3" json:"num_comments" bson:"num_comments" mapstructure:"num_comments"`
+	Score       int32  `protobuf:"varint,18,opt,name=score,proto3" json:"score" bson:"score" mapstructure:"score"`
 	// list of comments
-	Replies []*Comment `protobuf:"bytes,19,rep,name=replies" json:"replies,omitempty"`
-	Domain  string     `protobuf:"bytes,20,opt,name=domain" json:"domain,omitempty"`
+	Replies []*Comment `protobuf:"bytes,19,rep,name=replies,proto3" json:"replies" bson:"replies" mapstructure:"replies"`
+	Domain  string     `protobuf:"bytes,20,opt,name=domain,proto3" json:"domain" bson:"domain" mapstructure:"domain"`
 	// unique ID of subreddit
-	SubredditID         string `protobuf:"bytes,21,opt,name=SubredditID" json:"SubredditID,omitempty"`
-	Hidden              bool   `protobuf:"varint,22,opt,name=hidden" json:"hidden,omitempty"`
-	Locked              bool   `protobuf:"varint,23,opt,name=locked" json:"locked,omitempty"`
-	Thumbnail           string `protobuf:"bytes,24,opt,name=thumbnail" json:"thumbnail,omitempty"`
-	Gilded              int32  `protobuf:"varint,25,opt,name=gilded" json:"gilded,omitempty"`
-	Distinguished       string `protobuf:"bytes,26,opt,name=distinguished" json:"distinguished,omitempty"`
-	Stickied            bool   `protobuf:"varint,27,opt,name=stickied" json:"stickied,omitempty"`
-	IsRedditMediaDomain bool   `protobuf:"varint,28,opt,name=is_reddit_media_domain,json=isRedditMediaDomain" json:"is_reddit_media_domain,omitempty"`
+	SubredditID         string `protobuf:"bytes,21,opt,name=SubredditID,json=subredditID,proto3" json:"SubredditID" bson:"SubredditID" mapstructure:"SubredditID"`
+	Hidden              bool   `protobuf:"varint,22,opt,name=hidden,proto3" json:"hidden" bson:"hidden" mapstructure:"hidden"`
+	Locked              bool   `protobuf:"varint,23,opt,name=locked,proto3" json:"locked" bson:"locked" mapstructure:"locked"`
+	Thumbnail           string `protobuf:"bytes,24,opt,name=thumbnail,proto3" json:"thumbnail" bson:"thumbnail" mapstructure:"thumbnail"`
+	Gilded              int32  `protobuf:"varint,25,opt,name=gilded,proto3" json:"gilded" bson:"gilded" mapstructure:"gilded"`
+	Distinguished       string `protobuf:"bytes,26,opt,name=distinguished,proto3" json:"distinguished" bson:"distinguished" mapstructure:"distinguished"`
+	Stickied            bool   `protobuf:"varint,27,opt,name=stickied,proto3" json:"stickied" bson:"stickied" mapstructure:"stickied"`
+	IsRedditMediaDomain bool   `protobuf:"varint,28,opt,name=is_reddit_media_domain,json=isRedditMediaDomain,proto3" json:"is_reddit_media_domain" bson:"is_reddit_media_domain" mapstructure:"is_reddit_media_domain"`
 	// time/count snapshot of Reddit post comment count
-	CommentCountSnapshot []*CommentCountTimeSnapshot `protobuf:"bytes,7,rep,name=comment_count_snapshot,json=commentCountSnapshot" json:"comment_count_snapshot,omitempty"`
+	CommentCountSnapshot []*CommentCountTimeSnapshot `protobuf:"bytes,7,rep,name=comment_count_snapshot,json=commentCountSnapshot,proto3" json:"comment_count_snapshot" bson:"comment_count_snapshot" mapstructure:"comment_count_snapshot"`
 	// Reddit post actual hot rate in queue
-	HotRate float64 `protobuf:"fixed64,8,opt,name=hot_rate,json=hotRate" json:"hot_rate,omitempty"`
+	HotRate float64 `protobuf:"fixed64,8,opt,name=hot_rate,json=hotRate,proto3" json:"hot_rate" bson:"hot_rate" mapstructure:"hot_rate"`
 	// Reference to parent subreddit
-	Subreddit     string `protobuf:"bytes,9,opt,name=subreddit" json:"subreddit,omitempty"`
-	IsSelf        bool   `protobuf:"varint,10,opt,name=is_self,json=isSelf" json:"is_self,omitempty"`
-	Nsfw          bool   `protobuf:"varint,29,opt,name=nsfw" json:"nsfw,omitempty"`
-	IsUpdate      bool   `protobuf:"varint,30,opt,name=is_update,json=isUpdate" json:"is_update,omitempty"`
-	SubredditIcon string `protobuf:"bytes,31,opt,name=subreddit_icon,json=subredditIcon" json:"subreddit_icon,omitempty"`
+	Subreddit            string   `protobuf:"bytes,9,opt,name=subreddit,proto3" json:"subreddit" bson:"subreddit" mapstructure:"subreddit"`
+	IsSelf               bool     `protobuf:"varint,10,opt,name=is_self,json=isSelf,proto3" json:"is_self" bson:"is_self" mapstructure:"is_self"`
+	Nsfw                 bool     `protobuf:"varint,29,opt,name=nsfw,proto3" json:"nsfw" bson:"nsfw" mapstructure:"nsfw"`
+	IsUpdate             bool     `protobuf:"varint,30,opt,name=is_update,json=isUpdate,proto3" json:"is_update" bson:"is_update" mapstructure:"is_update"`
+	SubredditIcon        string   `protobuf:"bytes,31,opt,name=subreddit_icon,json=subredditIcon,proto3" json:"subreddit_icon" bson:"subreddit_icon" mapstructure:"subreddit_icon"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *RedditPostModel) Reset()                    { *m = RedditPostModel{} }
-func (m *RedditPostModel) String() string            { return proto.CompactTextString(m) }
-func (*RedditPostModel) ProtoMessage()               {}
-func (*RedditPostModel) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{16} }
+func (m *RedditPostModel) Reset()         { *m = RedditPostModel{} }
+func (m *RedditPostModel) String() string { return proto.CompactTextString(m) }
+func (*RedditPostModel) ProtoMessage()    {}
+func (*RedditPostModel) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{16}
+}
+func (m *RedditPostModel) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RedditPostModel.Unmarshal(m, b)
+}
+func (m *RedditPostModel) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RedditPostModel.Marshal(b, m, deterministic)
+}
+func (dst *RedditPostModel) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RedditPostModel.Merge(dst, src)
+}
+func (m *RedditPostModel) XXX_Size() int {
+	return xxx_messageInfo_RedditPostModel.Size(m)
+}
+func (m *RedditPostModel) XXX_DiscardUnknown() {
+	xxx_messageInfo_RedditPostModel.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RedditPostModel proto.InternalMessageInfo
 
 func (m *RedditPostModel) GetID() string {
 	if m != nil {
@@ -1295,20 +1672,42 @@ func (m *RedditPostModel) GetSubredditIcon() string {
 }
 
 type RedditPost struct {
-	Base      *BaseModel      `protobuf:"bytes,1,opt,name=base" json:"base,omitempty"`
-	Sentiment *SentimentModel `protobuf:"bytes,2,opt,name=sentiment" json:"sentiment,omitempty"`
+	Base      *BaseModel      `protobuf:"bytes,1,opt,name=base,proto3" json:"base" bson:"base" mapstructure:"base"`
+	Sentiment *SentimentModel `protobuf:"bytes,2,opt,name=sentiment,proto3" json:"sentiment" bson:"sentiment" mapstructure:"sentiment"`
 	// named entities from content
-	NamedEntities *NamedEntitiesModel `protobuf:"bytes,3,opt,name=named_entities,json=namedEntities" json:"named_entities,omitempty"`
+	NamedEntities *NamedEntitiesModel `protobuf:"bytes,3,opt,name=named_entities,json=namedEntities,proto3" json:"named_entities" bson:"named_entities" mapstructure:"named_entities"`
 	// named entities from title
-	TitleData *NamedEntitiesModel `protobuf:"bytes,4,opt,name=title_data,json=titleData" json:"title_data,omitempty"`
+	TitleData *NamedEntitiesModel `protobuf:"bytes,4,opt,name=title_data,json=titleData,proto3" json:"title_data" bson:"title_data" mapstructure:"title_data"`
 	// data from original reddit post
-	RedditPost *RedditPostModel `protobuf:"bytes,5,opt,name=reddit_post,json=redditPost" json:"reddit_post,omitempty"`
+	RedditPost           *RedditPostModel `protobuf:"bytes,5,opt,name=reddit_post,json=redditPost,proto3" json:"reddit_post" bson:"reddit_post" mapstructure:"reddit_post"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte           `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32            `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *RedditPost) Reset()                    { *m = RedditPost{} }
-func (m *RedditPost) String() string            { return proto.CompactTextString(m) }
-func (*RedditPost) ProtoMessage()               {}
-func (*RedditPost) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{17} }
+func (m *RedditPost) Reset()         { *m = RedditPost{} }
+func (m *RedditPost) String() string { return proto.CompactTextString(m) }
+func (*RedditPost) ProtoMessage()    {}
+func (*RedditPost) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{17}
+}
+func (m *RedditPost) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RedditPost.Unmarshal(m, b)
+}
+func (m *RedditPost) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RedditPost.Marshal(b, m, deterministic)
+}
+func (dst *RedditPost) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RedditPost.Merge(dst, src)
+}
+func (m *RedditPost) XXX_Size() int {
+	return xxx_messageInfo_RedditPost.Size(m)
+}
+func (m *RedditPost) XXX_DiscardUnknown() {
+	xxx_messageInfo_RedditPost.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RedditPost proto.InternalMessageInfo
 
 func (m *RedditPost) GetBase() *BaseModel {
 	if m != nil {
@@ -1348,43 +1747,65 @@ func (m *RedditPost) GetRedditPost() *RedditPostModel {
 // *
 // Stores some useful data form original tweet
 type ExtendedTweet struct {
-	FavouriteCount            int32    `protobuf:"varint,1,opt,name=favourite_count,json=favouriteCount" json:"favourite_count,omitempty"`
-	FilterLevel               string   `protobuf:"bytes,2,opt,name=filter_level,json=filterLevel" json:"filter_level,omitempty"`
-	IdStr                     string   `protobuf:"bytes,3,opt,name=id_str,json=idStr" json:"id_str,omitempty"`
-	InReplyToScreenName       string   `protobuf:"bytes,4,opt,name=in_reply_to_screen_name,json=inReplyToScreenName" json:"in_reply_to_screen_name,omitempty"`
-	InReplyToStatusIdStr      string   `protobuf:"bytes,5,opt,name=in_reply_to_status_id_str,json=inReplyToStatusIdStr" json:"in_reply_to_status_id_str,omitempty"`
-	InReplyToUserIdStr        string   `protobuf:"bytes,6,opt,name=in_reply_to_user_id_str,json=inReplyToUserIdStr" json:"in_reply_to_user_id_str,omitempty"`
-	IsQuoteStatus             string   `protobuf:"bytes,7,opt,name=is_quote_status,json=isQuoteStatus" json:"is_quote_status,omitempty"`
-	Lang                      string   `protobuf:"bytes,8,opt,name=lang" json:"lang,omitempty"`
-	PossiblySensitive         bool     `protobuf:"varint,9,opt,name=possibly_sensitive,json=possiblySensitive" json:"possibly_sensitive,omitempty"`
-	QuoteCount                int32    `protobuf:"varint,10,opt,name=quote_count,json=quoteCount" json:"quote_count,omitempty"`
-	ReplyCount                int32    `protobuf:"varint,11,opt,name=reply_count,json=replyCount" json:"reply_count,omitempty"`
-	RetweetCount              int32    `protobuf:"varint,12,opt,name=retweet_count,json=retweetCount" json:"retweet_count,omitempty"`
-	UserMentions              []string `protobuf:"bytes,13,rep,name=user_mentions,json=userMentions" json:"user_mentions,omitempty"`
-	Source                    string   `protobuf:"bytes,14,opt,name=source" json:"source,omitempty"`
-	AuthorCreatedAt           string   `protobuf:"bytes,15,opt,name=author_created_at,json=authorCreatedAt" json:"author_created_at,omitempty"`
-	AuthorDefaultProfile      bool     `protobuf:"varint,16,opt,name=author_default_profile,json=authorDefaultProfile" json:"author_default_profile,omitempty"`
-	AuthorDefaultProfileImage bool     `protobuf:"varint,17,opt,name=author_default_profile_image,json=authorDefaultProfileImage" json:"author_default_profile_image,omitempty"`
-	AuthorFollowersCount      int32    `protobuf:"varint,18,opt,name=author_followers_count,json=authorFollowersCount" json:"author_followers_count,omitempty"`
-	AuthorFriendsCount        int32    `protobuf:"varint,19,opt,name=author_friends_count,json=authorFriendsCount" json:"author_friends_count,omitempty"`
-	AuthorIdStr               string   `protobuf:"bytes,20,opt,name=author_id_str,json=authorIdStr" json:"author_id_str,omitempty"`
-	AuthorLang                string   `protobuf:"bytes,21,opt,name=author_lang,json=authorLang" json:"author_lang,omitempty"`
-	AuthorLocation            string   `protobuf:"bytes,22,opt,name=author_location,json=authorLocation" json:"author_location,omitempty"`
-	AuthorName                string   `protobuf:"bytes,23,opt,name=author_name,json=authorName" json:"author_name,omitempty"`
-	AuthorScreenName          string   `protobuf:"bytes,24,opt,name=author_screen_name,json=authorScreenName" json:"author_screen_name,omitempty"`
-	AuthorProfileImageUrlHttp string   `protobuf:"bytes,25,opt,name=author_profile_image_url_http,json=authorProfileImageUrlHttp" json:"author_profile_image_url_http,omitempty"`
-	AuthorStatusesCount       int32    `protobuf:"varint,26,opt,name=author_statuses_count,json=authorStatusesCount" json:"author_statuses_count,omitempty"`
-	Categories                []string `protobuf:"bytes,27,rep,name=categories" json:"categories,omitempty"`
-	Truncated                 bool     `protobuf:"varint,28,opt,name=truncated" json:"truncated,omitempty"`
-	FullText                  string   `protobuf:"bytes,29,opt,name=full_text,json=fullText" json:"full_text,omitempty"`
-	RetweetedStatus           bool     `protobuf:"varint,30,opt,name=retweeted_status,json=retweetedStatus" json:"retweeted_status,omitempty"`
-	RetweetSourceId           string   `protobuf:"bytes,31,opt,name=retweet_source_id,json=retweetSourceId" json:"retweet_source_id,omitempty"`
+	FavouriteCount            int32    `protobuf:"varint,1,opt,name=favourite_count,json=favouriteCount,proto3" json:"favourite_count" bson:"favourite_count" mapstructure:"favourite_count"`
+	FilterLevel               string   `protobuf:"bytes,2,opt,name=filter_level,json=filterLevel,proto3" json:"filter_level" bson:"filter_level" mapstructure:"filter_level"`
+	IdStr                     string   `protobuf:"bytes,3,opt,name=id_str,json=idStr,proto3" json:"id_str" bson:"id_str" mapstructure:"id_str"`
+	InReplyToScreenName       string   `protobuf:"bytes,4,opt,name=in_reply_to_screen_name,json=inReplyToScreenName,proto3" json:"in_reply_to_screen_name" bson:"in_reply_to_screen_name" mapstructure:"in_reply_to_screen_name"`
+	InReplyToStatusIdStr      string   `protobuf:"bytes,5,opt,name=in_reply_to_status_id_str,json=inReplyToStatusIdStr,proto3" json:"in_reply_to_status_id_str" bson:"in_reply_to_status_id_str" mapstructure:"in_reply_to_status_id_str"`
+	InReplyToUserIdStr        string   `protobuf:"bytes,6,opt,name=in_reply_to_user_id_str,json=inReplyToUserIdStr,proto3" json:"in_reply_to_user_id_str" bson:"in_reply_to_user_id_str" mapstructure:"in_reply_to_user_id_str"`
+	IsQuoteStatus             string   `protobuf:"bytes,7,opt,name=is_quote_status,json=isQuoteStatus,proto3" json:"is_quote_status" bson:"is_quote_status" mapstructure:"is_quote_status"`
+	Lang                      string   `protobuf:"bytes,8,opt,name=lang,proto3" json:"lang" bson:"lang" mapstructure:"lang"`
+	PossiblySensitive         bool     `protobuf:"varint,9,opt,name=possibly_sensitive,json=possiblySensitive,proto3" json:"possibly_sensitive" bson:"possibly_sensitive" mapstructure:"possibly_sensitive"`
+	QuoteCount                int32    `protobuf:"varint,10,opt,name=quote_count,json=quoteCount,proto3" json:"quote_count" bson:"quote_count" mapstructure:"quote_count"`
+	ReplyCount                int32    `protobuf:"varint,11,opt,name=reply_count,json=replyCount,proto3" json:"reply_count" bson:"reply_count" mapstructure:"reply_count"`
+	RetweetCount              int32    `protobuf:"varint,12,opt,name=retweet_count,json=retweetCount,proto3" json:"retweet_count" bson:"retweet_count" mapstructure:"retweet_count"`
+	UserMentions              []string `protobuf:"bytes,13,rep,name=user_mentions,json=userMentions,proto3" json:"user_mentions" bson:"user_mentions" mapstructure:"user_mentions"`
+	Source                    string   `protobuf:"bytes,14,opt,name=source,proto3" json:"source" bson:"source" mapstructure:"source"`
+	AuthorCreatedAt           string   `protobuf:"bytes,15,opt,name=author_created_at,json=authorCreatedAt,proto3" json:"author_created_at" bson:"author_created_at" mapstructure:"author_created_at"`
+	AuthorDefaultProfile      bool     `protobuf:"varint,16,opt,name=author_default_profile,json=authorDefaultProfile,proto3" json:"author_default_profile" bson:"author_default_profile" mapstructure:"author_default_profile"`
+	AuthorDefaultProfileImage bool     `protobuf:"varint,17,opt,name=author_default_profile_image,json=authorDefaultProfileImage,proto3" json:"author_default_profile_image" bson:"author_default_profile_image" mapstructure:"author_default_profile_image"`
+	AuthorFollowersCount      int32    `protobuf:"varint,18,opt,name=author_followers_count,json=authorFollowersCount,proto3" json:"author_followers_count" bson:"author_followers_count" mapstructure:"author_followers_count"`
+	AuthorFriendsCount        int32    `protobuf:"varint,19,opt,name=author_friends_count,json=authorFriendsCount,proto3" json:"author_friends_count" bson:"author_friends_count" mapstructure:"author_friends_count"`
+	AuthorIdStr               string   `protobuf:"bytes,20,opt,name=author_id_str,json=authorIdStr,proto3" json:"author_id_str" bson:"author_id_str" mapstructure:"author_id_str"`
+	AuthorLang                string   `protobuf:"bytes,21,opt,name=author_lang,json=authorLang,proto3" json:"author_lang" bson:"author_lang" mapstructure:"author_lang"`
+	AuthorLocation            string   `protobuf:"bytes,22,opt,name=author_location,json=authorLocation,proto3" json:"author_location" bson:"author_location" mapstructure:"author_location"`
+	AuthorName                string   `protobuf:"bytes,23,opt,name=author_name,json=authorName,proto3" json:"author_name" bson:"author_name" mapstructure:"author_name"`
+	AuthorScreenName          string   `protobuf:"bytes,24,opt,name=author_screen_name,json=authorScreenName,proto3" json:"author_screen_name" bson:"author_screen_name" mapstructure:"author_screen_name"`
+	AuthorProfileImageUrlHttp string   `protobuf:"bytes,25,opt,name=author_profile_image_url_http,json=authorProfileImageUrlHttp,proto3" json:"author_profile_image_url_http" bson:"author_profile_image_url_http" mapstructure:"author_profile_image_url_http"`
+	AuthorStatusesCount       int32    `protobuf:"varint,26,opt,name=author_statuses_count,json=authorStatusesCount,proto3" json:"author_statuses_count" bson:"author_statuses_count" mapstructure:"author_statuses_count"`
+	Categories                []string `protobuf:"bytes,27,rep,name=categories,proto3" json:"categories" bson:"categories" mapstructure:"categories"`
+	Truncated                 bool     `protobuf:"varint,28,opt,name=truncated,proto3" json:"truncated" bson:"truncated" mapstructure:"truncated"`
+	FullText                  string   `protobuf:"bytes,29,opt,name=full_text,json=fullText,proto3" json:"full_text" bson:"full_text" mapstructure:"full_text"`
+	RetweetedStatus           bool     `protobuf:"varint,30,opt,name=retweeted_status,json=retweetedStatus,proto3" json:"retweeted_status" bson:"retweeted_status" mapstructure:"retweeted_status"`
+	RetweetSourceId           string   `protobuf:"bytes,31,opt,name=retweet_source_id,json=retweetSourceId,proto3" json:"retweet_source_id" bson:"retweet_source_id" mapstructure:"retweet_source_id"`
+	XXX_NoUnkeyedLiteral      struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized          []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache             int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *ExtendedTweet) Reset()                    { *m = ExtendedTweet{} }
-func (m *ExtendedTweet) String() string            { return proto.CompactTextString(m) }
-func (*ExtendedTweet) ProtoMessage()               {}
-func (*ExtendedTweet) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{18} }
+func (m *ExtendedTweet) Reset()         { *m = ExtendedTweet{} }
+func (m *ExtendedTweet) String() string { return proto.CompactTextString(m) }
+func (*ExtendedTweet) ProtoMessage()    {}
+func (*ExtendedTweet) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{18}
+}
+func (m *ExtendedTweet) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ExtendedTweet.Unmarshal(m, b)
+}
+func (m *ExtendedTweet) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ExtendedTweet.Marshal(b, m, deterministic)
+}
+func (dst *ExtendedTweet) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ExtendedTweet.Merge(dst, src)
+}
+func (m *ExtendedTweet) XXX_Size() int {
+	return xxx_messageInfo_ExtendedTweet.Size(m)
+}
+func (m *ExtendedTweet) XXX_DiscardUnknown() {
+	xxx_messageInfo_ExtendedTweet.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ExtendedTweet proto.InternalMessageInfo
 
 func (m *ExtendedTweet) GetFavouriteCount() int32 {
 	if m != nil {
@@ -1604,17 +2025,39 @@ func (m *ExtendedTweet) GetRetweetSourceId() string {
 }
 
 type Tweet struct {
-	Base          *BaseModel          `protobuf:"bytes,1,opt,name=base" json:"base,omitempty"`
-	Sentiment     *SentimentModel     `protobuf:"bytes,2,opt,name=sentiment" json:"sentiment,omitempty"`
-	NamedEntities *NamedEntitiesModel `protobuf:"bytes,3,opt,name=named_entities,json=namedEntities" json:"named_entities,omitempty"`
+	Base          *BaseModel          `protobuf:"bytes,1,opt,name=base,proto3" json:"base" bson:"base" mapstructure:"base"`
+	Sentiment     *SentimentModel     `protobuf:"bytes,2,opt,name=sentiment,proto3" json:"sentiment" bson:"sentiment" mapstructure:"sentiment"`
+	NamedEntities *NamedEntitiesModel `protobuf:"bytes,3,opt,name=named_entities,json=namedEntities,proto3" json:"named_entities" bson:"named_entities" mapstructure:"named_entities"`
 	// data from original tweet
-	ExtendedTweet *ExtendedTweet `protobuf:"bytes,4,opt,name=extended_tweet,json=extendedTweet" json:"extended_tweet,omitempty"`
+	ExtendedTweet        *ExtendedTweet `protobuf:"bytes,4,opt,name=extended_tweet,json=extendedTweet,proto3" json:"extended_tweet" bson:"extended_tweet" mapstructure:"extended_tweet"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte         `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32          `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *Tweet) Reset()                    { *m = Tweet{} }
-func (m *Tweet) String() string            { return proto.CompactTextString(m) }
-func (*Tweet) ProtoMessage()               {}
-func (*Tweet) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{19} }
+func (m *Tweet) Reset()         { *m = Tweet{} }
+func (m *Tweet) String() string { return proto.CompactTextString(m) }
+func (*Tweet) ProtoMessage()    {}
+func (*Tweet) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{19}
+}
+func (m *Tweet) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Tweet.Unmarshal(m, b)
+}
+func (m *Tweet) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Tweet.Marshal(b, m, deterministic)
+}
+func (dst *Tweet) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Tweet.Merge(dst, src)
+}
+func (m *Tweet) XXX_Size() int {
+	return xxx_messageInfo_Tweet.Size(m)
+}
+func (m *Tweet) XXX_DiscardUnknown() {
+	xxx_messageInfo_Tweet.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Tweet proto.InternalMessageInfo
 
 func (m *Tweet) GetBase() *BaseModel {
 	if m != nil {
@@ -1650,39 +2093,61 @@ func (m *Tweet) GetExtendedTweet() *ExtendedTweet {
 // sentiment updates for only one specific asset, it need to be filtered on your side .
 type SentimentCandle struct {
 	// unique identifier
-	Id string `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"id" mapstructure:"id"`
 	// timestamp representing start of the time frame
-	StartTime *google_protobuf.Timestamp `protobuf:"bytes,2,opt,name=start_time,json=startTime" json:"start_time,omitempty"`
+	StartTime *timestamp.Timestamp `protobuf:"bytes,2,opt,name=start_time,json=startTime,proto3" json:"start_time" bson:"start_time" mapstructure:"start_time"`
 	// constant representing time frame width - M1 or H1
-	Resolution string `protobuf:"bytes,3,opt,name=resolution" json:"resolution,omitempty"`
+	Resolution string `protobuf:"bytes,3,opt,name=resolution,proto3" json:"resolution" bson:"resolution" mapstructure:"resolution"`
 	// crypto asset
-	Asset string `protobuf:"bytes,4,opt,name=asset" json:"asset,omitempty"`
+	Asset string `protobuf:"bytes,4,opt,name=asset,proto3" json:"asset" bson:"asset" mapstructure:"asset"`
 	// sum of all negative values
-	NegativeSum float64 `protobuf:"fixed64,5,opt,name=negative_sum,json=negativeSum" json:"negative_sum,omitempty"`
+	NegativeSum float64 `protobuf:"fixed64,5,opt,name=negative_sum,json=negativeSum,proto3" json:"negative_sum" bson:"negative_sum" mapstructure:"negative_sum"`
 	// counted negative occurrences
-	NegativeCount int32 `protobuf:"varint,6,opt,name=negative_count,json=negativeCount" json:"negative_count,omitempty"`
+	NegativeCount int32 `protobuf:"varint,6,opt,name=negative_count,json=negativeCount,proto3" json:"negative_count" bson:"negative_count" mapstructure:"negative_count"`
 	// sum of all positive values
-	PositiveSum float64 `protobuf:"fixed64,7,opt,name=positive_sum,json=positiveSum" json:"positive_sum,omitempty"`
+	PositiveSum float64 `protobuf:"fixed64,7,opt,name=positive_sum,json=positiveSum,proto3" json:"positive_sum" bson:"positive_sum" mapstructure:"positive_sum"`
 	// counted positive occurrences
-	PositiveCount int32 `protobuf:"varint,8,opt,name=positive_count,json=positiveCount" json:"positive_count,omitempty"`
+	PositiveCount int32 `protobuf:"varint,8,opt,name=positive_count,json=positiveCount,proto3" json:"positive_count" bson:"positive_count" mapstructure:"positive_count"`
 	// average of sentiments
-	SentimentAvg float64 `protobuf:"fixed64,9,opt,name=sentiment_avg,json=sentimentAvg" json:"sentiment_avg,omitempty"`
+	SentimentAvg float64 `protobuf:"fixed64,9,opt,name=sentiment_avg,json=sentimentAvg,proto3" json:"sentiment_avg" bson:"sentiment_avg" mapstructure:"sentiment_avg"`
 	// value of sentiment at the start of candle
-	OpenSentimentAverage float64 `protobuf:"fixed64,10,opt,name=open_sentiment_average,json=openSentimentAverage" json:"open_sentiment_average,omitempty"`
+	OpenSentimentAverage float64 `protobuf:"fixed64,10,opt,name=open_sentiment_average,json=openSentimentAverage,proto3" json:"open_sentiment_average" bson:"open_sentiment_average" mapstructure:"open_sentiment_average"`
 	// value of sentiment when the candle is highest
-	HighSentimentAverage float64 `protobuf:"fixed64,11,opt,name=high_sentiment_average,json=highSentimentAverage" json:"high_sentiment_average,omitempty"`
+	HighSentimentAverage float64 `protobuf:"fixed64,11,opt,name=high_sentiment_average,json=highSentimentAverage,proto3" json:"high_sentiment_average" bson:"high_sentiment_average" mapstructure:"high_sentiment_average"`
 	// value of sentiment when the candle is lowest
-	LowSentimentAverage float64 `protobuf:"fixed64,12,opt,name=low_sentiment_average,json=lowSentimentAverage" json:"low_sentiment_average,omitempty"`
+	LowSentimentAverage float64 `protobuf:"fixed64,12,opt,name=low_sentiment_average,json=lowSentimentAverage,proto3" json:"low_sentiment_average" bson:"low_sentiment_average" mapstructure:"low_sentiment_average"`
 	// value of sentiment at the end of candle
-	CloseSentimentAverage float64 `protobuf:"fixed64,13,opt,name=close_sentiment_average,json=closeSentimentAverage" json:"close_sentiment_average,omitempty"`
+	CloseSentimentAverage float64 `protobuf:"fixed64,13,opt,name=close_sentiment_average,json=closeSentimentAverage,proto3" json:"close_sentiment_average" bson:"close_sentiment_average" mapstructure:"close_sentiment_average"`
 	// flag the signalizes that candle was updated
-	Updated bool `protobuf:"varint,14,opt,name=updated" json:"updated,omitempty"`
+	Updated              bool     `protobuf:"varint,14,opt,name=updated,proto3" json:"updated" bson:"updated" mapstructure:"updated"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *SentimentCandle) Reset()                    { *m = SentimentCandle{} }
-func (m *SentimentCandle) String() string            { return proto.CompactTextString(m) }
-func (*SentimentCandle) ProtoMessage()               {}
-func (*SentimentCandle) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{20} }
+func (m *SentimentCandle) Reset()         { *m = SentimentCandle{} }
+func (m *SentimentCandle) String() string { return proto.CompactTextString(m) }
+func (*SentimentCandle) ProtoMessage()    {}
+func (*SentimentCandle) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{20}
+}
+func (m *SentimentCandle) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SentimentCandle.Unmarshal(m, b)
+}
+func (m *SentimentCandle) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SentimentCandle.Marshal(b, m, deterministic)
+}
+func (dst *SentimentCandle) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SentimentCandle.Merge(dst, src)
+}
+func (m *SentimentCandle) XXX_Size() int {
+	return xxx_messageInfo_SentimentCandle.Size(m)
+}
+func (m *SentimentCandle) XXX_DiscardUnknown() {
+	xxx_messageInfo_SentimentCandle.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SentimentCandle proto.InternalMessageInfo
 
 func (m *SentimentCandle) GetId() string {
 	if m != nil {
@@ -1691,7 +2156,7 @@ func (m *SentimentCandle) GetId() string {
 	return ""
 }
 
-func (m *SentimentCandle) GetStartTime() *google_protobuf.Timestamp {
+func (m *SentimentCandle) GetStartTime() *timestamp.Timestamp {
 	if m != nil {
 		return m.StartTime
 	}
@@ -1784,14 +2249,36 @@ func (m *SentimentCandle) GetUpdated() bool {
 
 type AssetsFilter struct {
 	// name of the asset - ie. BTC
-	Assets    []string `protobuf:"bytes,4,rep,name=assets" json:"assets,omitempty"`
-	AllAssets bool     `protobuf:"varint,5,opt,name=all_assets,json=allAssets" json:"all_assets,omitempty"`
+	Assets               []string `protobuf:"bytes,4,rep,name=assets,proto3" json:"assets" bson:"assets" mapstructure:"assets"`
+	AllAssets            bool     `protobuf:"varint,5,opt,name=all_assets,json=allAssets,proto3" json:"all_assets" bson:"all_assets" mapstructure:"all_assets"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *AssetsFilter) Reset()                    { *m = AssetsFilter{} }
-func (m *AssetsFilter) String() string            { return proto.CompactTextString(m) }
-func (*AssetsFilter) ProtoMessage()               {}
-func (*AssetsFilter) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{21} }
+func (m *AssetsFilter) Reset()         { *m = AssetsFilter{} }
+func (m *AssetsFilter) String() string { return proto.CompactTextString(m) }
+func (*AssetsFilter) ProtoMessage()    {}
+func (*AssetsFilter) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{21}
+}
+func (m *AssetsFilter) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AssetsFilter.Unmarshal(m, b)
+}
+func (m *AssetsFilter) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AssetsFilter.Marshal(b, m, deterministic)
+}
+func (dst *AssetsFilter) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AssetsFilter.Merge(dst, src)
+}
+func (m *AssetsFilter) XXX_Size() int {
+	return xxx_messageInfo_AssetsFilter.Size(m)
+}
+func (m *AssetsFilter) XXX_DiscardUnknown() {
+	xxx_messageInfo_AssetsFilter.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AssetsFilter proto.InternalMessageInfo
 
 func (m *AssetsFilter) GetAssets() []string {
 	if m != nil {
@@ -1809,14 +2296,36 @@ func (m *AssetsFilter) GetAllAssets() bool {
 
 type AggregationCandleFilter struct {
 	// resolution for candle - M1/H1
-	Resolution   string        `protobuf:"bytes,1,opt,name=resolution" json:"resolution,omitempty"`
-	AssetsFilter *AssetsFilter `protobuf:"bytes,2,opt,name=assets_filter,json=assetsFilter" json:"assets_filter,omitempty"`
+	Resolution           string        `protobuf:"bytes,1,opt,name=resolution,proto3" json:"resolution" bson:"resolution" mapstructure:"resolution"`
+	AssetsFilter         *AssetsFilter `protobuf:"bytes,2,opt,name=assets_filter,json=assetsFilter,proto3" json:"assets_filter" bson:"assets_filter" mapstructure:"assets_filter"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte        `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32         `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *AggregationCandleFilter) Reset()                    { *m = AggregationCandleFilter{} }
-func (m *AggregationCandleFilter) String() string            { return proto.CompactTextString(m) }
-func (*AggregationCandleFilter) ProtoMessage()               {}
-func (*AggregationCandleFilter) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{22} }
+func (m *AggregationCandleFilter) Reset()         { *m = AggregationCandleFilter{} }
+func (m *AggregationCandleFilter) String() string { return proto.CompactTextString(m) }
+func (*AggregationCandleFilter) ProtoMessage()    {}
+func (*AggregationCandleFilter) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{22}
+}
+func (m *AggregationCandleFilter) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AggregationCandleFilter.Unmarshal(m, b)
+}
+func (m *AggregationCandleFilter) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AggregationCandleFilter.Marshal(b, m, deterministic)
+}
+func (dst *AggregationCandleFilter) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AggregationCandleFilter.Merge(dst, src)
+}
+func (m *AggregationCandleFilter) XXX_Size() int {
+	return xxx_messageInfo_AggregationCandleFilter.Size(m)
+}
+func (m *AggregationCandleFilter) XXX_DiscardUnknown() {
+	xxx_messageInfo_AggregationCandleFilter.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AggregationCandleFilter proto.InternalMessageInfo
 
 func (m *AggregationCandleFilter) GetResolution() string {
 	if m != nil {
@@ -1836,28 +2345,50 @@ func (m *AggregationCandleFilter) GetAssetsFilter() *AssetsFilter {
 // Each request for historic data should be limited by date
 type SentimentHistoricRequest struct {
 	// unix timestamp for start - included in results (greater or equal)
-	From *google_protobuf.Timestamp `protobuf:"bytes,1,opt,name=from" json:"from,omitempty"`
+	From *timestamp.Timestamp `protobuf:"bytes,1,opt,name=from,proto3" json:"from" bson:"from" mapstructure:"from"`
 	// unix timestamp for end - excluded from results (
-	To *google_protobuf.Timestamp `protobuf:"bytes,2,opt,name=to" json:"to,omitempty"`
+	To *timestamp.Timestamp `protobuf:"bytes,2,opt,name=to,proto3" json:"to" bson:"to" mapstructure:"to"`
 	// resolution for candle - M1/H1
-	Resolution string `protobuf:"bytes,3,opt,name=resolution" json:"resolution,omitempty"`
+	Resolution string `protobuf:"bytes,3,opt,name=resolution,proto3" json:"resolution" bson:"resolution" mapstructure:"resolution"`
 	// name of the asset - ie. BTC
-	Asset string `protobuf:"bytes,4,opt,name=asset" json:"asset,omitempty"`
+	Asset                string   `protobuf:"bytes,4,opt,name=asset,proto3" json:"asset" bson:"asset" mapstructure:"asset"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *SentimentHistoricRequest) Reset()                    { *m = SentimentHistoricRequest{} }
-func (m *SentimentHistoricRequest) String() string            { return proto.CompactTextString(m) }
-func (*SentimentHistoricRequest) ProtoMessage()               {}
-func (*SentimentHistoricRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{23} }
+func (m *SentimentHistoricRequest) Reset()         { *m = SentimentHistoricRequest{} }
+func (m *SentimentHistoricRequest) String() string { return proto.CompactTextString(m) }
+func (*SentimentHistoricRequest) ProtoMessage()    {}
+func (*SentimentHistoricRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{23}
+}
+func (m *SentimentHistoricRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SentimentHistoricRequest.Unmarshal(m, b)
+}
+func (m *SentimentHistoricRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SentimentHistoricRequest.Marshal(b, m, deterministic)
+}
+func (dst *SentimentHistoricRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SentimentHistoricRequest.Merge(dst, src)
+}
+func (m *SentimentHistoricRequest) XXX_Size() int {
+	return xxx_messageInfo_SentimentHistoricRequest.Size(m)
+}
+func (m *SentimentHistoricRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SentimentHistoricRequest.DiscardUnknown(m)
+}
 
-func (m *SentimentHistoricRequest) GetFrom() *google_protobuf.Timestamp {
+var xxx_messageInfo_SentimentHistoricRequest proto.InternalMessageInfo
+
+func (m *SentimentHistoricRequest) GetFrom() *timestamp.Timestamp {
 	if m != nil {
 		return m.From
 	}
 	return nil
 }
 
-func (m *SentimentHistoricRequest) GetTo() *google_protobuf.Timestamp {
+func (m *SentimentHistoricRequest) GetTo() *timestamp.Timestamp {
 	if m != nil {
 		return m.To
 	}
@@ -1882,25 +2413,47 @@ func (m *SentimentHistoricRequest) GetAsset() string {
 // Each request for historic data should be limited by date
 type HistoricRequest struct {
 	// unix timestamp for start - included in results (greater or equal)
-	From *google_protobuf.Timestamp `protobuf:"bytes,1,opt,name=from" json:"from,omitempty"`
+	From *timestamp.Timestamp `protobuf:"bytes,1,opt,name=from,proto3" json:"from" bson:"from" mapstructure:"from"`
 	// unix timestamp for end - excluded from results (
-	To     *google_protobuf.Timestamp `protobuf:"bytes,2,opt,name=to" json:"to,omitempty"`
-	Filter *AssetsFilter              `protobuf:"bytes,4,opt,name=filter" json:"filter,omitempty"`
+	To                   *timestamp.Timestamp `protobuf:"bytes,2,opt,name=to,proto3" json:"to" bson:"to" mapstructure:"to"`
+	Filter               *AssetsFilter        `protobuf:"bytes,4,opt,name=filter,proto3" json:"filter" bson:"filter" mapstructure:"filter"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte               `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32                `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *HistoricRequest) Reset()                    { *m = HistoricRequest{} }
-func (m *HistoricRequest) String() string            { return proto.CompactTextString(m) }
-func (*HistoricRequest) ProtoMessage()               {}
-func (*HistoricRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{24} }
+func (m *HistoricRequest) Reset()         { *m = HistoricRequest{} }
+func (m *HistoricRequest) String() string { return proto.CompactTextString(m) }
+func (*HistoricRequest) ProtoMessage()    {}
+func (*HistoricRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{24}
+}
+func (m *HistoricRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_HistoricRequest.Unmarshal(m, b)
+}
+func (m *HistoricRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_HistoricRequest.Marshal(b, m, deterministic)
+}
+func (dst *HistoricRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HistoricRequest.Merge(dst, src)
+}
+func (m *HistoricRequest) XXX_Size() int {
+	return xxx_messageInfo_HistoricRequest.Size(m)
+}
+func (m *HistoricRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_HistoricRequest.DiscardUnknown(m)
+}
 
-func (m *HistoricRequest) GetFrom() *google_protobuf.Timestamp {
+var xxx_messageInfo_HistoricRequest proto.InternalMessageInfo
+
+func (m *HistoricRequest) GetFrom() *timestamp.Timestamp {
 	if m != nil {
 		return m.From
 	}
 	return nil
 }
 
-func (m *HistoricRequest) GetTo() *google_protobuf.Timestamp {
+func (m *HistoricRequest) GetTo() *timestamp.Timestamp {
 	if m != nil {
 		return m.To
 	}
@@ -1917,17 +2470,39 @@ func (m *HistoricRequest) GetFilter() *AssetsFilter {
 // *
 // Represent one asset.
 type Asset struct {
-	Name string `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name" bson:"name" mapstructure:"name"`
 	// symbol can be duplicated throughout the db
-	Symbol string `protobuf:"bytes,2,opt,name=symbol" json:"symbol,omitempty"`
+	Symbol string `protobuf:"bytes,2,opt,name=symbol,proto3" json:"symbol" bson:"symbol" mapstructure:"symbol"`
 	// unique field
-	Code string `protobuf:"bytes,3,opt,name=code" json:"code,omitempty"`
+	Code                 string   `protobuf:"bytes,3,opt,name=code,proto3" json:"code" bson:"code" mapstructure:"code"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *Asset) Reset()                    { *m = Asset{} }
-func (m *Asset) String() string            { return proto.CompactTextString(m) }
-func (*Asset) ProtoMessage()               {}
-func (*Asset) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{25} }
+func (m *Asset) Reset()         { *m = Asset{} }
+func (m *Asset) String() string { return proto.CompactTextString(m) }
+func (*Asset) ProtoMessage()    {}
+func (*Asset) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{25}
+}
+func (m *Asset) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Asset.Unmarshal(m, b)
+}
+func (m *Asset) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Asset.Marshal(b, m, deterministic)
+}
+func (dst *Asset) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Asset.Merge(dst, src)
+}
+func (m *Asset) XXX_Size() int {
+	return xxx_messageInfo_Asset.Size(m)
+}
+func (m *Asset) XXX_DiscardUnknown() {
+	xxx_messageInfo_Asset.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Asset proto.InternalMessageInfo
 
 func (m *Asset) GetName() string {
 	if m != nil {
@@ -1951,13 +2526,35 @@ func (m *Asset) GetCode() string {
 }
 
 type AssetItems struct {
-	Assets []*Asset `protobuf:"bytes,1,rep,name=assets" json:"assets,omitempty"`
+	Assets               []*Asset `protobuf:"bytes,1,rep,name=assets,proto3" json:"assets" bson:"assets" mapstructure:"assets"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *AssetItems) Reset()                    { *m = AssetItems{} }
-func (m *AssetItems) String() string            { return proto.CompactTextString(m) }
-func (*AssetItems) ProtoMessage()               {}
-func (*AssetItems) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{26} }
+func (m *AssetItems) Reset()         { *m = AssetItems{} }
+func (m *AssetItems) String() string { return proto.CompactTextString(m) }
+func (*AssetItems) ProtoMessage()    {}
+func (*AssetItems) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{26}
+}
+func (m *AssetItems) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AssetItems.Unmarshal(m, b)
+}
+func (m *AssetItems) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AssetItems.Marshal(b, m, deterministic)
+}
+func (dst *AssetItems) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AssetItems.Merge(dst, src)
+}
+func (m *AssetItems) XXX_Size() int {
+	return xxx_messageInfo_AssetItems.Size(m)
+}
+func (m *AssetItems) XXX_DiscardUnknown() {
+	xxx_messageInfo_AssetItems.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AssetItems proto.InternalMessageInfo
 
 func (m *AssetItems) GetAssets() []*Asset {
 	if m != nil {
@@ -1967,17 +2564,39 @@ func (m *AssetItems) GetAssets() []*Asset {
 }
 
 type AggId struct {
-	Year   int32 `protobuf:"varint,1,opt,name=year" json:"year,omitempty"`
-	Month  int32 `protobuf:"varint,2,opt,name=month" json:"month,omitempty"`
-	Day    int32 `protobuf:"varint,3,opt,name=day" json:"day,omitempty"`
-	Hour   int32 `protobuf:"varint,4,opt,name=hour" json:"hour,omitempty"`
-	Minute int32 `protobuf:"varint,5,opt,name=minute" json:"minute,omitempty"`
+	Year                 int32    `protobuf:"varint,1,opt,name=year,proto3" json:"year" bson:"year" mapstructure:"year"`
+	Month                int32    `protobuf:"varint,2,opt,name=month,proto3" json:"month" bson:"month" mapstructure:"month"`
+	Day                  int32    `protobuf:"varint,3,opt,name=day,proto3" json:"day" bson:"day" mapstructure:"day"`
+	Hour                 int32    `protobuf:"varint,4,opt,name=hour,proto3" json:"hour" bson:"hour" mapstructure:"hour"`
+	Minute               int32    `protobuf:"varint,5,opt,name=minute,proto3" json:"minute" bson:"minute" mapstructure:"minute"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *AggId) Reset()                    { *m = AggId{} }
-func (m *AggId) String() string            { return proto.CompactTextString(m) }
-func (*AggId) ProtoMessage()               {}
-func (*AggId) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{27} }
+func (m *AggId) Reset()         { *m = AggId{} }
+func (m *AggId) String() string { return proto.CompactTextString(m) }
+func (*AggId) ProtoMessage()    {}
+func (*AggId) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{27}
+}
+func (m *AggId) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AggId.Unmarshal(m, b)
+}
+func (m *AggId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AggId.Marshal(b, m, deterministic)
+}
+func (dst *AggId) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AggId.Merge(dst, src)
+}
+func (m *AggId) XXX_Size() int {
+	return xxx_messageInfo_AggId.Size(m)
+}
+func (m *AggId) XXX_DiscardUnknown() {
+	xxx_messageInfo_AggId.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AggId proto.InternalMessageInfo
 
 func (m *AggId) GetYear() int32 {
 	if m != nil {
@@ -2015,20 +2634,42 @@ func (m *AggId) GetMinute() int32 {
 }
 
 type AggregationCandle struct {
-	Id         *AggId  `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
-	Asset      string  `protobuf:"bytes,2,opt,name=asset" json:"asset,omitempty"`
-	Resolution string  `protobuf:"bytes,3,opt,name=resolution" json:"resolution,omitempty"`
-	Pv         int64   `protobuf:"varint,4,opt,name=pv" json:"pv,omitempty"`
-	Nv         int64   `protobuf:"varint,5,opt,name=nv" json:"nv,omitempty"`
-	Ps         float64 `protobuf:"fixed64,6,opt,name=ps" json:"ps,omitempty"`
-	Ns         float64 `protobuf:"fixed64,7,opt,name=ns" json:"ns,omitempty"`
-	A          float64 `protobuf:"fixed64,8,opt,name=a" json:"a,omitempty"`
+	Id                   *AggId   `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"id" mapstructure:"id"`
+	Asset                string   `protobuf:"bytes,2,opt,name=asset,proto3" json:"asset" bson:"asset" mapstructure:"asset"`
+	Resolution           string   `protobuf:"bytes,3,opt,name=resolution,proto3" json:"resolution" bson:"resolution" mapstructure:"resolution"`
+	Pv                   int64    `protobuf:"varint,4,opt,name=pv,proto3" json:"pv" bson:"pv" mapstructure:"pv"`
+	Nv                   int64    `protobuf:"varint,5,opt,name=nv,proto3" json:"nv" bson:"nv" mapstructure:"nv"`
+	Ps                   float64  `protobuf:"fixed64,6,opt,name=ps,proto3" json:"ps" bson:"ps" mapstructure:"ps"`
+	Ns                   float64  `protobuf:"fixed64,7,opt,name=ns,proto3" json:"ns" bson:"ns" mapstructure:"ns"`
+	A                    float64  `protobuf:"fixed64,8,opt,name=a,proto3" json:"a" bson:"a" mapstructure:"a"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *AggregationCandle) Reset()                    { *m = AggregationCandle{} }
-func (m *AggregationCandle) String() string            { return proto.CompactTextString(m) }
-func (*AggregationCandle) ProtoMessage()               {}
-func (*AggregationCandle) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{28} }
+func (m *AggregationCandle) Reset()         { *m = AggregationCandle{} }
+func (m *AggregationCandle) String() string { return proto.CompactTextString(m) }
+func (*AggregationCandle) ProtoMessage()    {}
+func (*AggregationCandle) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{28}
+}
+func (m *AggregationCandle) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AggregationCandle.Unmarshal(m, b)
+}
+func (m *AggregationCandle) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AggregationCandle.Marshal(b, m, deterministic)
+}
+func (dst *AggregationCandle) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AggregationCandle.Merge(dst, src)
+}
+func (m *AggregationCandle) XXX_Size() int {
+	return xxx_messageInfo_AggregationCandle.Size(m)
+}
+func (m *AggregationCandle) XXX_DiscardUnknown() {
+	xxx_messageInfo_AggregationCandle.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AggregationCandle proto.InternalMessageInfo
 
 func (m *AggregationCandle) GetId() *AggId {
 	if m != nil {
@@ -2088,34 +2729,56 @@ func (m *AggregationCandle) GetA() float64 {
 
 type PublicModel struct {
 	// unique identifier with schema
-	Id string `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"id" mapstructure:"id"`
 	// title of article
-	Title string `protobuf:"bytes,2,opt,name=title" json:"title,omitempty"`
+	Title string `protobuf:"bytes,2,opt,name=title,proto3" json:"title" bson:"title" mapstructure:"title"`
 	// full content stripped of unnecessary characters(js, html tags...)
-	Content string `protobuf:"bytes,3,opt,name=content" json:"content,omitempty"`
+	Content string `protobuf:"bytes,3,opt,name=content,proto3" json:"content" bson:"content" mapstructure:"content"`
 	// timestamp representing the datetime, when the article has been published
-	PubDate *google_protobuf.Timestamp `protobuf:"bytes,5,opt,name=pub_date,json=pubDate" json:"pub_date,omitempty"`
+	PubDate *timestamp.Timestamp `protobuf:"bytes,5,opt,name=pub_date,json=pubDate,proto3" json:"pub_date" bson:"pub_date" mapstructure:"pub_date"`
 	// timestamp representing acquisition datetime
-	Created *google_protobuf.Timestamp `protobuf:"bytes,6,opt,name=created" json:"created,omitempty"`
+	Created *timestamp.Timestamp `protobuf:"bytes,6,opt,name=created,proto3" json:"created" bson:"created" mapstructure:"created"`
 	// url of article
-	Source string `protobuf:"bytes,7,opt,name=source" json:"source,omitempty"`
+	Source string `protobuf:"bytes,7,opt,name=source,proto3" json:"source" bson:"source" mapstructure:"source"`
 	// summary provided by the domain
-	Excerpt string `protobuf:"bytes,8,opt,name=excerpt" json:"excerpt,omitempty"`
+	Excerpt string `protobuf:"bytes,8,opt,name=excerpt,proto3" json:"excerpt" bson:"excerpt" mapstructure:"excerpt"`
 	// list of video sources
-	Videos []string `protobuf:"bytes,9,rep,name=videos" json:"videos,omitempty"`
+	Videos []string `protobuf:"bytes,9,rep,name=videos,proto3" json:"videos" bson:"videos" mapstructure:"videos"`
 	// list of image sources
-	Images []string `protobuf:"bytes,10,rep,name=images" json:"images,omitempty"`
+	Images []string `protobuf:"bytes,10,rep,name=images,proto3" json:"images" bson:"images" mapstructure:"images"`
 	// list of off-page hyperlinks
-	Links  []string `protobuf:"bytes,11,rep,name=links" json:"links,omitempty"`
-	Domain string   `protobuf:"bytes,16,opt,name=domain" json:"domain,omitempty"`
+	Links  []string `protobuf:"bytes,11,rep,name=links,proto3" json:"links" bson:"links" mapstructure:"links"`
+	Domain string   `protobuf:"bytes,16,opt,name=domain,proto3" json:"domain" bson:"domain" mapstructure:"domain"`
 	// additional fields, for now available only 'assets'
-	Extensions *PublicModelExtensions `protobuf:"bytes,100,opt,name=extensions" json:"extensions,omitempty"`
+	Extensions           *PublicModelExtensions `protobuf:"bytes,100,opt,name=extensions,proto3" json:"extensions" bson:"extensions" mapstructure:"extensions"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte                 `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32                  `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *PublicModel) Reset()                    { *m = PublicModel{} }
-func (m *PublicModel) String() string            { return proto.CompactTextString(m) }
-func (*PublicModel) ProtoMessage()               {}
-func (*PublicModel) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{29} }
+func (m *PublicModel) Reset()         { *m = PublicModel{} }
+func (m *PublicModel) String() string { return proto.CompactTextString(m) }
+func (*PublicModel) ProtoMessage()    {}
+func (*PublicModel) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{29}
+}
+func (m *PublicModel) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PublicModel.Unmarshal(m, b)
+}
+func (m *PublicModel) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PublicModel.Marshal(b, m, deterministic)
+}
+func (dst *PublicModel) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PublicModel.Merge(dst, src)
+}
+func (m *PublicModel) XXX_Size() int {
+	return xxx_messageInfo_PublicModel.Size(m)
+}
+func (m *PublicModel) XXX_DiscardUnknown() {
+	xxx_messageInfo_PublicModel.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PublicModel proto.InternalMessageInfo
 
 func (m *PublicModel) GetId() string {
 	if m != nil {
@@ -2138,14 +2801,14 @@ func (m *PublicModel) GetContent() string {
 	return ""
 }
 
-func (m *PublicModel) GetPubDate() *google_protobuf.Timestamp {
+func (m *PublicModel) GetPubDate() *timestamp.Timestamp {
 	if m != nil {
 		return m.PubDate
 	}
 	return nil
 }
 
-func (m *PublicModel) GetCreated() *google_protobuf.Timestamp {
+func (m *PublicModel) GetCreated() *timestamp.Timestamp {
 	if m != nil {
 		return m.Created
 	}
@@ -2204,13 +2867,35 @@ func (m *PublicModel) GetExtensions() *PublicModelExtensions {
 // additional fields to public model
 type PublicModelExtensions struct {
 	// assets found in publication
-	Assets []string `protobuf:"bytes,1,rep,name=assets" json:"assets,omitempty"`
+	Assets               []string `protobuf:"bytes,1,rep,name=assets,proto3" json:"assets" bson:"assets" mapstructure:"assets"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" mapstructure:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" mapstructure:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" mapstructure:"-"`
 }
 
-func (m *PublicModelExtensions) Reset()                    { *m = PublicModelExtensions{} }
-func (m *PublicModelExtensions) String() string            { return proto.CompactTextString(m) }
-func (*PublicModelExtensions) ProtoMessage()               {}
-func (*PublicModelExtensions) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{30} }
+func (m *PublicModelExtensions) Reset()         { *m = PublicModelExtensions{} }
+func (m *PublicModelExtensions) String() string { return proto.CompactTextString(m) }
+func (*PublicModelExtensions) ProtoMessage()    {}
+func (*PublicModelExtensions) Descriptor() ([]byte, []int) {
+	return fileDescriptor_types_86747089889d6035, []int{30}
+}
+func (m *PublicModelExtensions) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PublicModelExtensions.Unmarshal(m, b)
+}
+func (m *PublicModelExtensions) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PublicModelExtensions.Marshal(b, m, deterministic)
+}
+func (dst *PublicModelExtensions) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PublicModelExtensions.Merge(dst, src)
+}
+func (m *PublicModelExtensions) XXX_Size() int {
+	return xxx_messageInfo_PublicModelExtensions.Size(m)
+}
+func (m *PublicModelExtensions) XXX_DiscardUnknown() {
+	xxx_messageInfo_PublicModelExtensions.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PublicModelExtensions proto.InternalMessageInfo
 
 func (m *PublicModelExtensions) GetAssets() []string {
 	if m != nil {
@@ -2230,6 +2915,7 @@ func init() {
 	proto.RegisterType((*CryptopanicPost)(nil), "CryptopanicPost")
 	proto.RegisterType((*NamedEntityOccurrence)(nil), "NamedEntityOccurrence")
 	proto.RegisterType((*NamedEntitiesModel)(nil), "NamedEntitiesModel")
+	proto.RegisterMapType((map[string]int32)(nil), "NamedEntitiesModel.AssetMentionsEntry")
 	proto.RegisterType((*Article)(nil), "Article")
 	proto.RegisterType((*UserMessage)(nil), "UserMessage")
 	proto.RegisterType((*BitmexUserMessage)(nil), "BitmexUserMessage")
@@ -2262,8 +2948,9 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// Client API for MessagesProxy service
-
+// MessagesProxyClient is the client API for MessagesProxy service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MessagesProxyClient interface {
 	SubscribeBaseArticle(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseArticleClient, error)
 	SubscribeBaseTweet(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseTweetClient, error)
@@ -2286,7 +2973,7 @@ func NewMessagesProxyClient(cc *grpc.ClientConn) MessagesProxyClient {
 }
 
 func (c *messagesProxyClient) SubscribeBaseArticle(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseArticleClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_MessagesProxy_serviceDesc.Streams[0], c.cc, "/MessagesProxy/SubscribeBaseArticle", opts...)
+	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[0], "/MessagesProxy/SubscribeBaseArticle", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2318,7 +3005,7 @@ func (x *messagesProxySubscribeBaseArticleClient) Recv() (*PublicModel, error) {
 }
 
 func (c *messagesProxyClient) SubscribeBaseTweet(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseTweetClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_MessagesProxy_serviceDesc.Streams[1], c.cc, "/MessagesProxy/SubscribeBaseTweet", opts...)
+	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[1], "/MessagesProxy/SubscribeBaseTweet", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2350,7 +3037,7 @@ func (x *messagesProxySubscribeBaseTweetClient) Recv() (*PublicModel, error) {
 }
 
 func (c *messagesProxyClient) SubscribeBaseReddit(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseRedditClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_MessagesProxy_serviceDesc.Streams[2], c.cc, "/MessagesProxy/SubscribeBaseReddit", opts...)
+	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[2], "/MessagesProxy/SubscribeBaseReddit", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2382,7 +3069,7 @@ func (x *messagesProxySubscribeBaseRedditClient) Recv() (*PublicModel, error) {
 }
 
 func (c *messagesProxyClient) SubscribeBaseTelegram(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseTelegramClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_MessagesProxy_serviceDesc.Streams[3], c.cc, "/MessagesProxy/SubscribeBaseTelegram", opts...)
+	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[3], "/MessagesProxy/SubscribeBaseTelegram", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2414,7 +3101,7 @@ func (x *messagesProxySubscribeBaseTelegramClient) Recv() (*PublicModel, error) 
 }
 
 func (c *messagesProxyClient) SubscribeBaseBitmex(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseBitmexClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_MessagesProxy_serviceDesc.Streams[4], c.cc, "/MessagesProxy/SubscribeBaseBitmex", opts...)
+	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[4], "/MessagesProxy/SubscribeBaseBitmex", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2446,7 +3133,7 @@ func (x *messagesProxySubscribeBaseBitmexClient) Recv() (*PublicModel, error) {
 }
 
 func (c *messagesProxyClient) SubscribeArticle(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeArticleClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_MessagesProxy_serviceDesc.Streams[5], c.cc, "/MessagesProxy/SubscribeArticle", opts...)
+	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[5], "/MessagesProxy/SubscribeArticle", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2478,7 +3165,7 @@ func (x *messagesProxySubscribeArticleClient) Recv() (*Article, error) {
 }
 
 func (c *messagesProxyClient) SubscribeTweet(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeTweetClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_MessagesProxy_serviceDesc.Streams[6], c.cc, "/MessagesProxy/SubscribeTweet", opts...)
+	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[6], "/MessagesProxy/SubscribeTweet", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2510,7 +3197,7 @@ func (x *messagesProxySubscribeTweetClient) Recv() (*Tweet, error) {
 }
 
 func (c *messagesProxyClient) SubscribeReddit(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeRedditClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_MessagesProxy_serviceDesc.Streams[7], c.cc, "/MessagesProxy/SubscribeReddit", opts...)
+	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[7], "/MessagesProxy/SubscribeReddit", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2542,7 +3229,7 @@ func (x *messagesProxySubscribeRedditClient) Recv() (*RedditPost, error) {
 }
 
 func (c *messagesProxyClient) SubscribeTelegram(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeTelegramClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_MessagesProxy_serviceDesc.Streams[8], c.cc, "/MessagesProxy/SubscribeTelegram", opts...)
+	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[8], "/MessagesProxy/SubscribeTelegram", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2574,7 +3261,7 @@ func (x *messagesProxySubscribeTelegramClient) Recv() (*TelegramUserMessage, err
 }
 
 func (c *messagesProxyClient) SubscribeBitmex(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBitmexClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_MessagesProxy_serviceDesc.Streams[9], c.cc, "/MessagesProxy/SubscribeBitmex", opts...)
+	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[9], "/MessagesProxy/SubscribeBitmex", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2605,8 +3292,7 @@ func (x *messagesProxySubscribeBitmexClient) Recv() (*BitmexUserMessage, error) 
 	return m, nil
 }
 
-// Server API for MessagesProxy service
-
+// MessagesProxyServer is the server API for MessagesProxy service.
 type MessagesProxyServer interface {
 	SubscribeBaseArticle(*AssetsFilter, MessagesProxy_SubscribeBaseArticleServer) error
 	SubscribeBaseTweet(*AssetsFilter, MessagesProxy_SubscribeBaseTweetServer) error
@@ -2890,13 +3576,14 @@ var _MessagesProxy_serviceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "types.proto",
+	Metadata: "src/cryptomood/types/types.proto",
 }
 
-// Client API for Dataset service
-
+// DatasetClient is the client API for Dataset service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type DatasetClient interface {
-	Assets(ctx context.Context, in *google_protobuf1.Empty, opts ...grpc.CallOption) (*AssetItems, error)
+	Assets(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*AssetItems, error)
 }
 
 type datasetClient struct {
@@ -2907,19 +3594,18 @@ func NewDatasetClient(cc *grpc.ClientConn) DatasetClient {
 	return &datasetClient{cc}
 }
 
-func (c *datasetClient) Assets(ctx context.Context, in *google_protobuf1.Empty, opts ...grpc.CallOption) (*AssetItems, error) {
+func (c *datasetClient) Assets(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*AssetItems, error) {
 	out := new(AssetItems)
-	err := grpc.Invoke(ctx, "/Dataset/Assets", in, out, c.cc, opts...)
+	err := c.cc.Invoke(ctx, "/Dataset/Assets", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// Server API for Dataset service
-
+// DatasetServer is the server API for Dataset service.
 type DatasetServer interface {
-	Assets(context.Context, *google_protobuf1.Empty) (*AssetItems, error)
+	Assets(context.Context, *empty.Empty) (*AssetItems, error)
 }
 
 func RegisterDatasetServer(s *grpc.Server, srv DatasetServer) {
@@ -2927,7 +3613,7 @@ func RegisterDatasetServer(s *grpc.Server, srv DatasetServer) {
 }
 
 func _Dataset_Assets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(google_protobuf1.Empty)
+	in := new(empty.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -2939,7 +3625,7 @@ func _Dataset_Assets_Handler(srv interface{}, ctx context.Context, dec func(inte
 		FullMethod: "/Dataset/Assets",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DatasetServer).Assets(ctx, req.(*google_protobuf1.Empty))
+		return srv.(DatasetServer).Assets(ctx, req.(*empty.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2954,15 +3640,17 @@ var _Dataset_serviceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "types.proto",
+	Metadata: "src/cryptomood/types/types.proto",
 }
 
-// Client API for HistoricData service
-
+// HistoricDataClient is the client API for HistoricData service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type HistoricDataClient interface {
 	HistoricBaseTweets(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseTweetsClient, error)
 	HistoricBaseArticles(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseArticlesClient, error)
 	HistoricBaseRedditPosts(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseRedditPostsClient, error)
+	HistoricBaseTelegramMessages(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseTelegramMessagesClient, error)
 	HistoricTweets(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricTweetsClient, error)
 	HistoricArticles(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricArticlesClient, error)
 	HistoricRedditPosts(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricRedditPostsClient, error)
@@ -2977,7 +3665,7 @@ func NewHistoricDataClient(cc *grpc.ClientConn) HistoricDataClient {
 }
 
 func (c *historicDataClient) HistoricBaseTweets(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseTweetsClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_HistoricData_serviceDesc.Streams[0], c.cc, "/HistoricData/HistoricBaseTweets", opts...)
+	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[0], "/HistoricData/HistoricBaseTweets", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3009,7 +3697,7 @@ func (x *historicDataHistoricBaseTweetsClient) Recv() (*PublicModel, error) {
 }
 
 func (c *historicDataClient) HistoricBaseArticles(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseArticlesClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_HistoricData_serviceDesc.Streams[1], c.cc, "/HistoricData/HistoricBaseArticles", opts...)
+	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[1], "/HistoricData/HistoricBaseArticles", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3041,7 +3729,7 @@ func (x *historicDataHistoricBaseArticlesClient) Recv() (*PublicModel, error) {
 }
 
 func (c *historicDataClient) HistoricBaseRedditPosts(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseRedditPostsClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_HistoricData_serviceDesc.Streams[2], c.cc, "/HistoricData/HistoricBaseRedditPosts", opts...)
+	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[2], "/HistoricData/HistoricBaseRedditPosts", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3072,8 +3760,40 @@ func (x *historicDataHistoricBaseRedditPostsClient) Recv() (*PublicModel, error)
 	return m, nil
 }
 
+func (c *historicDataClient) HistoricBaseTelegramMessages(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseTelegramMessagesClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[3], "/HistoricData/HistoricBaseTelegramMessages", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &historicDataHistoricBaseTelegramMessagesClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type HistoricData_HistoricBaseTelegramMessagesClient interface {
+	Recv() (*PublicModel, error)
+	grpc.ClientStream
+}
+
+type historicDataHistoricBaseTelegramMessagesClient struct {
+	grpc.ClientStream
+}
+
+func (x *historicDataHistoricBaseTelegramMessagesClient) Recv() (*PublicModel, error) {
+	m := new(PublicModel)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *historicDataClient) HistoricTweets(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricTweetsClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_HistoricData_serviceDesc.Streams[3], c.cc, "/HistoricData/HistoricTweets", opts...)
+	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[4], "/HistoricData/HistoricTweets", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3105,7 +3825,7 @@ func (x *historicDataHistoricTweetsClient) Recv() (*Tweet, error) {
 }
 
 func (c *historicDataClient) HistoricArticles(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricArticlesClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_HistoricData_serviceDesc.Streams[4], c.cc, "/HistoricData/HistoricArticles", opts...)
+	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[5], "/HistoricData/HistoricArticles", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3137,7 +3857,7 @@ func (x *historicDataHistoricArticlesClient) Recv() (*Article, error) {
 }
 
 func (c *historicDataClient) HistoricRedditPosts(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricRedditPostsClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_HistoricData_serviceDesc.Streams[5], c.cc, "/HistoricData/HistoricRedditPosts", opts...)
+	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[6], "/HistoricData/HistoricRedditPosts", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3168,12 +3888,12 @@ func (x *historicDataHistoricRedditPostsClient) Recv() (*RedditPost, error) {
 	return m, nil
 }
 
-// Server API for HistoricData service
-
+// HistoricDataServer is the server API for HistoricData service.
 type HistoricDataServer interface {
 	HistoricBaseTweets(*HistoricRequest, HistoricData_HistoricBaseTweetsServer) error
 	HistoricBaseArticles(*HistoricRequest, HistoricData_HistoricBaseArticlesServer) error
 	HistoricBaseRedditPosts(*HistoricRequest, HistoricData_HistoricBaseRedditPostsServer) error
+	HistoricBaseTelegramMessages(*HistoricRequest, HistoricData_HistoricBaseTelegramMessagesServer) error
 	HistoricTweets(*HistoricRequest, HistoricData_HistoricTweetsServer) error
 	HistoricArticles(*HistoricRequest, HistoricData_HistoricArticlesServer) error
 	HistoricRedditPosts(*HistoricRequest, HistoricData_HistoricRedditPostsServer) error
@@ -3243,6 +3963,27 @@ type historicDataHistoricBaseRedditPostsServer struct {
 }
 
 func (x *historicDataHistoricBaseRedditPostsServer) Send(m *PublicModel) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _HistoricData_HistoricBaseTelegramMessages_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(HistoricRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(HistoricDataServer).HistoricBaseTelegramMessages(m, &historicDataHistoricBaseTelegramMessagesServer{stream})
+}
+
+type HistoricData_HistoricBaseTelegramMessagesServer interface {
+	Send(*PublicModel) error
+	grpc.ServerStream
+}
+
+type historicDataHistoricBaseTelegramMessagesServer struct {
+	grpc.ServerStream
+}
+
+func (x *historicDataHistoricBaseTelegramMessagesServer) Send(m *PublicModel) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -3330,6 +4071,11 @@ var _HistoricData_serviceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 		{
+			StreamName:    "HistoricBaseTelegramMessages",
+			Handler:       _HistoricData_HistoricBaseTelegramMessages_Handler,
+			ServerStreams: true,
+		},
+		{
 			StreamName:    "HistoricTweets",
 			Handler:       _HistoricData_HistoricTweets_Handler,
 			ServerStreams: true,
@@ -3345,11 +4091,12 @@ var _HistoricData_serviceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "types.proto",
+	Metadata: "src/cryptomood/types/types.proto",
 }
 
-// Client API for Sentiments service
-
+// SentimentsClient is the client API for Sentiments service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type SentimentsClient interface {
 	HistoricSocialSentiment(ctx context.Context, in *SentimentHistoricRequest, opts ...grpc.CallOption) (Sentiments_HistoricSocialSentimentClient, error)
 	HistoricNewsSentiment(ctx context.Context, in *SentimentHistoricRequest, opts ...grpc.CallOption) (Sentiments_HistoricNewsSentimentClient, error)
@@ -3366,7 +4113,7 @@ func NewSentimentsClient(cc *grpc.ClientConn) SentimentsClient {
 }
 
 func (c *sentimentsClient) HistoricSocialSentiment(ctx context.Context, in *SentimentHistoricRequest, opts ...grpc.CallOption) (Sentiments_HistoricSocialSentimentClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_Sentiments_serviceDesc.Streams[0], c.cc, "/Sentiments/HistoricSocialSentiment", opts...)
+	stream, err := c.cc.NewStream(ctx, &_Sentiments_serviceDesc.Streams[0], "/Sentiments/HistoricSocialSentiment", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3398,7 +4145,7 @@ func (x *sentimentsHistoricSocialSentimentClient) Recv() (*AggregationCandle, er
 }
 
 func (c *sentimentsClient) HistoricNewsSentiment(ctx context.Context, in *SentimentHistoricRequest, opts ...grpc.CallOption) (Sentiments_HistoricNewsSentimentClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_Sentiments_serviceDesc.Streams[1], c.cc, "/Sentiments/HistoricNewsSentiment", opts...)
+	stream, err := c.cc.NewStream(ctx, &_Sentiments_serviceDesc.Streams[1], "/Sentiments/HistoricNewsSentiment", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3430,7 +4177,7 @@ func (x *sentimentsHistoricNewsSentimentClient) Recv() (*AggregationCandle, erro
 }
 
 func (c *sentimentsClient) SubscribeSocialSentiment(ctx context.Context, in *AggregationCandleFilter, opts ...grpc.CallOption) (Sentiments_SubscribeSocialSentimentClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_Sentiments_serviceDesc.Streams[2], c.cc, "/Sentiments/SubscribeSocialSentiment", opts...)
+	stream, err := c.cc.NewStream(ctx, &_Sentiments_serviceDesc.Streams[2], "/Sentiments/SubscribeSocialSentiment", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3462,7 +4209,7 @@ func (x *sentimentsSubscribeSocialSentimentClient) Recv() (*AggregationCandle, e
 }
 
 func (c *sentimentsClient) SubscribeNewsSentiment(ctx context.Context, in *AggregationCandleFilter, opts ...grpc.CallOption) (Sentiments_SubscribeNewsSentimentClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_Sentiments_serviceDesc.Streams[3], c.cc, "/Sentiments/SubscribeNewsSentiment", opts...)
+	stream, err := c.cc.NewStream(ctx, &_Sentiments_serviceDesc.Streams[3], "/Sentiments/SubscribeNewsSentiment", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3493,8 +4240,7 @@ func (x *sentimentsSubscribeNewsSentimentClient) Recv() (*AggregationCandle, err
 	return m, nil
 }
 
-// Server API for Sentiments service
-
+// SentimentsServer is the server API for Sentiments service.
 type SentimentsServer interface {
 	HistoricSocialSentiment(*SentimentHistoricRequest, Sentiments_HistoricSocialSentimentServer) error
 	HistoricNewsSentiment(*SentimentHistoricRequest, Sentiments_HistoricNewsSentimentServer) error
@@ -3616,219 +4362,222 @@ var _Sentiments_serviceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "types.proto",
+	Metadata: "src/cryptomood/types/types.proto",
 }
 
-func init() { proto.RegisterFile("types.proto", fileDescriptor0) }
+func init() {
+	proto.RegisterFile("src/cryptomood/types/types.proto", fileDescriptor_types_86747089889d6035)
+}
 
-var fileDescriptor0 = []byte{
-	// 3314 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe4, 0x39, 0x5d, 0x6f, 0xe4, 0x46,
-	0x72, 0xe6, 0x68, 0x46, 0xa3, 0xa9, 0xf9, 0x90, 0xd4, 0xfa, 0xe2, 0x6a, 0xbd, 0x1f, 0xa6, 0x63,
-	0x7b, 0xb3, 0xb6, 0xb9, 0xb6, 0xbc, 0xb6, 0x37, 0x0b, 0x07, 0xb1, 0x2c, 0xc9, 0xde, 0x09, 0x56,
-	0xbb, 0x1b, 0x8e, 0xd6, 0x89, 0xf3, 0x42, 0x70, 0xc8, 0xd6, 0xa8, 0xb1, 0x1c, 0x92, 0x66, 0x37,
-	0xf5, 0x91, 0x97, 0x04, 0xf9, 0x0d, 0x09, 0x02, 0xe4, 0x37, 0x04, 0x08, 0x90, 0x97, 0x00, 0x07,
-	0x1c, 0x70, 0x4f, 0x87, 0xbb, 0x1f, 0x71, 0x0f, 0x77, 0x80, 0xff, 0xc6, 0xe1, 0xd0, 0xd5, 0xdd,
-	0x1c, 0x8e, 0x34, 0xd2, 0xae, 0xcf, 0xc6, 0xc1, 0x87, 0x7b, 0xeb, 0xfa, 0xea, 0x2e, 0x56, 0x55,
-	0x57, 0x55, 0x17, 0xa1, 0x2d, 0xce, 0x32, 0xca, 0xdd, 0x2c, 0x4f, 0x45, 0xba, 0x79, 0x6b, 0x94,
-	0xa6, 0xa3, 0x98, 0xde, 0x43, 0x68, 0x58, 0x1c, 0xde, 0x13, 0x6c, 0x4c, 0xb9, 0x08, 0xc6, 0x99,
-	0x66, 0xb8, 0x7e, 0x9e, 0x81, 0x8e, 0x33, 0x71, 0xa6, 0x88, 0xce, 0xcf, 0xe6, 0xa0, 0xf5, 0x45,
-	0xc0, 0xe9, 0x7e, 0x1a, 0xd1, 0x98, 0xf4, 0xa0, 0xc6, 0x22, 0xdb, 0xba, 0x6d, 0xdd, 0x69, 0x79,
-	0x35, 0x16, 0x91, 0x55, 0x68, 0x08, 0x26, 0x62, 0x6a, 0xd7, 0x10, 0xa5, 0x00, 0x62, 0x43, 0x33,
-	0x4c, 0x13, 0x41, 0x13, 0x61, 0xcf, 0x21, 0xde, 0x80, 0x48, 0xc9, 0x83, 0x93, 0x98, 0xe6, 0x76,
-	0x5d, 0x53, 0x14, 0x48, 0x3e, 0x86, 0x85, 0xac, 0x18, 0xfa, 0x51, 0x20, 0xa8, 0xdd, 0xb8, 0x6d,
-	0xdd, 0x69, 0x6f, 0x6d, 0xba, 0x4a, 0x2f, 0xd7, 0xe8, 0xe5, 0x1e, 0x18, 0xc5, 0xbd, 0x66, 0x56,
-	0x0c, 0x77, 0x03, 0x41, 0xc9, 0x7d, 0xb9, 0x21, 0x0d, 0x04, 0x8d, 0xec, 0xf9, 0x97, 0x4b, 0x69,
-	0x56, 0xb2, 0x0e, 0xf3, 0x3c, 0x2d, 0xf2, 0x90, 0xda, 0x4d, 0xd4, 0x42, 0x43, 0x52, 0x3d, 0x7a,
-	0x1a, 0xd2, 0x3c, 0x13, 0xf6, 0x82, 0x52, 0x4f, 0x83, 0x52, 0xe2, 0x98, 0x45, 0x34, 0xe5, 0x76,
-	0xeb, 0xf6, 0x9c, 0x94, 0x50, 0x90, 0xc4, 0xb3, 0x71, 0x30, 0xa2, 0xdc, 0x06, 0x85, 0x57, 0x90,
-	0x34, 0x4c, 0xcc, 0x92, 0x17, 0xdc, 0x6e, 0x23, 0x5a, 0x01, 0x92, 0x3b, 0x28, 0xc4, 0x51, 0x9a,
-	0xdb, 0x1d, 0x75, 0xae, 0x82, 0x08, 0x81, 0x7a, 0x1c, 0x24, 0x23, 0xbb, 0x8b, 0x58, 0x5c, 0x4b,
-	0xde, 0x13, 0xca, 0x46, 0x47, 0xc2, 0xee, 0xdd, 0xb6, 0xee, 0x58, 0x9e, 0x86, 0x24, 0x2f, 0xcf,
-	0x82, 0xb1, 0xbd, 0x88, 0x58, 0x5c, 0x4b, 0xde, 0x28, 0x1d, 0x07, 0x2c, 0xb1, 0x97, 0xd4, 0xbe,
-	0x0a, 0x72, 0xfe, 0xcd, 0x82, 0xde, 0x80, 0x26, 0xd2, 0xe1, 0x89, 0x50, 0x1e, 0x7c, 0x1d, 0x5a,
-	0xdc, 0x60, 0xd0, 0x91, 0x96, 0x37, 0x41, 0x90, 0x37, 0xa1, 0x3b, 0x0e, 0xf2, 0x17, 0x54, 0xf8,
-	0x6c, 0x9c, 0x05, 0xa1, 0x40, 0xbf, 0x5a, 0x5e, 0x47, 0x21, 0xfb, 0x88, 0x23, 0xef, 0xc2, 0x72,
-	0x29, 0xe1, 0xe7, 0x34, 0x8b, 0x19, 0xe5, 0xe8, 0x68, 0xcb, 0x5b, 0x2a, 0x09, 0x9e, 0xc2, 0x3b,
-	0x39, 0xac, 0xef, 0xe4, 0x67, 0x99, 0x48, 0xb3, 0x20, 0x61, 0xe1, 0x5e, 0x22, 0xf2, 0xb3, 0x81,
-	0x32, 0x76, 0x19, 0x3b, 0x56, 0x35, 0x76, 0xd6, 0x61, 0x3e, 0xa7, 0x23, 0x96, 0x26, 0x3a, 0xa4,
-	0x34, 0x54, 0xf9, 0xc4, 0xb9, 0xea, 0x27, 0x4a, 0x73, 0x64, 0x81, 0x38, 0xd2, 0xe1, 0x84, 0x6b,
-	0xe7, 0x37, 0x16, 0xac, 0x9d, 0x3f, 0xf4, 0xeb, 0x54, 0x50, 0x4e, 0x36, 0x61, 0x21, 0xa1, 0xa3,
-	0x40, 0xb0, 0x63, 0x75, 0x6c, 0xc3, 0x2b, 0x61, 0x49, 0xcb, 0x52, 0xce, 0x90, 0x56, 0x53, 0x34,
-	0x03, 0x4b, 0xab, 0xb1, 0x71, 0x96, 0xe6, 0x22, 0xd0, 0x31, 0xdd, 0xf0, 0x26, 0x08, 0xe5, 0xec,
-	0x17, 0x34, 0x42, 0x25, 0x1a, 0x9e, 0x02, 0xe4, 0x7e, 0x11, 0xe3, 0x8a, 0xd0, 0x50, 0xfb, 0x19,
-	0x98, 0x2c, 0xc1, 0x5c, 0x9c, 0xc6, 0x18, 0xb2, 0x0d, 0x4f, 0x2e, 0xd1, 0x1a, 0xe9, 0x29, 0x0b,
-	0x31, 0x22, 0x1b, 0x9e, 0x02, 0x24, 0x96, 0x07, 0xc7, 0x34, 0xc2, 0x70, 0x6c, 0x78, 0x0a, 0x70,
-	0xbe, 0x06, 0xfb, 0xfc, 0xe7, 0xed, 0x53, 0x11, 0x44, 0x81, 0x08, 0x64, 0x08, 0x8f, 0x29, 0xe7,
-	0xc1, 0xc8, 0xd8, 0xd5, 0x80, 0xe4, 0x36, 0xb4, 0x23, 0xca, 0xc3, 0x9c, 0x65, 0x62, 0x62, 0xde,
-	0x2a, 0xca, 0xf9, 0xae, 0x06, 0x2b, 0x95, 0x8d, 0xbd, 0xe0, 0x04, 0xf7, 0x96, 0x36, 0x7e, 0xc1,
-	0x12, 0x73, 0xef, 0x71, 0x5d, 0xf1, 0x47, 0x6d, 0xca, 0x1f, 0xf7, 0xca, 0xab, 0x35, 0x87, 0xf7,
-	0x71, 0xc3, 0x9d, 0xed, 0xfe, 0xf2, 0xce, 0x95, 0x61, 0x50, 0xaf, 0x86, 0xc1, 0x1b, 0xd0, 0xc9,
-	0x8a, 0x61, 0xcc, 0xf8, 0x11, 0x8d, 0xfc, 0x40, 0xa0, 0x01, 0x5b, 0x5e, 0xbb, 0xc4, 0x6d, 0xab,
-	0x8b, 0x10, 0x17, 0x23, 0x34, 0x62, 0xcb, 0xc3, 0xb5, 0xce, 0x4f, 0xca, 0x84, 0x32, 0x3f, 0x2d,
-	0xc1, 0x5c, 0x91, 0xc7, 0xfa, 0x32, 0xcb, 0x25, 0xb9, 0x01, 0xa0, 0xb3, 0x80, 0xdc, 0xb6, 0x85,
-	0x84, 0x96, 0xc6, 0x6c, 0x0b, 0xf2, 0x1e, 0x34, 0x8e, 0x65, 0xa4, 0xd8, 0x80, 0xda, 0xaf, 0xbb,
-	0x33, 0xe3, 0xc8, 0x53, 0x4c, 0x32, 0x69, 0x8d, 0xb5, 0xe1, 0xed, 0x36, 0x0a, 0x5c, 0x73, 0x2f,
-	0xf3, 0x8c, 0x57, 0xb2, 0x3a, 0xff, 0x08, 0x8b, 0x15, 0xae, 0x2f, 0x29, 0xc5, 0x44, 0x1a, 0xa6,
-	0x85, 0xbe, 0x92, 0x0d, 0x4f, 0x01, 0xc4, 0x85, 0x66, 0x4e, 0x79, 0x11, 0x0b, 0x6e, 0xd7, 0x6e,
-	0xcf, 0xdd, 0x69, 0x6f, 0xad, 0xba, 0x33, 0xfc, 0xe3, 0x19, 0x26, 0xe7, 0x5f, 0xa7, 0x36, 0x7e,
-	0x96, 0x72, 0x41, 0x1e, 0xc1, 0x5a, 0x38, 0x41, 0xf9, 0x79, 0x70, 0xe2, 0x53, 0x29, 0x84, 0x07,
-	0x5d, 0xb6, 0xe1, 0x4a, 0x38, 0x23, 0x0a, 0x1c, 0x68, 0x06, 0xb9, 0x60, 0xa1, 0xce, 0xf6, 0xed,
-	0xad, 0x05, 0x77, 0x5b, 0xc1, 0x9e, 0x21, 0x38, 0x27, 0xb0, 0xf6, 0x24, 0x18, 0xd3, 0x68, 0x2f,
-	0x11, 0x4c, 0x9c, 0x3d, 0x0d, 0xc3, 0x22, 0xcf, 0x69, 0x12, 0x52, 0xe2, 0x40, 0x23, 0x0e, 0x86,
-	0x34, 0xc6, 0x63, 0x7b, 0x5b, 0x1d, 0xb7, 0xc2, 0xe6, 0x29, 0x12, 0x06, 0xbb, 0x08, 0x72, 0x95,
-	0x74, 0xba, 0x9e, 0x02, 0xa4, 0x0b, 0x69, 0x12, 0x61, 0x34, 0x75, 0x3d, 0xb9, 0x94, 0x8e, 0x17,
-	0xf4, 0x54, 0x98, 0x2b, 0x2f, 0xd7, 0xce, 0xef, 0xea, 0x40, 0x26, 0x5b, 0x32, 0xca, 0x55, 0xb6,
-	0xb3, 0xa1, 0xc9, 0xcf, 0xc6, 0xc3, 0x34, 0xe6, 0xb6, 0x85, 0x89, 0xd8, 0x80, 0xc4, 0x85, 0xf9,
-	0x80, 0x73, 0x5a, 0x5a, 0x76, 0xdd, 0x9d, 0xa9, 0xb8, 0xa7, 0xb9, 0xc8, 0x07, 0xd0, 0xcc, 0x68,
-	0xce, 0xd3, 0x44, 0xa6, 0xba, 0xab, 0x04, 0x0c, 0x1b, 0xb9, 0x0f, 0xad, 0x30, 0x1d, 0x4b, 0x1b,
-	0x52, 0x6e, 0xd7, 0xaf, 0x94, 0x99, 0x30, 0x92, 0xcf, 0xa0, 0x9b, 0xe6, 0xa3, 0x20, 0x61, 0xff,
-	0x12, 0xc8, 0x3b, 0xc9, 0xed, 0xc6, 0x95, 0x92, 0xd3, 0xcc, 0xf2, 0xcc, 0x38, 0x0d, 0xb5, 0xe4,
-	0xfc, 0xd5, 0x67, 0x96, 0x8c, 0x52, 0x8a, 0x9e, 0x86, 0x47, 0x41, 0x22, 0xeb, 0x58, 0xf3, 0x6a,
-	0xa9, 0x92, 0x91, 0xdc, 0x85, 0xfa, 0x98, 0xf1, 0xd0, 0x5e, 0xb8, 0x52, 0x00, 0x79, 0xd0, 0x65,
-	0xc1, 0xc8, 0x14, 0x4f, 0x5c, 0x93, 0x7d, 0xe8, 0xa1, 0x6d, 0x7d, 0x59, 0x2e, 0x50, 0x61, 0xc0,
-	0x9d, 0xde, 0x76, 0x2f, 0x3a, 0xd2, 0xdd, 0x96, 0x9c, 0xfb, 0x9a, 0x51, 0x05, 0x69, 0x37, 0xa8,
-	0xe2, 0xc8, 0x2d, 0x68, 0xab, 0x8c, 0xe2, 0x63, 0x70, 0xb4, 0x31, 0x38, 0x40, 0xa1, 0x0e, 0xe8,
-	0xa9, 0xd8, 0xfc, 0x1c, 0xc8, 0xc5, 0x5d, 0x64, 0x78, 0xbd, 0xa0, 0x67, 0x3a, 0xb5, 0xc9, 0xa5,
-	0x0c, 0xc3, 0xe3, 0x20, 0x2e, 0x4c, 0x11, 0x50, 0xc0, 0xc3, 0xda, 0x03, 0xcb, 0xf9, 0x95, 0x05,
-	0x4d, 0x1d, 0xf2, 0xe4, 0x26, 0xd4, 0x87, 0x01, 0xa7, 0xfa, 0x1a, 0x81, 0x5b, 0xf6, 0x48, 0x1e,
-	0xe2, 0xc9, 0xfb, 0xd5, 0x3a, 0xab, 0xee, 0xcb, 0xa2, 0x3b, 0x5d, 0x8b, 0xab, 0x85, 0xf7, 0x21,
-	0xf4, 0x12, 0xf9, 0xd5, 0xf2, 0x72, 0xe2, 0x67, 0xeb, 0xf4, 0xb9, 0x32, 0xc3, 0x18, 0x5e, 0x37,
-	0xa9, 0xe2, 0xc8, 0x16, 0x00, 0x26, 0x4d, 0x1f, 0xf3, 0x50, 0xfd, 0x72, 0xb9, 0x16, 0xb2, 0xed,
-	0xca, 0x14, 0xf4, 0x4b, 0x0b, 0xda, 0xcf, 0x39, 0xcd, 0xf7, 0x75, 0x71, 0xf8, 0x09, 0x7d, 0x0e,
-	0x81, 0x7a, 0xc1, 0xcb, 0x06, 0x11, 0xd7, 0xd5, 0xaa, 0xd6, 0x98, 0xaa, 0x6a, 0xce, 0x2e, 0x2c,
-	0x7f, 0xc1, 0xc4, 0x98, 0x9e, 0x56, 0xbf, 0xe6, 0x1e, 0x74, 0xa4, 0x98, 0x5f, 0xad, 0x84, 0xed,
-	0xad, 0x8e, 0x5b, 0xe1, 0xf1, 0xda, 0xc5, 0x04, 0x70, 0xbe, 0xb3, 0x60, 0xe5, 0x80, 0xc6, 0x74,
-	0x94, 0x07, 0xe3, 0x1f, 0xb2, 0x11, 0x79, 0x0b, 0x7a, 0x3a, 0xc3, 0xf8, 0xc3, 0x20, 0x7c, 0x51,
-	0x64, 0x98, 0x5e, 0x5a, 0x5e, 0x57, 0x63, 0xbf, 0x40, 0x24, 0x56, 0xa1, 0xa3, 0x20, 0x49, 0x68,
-	0xec, 0xb3, 0xc8, 0x34, 0x14, 0x1a, 0xd3, 0x8f, 0xc8, 0x03, 0xb0, 0x0d, 0x99, 0x17, 0x43, 0x59,
-	0xa0, 0x87, 0x34, 0xf7, 0x55, 0x81, 0x50, 0x3d, 0xc6, 0xba, 0xa6, 0x0f, 0x4a, 0xf2, 0x0e, 0x56,
-	0x8c, 0x1b, 0x00, 0x5a, 0x57, 0xb9, 0xb1, 0xb4, 0xd5, 0x9c, 0xd7, 0xd2, 0x98, 0x7e, 0xe4, 0xa4,
-	0x60, 0xef, 0xa4, 0x63, 0xe9, 0x22, 0x64, 0x97, 0xad, 0xf1, 0x20, 0x09, 0x32, 0x7e, 0x94, 0xca,
-	0x62, 0x53, 0x97, 0xde, 0xd3, 0xdf, 0x78, 0x55, 0x1f, 0x8d, 0x7c, 0xb2, 0x57, 0x0c, 0xd5, 0x5e,
-	0x5a, 0x33, 0x75, 0x5f, 0x3a, 0x61, 0xe5, 0x00, 0xe7, 0xff, 0x6b, 0xd0, 0xd4, 0x27, 0xca, 0xe2,
-	0xdc, 0xdf, 0x35, 0x8f, 0x87, 0xfe, 0xae, 0x74, 0xb4, 0xf4, 0xbc, 0x6e, 0x20, 0x70, 0x2d, 0x1b,
-	0xad, 0x8c, 0xe6, 0xe3, 0x40, 0xf6, 0xcb, 0xba, 0xd3, 0x9b, 0x20, 0xc8, 0xcd, 0xb2, 0x78, 0x3f,
-	0x3f, 0xd8, 0x41, 0x4b, 0xd4, 0xbd, 0x0a, 0x46, 0x86, 0x49, 0x44, 0x63, 0x2a, 0x74, 0xc7, 0xb5,
-	0xe0, 0x19, 0x10, 0x1b, 0x81, 0x8c, 0x63, 0x2b, 0xdd, 0xf0, 0xe4, 0x52, 0x5e, 0xf3, 0x28, 0x3d,
-	0x49, 0x38, 0x36, 0xd2, 0x0d, 0x4f, 0x01, 0xa6, 0x95, 0xe3, 0xd8, 0x48, 0x2f, 0xa8, 0x56, 0x0e,
-	0x43, 0x72, 0x98, 0x46, 0x67, 0xa6, 0xd5, 0x90, 0x6b, 0x6c, 0xa4, 0x8b, 0x61, 0x4e, 0xa3, 0x88,
-	0x09, 0xfd, 0x8c, 0x98, 0x20, 0x64, 0xb1, 0x34, 0x9d, 0xb1, 0xca, 0x8f, 0x0b, 0xae, 0x36, 0x83,
-	0x67, 0x08, 0xd3, 0xad, 0x78, 0xeb, 0x5c, 0x2b, 0xee, 0xfc, 0x57, 0x13, 0x16, 0x3d, 0xdc, 0x4c,
-	0xd6, 0xf1, 0xf2, 0xf9, 0x35, 0x65, 0xc1, 0x69, 0x7b, 0xd4, 0x2e, 0xd8, 0xa3, 0xec, 0xad, 0xe6,
-	0xaa, 0xbd, 0xd5, 0x12, 0xcc, 0x3d, 0xf7, 0x1e, 0xeb, 0xfb, 0x25, 0x97, 0x95, 0x77, 0x49, 0x63,
-	0xea, 0x5d, 0x72, 0x5d, 0x6a, 0x18, 0x1f, 0xaa, 0x8c, 0xaa, 0x3e, 0x7e, 0x41, 0x22, 0x64, 0x3e,
-	0x2d, 0xdd, 0xd7, 0xbe, 0xcc, 0x7d, 0x9d, 0xf3, 0xee, 0xab, 0xb8, 0xa7, 0xfb, 0x63, 0xba, 0xe7,
-	0x0d, 0xe8, 0x24, 0xc5, 0xd8, 0xd7, 0x81, 0xc7, 0xed, 0x65, 0x14, 0x69, 0x27, 0xc5, 0x58, 0xdb,
-	0x1c, 0x05, 0x79, 0x98, 0xe6, 0xd4, 0x26, 0xba, 0x91, 0x96, 0x40, 0xd5, 0x4b, 0x2b, 0x97, 0x79,
-	0x69, 0xd2, 0xe8, 0xae, 0x4e, 0x35, 0xba, 0xb7, 0xa1, 0x3d, 0x30, 0xee, 0xee, 0xef, 0xda, 0x6b,
-	0xaa, 0x41, 0xad, 0xa0, 0xa4, 0xe4, 0x11, 0x8b, 0x22, 0x9a, 0xd8, 0xeb, 0xa8, 0xad, 0x86, 0x24,
-	0x3e, 0x4e, 0x43, 0xf9, 0x2c, 0xd8, 0x50, 0x78, 0x05, 0x49, 0xe3, 0x89, 0xa3, 0x62, 0x3c, 0x4c,
-	0x02, 0x16, 0xdb, 0xb6, 0x32, 0x5e, 0x89, 0x90, 0x52, 0x23, 0x16, 0x47, 0x34, 0xb2, 0xaf, 0xe1,
-	0x27, 0x68, 0x88, 0xfc, 0x15, 0x74, 0x23, 0xc6, 0x05, 0x4b, 0x46, 0x05, 0x76, 0xc6, 0xf6, 0x26,
-	0x4a, 0x4e, 0x23, 0xe5, 0x63, 0x84, 0x0b, 0x16, 0xbe, 0x60, 0x34, 0xb2, 0xaf, 0xe3, 0xa9, 0x25,
-	0x4c, 0x3e, 0x82, 0x75, 0xc6, 0x7d, 0xa5, 0xb6, 0x3f, 0xa6, 0x11, 0x0b, 0x7c, 0xfd, 0xc5, 0xaf,
-	0x23, 0xe7, 0x0a, 0xe3, 0x2a, 0x10, 0xf7, 0x25, 0x6d, 0x57, 0x7d, 0xfe, 0x53, 0x58, 0x9f, 0xba,
-	0xfd, 0x3e, 0xd7, 0x79, 0x44, 0x37, 0x10, 0xd7, 0xdc, 0xcb, 0x12, 0x8d, 0xb7, 0x5a, 0xcd, 0x10,
-	0x65, 0xfa, 0xb9, 0x06, 0x0b, 0x47, 0xa9, 0xf0, 0xf3, 0x40, 0x50, 0xec, 0xd7, 0x2d, 0xaf, 0x29,
-	0x99, 0xe5, 0x23, 0x7f, 0xea, 0xaa, 0xb5, 0xce, 0x5f, 0xb5, 0x0d, 0x68, 0x32, 0xee, 0xcb, 0xb0,
-	0xc4, 0xa6, 0x7d, 0xc1, 0x9b, 0x67, 0x7c, 0x40, 0xe3, 0x43, 0x0c, 0x50, 0x7e, 0x78, 0x62, 0xdf,
-	0x40, 0x2c, 0xae, 0x65, 0x44, 0x33, 0xee, 0x17, 0x19, 0xce, 0x19, 0x6e, 0x2a, 0x43, 0x30, 0xfe,
-	0x1c, 0x61, 0x4c, 0xde, 0x66, 0x5b, 0x9f, 0x85, 0x69, 0x62, 0xdf, 0x52, 0xb6, 0x2c, 0xb1, 0xfd,
-	0x30, 0x4d, 0x9c, 0xdf, 0x5b, 0x00, 0x93, 0x9b, 0xf9, 0x67, 0xde, 0x09, 0x90, 0x0f, 0xa1, 0xad,
-	0xbf, 0x38, 0x4b, 0xb9, 0xd0, 0xb3, 0x97, 0x25, 0xf7, 0x5c, 0xea, 0xf1, 0x20, 0x2f, 0x11, 0xce,
-	0x7f, 0x02, 0x74, 0xf7, 0x4e, 0x05, 0x4d, 0x22, 0x1a, 0x1d, 0x9c, 0x50, 0x2a, 0xc8, 0x3b, 0xb0,
-	0x78, 0x18, 0x1c, 0xa7, 0x45, 0xce, 0x04, 0xf5, 0xab, 0x0f, 0x99, 0x5e, 0x89, 0x56, 0xf5, 0xe9,
-	0x0d, 0xe8, 0x1c, 0xb2, 0x58, 0xd0, 0xdc, 0x8f, 0xe9, 0x31, 0x8d, 0xcd, 0x2b, 0x54, 0xe1, 0x1e,
-	0x4b, 0x14, 0x59, 0x83, 0x79, 0x16, 0xf9, 0x5c, 0xe4, 0x26, 0x6b, 0xb1, 0x68, 0x20, 0x72, 0x72,
-	0x1f, 0x36, 0x58, 0x82, 0xe3, 0x86, 0x33, 0x5f, 0xa4, 0x3e, 0x0f, 0x73, 0x4a, 0x13, 0x1f, 0x33,
-	0x90, 0xca, 0x64, 0x2b, 0x2c, 0xf1, 0x24, 0xf5, 0x20, 0x1d, 0x20, 0x4d, 0x7e, 0x36, 0xf9, 0x14,
-	0xae, 0x4d, 0x49, 0x89, 0x40, 0x14, 0xdc, 0xd7, 0xfb, 0xab, 0x64, 0xb7, 0x3a, 0x91, 0x43, 0x6a,
-	0x1f, 0x8f, 0xfb, 0x68, 0xfa, 0x38, 0xec, 0x02, 0xb4, 0x98, 0x4a, 0x84, 0xa4, 0x14, 0x93, 0xcd,
-	0x80, 0x12, 0x7a, 0x1b, 0x16, 0x19, 0xf7, 0xbf, 0x2d, 0x52, 0x41, 0xf5, 0x51, 0xba, 0x32, 0x74,
-	0x19, 0xff, 0x07, 0x89, 0x55, 0x27, 0x94, 0xf3, 0x9e, 0x85, 0xca, 0xbc, 0xe7, 0x7d, 0x20, 0x59,
-	0xca, 0x39, 0x1b, 0xc6, 0x67, 0x3e, 0xa7, 0x89, 0x1e, 0x44, 0xb4, 0x30, 0x44, 0x97, 0x0d, 0x65,
-	0x60, 0x08, 0xb2, 0xdd, 0x55, 0xe7, 0x28, 0x6b, 0x03, 0x5a, 0x1b, 0x10, 0xa5, 0x2c, 0x7d, 0x4b,
-	0xfa, 0x55, 0x6a, 0xaf, 0x18, 0xda, 0x8a, 0x01, 0x51, 0x8a, 0xe1, 0x4d, 0xe8, 0xe6, 0x54, 0x48,
-	0xf7, 0x69, 0x96, 0x8e, 0xaa, 0xdf, 0x1a, 0x59, 0x32, 0xe9, 0x06, 0x48, 0xf7, 0xe8, 0x5d, 0x6c,
-	0x67, 0x3a, 0xaa, 0xe7, 0xd1, 0xad, 0xf7, 0x64, 0x9c, 0xd6, 0x9b, 0x1a, 0xa7, 0xdd, 0x85, 0x65,
-	0x55, 0x48, 0xfc, 0xca, 0x93, 0x7b, 0x11, 0x59, 0x16, 0x15, 0x61, 0xa7, 0x7c, 0x78, 0xdf, 0x87,
-	0x75, 0xcd, 0x1b, 0xd1, 0xc3, 0xa0, 0x88, 0x85, 0x9f, 0xe5, 0xe9, 0x21, 0x8b, 0xa9, 0x4e, 0xf5,
-	0xab, 0x8a, 0xba, 0xab, 0x88, 0xcf, 0x14, 0x8d, 0xfc, 0x1d, 0xbc, 0x3e, 0x5b, 0xca, 0xc7, 0x39,
-	0x1c, 0x56, 0x82, 0x05, 0xef, 0xda, 0x2c, 0xd9, 0xbe, 0x64, 0xa8, 0x1c, 0x7b, 0x98, 0xc6, 0x71,
-	0x7a, 0x42, 0x73, 0xae, 0xad, 0xa1, 0x0a, 0x85, 0x3e, 0xf6, 0x4b, 0x43, 0x54, 0x56, 0xf9, 0x00,
-	0x56, 0x8d, 0x54, 0xce, 0x68, 0x12, 0x19, 0x99, 0x15, 0x94, 0x21, 0x5a, 0x46, 0x91, 0x94, 0x84,
-	0x03, 0x5d, 0x2d, 0xa1, 0x83, 0x48, 0x15, 0x93, 0xb6, 0x42, 0xaa, 0xe8, 0xb9, 0x05, 0x1a, 0xf4,
-	0x31, 0x38, 0x54, 0x45, 0x01, 0x85, 0x7a, 0x2c, 0x43, 0xe4, 0x1d, 0x58, 0x34, 0x0c, 0xfa, 0xed,
-	0x86, 0x95, 0xa5, 0xe5, 0xf5, 0x34, 0x93, 0xc6, 0x56, 0x76, 0xc2, 0xfb, 0xb1, 0x51, 0xdd, 0x09,
-	0xaf, 0xc5, 0x7b, 0xa0, 0x95, 0x9c, 0xba, 0x47, 0xaa, 0xe6, 0x2c, 0x29, 0x4a, 0xe5, 0x12, 0x7d,
-	0x0e, 0x37, 0x34, 0xf7, 0x94, 0x75, 0xfd, 0x22, 0x8f, 0xfd, 0x23, 0x21, 0x32, 0xac, 0x48, 0x2d,
-	0x63, 0xe6, 0xaa, 0x7d, 0x9f, 0xe7, 0xf1, 0x23, 0x21, 0x32, 0xb2, 0x05, 0x6b, 0xe6, 0x3c, 0xbc,
-	0x01, 0xd4, 0x58, 0x6c, 0x13, 0x2d, 0xb6, 0xa2, 0x8f, 0xd4, 0x34, 0x65, 0x32, 0xd9, 0xdc, 0x04,
-	0x82, 0x8e, 0xd2, 0x5c, 0x26, 0xc1, 0xeb, 0x18, 0x77, 0x15, 0x0c, 0x96, 0xcb, 0xbc, 0x48, 0x42,
-	0x1c, 0xfe, 0xaa, 0x4a, 0x35, 0x41, 0xc8, 0x44, 0x7f, 0x58, 0xc4, 0xb1, 0x6a, 0x5d, 0x6e, 0xa8,
-	0xd6, 0x45, 0x22, 0xb0, 0x75, 0xf9, 0x6b, 0x58, 0xd2, 0x51, 0x4e, 0x23, 0x73, 0x51, 0x55, 0x31,
-	0x58, 0x2c, 0xf1, 0xfa, 0xaa, 0xde, 0x85, 0x65, 0x73, 0x4b, 0xf4, 0xf3, 0x92, 0x45, 0xba, 0x2c,
-	0x18, 0x5e, 0x35, 0xd0, 0xea, 0x47, 0xce, 0xaf, 0x2d, 0x68, 0xa8, 0x7c, 0xf8, 0x13, 0xaa, 0x09,
-	0x1f, 0x43, 0x8f, 0xea, 0x5c, 0xed, 0xa3, 0xba, 0xba, 0x2e, 0xf4, 0xdc, 0xa9, 0x14, 0xee, 0x75,
-	0x69, 0x15, 0x74, 0x7e, 0x5e, 0x87, 0xc5, 0x52, 0xa1, 0x9d, 0x20, 0x89, 0x62, 0x7a, 0x61, 0xfa,
-	0xff, 0x37, 0x00, 0x38, 0xa3, 0xf1, 0xf1, 0xdd, 0x50, 0x7b, 0xe9, 0xbb, 0xa1, 0x85, 0xdc, 0x12,
-	0x96, 0xce, 0xcd, 0x29, 0x4f, 0xe3, 0x02, 0xa3, 0x58, 0x25, 0xfa, 0x0a, 0x46, 0xf6, 0x6b, 0xf8,
-	0xbc, 0x37, 0x53, 0x41, 0x04, 0xb0, 0xd1, 0xd3, 0xe3, 0x5a, 0x9f, 0x17, 0x63, 0x4c, 0xe0, 0x96,
-	0xd7, 0x36, 0xb8, 0x41, 0x31, 0x96, 0x35, 0xbc, 0x64, 0x51, 0x21, 0xa6, 0x86, 0xac, 0x5d, 0x83,
-	0x2d, 0xeb, 0x90, 0x19, 0xee, 0xe2, 0x4e, 0x4d, 0xb5, 0x93, 0xc1, 0xe9, 0x9d, 0x4a, 0x16, 0xb5,
-	0x93, 0x1a, 0xc2, 0x76, 0x0d, 0xb6, 0xcc, 0x90, 0x93, 0x69, 0x78, 0x70, 0x3c, 0xd2, 0x9d, 0x7c,
-	0xa7, 0x44, 0x6e, 0x1f, 0x8f, 0x64, 0x9a, 0x49, 0x33, 0x9a, 0xf8, 0x55, 0x4e, 0x9a, 0xcb, 0x0c,
-	0x05, 0xc8, 0xbd, 0x2a, 0xa9, 0x83, 0x89, 0x04, 0xd2, 0xa4, 0xd4, 0x11, 0x1b, 0x1d, 0xcd, 0x90,
-	0x6a, 0x2b, 0x29, 0x49, 0xbd, 0x20, 0xb5, 0x05, 0x6b, 0x71, 0x7a, 0x32, 0x43, 0xa8, 0x83, 0x42,
-	0x2b, 0x71, 0x7a, 0x72, 0x41, 0xe6, 0x13, 0xd8, 0x08, 0xe3, 0x94, 0xd3, 0x19, 0x52, 0x5d, 0x94,
-	0x5a, 0x43, 0xf2, 0x05, 0x39, 0x1b, 0x9a, 0xaa, 0x97, 0x8a, 0x30, 0xf5, 0x2f, 0x78, 0x06, 0x74,
-	0xf6, 0xa0, 0x83, 0xd3, 0x16, 0xfe, 0x25, 0x96, 0x76, 0x7c, 0x62, 0xa8, 0x79, 0x5b, 0x5d, 0xfd,
-	0x28, 0xd1, 0x73, 0xb5, 0x1b, 0x00, 0x41, 0x1c, 0xfb, 0x9a, 0xa6, 0x5e, 0x6d, 0xad, 0x20, 0x8e,
-	0x95, 0xb0, 0x33, 0x86, 0x8d, 0xed, 0xd1, 0x28, 0x47, 0xdf, 0xa5, 0x89, 0x8a, 0x43, 0xbd, 0xe3,
-	0x74, 0x08, 0x59, 0x17, 0x42, 0x68, 0x0b, 0xd4, 0x84, 0x88, 0xfb, 0xaa, 0xbb, 0xd0, 0x01, 0xda,
-	0x75, 0xab, 0x7a, 0x79, 0x9d, 0xa0, 0x02, 0x39, 0xff, 0x63, 0x81, 0x5d, 0x7e, 0xe4, 0x23, 0xc6,
-	0x45, 0x9a, 0xb3, 0xd0, 0xa3, 0xdf, 0x16, 0x94, 0xe3, 0x03, 0xf9, 0x30, 0x4f, 0xc7, 0xaf, 0xf2,
-	0x40, 0x96, 0x7c, 0xe4, 0x2e, 0xd4, 0x44, 0xfa, 0x0a, 0xd7, 0xa2, 0x26, 0xd2, 0x3f, 0xee, 0x3e,
-	0x38, 0xff, 0x61, 0xc1, 0xe2, 0x9f, 0x52, 0xcb, 0xb7, 0x60, 0x5e, 0xdb, 0xb2, 0x3e, 0xcb, 0x96,
-	0x9a, 0xe8, 0x7c, 0x05, 0x0d, 0xc4, 0x97, 0x4f, 0x44, 0xab, 0xf2, 0x44, 0x94, 0xcd, 0x02, 0xce,
-	0x42, 0xcc, 0x8f, 0x03, 0x05, 0x49, 0xde, 0x30, 0x8d, 0xcc, 0x53, 0x15, 0xd7, 0xce, 0x7b, 0x00,
-	0xb8, 0x51, 0x5f, 0xd0, 0x31, 0x27, 0x37, 0xcb, 0x10, 0xb2, 0xf0, 0x89, 0x31, 0xaf, 0x4e, 0x37,
-	0xa1, 0xe4, 0xa4, 0xd0, 0xd8, 0x1e, 0x8d, 0xfa, 0x38, 0x20, 0x3e, 0xa3, 0x41, 0xae, 0x5b, 0x50,
-	0x5c, 0x4b, 0x03, 0x8e, 0xd3, 0x44, 0x1c, 0x99, 0xa9, 0x1e, 0x02, 0xf2, 0xdd, 0x19, 0x05, 0x67,
-	0x7a, 0x00, 0x23, 0x97, 0x52, 0xf6, 0x28, 0x2d, 0x72, 0x3d, 0x66, 0xc1, 0xb5, 0x54, 0x79, 0xcc,
-	0x92, 0x42, 0xff, 0x99, 0x6c, 0x78, 0x1a, 0x72, 0xfe, 0xd7, 0x82, 0xe5, 0x0b, 0xd1, 0x49, 0xd6,
-	0xcb, 0x2c, 0x89, 0x2a, 0x4a, 0x8d, 0xcc, 0xbf, 0x52, 0xe5, 0xc2, 0x5a, 0x35, 0xa5, 0xbd, 0xcc,
-	0xf1, 0x3d, 0xa8, 0x65, 0xc7, 0xa8, 0xcd, 0x9c, 0x57, 0xcb, 0x8e, 0x25, 0x9c, 0x1c, 0xeb, 0xc1,
-	0x4e, 0x2d, 0x41, 0x38, 0xe3, 0x98, 0xe3, 0x2c, 0xaf, 0x96, 0x71, 0xa4, 0x73, 0x9d, 0xce, 0x6a,
-	0x09, 0x27, 0x1d, 0xb0, 0x02, 0xfd, 0x9e, 0xb2, 0x02, 0xe7, 0xdf, 0xe7, 0xa0, 0xfd, 0xac, 0x18,
-	0xc6, 0x2c, 0xfc, 0x71, 0xfe, 0xe7, 0xfe, 0xa5, 0xfc, 0xb5, 0x9d, 0xf5, 0x77, 0x95, 0x7c, 0x02,
-	0x80, 0x35, 0x93, 0x63, 0x63, 0x1c, 0xe9, 0x1f, 0x46, 0x15, 0xf3, 0xee, 0x95, 0x54, 0xaf, 0xc2,
-	0xe9, 0xdc, 0x83, 0xb5, 0x99, 0x4c, 0x95, 0x1c, 0x69, 0x55, 0x73, 0xe4, 0xdd, 0xff, 0xb6, 0xa0,
-	0x5d, 0x99, 0xae, 0x93, 0x25, 0xe8, 0x6c, 0x0f, 0x06, 0x7b, 0x07, 0xfe, 0xde, 0x93, 0x83, 0xfe,
-	0xc1, 0x37, 0x4b, 0xaf, 0x91, 0x65, 0xe8, 0x3e, 0xdb, 0xf3, 0x06, 0x4f, 0x9f, 0x18, 0x94, 0x45,
-	0x56, 0x60, 0xf1, 0xf1, 0xd3, 0x9d, 0xed, 0x83, 0xfe, 0x04, 0x59, 0x23, 0x04, 0x7a, 0x3b, 0x4f,
-	0xf7, 0x9f, 0x6d, 0x3f, 0xf9, 0xc6, 0xe0, 0xe6, 0x24, 0xe3, 0xde, 0x3f, 0xed, 0x3c, 0xda, 0x7e,
-	0xf2, 0xd5, 0x9e, 0x41, 0xd6, 0xc9, 0x22, 0xb4, 0xf7, 0xfb, 0x83, 0x1d, 0x83, 0x68, 0x90, 0x0d,
-	0x58, 0x79, 0xea, 0x7d, 0xb5, 0xfd, 0xa4, 0xff, 0xcf, 0x53, 0x5b, 0xce, 0x6f, 0xfd, 0x5f, 0x1d,
-	0xba, 0x7a, 0xfa, 0xc9, 0x9f, 0xe5, 0xe9, 0xe9, 0x19, 0xf9, 0x14, 0x56, 0xcb, 0xb1, 0xa4, 0x6c,
-	0x7c, 0xcc, 0xc8, 0x7c, 0x3a, 0x5b, 0x6c, 0x76, 0xaa, 0xa6, 0x72, 0x5e, 0xfb, 0xc0, 0x22, 0x1f,
-	0x03, 0x99, 0x12, 0x54, 0xbd, 0xd4, 0x4b, 0xc5, 0x3e, 0x81, 0x95, 0x29, 0x31, 0xf5, 0x74, 0x7d,
-	0xb9, 0xdc, 0x03, 0x58, 0x9b, 0x3e, 0x4e, 0x0f, 0x80, 0xbf, 0xff, 0x89, 0x6a, 0x02, 0xfd, 0x72,
-	0xb9, 0x7b, 0xb0, 0x54, 0xca, 0x5d, 0x62, 0x95, 0xf2, 0xa7, 0x1a, 0x0a, 0xbc, 0x0b, 0xbd, 0x52,
-	0x60, 0xa6, 0x35, 0xe6, 0x5d, 0xd5, 0xae, 0x49, 0xe6, 0x0f, 0x61, 0xb1, 0x64, 0x9e, 0x6d, 0x83,
-	0x76, 0xe5, 0x59, 0x8f, 0x22, 0x9f, 0xc1, 0xf2, 0x64, 0xff, 0x4b, 0x3e, 0x7f, 0xd5, 0x9d, 0x31,
-	0x19, 0xd7, 0x06, 0x9c, 0x1c, 0x38, 0xdb, 0x04, 0xc4, 0xbd, 0x30, 0x9c, 0x97, 0x92, 0x5b, 0x0f,
-	0xa1, 0xb9, 0x1b, 0x88, 0x40, 0x26, 0xc0, 0x7b, 0x30, 0xaf, 0x44, 0xc8, 0xfa, 0x85, 0x24, 0xb0,
-	0x37, 0xce, 0xc4, 0xd9, 0x66, 0xdb, 0x9d, 0x14, 0x01, 0xe7, 0xb5, 0xad, 0xdf, 0xd6, 0xa0, 0x63,
-	0x8a, 0x1e, 0x4e, 0x30, 0x1e, 0x00, 0x31, 0x70, 0x19, 0x35, 0x9c, 0x2c, 0xb9, 0xe7, 0x2a, 0xe3,
-	0x0c, 0x7f, 0x3c, 0x84, 0xd5, 0xaa, 0xa4, 0xb6, 0xfc, 0xab, 0xc9, 0xfe, 0x2d, 0x6c, 0x54, 0x65,
-	0x27, 0x86, 0x7d, 0x35, 0x71, 0x17, 0x7a, 0x86, 0xe9, 0x52, 0x85, 0xab, 0xce, 0xdd, 0x82, 0x25,
-	0x43, 0xbe, 0x42, 0xcd, 0xe9, 0xe8, 0x79, 0x00, 0x2b, 0x13, 0x86, 0xab, 0xd4, 0x3b, 0x1f, 0x17,
-	0x5b, 0xbf, 0xa8, 0x01, 0x94, 0x7d, 0x10, 0x27, 0x8f, 0x27, 0xdf, 0x3a, 0x48, 0x43, 0x16, 0xc4,
-	0x25, 0x8d, 0x5c, 0x73, 0x2f, 0xeb, 0x97, 0x36, 0x89, 0x7b, 0xa1, 0x38, 0xa2, 0x5a, 0x7f, 0x0f,
-	0x6b, 0x86, 0xf5, 0x09, 0x3d, 0xe1, 0x3f, 0x68, 0xaf, 0xc7, 0x60, 0x97, 0x21, 0x78, 0x5e, 0x35,
-	0xdb, 0xbd, 0xa4, 0x75, 0xbc, 0x42, 0xb3, 0xf5, 0x72, 0xb7, 0x69, 0xd5, 0xbe, 0xf7, 0x5e, 0xc3,
-	0x79, 0x8c, 0xe2, 0x8f, 0xfe, 0x10, 0x00, 0x00, 0xff, 0xff, 0x43, 0x73, 0x3b, 0xa5, 0x8c, 0x25,
-	0x00, 0x00,
+var fileDescriptor_types_86747089889d6035 = []byte{
+	// 3340 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe4, 0x39, 0xcb, 0x6e, 0x24, 0xc7,
+	0x91, 0xaa, 0x7e, 0xb0, 0xd9, 0xd1, 0x0f, 0x92, 0xc9, 0x57, 0x0d, 0xe7, 0x45, 0x95, 0x56, 0xd2,
+	0xec, 0x48, 0x2a, 0x4a, 0xd4, 0x48, 0x9a, 0x1d, 0x68, 0xb1, 0xe2, 0x90, 0x94, 0x86, 0x8b, 0xe1,
+	0xcc, 0x6c, 0x35, 0x47, 0xbb, 0xda, 0x4b, 0xa1, 0xba, 0x2a, 0xd9, 0x2c, 0x4c, 0xbd, 0x54, 0x99,
+	0xc5, 0xc7, 0x5e, 0x76, 0xb1, 0xdf, 0x60, 0xc3, 0x80, 0xef, 0xbe, 0x19, 0x30, 0xe0, 0x8b, 0x01,
+	0x03, 0x06, 0x7c, 0x32, 0xec, 0x8f, 0xf0, 0xc5, 0x80, 0x7e, 0xc3, 0x30, 0x32, 0x32, 0xb3, 0xba,
+	0x9a, 0x6c, 0x72, 0x46, 0x96, 0x60, 0xc8, 0xf0, 0xa5, 0x91, 0xf1, 0xcc, 0xac, 0x88, 0xc8, 0x88,
+	0xc8, 0x68, 0x58, 0x67, 0xb9, 0xbf, 0xe1, 0xe7, 0x67, 0x19, 0x4f, 0xe3, 0x34, 0x0d, 0x36, 0xf8,
+	0x59, 0x46, 0x99, 0xfc, 0xb5, 0xb3, 0x3c, 0xe5, 0xe9, 0xda, 0xed, 0x51, 0x9a, 0x8e, 0x22, 0xba,
+	0x81, 0xd0, 0xb0, 0x38, 0xdc, 0xe0, 0x61, 0x4c, 0x19, 0xf7, 0xe2, 0x4c, 0x31, 0x5c, 0x3f, 0xcf,
+	0x40, 0xe3, 0x8c, 0x9f, 0x49, 0xa2, 0xf5, 0xeb, 0x3a, 0xb4, 0x1f, 0x7a, 0x8c, 0xee, 0xa7, 0x01,
+	0x8d, 0x48, 0x1f, 0x6a, 0x61, 0x60, 0x1a, 0xeb, 0xc6, 0x9d, 0xb6, 0x53, 0x0b, 0x03, 0xb2, 0x04,
+	0x4d, 0x1e, 0xf2, 0x88, 0x9a, 0x35, 0x44, 0x49, 0x80, 0x98, 0xd0, 0xf2, 0xd3, 0x84, 0xd3, 0x84,
+	0x9b, 0x75, 0xc4, 0x6b, 0x10, 0x29, 0xb9, 0x77, 0x12, 0xd1, 0xdc, 0x6c, 0x28, 0x8a, 0x04, 0xc9,
+	0x47, 0x30, 0x9b, 0x15, 0x43, 0x37, 0xf0, 0x38, 0x35, 0x9b, 0xeb, 0xc6, 0x9d, 0xce, 0xe6, 0x9a,
+	0x2d, 0xcf, 0x65, 0xeb, 0x73, 0xd9, 0x07, 0xfa, 0xe0, 0x4e, 0x2b, 0x2b, 0x86, 0x3b, 0x1e, 0xa7,
+	0xe4, 0x9e, 0x50, 0x48, 0x3d, 0x4e, 0x03, 0x73, 0xe6, 0xe5, 0x52, 0x8a, 0x95, 0xac, 0xc0, 0x0c,
+	0x4b, 0x8b, 0xdc, 0xa7, 0x66, 0x0b, 0x4f, 0xa1, 0x20, 0x71, 0x3c, 0x7a, 0xea, 0xd3, 0x3c, 0xe3,
+	0xe6, 0xac, 0x3c, 0x9e, 0x02, 0x85, 0xc4, 0x71, 0x18, 0xd0, 0x94, 0x99, 0xed, 0xf5, 0xba, 0x90,
+	0x90, 0x90, 0xc0, 0x87, 0xb1, 0x37, 0xa2, 0xcc, 0x04, 0x89, 0x97, 0x90, 0x30, 0x4c, 0x14, 0x26,
+	0x2f, 0x98, 0xd9, 0x41, 0xb4, 0x04, 0x04, 0xb7, 0x57, 0xf0, 0xa3, 0x34, 0x37, 0xbb, 0x72, 0x5f,
+	0x09, 0x11, 0x02, 0x8d, 0xc8, 0x4b, 0x46, 0x66, 0x0f, 0xb1, 0xb8, 0x16, 0xbc, 0x27, 0x34, 0x1c,
+	0x1d, 0x71, 0xb3, 0xbf, 0x6e, 0xdc, 0x31, 0x1c, 0x05, 0x09, 0x5e, 0x96, 0x79, 0xb1, 0x39, 0x87,
+	0x58, 0x5c, 0x0b, 0xde, 0x20, 0x8d, 0xbd, 0x30, 0x31, 0xe7, 0xa5, 0x5e, 0x09, 0x59, 0xff, 0x67,
+	0x40, 0x7f, 0x40, 0x13, 0xe1, 0xf0, 0x84, 0x4b, 0x0f, 0xde, 0x80, 0x36, 0xd3, 0x18, 0x74, 0xa4,
+	0xe1, 0x8c, 0x11, 0xe4, 0x0d, 0xe8, 0xc5, 0x5e, 0xfe, 0x82, 0x72, 0x37, 0x8c, 0x33, 0xcf, 0xe7,
+	0xe8, 0x57, 0xc3, 0xe9, 0x4a, 0xe4, 0x1e, 0xe2, 0xc8, 0x3b, 0xb0, 0x50, 0x4a, 0xb8, 0x39, 0xcd,
+	0xa2, 0x90, 0x32, 0x74, 0xb4, 0xe1, 0xcc, 0x97, 0x04, 0x47, 0xe2, 0xad, 0x1c, 0x56, 0xb6, 0x31,
+	0x3a, 0x33, 0x2f, 0x09, 0xfd, 0xdd, 0x84, 0xe7, 0x67, 0x03, 0x69, 0xec, 0x32, 0x76, 0x8c, 0x6a,
+	0xec, 0xac, 0xc0, 0x4c, 0x4e, 0x47, 0x61, 0x9a, 0xa8, 0x90, 0x52, 0x50, 0xe5, 0x13, 0xeb, 0xd5,
+	0x4f, 0x14, 0xe6, 0xc8, 0x3c, 0x7e, 0xa4, 0xc2, 0x09, 0xd7, 0xd6, 0x1f, 0x0d, 0x58, 0x3e, 0xbf,
+	0xe9, 0x97, 0x29, 0xa7, 0x8c, 0xac, 0xc1, 0x6c, 0x42, 0x47, 0x1e, 0x0f, 0x8f, 0xe5, 0xb6, 0x4d,
+	0xa7, 0x84, 0x05, 0x2d, 0x4b, 0x59, 0x88, 0xb4, 0x9a, 0xa4, 0x69, 0x58, 0x58, 0x2d, 0x8c, 0xb3,
+	0x34, 0xe7, 0x9e, 0x8a, 0xe9, 0xa6, 0x33, 0x46, 0x48, 0x67, 0xbf, 0xa0, 0x01, 0x1e, 0xa2, 0xe9,
+	0x48, 0x40, 0xe8, 0x0b, 0x42, 0x26, 0x09, 0x4d, 0xa9, 0x4f, 0xc3, 0x64, 0x1e, 0xea, 0x51, 0x1a,
+	0x61, 0xc8, 0x36, 0x1d, 0xb1, 0x44, 0x6b, 0xa4, 0xa7, 0xa1, 0x8f, 0x11, 0xd9, 0x74, 0x24, 0x20,
+	0xb0, 0xcc, 0x3b, 0xa6, 0x01, 0x86, 0x63, 0xd3, 0x91, 0x80, 0xf5, 0x25, 0x98, 0xe7, 0x3f, 0x6f,
+	0x9f, 0x72, 0x2f, 0xf0, 0xb8, 0x27, 0x42, 0x38, 0xa6, 0x8c, 0x79, 0x23, 0x6d, 0x57, 0x0d, 0x92,
+	0x75, 0xe8, 0x04, 0x94, 0xf9, 0x79, 0x98, 0xf1, 0xb1, 0x79, 0xab, 0x28, 0xeb, 0x9b, 0x1a, 0x2c,
+	0x56, 0x14, 0x3b, 0xde, 0x09, 0xea, 0x16, 0x36, 0x7e, 0x11, 0x26, 0xfa, 0xde, 0xe3, 0xba, 0xe2,
+	0x8f, 0xda, 0x84, 0x3f, 0x36, 0xca, 0xab, 0x55, 0xc7, 0xfb, 0xb8, 0x6a, 0x4f, 0x77, 0x7f, 0x79,
+	0xe7, 0xca, 0x30, 0x68, 0x54, 0xc3, 0xe0, 0x75, 0xe8, 0x66, 0xc5, 0x30, 0x0a, 0xd9, 0x11, 0x0d,
+	0x5c, 0x8f, 0xa3, 0x01, 0xdb, 0x4e, 0xa7, 0xc4, 0x6d, 0xc9, 0x8b, 0x10, 0x15, 0x23, 0x34, 0x62,
+	0xdb, 0xc1, 0xb5, 0xca, 0x4f, 0xd2, 0x84, 0x22, 0x3f, 0xcd, 0x43, 0xbd, 0xc8, 0x23, 0x75, 0x99,
+	0xc5, 0x92, 0xdc, 0x04, 0x50, 0x59, 0x40, 0xa8, 0x6d, 0x23, 0xa1, 0xad, 0x30, 0x5b, 0x9c, 0xbc,
+	0x0b, 0xcd, 0x63, 0x11, 0x29, 0x26, 0xe0, 0xe9, 0x57, 0xec, 0xa9, 0x71, 0xe4, 0x48, 0x26, 0x91,
+	0xb4, 0x62, 0x65, 0x78, 0xb3, 0x83, 0x02, 0xd7, 0xec, 0xcb, 0x3c, 0xe3, 0x94, 0xac, 0xd6, 0x7f,
+	0xc2, 0x5c, 0x85, 0xeb, 0x73, 0x4a, 0x31, 0x91, 0xfa, 0x69, 0xa1, 0xae, 0x64, 0xd3, 0x91, 0x00,
+	0xb1, 0xa1, 0x95, 0x53, 0x56, 0x44, 0x9c, 0x99, 0xb5, 0xf5, 0xfa, 0x9d, 0xce, 0xe6, 0x92, 0x3d,
+	0xc5, 0x3f, 0x8e, 0x66, 0xb2, 0xfe, 0x77, 0x42, 0xf1, 0xb3, 0x94, 0x71, 0xf2, 0x08, 0x96, 0xfd,
+	0x31, 0xca, 0xcd, 0xbd, 0x13, 0x97, 0x0a, 0x21, 0xdc, 0xe8, 0x32, 0x85, 0x8b, 0xfe, 0x94, 0x28,
+	0xb0, 0xa0, 0xe5, 0xe5, 0x3c, 0xf4, 0x55, 0xb6, 0xef, 0x6c, 0xce, 0xda, 0x5b, 0x12, 0x76, 0x34,
+	0xc1, 0x3a, 0x81, 0xe5, 0x27, 0x5e, 0x4c, 0x83, 0xdd, 0x84, 0x87, 0xfc, 0xec, 0xa9, 0xef, 0x17,
+	0x79, 0x4e, 0x13, 0x9f, 0x12, 0x0b, 0x9a, 0x91, 0x37, 0xa4, 0x11, 0x6e, 0xdb, 0xdf, 0xec, 0xda,
+	0x15, 0x36, 0x47, 0x92, 0x30, 0xd8, 0xb9, 0x97, 0xcb, 0xa4, 0xd3, 0x73, 0x24, 0x20, 0x5c, 0x48,
+	0x93, 0x00, 0xa3, 0xa9, 0xe7, 0x88, 0xa5, 0x70, 0x3c, 0xa7, 0xa7, 0x5c, 0x5f, 0x79, 0xb1, 0xb6,
+	0xfe, 0xd4, 0x00, 0x32, 0x56, 0x19, 0x52, 0x26, 0xb3, 0x9d, 0x09, 0x2d, 0x76, 0x16, 0x0f, 0xd3,
+	0x88, 0x99, 0x06, 0x26, 0x62, 0x0d, 0x12, 0x1b, 0x66, 0x3c, 0xc6, 0x68, 0x69, 0xd9, 0x15, 0x7b,
+	0xea, 0xc1, 0x1d, 0xc5, 0x45, 0xde, 0x87, 0x56, 0x46, 0x73, 0x96, 0x26, 0x22, 0xd5, 0x5d, 0x25,
+	0xa0, 0xd9, 0xc8, 0x3d, 0x68, 0xfb, 0x69, 0x2c, 0x6c, 0x48, 0x99, 0xd9, 0xb8, 0x52, 0x66, 0xcc,
+	0x48, 0x3e, 0x85, 0x5e, 0x9a, 0x8f, 0xbc, 0x24, 0xfc, 0x1f, 0x4f, 0xdc, 0x49, 0x66, 0x36, 0xaf,
+	0x94, 0x9c, 0x64, 0x16, 0x7b, 0x46, 0xa9, 0xaf, 0x24, 0x67, 0xae, 0xde, 0xb3, 0x64, 0x14, 0x52,
+	0xf4, 0xd4, 0x3f, 0xf2, 0x12, 0x51, 0xc7, 0x5a, 0x57, 0x4b, 0x95, 0x8c, 0xe4, 0x2e, 0x34, 0xe2,
+	0x90, 0xf9, 0xe6, 0xec, 0x95, 0x02, 0xc8, 0x83, 0x2e, 0xf3, 0x46, 0xba, 0x78, 0xe2, 0x9a, 0xec,
+	0x43, 0x1f, 0x6d, 0xeb, 0x8a, 0x72, 0x81, 0x07, 0x06, 0xd4, 0xf4, 0x96, 0x7d, 0xd1, 0x91, 0xf6,
+	0x96, 0xe0, 0xdc, 0x57, 0x8c, 0x32, 0x48, 0x7b, 0x5e, 0x15, 0x47, 0x6e, 0x43, 0x47, 0x66, 0x14,
+	0x17, 0x83, 0xa3, 0x83, 0xc1, 0x01, 0x12, 0x75, 0x40, 0x4f, 0xf9, 0xda, 0x67, 0x40, 0x2e, 0x6a,
+	0x11, 0xe1, 0xf5, 0x82, 0x9e, 0xa9, 0xd4, 0x26, 0x96, 0x22, 0x0c, 0x8f, 0xbd, 0xa8, 0xd0, 0x45,
+	0x40, 0x02, 0x0f, 0x6a, 0xf7, 0x0d, 0xeb, 0xf7, 0x06, 0xb4, 0x54, 0xc8, 0x93, 0x5b, 0xd0, 0x18,
+	0x7a, 0x8c, 0xaa, 0x6b, 0x04, 0x76, 0xd9, 0x23, 0x39, 0x88, 0x27, 0xef, 0x55, 0xeb, 0xac, 0xbc,
+	0x2f, 0x73, 0xf6, 0x64, 0x2d, 0xae, 0x16, 0xde, 0x07, 0xd0, 0x4f, 0xc4, 0x57, 0x8b, 0xcb, 0x89,
+	0x9f, 0xad, 0xd2, 0xe7, 0xe2, 0x14, 0x63, 0x38, 0xbd, 0xa4, 0x8a, 0x23, 0x9b, 0x00, 0x98, 0x34,
+	0x5d, 0xcc, 0x43, 0x8d, 0xcb, 0xe5, 0xda, 0xc8, 0xb6, 0x23, 0x52, 0xd0, 0xef, 0x0c, 0xe8, 0x3c,
+	0x67, 0x34, 0xdf, 0x57, 0xc5, 0xe1, 0x07, 0xf4, 0x39, 0x04, 0x1a, 0x05, 0x2b, 0x1b, 0x44, 0x5c,
+	0x57, 0xab, 0x5a, 0x73, 0xa2, 0xaa, 0x59, 0x3b, 0xb0, 0xf0, 0x30, 0xe4, 0x31, 0x3d, 0xad, 0x7e,
+	0xcd, 0x06, 0x74, 0x85, 0x98, 0x5b, 0xad, 0x84, 0x9d, 0xcd, 0xae, 0x5d, 0xe1, 0x71, 0x3a, 0xc5,
+	0x18, 0xb0, 0xbe, 0x31, 0x60, 0xf1, 0x80, 0x46, 0x74, 0x94, 0x7b, 0xf1, 0x77, 0x51, 0x44, 0xde,
+	0x84, 0xbe, 0xca, 0x30, 0xee, 0xd0, 0xf3, 0x5f, 0x14, 0x19, 0xa6, 0x97, 0xb6, 0xd3, 0x53, 0xd8,
+	0x87, 0x88, 0xc4, 0x2a, 0x74, 0xe4, 0x25, 0x09, 0x8d, 0xdc, 0x30, 0xd0, 0x0d, 0x85, 0xc2, 0xec,
+	0x05, 0xe4, 0x3e, 0x98, 0x9a, 0xcc, 0x8a, 0xa1, 0x28, 0xd0, 0x43, 0x9a, 0xbb, 0xb2, 0x40, 0xc8,
+	0x1e, 0x63, 0x45, 0xd1, 0x07, 0x25, 0x79, 0x1b, 0x2b, 0xc6, 0x4d, 0x00, 0x75, 0x56, 0xa1, 0x58,
+	0xd8, 0xaa, 0xee, 0xb4, 0x15, 0x66, 0x2f, 0xb0, 0x52, 0x30, 0xb7, 0xd3, 0x58, 0xb8, 0x08, 0xd9,
+	0x45, 0x6b, 0x3c, 0x48, 0xbc, 0x8c, 0x1d, 0xa5, 0xa2, 0xd8, 0x34, 0x84, 0xf7, 0xd4, 0x37, 0x5e,
+	0xd5, 0x47, 0x23, 0x9f, 0xe8, 0x15, 0x7d, 0xa9, 0x4b, 0x9d, 0x4c, 0xde, 0x97, 0xae, 0x5f, 0xd9,
+	0xc0, 0xfa, 0x55, 0x0d, 0x5a, 0x6a, 0x47, 0x51, 0x9c, 0xf7, 0x76, 0xca, 0xc7, 0xc3, 0x8e, 0x70,
+	0xb4, 0xf0, 0xbc, 0x6a, 0x20, 0x70, 0x2d, 0x1a, 0xad, 0x8c, 0xe6, 0xb1, 0x27, 0xfa, 0x65, 0xd5,
+	0xe9, 0x8d, 0x11, 0xe4, 0x56, 0x59, 0xbc, 0x9f, 0x1f, 0x6c, 0xa3, 0x25, 0x1a, 0x4e, 0x05, 0x23,
+	0xc2, 0x24, 0xa0, 0x11, 0xe5, 0xaa, 0xe3, 0x9a, 0x75, 0x34, 0x88, 0x8d, 0x40, 0xc6, 0xb0, 0x95,
+	0x6e, 0x3a, 0x62, 0x29, 0xae, 0x79, 0x90, 0x9e, 0x24, 0x0c, 0x1b, 0xe9, 0xa6, 0x23, 0x01, 0xdd,
+	0xca, 0x31, 0x6c, 0xa4, 0x67, 0x65, 0x2b, 0x87, 0x21, 0x39, 0x4c, 0x83, 0x33, 0xdd, 0x6a, 0x88,
+	0x35, 0x36, 0xd2, 0xc5, 0x30, 0xa7, 0x41, 0x10, 0x72, 0xf5, 0x8c, 0x18, 0x23, 0x44, 0xb1, 0xd4,
+	0x9d, 0xb1, 0xcc, 0x8f, 0xb3, 0xb6, 0x32, 0x83, 0xa3, 0x09, 0x93, 0xad, 0x78, 0xfb, 0x5c, 0x2b,
+	0x6e, 0xfd, 0xa4, 0x05, 0x73, 0x0e, 0x2a, 0x13, 0x75, 0xbc, 0x7c, 0x7e, 0x4d, 0x58, 0x70, 0xd2,
+	0x1e, 0xb5, 0x0b, 0xf6, 0x28, 0x7b, 0xab, 0x7a, 0xb5, 0xb7, 0x9a, 0x87, 0xfa, 0x73, 0xe7, 0xb1,
+	0xba, 0x5f, 0xf5, 0xc2, 0x79, 0x5c, 0x79, 0x97, 0x34, 0x27, 0xde, 0x25, 0xd7, 0xc5, 0x09, 0xa3,
+	0x43, 0x99, 0x51, 0xe5, 0xc7, 0xcf, 0x0a, 0x84, 0xc8, 0xa7, 0xa5, 0xfb, 0x3a, 0x97, 0xb9, 0xaf,
+	0x7b, 0xde, 0x7d, 0x15, 0xf7, 0xf4, 0xbe, 0x4f, 0xf7, 0xbc, 0x0e, 0xdd, 0xa4, 0x88, 0x5d, 0x15,
+	0x78, 0xcc, 0x5c, 0x40, 0x91, 0x4e, 0x52, 0xc4, 0xca, 0xe6, 0x28, 0xc8, 0xfc, 0x34, 0xa7, 0x26,
+	0x51, 0x8d, 0xb4, 0x00, 0xaa, 0x5e, 0x5a, 0xbc, 0xcc, 0x4b, 0xe3, 0x46, 0x77, 0x69, 0xa2, 0xd1,
+	0x5d, 0x87, 0xce, 0x40, 0xbb, 0x7b, 0x6f, 0xc7, 0x5c, 0x96, 0x0d, 0x2a, 0x1b, 0xa3, 0x84, 0xe4,
+	0x51, 0x18, 0x04, 0x34, 0x31, 0x57, 0xf0, 0xb4, 0x0a, 0x12, 0xf8, 0x28, 0xf5, 0xc5, 0xb3, 0x60,
+	0x55, 0xe2, 0x25, 0x24, 0x8c, 0xc7, 0x8f, 0x8a, 0x78, 0x98, 0x78, 0x61, 0x64, 0x9a, 0xd2, 0x78,
+	0x25, 0x42, 0x48, 0x8d, 0xc2, 0x28, 0xa0, 0x81, 0x79, 0x0d, 0x3f, 0x41, 0x41, 0xe4, 0x9f, 0xa0,
+	0x17, 0x84, 0x8c, 0x87, 0xc9, 0xa8, 0xc0, 0xce, 0xd8, 0x5c, 0x43, 0xc9, 0x49, 0xa4, 0x78, 0x8c,
+	0x30, 0x1e, 0xfa, 0x2f, 0x42, 0x1a, 0x98, 0xd7, 0x71, 0xd7, 0x12, 0x26, 0x1f, 0xc2, 0x4a, 0xc8,
+	0x5c, 0x79, 0x6c, 0x37, 0xa6, 0x41, 0xe8, 0xb9, 0xea, 0x8b, 0x6f, 0x20, 0xe7, 0x62, 0xc8, 0x64,
+	0x20, 0xee, 0x0b, 0xda, 0x8e, 0xfc, 0xfc, 0xa7, 0xb0, 0x32, 0x71, 0xfb, 0x5d, 0xa6, 0xf2, 0x88,
+	0x6a, 0x20, 0xae, 0xd9, 0x97, 0x25, 0x1a, 0x67, 0xa9, 0x9a, 0x21, 0xca, 0xf4, 0x73, 0x0d, 0x66,
+	0x8f, 0x52, 0xee, 0xe6, 0x1e, 0xa7, 0xd8, 0xaf, 0x1b, 0x4e, 0x4b, 0x30, 0x8b, 0x47, 0xfe, 0xc4,
+	0x55, 0x6b, 0x9f, 0xbf, 0x6a, 0xab, 0xd0, 0x0a, 0x99, 0x2b, 0xc2, 0x12, 0x9b, 0xf6, 0x59, 0x67,
+	0x26, 0x64, 0x03, 0x1a, 0x1d, 0x62, 0x80, 0xb2, 0xc3, 0x13, 0xf3, 0x26, 0x62, 0x71, 0x2d, 0x22,
+	0x3a, 0x64, 0x6e, 0x91, 0xe1, 0x9c, 0xe1, 0x96, 0x34, 0x44, 0xc8, 0x9e, 0x23, 0x8c, 0xc9, 0x5b,
+	0xab, 0x75, 0x43, 0x3f, 0x4d, 0xcc, 0xdb, 0xd2, 0x96, 0x63, 0xaf, 0xfa, 0x69, 0x62, 0xfd, 0xd9,
+	0x00, 0x18, 0xdf, 0xcc, 0xbf, 0xf3, 0x4e, 0x80, 0x7c, 0x00, 0x1d, 0xf5, 0xc5, 0x59, 0xca, 0xb8,
+	0x9a, 0xbd, 0xcc, 0xdb, 0xe7, 0x52, 0x8f, 0x03, 0x79, 0x89, 0xb0, 0x7e, 0x0c, 0xd0, 0xdb, 0x3d,
+	0xe5, 0x34, 0x09, 0x68, 0x70, 0x70, 0x42, 0x29, 0x27, 0x6f, 0xc3, 0xdc, 0xa1, 0x77, 0x9c, 0x16,
+	0x79, 0xc8, 0xa9, 0x5b, 0x7d, 0xc8, 0xf4, 0x4b, 0xb4, 0xac, 0x4f, 0xaf, 0x43, 0xf7, 0x30, 0x8c,
+	0x38, 0xcd, 0xdd, 0x88, 0x1e, 0xd3, 0x48, 0xbf, 0x42, 0x25, 0xee, 0xb1, 0x40, 0x91, 0x65, 0x98,
+	0x09, 0x03, 0x97, 0xf1, 0x5c, 0x67, 0xad, 0x30, 0x18, 0xf0, 0x9c, 0xdc, 0x83, 0xd5, 0x30, 0xc1,
+	0x71, 0xc3, 0x99, 0xcb, 0x53, 0x97, 0xf9, 0x39, 0xa5, 0x89, 0x8b, 0x19, 0x48, 0x66, 0xb2, 0xc5,
+	0x30, 0x71, 0x04, 0xf5, 0x20, 0x1d, 0x20, 0x4d, 0x7c, 0x36, 0xf9, 0x04, 0xae, 0x4d, 0x48, 0x71,
+	0x8f, 0x17, 0xcc, 0x55, 0xfa, 0x65, 0xb2, 0x5b, 0x1a, 0xcb, 0x21, 0x75, 0x0f, 0xb7, 0xfb, 0x70,
+	0x72, 0x3b, 0xec, 0x02, 0x94, 0x98, 0x4c, 0x84, 0xa4, 0x14, 0x13, 0xcd, 0x80, 0x14, 0x7a, 0x0b,
+	0xe6, 0x42, 0xe6, 0x7e, 0x5d, 0xa4, 0x9c, 0xaa, 0xad, 0x54, 0x65, 0xe8, 0x85, 0xec, 0x3f, 0x04,
+	0x56, 0xee, 0x50, 0xce, 0x7b, 0x66, 0x2b, 0xf3, 0x9e, 0xf7, 0x80, 0x64, 0x29, 0x63, 0xe1, 0x30,
+	0x3a, 0x73, 0x19, 0x4d, 0xd4, 0x20, 0xa2, 0x8d, 0x21, 0xba, 0xa0, 0x29, 0x03, 0x4d, 0x10, 0xed,
+	0xae, 0xdc, 0x47, 0x5a, 0x1b, 0xd0, 0xda, 0x80, 0x28, 0x69, 0xe9, 0xdb, 0xc2, 0xaf, 0xe2, 0xf4,
+	0x92, 0xa1, 0x23, 0x19, 0x10, 0x25, 0x19, 0xde, 0x80, 0x5e, 0x4e, 0xb9, 0x70, 0x9f, 0x62, 0xe9,
+	0xca, 0xfa, 0xad, 0x90, 0x25, 0x93, 0x6a, 0x80, 0x54, 0x8f, 0xde, 0xc3, 0x76, 0xa6, 0x2b, 0x7b,
+	0x1e, 0xd5, 0x7a, 0x8f, 0xc7, 0x69, 0xfd, 0x89, 0x71, 0xda, 0x5d, 0x58, 0x90, 0x85, 0xc4, 0xad,
+	0x3c, 0xb9, 0xe7, 0x90, 0x65, 0x4e, 0x12, 0xb6, 0xcb, 0x87, 0xf7, 0x3d, 0x58, 0x51, 0xbc, 0x01,
+	0x3d, 0xf4, 0x8a, 0x88, 0xbb, 0x59, 0x9e, 0x1e, 0x86, 0x11, 0x55, 0xa9, 0x7e, 0x49, 0x52, 0x77,
+	0x24, 0xf1, 0x99, 0xa4, 0x91, 0x7f, 0x83, 0x1b, 0xd3, 0xa5, 0x5c, 0x9c, 0xc3, 0x61, 0x25, 0x98,
+	0x75, 0xae, 0x4d, 0x93, 0xdd, 0x13, 0x0c, 0x95, 0x6d, 0x0f, 0xd3, 0x28, 0x4a, 0x4f, 0x68, 0xce,
+	0x94, 0x35, 0x64, 0xa1, 0x50, 0xdb, 0x7e, 0xae, 0x89, 0xd2, 0x2a, 0xef, 0xc3, 0x92, 0x96, 0xca,
+	0x43, 0x9a, 0x04, 0x5a, 0x66, 0x11, 0x65, 0x88, 0x92, 0x91, 0x24, 0x29, 0x61, 0x41, 0x4f, 0x49,
+	0xa8, 0x20, 0x92, 0xc5, 0xa4, 0x23, 0x91, 0x32, 0x7a, 0x6e, 0x83, 0x02, 0x5d, 0x0c, 0x0e, 0x59,
+	0x51, 0x40, 0xa2, 0x1e, 0x8b, 0x10, 0x79, 0x1b, 0xe6, 0x34, 0x83, 0x7a, 0xbb, 0x61, 0x65, 0x69,
+	0x3b, 0x7d, 0xc5, 0xa4, 0xb0, 0x15, 0x4d, 0x78, 0x3f, 0x56, 0xab, 0x9a, 0xf0, 0x5a, 0xbc, 0x0b,
+	0xea, 0x90, 0x13, 0xf7, 0x48, 0xd6, 0x9c, 0x79, 0x49, 0xa9, 0x5c, 0xa2, 0xcf, 0xe0, 0xa6, 0xe2,
+	0x9e, 0xb0, 0xae, 0x5b, 0xe4, 0x91, 0x7b, 0xc4, 0x79, 0x86, 0x15, 0xa9, 0xad, 0xcd, 0x5c, 0xb5,
+	0xef, 0xf3, 0x3c, 0x7a, 0xc4, 0x79, 0x46, 0x36, 0x61, 0x59, 0xef, 0x87, 0x37, 0x80, 0x6a, 0x8b,
+	0xad, 0xa1, 0xc5, 0x16, 0xd5, 0x96, 0x8a, 0x26, 0x4d, 0x26, 0x9a, 0x1b, 0x8f, 0xd3, 0x51, 0x9a,
+	0x8b, 0x24, 0x78, 0x1d, 0xe3, 0xae, 0x82, 0xc1, 0x72, 0x99, 0x17, 0x89, 0x8f, 0xc3, 0x5f, 0x59,
+	0xa9, 0xc6, 0x08, 0x91, 0xe8, 0x0f, 0x8b, 0x28, 0x92, 0xad, 0xcb, 0x4d, 0xd9, 0xba, 0x08, 0x04,
+	0xb6, 0x2e, 0xff, 0x0c, 0xf3, 0x2a, 0xca, 0x69, 0xa0, 0x2f, 0xaa, 0x2c, 0x06, 0x73, 0x25, 0x5e,
+	0x5d, 0xd5, 0xbb, 0xb0, 0xa0, 0x6f, 0x89, 0x7a, 0x5e, 0x86, 0x81, 0x2a, 0x0b, 0x9a, 0x57, 0x0e,
+	0xb4, 0xf6, 0x02, 0xeb, 0x0f, 0x06, 0x34, 0x65, 0x3e, 0xfc, 0x01, 0xd5, 0x84, 0x8f, 0xa0, 0x4f,
+	0x55, 0xae, 0x76, 0xf1, 0xb8, 0xaa, 0x2e, 0xf4, 0xed, 0x89, 0x14, 0xee, 0xf4, 0x68, 0x15, 0xb4,
+	0x7e, 0xd3, 0x80, 0xb9, 0xf2, 0x40, 0xdb, 0x5e, 0x12, 0x44, 0xf4, 0xc2, 0xf4, 0xff, 0x5f, 0x00,
+	0x70, 0x46, 0xe3, 0xe2, 0xbb, 0xa1, 0xf6, 0xd2, 0x77, 0x43, 0x1b, 0xb9, 0x05, 0x2c, 0x9c, 0x9b,
+	0x53, 0x96, 0x46, 0x05, 0x46, 0xb1, 0x4c, 0xf4, 0x15, 0x8c, 0xe8, 0xd7, 0xf0, 0x79, 0xaf, 0xa7,
+	0x82, 0x08, 0x60, 0xa3, 0xa7, 0xc6, 0xb5, 0x2e, 0x2b, 0x62, 0x4c, 0xe0, 0x86, 0xd3, 0xd1, 0xb8,
+	0x41, 0x11, 0x8b, 0x1a, 0x5e, 0xb2, 0xc8, 0x10, 0x93, 0x43, 0xd6, 0x9e, 0xc6, 0x96, 0x75, 0x48,
+	0x0f, 0x77, 0x51, 0x53, 0x4b, 0x6a, 0xd2, 0x38, 0xa5, 0xa9, 0x64, 0x91, 0x9a, 0xe4, 0x10, 0xb6,
+	0xa7, 0xb1, 0x65, 0x86, 0x1c, 0x4f, 0xc3, 0xbd, 0xe3, 0x91, 0xea, 0xe4, 0xbb, 0x25, 0x72, 0xeb,
+	0x78, 0x24, 0xd2, 0x4c, 0x9a, 0xd1, 0xc4, 0xad, 0x72, 0xd2, 0x5c, 0x64, 0x28, 0x40, 0xee, 0x25,
+	0x41, 0x1d, 0x8c, 0x25, 0x90, 0x26, 0xa4, 0x8e, 0xc2, 0xd1, 0xd1, 0x14, 0xa9, 0x8e, 0x94, 0x12,
+	0xd4, 0x0b, 0x52, 0x9b, 0xb0, 0x1c, 0xa5, 0x27, 0x53, 0x84, 0xba, 0x28, 0xb4, 0x18, 0xa5, 0x27,
+	0x17, 0x64, 0x3e, 0x86, 0x55, 0x3f, 0x4a, 0x19, 0x9d, 0x22, 0xd5, 0x43, 0xa9, 0x65, 0x24, 0x5f,
+	0x90, 0x33, 0xa1, 0x25, 0x7b, 0xa9, 0x00, 0x53, 0xff, 0xac, 0xa3, 0x41, 0x6b, 0x17, 0xba, 0x38,
+	0x6d, 0x61, 0x9f, 0x63, 0x69, 0xc7, 0x27, 0x86, 0x9c, 0xb7, 0x35, 0xe4, 0x1f, 0x25, 0x6a, 0xae,
+	0x76, 0x13, 0xc0, 0x8b, 0x22, 0x57, 0xd1, 0xe4, 0xab, 0xad, 0xed, 0x45, 0x91, 0x14, 0xb6, 0x62,
+	0x58, 0xdd, 0x1a, 0x8d, 0x72, 0xf4, 0x5d, 0x9a, 0xc8, 0x38, 0x54, 0x1a, 0x27, 0x43, 0xc8, 0xb8,
+	0x10, 0x42, 0x9b, 0x20, 0x27, 0x44, 0xcc, 0x95, 0xdd, 0x85, 0x0a, 0xd0, 0x9e, 0x5d, 0x3d, 0x97,
+	0xd3, 0xf5, 0x2a, 0x90, 0xf5, 0x73, 0x03, 0xcc, 0xf2, 0x23, 0x1f, 0x85, 0x8c, 0xa7, 0x79, 0xe8,
+	0x3b, 0xf4, 0xeb, 0x82, 0x32, 0x7c, 0x20, 0x1f, 0xe6, 0x69, 0xfc, 0x2a, 0x0f, 0x64, 0xc1, 0x47,
+	0xee, 0x42, 0x8d, 0xa7, 0xaf, 0x70, 0x2d, 0x6a, 0x3c, 0xfd, 0xeb, 0xee, 0x83, 0xf5, 0x23, 0x03,
+	0xe6, 0xfe, 0x96, 0xa7, 0x7c, 0x13, 0x66, 0x94, 0x2d, 0x1b, 0xd3, 0x6c, 0xa9, 0x88, 0xd6, 0x17,
+	0xd0, 0x44, 0x7c, 0xf9, 0x44, 0x34, 0x2a, 0x4f, 0x44, 0xd1, 0x2c, 0xe0, 0x2c, 0x44, 0xff, 0x71,
+	0x20, 0x21, 0xc1, 0xeb, 0xa7, 0x81, 0x7e, 0xaa, 0xe2, 0xda, 0x7a, 0x17, 0x00, 0x15, 0xed, 0x71,
+	0x1a, 0x33, 0x72, 0xab, 0x0c, 0x21, 0x03, 0x9f, 0x18, 0x33, 0x72, 0x77, 0x1d, 0x4a, 0x56, 0x0a,
+	0xcd, 0xad, 0xd1, 0x68, 0x0f, 0x07, 0xc4, 0x67, 0xd4, 0xcb, 0x55, 0x0b, 0x8a, 0x6b, 0x61, 0xc0,
+	0x38, 0x4d, 0xf8, 0x91, 0x9e, 0xea, 0x21, 0x20, 0xde, 0x9d, 0x81, 0x77, 0xa6, 0x06, 0x30, 0x62,
+	0x29, 0x64, 0x8f, 0xd2, 0x22, 0x57, 0x63, 0x16, 0x5c, 0x8b, 0x23, 0xc7, 0x61, 0x52, 0xa8, 0x7f,
+	0x26, 0x9b, 0x8e, 0x82, 0xac, 0x5f, 0x18, 0xb0, 0x70, 0x21, 0x3a, 0xc9, 0x4a, 0x99, 0x25, 0xf1,
+	0x88, 0xe2, 0x44, 0xfa, 0xbf, 0x52, 0xe9, 0xc2, 0x5a, 0x35, 0xa5, 0xbd, 0xcc, 0xf1, 0x7d, 0xa8,
+	0x65, 0xc7, 0x78, 0x9a, 0xba, 0x53, 0xcb, 0x8e, 0x05, 0x9c, 0x1c, 0xab, 0xc1, 0x4e, 0x2d, 0x41,
+	0x38, 0x63, 0x98, 0xe3, 0x0c, 0xa7, 0x96, 0x31, 0xa4, 0x33, 0x95, 0xce, 0x6a, 0x09, 0x23, 0x5d,
+	0x30, 0x3c, 0xf5, 0x9e, 0x32, 0x3c, 0xeb, 0xff, 0xeb, 0xd0, 0x79, 0x56, 0x0c, 0xa3, 0xd0, 0xff,
+	0x7e, 0xfe, 0xcf, 0xfd, 0x47, 0xf9, 0xd7, 0x76, 0xda, 0xbf, 0xab, 0xe4, 0x63, 0x00, 0xac, 0x99,
+	0x0c, 0x1b, 0xe3, 0x40, 0xfd, 0x61, 0x54, 0x31, 0xef, 0x6e, 0x49, 0x75, 0x2a, 0x9c, 0xd6, 0x06,
+	0x2c, 0x4f, 0x65, 0xaa, 0xe4, 0x48, 0xa3, 0x9a, 0x23, 0xef, 0xfe, 0xd4, 0x80, 0x4e, 0x65, 0xba,
+	0x4e, 0xe6, 0xa1, 0xbb, 0x35, 0x18, 0xec, 0x1e, 0xb8, 0xbb, 0x4f, 0x0e, 0xf6, 0x0e, 0xbe, 0x9a,
+	0x7f, 0x8d, 0x2c, 0x40, 0xef, 0xd9, 0xae, 0x33, 0x78, 0xfa, 0x44, 0xa3, 0x0c, 0xb2, 0x08, 0x73,
+	0x8f, 0x9f, 0x6e, 0x6f, 0x1d, 0xec, 0x8d, 0x91, 0x35, 0x42, 0xa0, 0xbf, 0xfd, 0x74, 0xff, 0xd9,
+	0xd6, 0x93, 0xaf, 0x34, 0xae, 0x2e, 0x18, 0x77, 0xff, 0x6b, 0xfb, 0xd1, 0xd6, 0x93, 0x2f, 0x76,
+	0x35, 0xb2, 0x41, 0xe6, 0xa0, 0xb3, 0xbf, 0x37, 0xd8, 0xd6, 0x88, 0x26, 0x59, 0x85, 0xc5, 0xa7,
+	0xce, 0x17, 0x5b, 0x4f, 0xf6, 0xfe, 0x7b, 0x42, 0xe5, 0xcc, 0xe6, 0x2f, 0x1b, 0xd0, 0x53, 0xd3,
+	0x4f, 0xf6, 0x2c, 0x4f, 0x4f, 0xcf, 0xc8, 0x27, 0xb0, 0x54, 0x8e, 0x25, 0x45, 0xe3, 0xa3, 0x47,
+	0xe6, 0x93, 0xd9, 0x62, 0xad, 0x5b, 0x35, 0x95, 0xf5, 0xda, 0xfb, 0x06, 0xf9, 0x08, 0xc8, 0x84,
+	0xa0, 0xec, 0xa5, 0x5e, 0x2a, 0xf6, 0x31, 0x2c, 0x4e, 0x88, 0xc9, 0xa7, 0xeb, 0xcb, 0xe5, 0xee,
+	0xc3, 0xf2, 0xe4, 0x76, 0x6a, 0x00, 0xfc, 0xed, 0x77, 0x94, 0x13, 0xe8, 0x97, 0xcb, 0x6d, 0xc0,
+	0x7c, 0x29, 0x77, 0x89, 0x55, 0xca, 0x3f, 0xd5, 0x50, 0xe0, 0x1d, 0xe8, 0x97, 0x02, 0x53, 0xad,
+	0x31, 0x63, 0xcb, 0x76, 0x4d, 0x30, 0x7f, 0x00, 0x73, 0x25, 0xf3, 0x74, 0x1b, 0x74, 0x2a, 0xcf,
+	0x7a, 0x14, 0xf9, 0x14, 0x16, 0xc6, 0xfa, 0x2f, 0xf9, 0xfc, 0x25, 0x7b, 0xca, 0x64, 0x5c, 0x19,
+	0x70, 0xbc, 0xe1, 0x74, 0x13, 0x10, 0xfb, 0xc2, 0x70, 0x5e, 0x48, 0x6e, 0x3e, 0x80, 0xd6, 0x8e,
+	0xc7, 0x3d, 0x91, 0x00, 0x37, 0x60, 0x46, 0x8a, 0x90, 0x95, 0x0b, 0x49, 0x60, 0x37, 0xce, 0xf8,
+	0xd9, 0x5a, 0xc7, 0x1e, 0x17, 0x01, 0xeb, 0xb5, 0xcd, 0x9f, 0xd5, 0xa1, 0xab, 0x8b, 0x1e, 0x4e,
+	0x30, 0xee, 0x03, 0xd1, 0x70, 0x19, 0x35, 0x8c, 0xcc, 0xdb, 0xe7, 0x2a, 0xe3, 0x14, 0x7f, 0x3c,
+	0x80, 0xa5, 0xaa, 0xa4, 0xb2, 0xfc, 0xab, 0xc9, 0xfe, 0x2b, 0xac, 0x56, 0x65, 0xc7, 0x86, 0x7d,
+	0x35, 0xf1, 0x87, 0x70, 0x63, 0xe2, 0xd0, 0xca, 0xc4, 0xfa, 0x26, 0xbd, 0x92, 0x0e, 0x1b, 0xfa,
+	0x9a, 0xe9, 0xd2, 0x8f, 0xae, 0x06, 0xc8, 0x26, 0xcc, 0x6b, 0xf2, 0x15, 0x9f, 0x3a, 0x19, 0x81,
+	0xf7, 0x61, 0x71, 0xcc, 0x70, 0xd5, 0x27, 0x9e, 0x8f, 0xad, 0xcd, 0xdf, 0xd6, 0x00, 0xca, 0x5e,
+	0x8a, 0x91, 0xc7, 0x63, 0x7b, 0x0d, 0x52, 0x3f, 0xf4, 0xa2, 0x92, 0x46, 0xae, 0xd9, 0x97, 0xf5,
+	0x5c, 0x6b, 0xc4, 0xbe, 0x50, 0x60, 0xf1, 0x58, 0xff, 0x0e, 0xcb, 0x9a, 0xf5, 0x09, 0x3d, 0x61,
+	0xdf, 0x49, 0xd7, 0x63, 0x30, 0xcb, 0x30, 0x3e, 0x7f, 0x34, 0xd3, 0xbe, 0xa4, 0xfd, 0xbc, 0xe2,
+	0x64, 0x2b, 0xa5, 0xb6, 0xc9, 0xa3, 0x7d, 0x6b, 0x5d, 0xc3, 0x19, 0xbc, 0x09, 0x1f, 0xfe, 0x25,
+	0x00, 0x00, 0xff, 0xff, 0x1e, 0x4d, 0xcc, 0xde, 0xe5, 0x25, 0x00, 0x00,
 }

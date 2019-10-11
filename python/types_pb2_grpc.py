@@ -272,6 +272,11 @@ class HistoricDataStub(object):
         request_serializer=types__pb2.HistoricRequest.SerializeToString,
         response_deserializer=types__pb2.PublicModel.FromString,
         )
+    self.HistoricBaseTelegramMessages = channel.unary_stream(
+        '/HistoricData/HistoricBaseTelegramMessages',
+        request_serializer=types__pb2.HistoricRequest.SerializeToString,
+        response_deserializer=types__pb2.PublicModel.FromString,
+        )
     self.HistoricTweets = channel.unary_stream(
         '/HistoricData/HistoricTweets',
         request_serializer=types__pb2.HistoricRequest.SerializeToString,
@@ -315,6 +320,13 @@ class HistoricDataServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def HistoricBaseTelegramMessages(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def HistoricTweets(self, request, context):
     # missing associated documentation comment in .proto file
     pass
@@ -351,6 +363,11 @@ def add_HistoricDataServicer_to_server(servicer, server):
       ),
       'HistoricBaseRedditPosts': grpc.unary_stream_rpc_method_handler(
           servicer.HistoricBaseRedditPosts,
+          request_deserializer=types__pb2.HistoricRequest.FromString,
+          response_serializer=types__pb2.PublicModel.SerializeToString,
+      ),
+      'HistoricBaseTelegramMessages': grpc.unary_stream_rpc_method_handler(
+          servicer.HistoricBaseTelegramMessages,
           request_deserializer=types__pb2.HistoricRequest.FromString,
           response_serializer=types__pb2.PublicModel.SerializeToString,
       ),
