@@ -21,7 +21,13 @@ const client = new proto.MessagesProxy(
     grpc.credentials.createSsl(fs.readFileSync(CERT_FILE_PATH))
 );
 
-let channel = client.SubscribeTweet({assets: ["BTC", "ETH"], all_assets: false});
+var metadata = new grpc.Metadata();
+
+// uncomment commands below if token auth is required
+// const TOKEN = 'YOUR_TOKEN';
+// metadata.add('authorization', `Bearer ${TOKEN}`);
+
+let channel = client.SubscribeTweet({assets: ["BTC", "ETH"], all_assets: false}, metadata);
 channel.on("data", function (message) {
     console.log(message);
 });

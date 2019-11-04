@@ -79,10 +79,13 @@ def get_historic_socials_sentiment(channel, requests):
 
 def main():
     # Create credentials for use with an secured channel
-    creds = grpc.ssl_channel_credentials(open(PATH_TO_CERT_FILE, 'rb').read())
+    credentials = grpc.ssl_channel_credentials(open(PATH_TO_CERT_FILE, 'rb').read())
 
-    # Initialize GRPC channel
-    channel = grpc.secure_channel(SERVER_ADDRESS, credentials=creds)
+    # uncomment commands below if token auth is required
+    # call_credentials = grpc.access_token_call_credentials('YOUR_TOKEN')
+    # credentials = grpc.composite_channel_credentials(credentials, call_credentials)
+
+    channel = grpc.secure_channel(SERVER_ADDRESS, credentials)
 
     # create interval
     # in our case < 2 days ago, now >

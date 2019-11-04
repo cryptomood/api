@@ -20,7 +20,14 @@ const client = new proto.Dataset(
     SERVER,
     grpc.credentials.createSsl(fs.readFileSync(CERT_FILE_PATH))
 );
-client.Assets({from: {seconds: 1561400800}, to: {seconds: 1561428800}}, function (err, req) {
+
+var metadata = new grpc.Metadata();
+
+// uncomment commands below if token auth is required
+// const TOKEN = 'YOUR_TOKEN';
+// metadata.add('authorization', `Bearer ${TOKEN}`);
+
+client.Assets({from: {seconds: 1561400800}, to: {seconds: 1561428800}}, metadata, function (err, req) {
     console.log(req, err)
 });
 

@@ -21,6 +21,12 @@ const client = new proto.Sentiments(
     grpc.credentials.createSsl(fs.readFileSync(CERT_FILE_PATH))
 );
 
+var metadata = new grpc.Metadata();
+
+// uncomment commands below if token auth is required
+// const TOKEN = 'YOUR_TOKEN';
+// metadata.add('authorization', `Bearer ${TOKEN}`);
+
 const now = Date.now() / 1000 | 0; // unix timestamp
 
 let channel = client.HistoricNewsSentiment({
@@ -28,7 +34,7 @@ let channel = client.HistoricNewsSentiment({
     to: {seconds: now},
     resolution: "H1",
     asset: "BTC"
-}, function (err, req) {
+}, metadata, function (err, req) {
     console.log(req, err)
 });
 
