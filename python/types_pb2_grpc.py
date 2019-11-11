@@ -66,6 +66,11 @@ class MessagesProxyStub(object):
         request_serializer=types__pb2.AssetsFilter.SerializeToString,
         response_deserializer=types__pb2.BitmexUserMessage.FromString,
         )
+    self.SubscribeTransaction = channel.unary_stream(
+        '/MessagesProxy/SubscribeTransaction',
+        request_serializer=types__pb2.AssetsFilter.SerializeToString,
+        response_deserializer=types__pb2.Transaction.FromString,
+        )
 
 
 class MessagesProxyServicer(object):
@@ -143,6 +148,13 @@ class MessagesProxyServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def SubscribeTransaction(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_MessagesProxyServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -195,6 +207,11 @@ def add_MessagesProxyServicer_to_server(servicer, server):
           servicer.SubscribeBitmex,
           request_deserializer=types__pb2.AssetsFilter.FromString,
           response_serializer=types__pb2.BitmexUserMessage.SerializeToString,
+      ),
+      'SubscribeTransaction': grpc.unary_stream_rpc_method_handler(
+          servicer.SubscribeTransaction,
+          request_deserializer=types__pb2.AssetsFilter.FromString,
+          response_serializer=types__pb2.Transaction.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
@@ -292,6 +309,11 @@ class HistoricDataStub(object):
         request_serializer=types__pb2.HistoricRequest.SerializeToString,
         response_deserializer=types__pb2.RedditPost.FromString,
         )
+    self.HistoricTransactions = channel.unary_stream(
+        '/HistoricData/HistoricTransactions',
+        request_serializer=types__pb2.HistoricRequest.SerializeToString,
+        response_deserializer=types__pb2.Transaction.FromString,
+        )
 
 
 class HistoricDataServicer(object):
@@ -348,6 +370,13 @@ class HistoricDataServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def HistoricTransactions(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_HistoricDataServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -385,6 +414,11 @@ def add_HistoricDataServicer_to_server(servicer, server):
           servicer.HistoricRedditPosts,
           request_deserializer=types__pb2.HistoricRequest.FromString,
           response_serializer=types__pb2.RedditPost.SerializeToString,
+      ),
+      'HistoricTransactions': grpc.unary_stream_rpc_method_handler(
+          servicer.HistoricTransactions,
+          request_deserializer=types__pb2.HistoricRequest.FromString,
+          response_serializer=types__pb2.Transaction.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

@@ -453,6 +453,8 @@ service MessagesProxy {
     }
     rpc SubscribeBitmex (AssetsFilter) returns (stream BitmexUserMessage) {
     }
+    rpc SubscribeTransaction (AssetsFilter) returns (stream Transaction) {
+    }
 }
 
 message AssetsFilter {
@@ -532,6 +534,8 @@ service HistoricData {
     }
     rpc HistoricRedditPosts (HistoricRequest) returns (stream RedditPost) {
     }
+    rpc HistoricTransactions (HistoricRequest) returns (stream Transaction) {
+    }
 }
 
 service Sentiments {
@@ -543,6 +547,20 @@ service Sentiments {
     }
     rpc SubscribeNewsSentiment (AggregationCandleFilter) returns (stream AggregationCandle) {
     }
+}
+
+message Transaction {
+    string id = 1;
+    string hash = 2;
+    string from_address = 3;
+    string to_address = 4;
+    string from_owner = 5;
+    string to_owner = 6;
+    google.protobuf.Timestamp time = 7;
+    string comment = 8;
+    string asset = 9;
+    double size = 10;
+    double USD_size = 11;
 }
 
 message AggId {

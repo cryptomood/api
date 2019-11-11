@@ -15,7 +15,7 @@
 	
 	Steps 3 is optional, because this directory already contains prepared `types_pb2.py` and `types_pb2_grpc.py` files 
 
-4.  Create credencials and join channel. You have to provide valid path to .pem file(from 1. step). and  valid host address.  
+4.  Create credentials and join channel. You have to provide valid path to .pem file(from 1. step). and  valid host address.  
 	```python
     creds = grpc.ssl_channel_credentials(open(PATH_TO_CERT_FILE, 'rb').read())
     channel = grpc.secure_channel(SERVER_ADDRESS, creds)
