@@ -3,15 +3,16 @@
 
 package types
 
-import proto "github.com/golang/protobuf/proto"
-import fmt "fmt"
-import math "math"
-import empty "github.com/golang/protobuf/ptypes/empty"
-import timestamp "github.com/golang/protobuf/ptypes/timestamp"
-
 import (
-	context "golang.org/x/net/context"
+	context "context"
+	fmt "fmt"
+	proto "github.com/golang/protobuf/proto"
+	empty "github.com/golang/protobuf/ptypes/empty"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
+	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -23,10 +24,10 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-// *
-// Types of named entities
+//*
+//Types of named entities
 type NamedEntity int32
 
 const (
@@ -48,6 +49,7 @@ var NamedEntity_name = map[int32]string{
 	5: "MISC_ENTITY",
 	6: "ORGANIZATION_ENTITY",
 }
+
 var NamedEntity_value = map[string]int32{
 	"ASSET_ENTITY":        0,
 	"PERSON_ENTITY":       1,
@@ -61,12 +63,13 @@ var NamedEntity_value = map[string]int32{
 func (x NamedEntity) String() string {
 	return proto.EnumName(NamedEntity_name, int32(x))
 }
+
 func (NamedEntity) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{0}
+	return fileDescriptor_d938547f84707355, []int{0}
 }
 
-// *
-// Base model for messages or news, contains basic data like title, content, source, published date etc..
+//*
+//Base model for messages or news, contains basic data like title, content, source, published date etc..
 type BaseModel struct {
 	// unique identifier with schema
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -108,16 +111,17 @@ func (m *BaseModel) Reset()         { *m = BaseModel{} }
 func (m *BaseModel) String() string { return proto.CompactTextString(m) }
 func (*BaseModel) ProtoMessage()    {}
 func (*BaseModel) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{0}
+	return fileDescriptor_d938547f84707355, []int{0}
 }
+
 func (m *BaseModel) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_BaseModel.Unmarshal(m, b)
 }
 func (m *BaseModel) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_BaseModel.Marshal(b, m, deterministic)
 }
-func (dst *BaseModel) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_BaseModel.Merge(dst, src)
+func (m *BaseModel) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BaseModel.Merge(m, src)
 }
 func (m *BaseModel) XXX_Size() int {
 	return xxx_messageInfo_BaseModel.Size(m)
@@ -240,8 +244,8 @@ func (m *BaseModel) GetDomain() string {
 	return ""
 }
 
-// *
-// Group data that refers to sentiment of message
+//*
+//Group data that refers to sentiment of message
 type SentimentModel struct {
 	// analyzed sentiment <-10, 10>
 	Sentiment float64 `protobuf:"fixed64,1,opt,name=sentiment,proto3" json:"sentiment,omitempty"`
@@ -258,16 +262,17 @@ func (m *SentimentModel) Reset()         { *m = SentimentModel{} }
 func (m *SentimentModel) String() string { return proto.CompactTextString(m) }
 func (*SentimentModel) ProtoMessage()    {}
 func (*SentimentModel) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{1}
+	return fileDescriptor_d938547f84707355, []int{1}
 }
+
 func (m *SentimentModel) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_SentimentModel.Unmarshal(m, b)
 }
 func (m *SentimentModel) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_SentimentModel.Marshal(b, m, deterministic)
 }
-func (dst *SentimentModel) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SentimentModel.Merge(dst, src)
+func (m *SentimentModel) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SentimentModel.Merge(m, src)
 }
 func (m *SentimentModel) XXX_Size() int {
 	return xxx_messageInfo_SentimentModel.Size(m)
@@ -313,16 +318,17 @@ func (m *CryptopanicEntrySource) Reset()         { *m = CryptopanicEntrySource{}
 func (m *CryptopanicEntrySource) String() string { return proto.CompactTextString(m) }
 func (*CryptopanicEntrySource) ProtoMessage()    {}
 func (*CryptopanicEntrySource) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{2}
+	return fileDescriptor_d938547f84707355, []int{2}
 }
+
 func (m *CryptopanicEntrySource) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CryptopanicEntrySource.Unmarshal(m, b)
 }
 func (m *CryptopanicEntrySource) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_CryptopanicEntrySource.Marshal(b, m, deterministic)
 }
-func (dst *CryptopanicEntrySource) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CryptopanicEntrySource.Merge(dst, src)
+func (m *CryptopanicEntrySource) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CryptopanicEntrySource.Merge(m, src)
 }
 func (m *CryptopanicEntrySource) XXX_Size() int {
 	return xxx_messageInfo_CryptopanicEntrySource.Size(m)
@@ -379,16 +385,17 @@ func (m *CryptopanicEntryVotes) Reset()         { *m = CryptopanicEntryVotes{} }
 func (m *CryptopanicEntryVotes) String() string { return proto.CompactTextString(m) }
 func (*CryptopanicEntryVotes) ProtoMessage()    {}
 func (*CryptopanicEntryVotes) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{3}
+	return fileDescriptor_d938547f84707355, []int{3}
 }
+
 func (m *CryptopanicEntryVotes) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CryptopanicEntryVotes.Unmarshal(m, b)
 }
 func (m *CryptopanicEntryVotes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_CryptopanicEntryVotes.Marshal(b, m, deterministic)
 }
-func (dst *CryptopanicEntryVotes) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CryptopanicEntryVotes.Merge(dst, src)
+func (m *CryptopanicEntryVotes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CryptopanicEntryVotes.Merge(m, src)
 }
 func (m *CryptopanicEntryVotes) XXX_Size() int {
 	return xxx_messageInfo_CryptopanicEntryVotes.Size(m)
@@ -467,16 +474,17 @@ func (m *CryptopanicEntryMetadata) Reset()         { *m = CryptopanicEntryMetada
 func (m *CryptopanicEntryMetadata) String() string { return proto.CompactTextString(m) }
 func (*CryptopanicEntryMetadata) ProtoMessage()    {}
 func (*CryptopanicEntryMetadata) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{4}
+	return fileDescriptor_d938547f84707355, []int{4}
 }
+
 func (m *CryptopanicEntryMetadata) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CryptopanicEntryMetadata.Unmarshal(m, b)
 }
 func (m *CryptopanicEntryMetadata) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_CryptopanicEntryMetadata.Marshal(b, m, deterministic)
 }
-func (dst *CryptopanicEntryMetadata) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CryptopanicEntryMetadata.Merge(dst, src)
+func (m *CryptopanicEntryMetadata) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CryptopanicEntryMetadata.Merge(m, src)
 }
 func (m *CryptopanicEntryMetadata) XXX_Size() int {
 	return xxx_messageInfo_CryptopanicEntryMetadata.Size(m)
@@ -522,16 +530,17 @@ func (m *CryptopanicRawEntry) Reset()         { *m = CryptopanicRawEntry{} }
 func (m *CryptopanicRawEntry) String() string { return proto.CompactTextString(m) }
 func (*CryptopanicRawEntry) ProtoMessage()    {}
 func (*CryptopanicRawEntry) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{5}
+	return fileDescriptor_d938547f84707355, []int{5}
 }
+
 func (m *CryptopanicRawEntry) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CryptopanicRawEntry.Unmarshal(m, b)
 }
 func (m *CryptopanicRawEntry) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_CryptopanicRawEntry.Marshal(b, m, deterministic)
 }
-func (dst *CryptopanicRawEntry) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CryptopanicRawEntry.Merge(dst, src)
+func (m *CryptopanicRawEntry) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CryptopanicRawEntry.Merge(m, src)
 }
 func (m *CryptopanicRawEntry) XXX_Size() int {
 	return xxx_messageInfo_CryptopanicRawEntry.Size(m)
@@ -631,16 +640,17 @@ func (m *CryptopanicFeed) Reset()         { *m = CryptopanicFeed{} }
 func (m *CryptopanicFeed) String() string { return proto.CompactTextString(m) }
 func (*CryptopanicFeed) ProtoMessage()    {}
 func (*CryptopanicFeed) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{6}
+	return fileDescriptor_d938547f84707355, []int{6}
 }
+
 func (m *CryptopanicFeed) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CryptopanicFeed.Unmarshal(m, b)
 }
 func (m *CryptopanicFeed) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_CryptopanicFeed.Marshal(b, m, deterministic)
 }
-func (dst *CryptopanicFeed) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CryptopanicFeed.Merge(dst, src)
+func (m *CryptopanicFeed) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CryptopanicFeed.Merge(m, src)
 }
 func (m *CryptopanicFeed) XXX_Size() int {
 	return xxx_messageInfo_CryptopanicFeed.Size(m)
@@ -677,16 +687,17 @@ func (m *CryptopanicPost) Reset()         { *m = CryptopanicPost{} }
 func (m *CryptopanicPost) String() string { return proto.CompactTextString(m) }
 func (*CryptopanicPost) ProtoMessage()    {}
 func (*CryptopanicPost) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{7}
+	return fileDescriptor_d938547f84707355, []int{7}
 }
+
 func (m *CryptopanicPost) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CryptopanicPost.Unmarshal(m, b)
 }
 func (m *CryptopanicPost) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_CryptopanicPost.Marshal(b, m, deterministic)
 }
-func (dst *CryptopanicPost) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CryptopanicPost.Merge(dst, src)
+func (m *CryptopanicPost) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CryptopanicPost.Merge(m, src)
 }
 func (m *CryptopanicPost) XXX_Size() int {
 	return xxx_messageInfo_CryptopanicPost.Size(m)
@@ -711,9 +722,9 @@ func (m *CryptopanicPost) GetArticle() *Article {
 	return nil
 }
 
-// *
-// Occurrence od named entity.
-// contains position, matched text, category
+//*
+//Occurrence od named entity.
+//contains position, matched text, category
 type NamedEntityOccurrence struct {
 	// Represents NamedEntity element
 	Label NamedEntity `protobuf:"varint,1,opt,name=label,proto3,enum=NamedEntity" json:"label,omitempty"`
@@ -732,16 +743,17 @@ func (m *NamedEntityOccurrence) Reset()         { *m = NamedEntityOccurrence{} }
 func (m *NamedEntityOccurrence) String() string { return proto.CompactTextString(m) }
 func (*NamedEntityOccurrence) ProtoMessage()    {}
 func (*NamedEntityOccurrence) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{8}
+	return fileDescriptor_d938547f84707355, []int{8}
 }
+
 func (m *NamedEntityOccurrence) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_NamedEntityOccurrence.Unmarshal(m, b)
 }
 func (m *NamedEntityOccurrence) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_NamedEntityOccurrence.Marshal(b, m, deterministic)
 }
-func (dst *NamedEntityOccurrence) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_NamedEntityOccurrence.Merge(dst, src)
+func (m *NamedEntityOccurrence) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_NamedEntityOccurrence.Merge(m, src)
 }
 func (m *NamedEntityOccurrence) XXX_Size() int {
 	return xxx_messageInfo_NamedEntityOccurrence.Size(m)
@@ -780,8 +792,8 @@ func (m *NamedEntityOccurrence) GetText() string {
 	return ""
 }
 
-// *
-// Groups all types of named entities we support.
+//*
+//Groups all types of named entities we support.
 type NamedEntitiesModel struct {
 	// list of crypto assets
 	Symbols []string `protobuf:"bytes,1,rep,name=symbols,proto3" json:"symbols,omitempty"`
@@ -814,16 +826,17 @@ func (m *NamedEntitiesModel) Reset()         { *m = NamedEntitiesModel{} }
 func (m *NamedEntitiesModel) String() string { return proto.CompactTextString(m) }
 func (*NamedEntitiesModel) ProtoMessage()    {}
 func (*NamedEntitiesModel) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{9}
+	return fileDescriptor_d938547f84707355, []int{9}
 }
+
 func (m *NamedEntitiesModel) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_NamedEntitiesModel.Unmarshal(m, b)
 }
 func (m *NamedEntitiesModel) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_NamedEntitiesModel.Marshal(b, m, deterministic)
 }
-func (dst *NamedEntitiesModel) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_NamedEntitiesModel.Merge(dst, src)
+func (m *NamedEntitiesModel) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_NamedEntitiesModel.Merge(m, src)
 }
 func (m *NamedEntitiesModel) XXX_Size() int {
 	return xxx_messageInfo_NamedEntitiesModel.Size(m)
@@ -911,9 +924,9 @@ func (m *NamedEntitiesModel) GetSourceText() string {
 	return ""
 }
 
-// *
-// Basic model for News, articles.
-// It's weight depends on Alexa ranks
+//*
+//Basic model for News, articles.
+//It's weight depends on Alexa ranks
 type Article struct {
 	Base      *BaseModel      `protobuf:"bytes,1,opt,name=base,proto3" json:"base,omitempty"`
 	Sentiment *SentimentModel `protobuf:"bytes,2,opt,name=sentiment,proto3" json:"sentiment,omitempty"`
@@ -930,16 +943,17 @@ func (m *Article) Reset()         { *m = Article{} }
 func (m *Article) String() string { return proto.CompactTextString(m) }
 func (*Article) ProtoMessage()    {}
 func (*Article) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{10}
+	return fileDescriptor_d938547f84707355, []int{10}
 }
+
 func (m *Article) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Article.Unmarshal(m, b)
 }
 func (m *Article) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Article.Marshal(b, m, deterministic)
 }
-func (dst *Article) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Article.Merge(dst, src)
+func (m *Article) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Article.Merge(m, src)
 }
 func (m *Article) XXX_Size() int {
 	return xxx_messageInfo_Article.Size(m)
@@ -978,8 +992,8 @@ func (m *Article) GetTitleData() *NamedEntitiesModel {
 	return nil
 }
 
-// *
-// Basic model for media where the messages are wrote by regular user
+//*
+//Basic model for media where the messages are wrote by regular user
 type UserMessage struct {
 	Base          *BaseModel          `protobuf:"bytes,1,opt,name=base,proto3" json:"base,omitempty"`
 	Sentiment     *SentimentModel     `protobuf:"bytes,2,opt,name=sentiment,proto3" json:"sentiment,omitempty"`
@@ -997,16 +1011,17 @@ func (m *UserMessage) Reset()         { *m = UserMessage{} }
 func (m *UserMessage) String() string { return proto.CompactTextString(m) }
 func (*UserMessage) ProtoMessage()    {}
 func (*UserMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{11}
+	return fileDescriptor_d938547f84707355, []int{11}
 }
+
 func (m *UserMessage) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UserMessage.Unmarshal(m, b)
 }
 func (m *UserMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_UserMessage.Marshal(b, m, deterministic)
 }
-func (dst *UserMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UserMessage.Merge(dst, src)
+func (m *UserMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserMessage.Merge(m, src)
 }
 func (m *UserMessage) XXX_Size() int {
 	return xxx_messageInfo_UserMessage.Size(m)
@@ -1052,1005 +1067,10 @@ func (m *UserMessage) GetMessage() string {
 	return ""
 }
 
-// *
-// User message from bitmex
-type BitmexUserMessage struct {
-	UserMessage          *UserMessage `protobuf:"bytes,1,opt,name=user_message,json=userMessage,proto3" json:"user_message,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
-	XXX_unrecognized     []byte       `json:"-"`
-	XXX_sizecache        int32        `json:"-"`
-}
-
-func (m *BitmexUserMessage) Reset()         { *m = BitmexUserMessage{} }
-func (m *BitmexUserMessage) String() string { return proto.CompactTextString(m) }
-func (*BitmexUserMessage) ProtoMessage()    {}
-func (*BitmexUserMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{12}
-}
-func (m *BitmexUserMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_BitmexUserMessage.Unmarshal(m, b)
-}
-func (m *BitmexUserMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_BitmexUserMessage.Marshal(b, m, deterministic)
-}
-func (dst *BitmexUserMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_BitmexUserMessage.Merge(dst, src)
-}
-func (m *BitmexUserMessage) XXX_Size() int {
-	return xxx_messageInfo_BitmexUserMessage.Size(m)
-}
-func (m *BitmexUserMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_BitmexUserMessage.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_BitmexUserMessage proto.InternalMessageInfo
-
-func (m *BitmexUserMessage) GetUserMessage() *UserMessage {
-	if m != nil {
-		return m.UserMessage
-	}
-	return nil
-}
-
-// *
-// Message from telegram channel
-// Weight is calculated from number of members in channel
-type TelegramUserMessage struct {
-	UserMessage *UserMessage `protobuf:"bytes,1,opt,name=user_message,json=userMessage,proto3" json:"user_message,omitempty"`
-	// symbols loaded from db
-	SymbolsBackup []string `protobuf:"bytes,2,rep,name=symbols_backup,json=symbolsBackup,proto3" json:"symbols_backup,omitempty"`
-	// telegram channel ID
-	ChannelId int32 `protobuf:"varint,3,opt,name=channel_id,json=channelId,proto3" json:"channel_id,omitempty"`
-	// telegram channel members
-	ChannelSubscriberCount int32 `protobuf:"varint,4,opt,name=channel_subscriber_count,json=channelSubscriberCount,proto3" json:"channel_subscriber_count,omitempty"`
-	// telegram message ID
-	MessageId            int64    `protobuf:"varint,5,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *TelegramUserMessage) Reset()         { *m = TelegramUserMessage{} }
-func (m *TelegramUserMessage) String() string { return proto.CompactTextString(m) }
-func (*TelegramUserMessage) ProtoMessage()    {}
-func (*TelegramUserMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{13}
-}
-func (m *TelegramUserMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_TelegramUserMessage.Unmarshal(m, b)
-}
-func (m *TelegramUserMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_TelegramUserMessage.Marshal(b, m, deterministic)
-}
-func (dst *TelegramUserMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TelegramUserMessage.Merge(dst, src)
-}
-func (m *TelegramUserMessage) XXX_Size() int {
-	return xxx_messageInfo_TelegramUserMessage.Size(m)
-}
-func (m *TelegramUserMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_TelegramUserMessage.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_TelegramUserMessage proto.InternalMessageInfo
-
-func (m *TelegramUserMessage) GetUserMessage() *UserMessage {
-	if m != nil {
-		return m.UserMessage
-	}
-	return nil
-}
-
-func (m *TelegramUserMessage) GetSymbolsBackup() []string {
-	if m != nil {
-		return m.SymbolsBackup
-	}
-	return nil
-}
-
-func (m *TelegramUserMessage) GetChannelId() int32 {
-	if m != nil {
-		return m.ChannelId
-	}
-	return 0
-}
-
-func (m *TelegramUserMessage) GetChannelSubscriberCount() int32 {
-	if m != nil {
-		return m.ChannelSubscriberCount
-	}
-	return 0
-}
-
-func (m *TelegramUserMessage) GetMessageId() int64 {
-	if m != nil {
-		return m.MessageId
-	}
-	return 0
-}
-
-// *
-// Stores time/count snapshot of Reddit post comment count
-// this is mainly for measuring amount of added comments during period of time
-type CommentCountTimeSnapshot struct {
-	Time                 *timestamp.Timestamp `protobuf:"bytes,1,opt,name=time,proto3" json:"time,omitempty"`
-	CommentCount         int32                `protobuf:"varint,2,opt,name=comment_count,json=commentCount,proto3" json:"comment_count,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *CommentCountTimeSnapshot) Reset()         { *m = CommentCountTimeSnapshot{} }
-func (m *CommentCountTimeSnapshot) String() string { return proto.CompactTextString(m) }
-func (*CommentCountTimeSnapshot) ProtoMessage()    {}
-func (*CommentCountTimeSnapshot) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{14}
-}
-func (m *CommentCountTimeSnapshot) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CommentCountTimeSnapshot.Unmarshal(m, b)
-}
-func (m *CommentCountTimeSnapshot) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CommentCountTimeSnapshot.Marshal(b, m, deterministic)
-}
-func (dst *CommentCountTimeSnapshot) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CommentCountTimeSnapshot.Merge(dst, src)
-}
-func (m *CommentCountTimeSnapshot) XXX_Size() int {
-	return xxx_messageInfo_CommentCountTimeSnapshot.Size(m)
-}
-func (m *CommentCountTimeSnapshot) XXX_DiscardUnknown() {
-	xxx_messageInfo_CommentCountTimeSnapshot.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CommentCountTimeSnapshot proto.InternalMessageInfo
-
-func (m *CommentCountTimeSnapshot) GetTime() *timestamp.Timestamp {
-	if m != nil {
-		return m.Time
-	}
-	return nil
-}
-
-func (m *CommentCountTimeSnapshot) GetCommentCount() int32 {
-	if m != nil {
-		return m.CommentCount
-	}
-	return 0
-}
-
-// *
-// Reddit comment
-type Comment struct {
-	ID                   string     `protobuf:"bytes,1,opt,name=ID,json=iD,proto3" json:"ID,omitempty"`
-	Name                 string     `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Permalink            string     `protobuf:"bytes,3,opt,name=permalink,proto3" json:"permalink,omitempty"`
-	CreatedUTC           uint64     `protobuf:"varint,4,opt,name=createdUTC,proto3" json:"createdUTC,omitempty"`
-	Deleted              bool       `protobuf:"varint,5,opt,name=deleted,proto3" json:"deleted,omitempty"`
-	Ups                  int32      `protobuf:"varint,14,opt,name=ups,proto3" json:"ups,omitempty"`
-	Downs                int32      `protobuf:"varint,15,opt,name=downs,proto3" json:"downs,omitempty"`
-	Likes                bool       `protobuf:"varint,16,opt,name=likes,proto3" json:"likes,omitempty"`
-	Body                 string     `protobuf:"bytes,6,opt,name=body,proto3" json:"body,omitempty"`
-	Subreddit            string     `protobuf:"bytes,7,opt,name=subreddit,proto3" json:"subreddit,omitempty"`
-	Replies              []*Comment `protobuf:"bytes,8,rep,name=replies,proto3" json:"replies,omitempty"`
-	Sentiment            float64    `protobuf:"fixed64,9,opt,name=sentiment,proto3" json:"sentiment,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
-}
-
-func (m *Comment) Reset()         { *m = Comment{} }
-func (m *Comment) String() string { return proto.CompactTextString(m) }
-func (*Comment) ProtoMessage()    {}
-func (*Comment) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{15}
-}
-func (m *Comment) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Comment.Unmarshal(m, b)
-}
-func (m *Comment) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Comment.Marshal(b, m, deterministic)
-}
-func (dst *Comment) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Comment.Merge(dst, src)
-}
-func (m *Comment) XXX_Size() int {
-	return xxx_messageInfo_Comment.Size(m)
-}
-func (m *Comment) XXX_DiscardUnknown() {
-	xxx_messageInfo_Comment.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Comment proto.InternalMessageInfo
-
-func (m *Comment) GetID() string {
-	if m != nil {
-		return m.ID
-	}
-	return ""
-}
-
-func (m *Comment) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *Comment) GetPermalink() string {
-	if m != nil {
-		return m.Permalink
-	}
-	return ""
-}
-
-func (m *Comment) GetCreatedUTC() uint64 {
-	if m != nil {
-		return m.CreatedUTC
-	}
-	return 0
-}
-
-func (m *Comment) GetDeleted() bool {
-	if m != nil {
-		return m.Deleted
-	}
-	return false
-}
-
-func (m *Comment) GetUps() int32 {
-	if m != nil {
-		return m.Ups
-	}
-	return 0
-}
-
-func (m *Comment) GetDowns() int32 {
-	if m != nil {
-		return m.Downs
-	}
-	return 0
-}
-
-func (m *Comment) GetLikes() bool {
-	if m != nil {
-		return m.Likes
-	}
-	return false
-}
-
-func (m *Comment) GetBody() string {
-	if m != nil {
-		return m.Body
-	}
-	return ""
-}
-
-func (m *Comment) GetSubreddit() string {
-	if m != nil {
-		return m.Subreddit
-	}
-	return ""
-}
-
-func (m *Comment) GetReplies() []*Comment {
-	if m != nil {
-		return m.Replies
-	}
-	return nil
-}
-
-func (m *Comment) GetSentiment() float64 {
-	if m != nil {
-		return m.Sentiment
-	}
-	return 0
-}
-
-// *
-// Stores useful data from original reddit post
-type RedditPostModel struct {
-	ID          string `protobuf:"bytes,1,opt,name=ID,json=iD,proto3" json:"ID,omitempty"`
-	CreatedUTC  uint64 `protobuf:"varint,2,opt,name=createdUTC,proto3" json:"createdUTC,omitempty"`
-	Title       string `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
-	URL         string `protobuf:"bytes,4,opt,name=URL,json=uRL,proto3" json:"URL,omitempty"`
-	Author      string `protobuf:"bytes,5,opt,name=author,proto3" json:"author,omitempty"`
-	SelfText    string `protobuf:"bytes,6,opt,name=self_text,json=selfText,proto3" json:"self_text,omitempty"`
-	Name        string `protobuf:"bytes,11,opt,name=name,proto3" json:"name,omitempty"`
-	Permalink   string `protobuf:"bytes,12,opt,name=permalink,proto3" json:"permalink,omitempty"`
-	Deleted     bool   `protobuf:"varint,13,opt,name=deleted,proto3" json:"deleted,omitempty"`
-	Ups         int32  `protobuf:"varint,14,opt,name=ups,proto3" json:"ups,omitempty"`
-	Downs       int32  `protobuf:"varint,15,opt,name=downs,proto3" json:"downs,omitempty"`
-	Likes       bool   `protobuf:"varint,16,opt,name=likes,proto3" json:"likes,omitempty"`
-	NumComments int32  `protobuf:"varint,17,opt,name=num_comments,json=numComments,proto3" json:"num_comments,omitempty"`
-	Score       int32  `protobuf:"varint,18,opt,name=score,proto3" json:"score,omitempty"`
-	// list of comments
-	Replies []*Comment `protobuf:"bytes,19,rep,name=replies,proto3" json:"replies,omitempty"`
-	Domain  string     `protobuf:"bytes,20,opt,name=domain,proto3" json:"domain,omitempty"`
-	// unique ID of subreddit
-	SubredditID         string `protobuf:"bytes,21,opt,name=SubredditID,json=subredditID,proto3" json:"SubredditID,omitempty"`
-	Hidden              bool   `protobuf:"varint,22,opt,name=hidden,proto3" json:"hidden,omitempty"`
-	Locked              bool   `protobuf:"varint,23,opt,name=locked,proto3" json:"locked,omitempty"`
-	Thumbnail           string `protobuf:"bytes,24,opt,name=thumbnail,proto3" json:"thumbnail,omitempty"`
-	Gilded              int32  `protobuf:"varint,25,opt,name=gilded,proto3" json:"gilded,omitempty"`
-	Distinguished       string `protobuf:"bytes,26,opt,name=distinguished,proto3" json:"distinguished,omitempty"`
-	Stickied            bool   `protobuf:"varint,27,opt,name=stickied,proto3" json:"stickied,omitempty"`
-	IsRedditMediaDomain bool   `protobuf:"varint,28,opt,name=is_reddit_media_domain,json=isRedditMediaDomain,proto3" json:"is_reddit_media_domain,omitempty"`
-	// time/count snapshot of Reddit post comment count
-	CommentCountSnapshot []*CommentCountTimeSnapshot `protobuf:"bytes,7,rep,name=comment_count_snapshot,json=commentCountSnapshot,proto3" json:"comment_count_snapshot,omitempty"`
-	// Reddit post actual hot rate in queue
-	HotRate float64 `protobuf:"fixed64,8,opt,name=hot_rate,json=hotRate,proto3" json:"hot_rate,omitempty"`
-	// Reference to parent subreddit
-	Subreddit            string   `protobuf:"bytes,9,opt,name=subreddit,proto3" json:"subreddit,omitempty"`
-	IsSelf               bool     `protobuf:"varint,10,opt,name=is_self,json=isSelf,proto3" json:"is_self,omitempty"`
-	Nsfw                 bool     `protobuf:"varint,29,opt,name=nsfw,proto3" json:"nsfw,omitempty"`
-	IsUpdate             bool     `protobuf:"varint,30,opt,name=is_update,json=isUpdate,proto3" json:"is_update,omitempty"`
-	SubredditIcon        string   `protobuf:"bytes,31,opt,name=subreddit_icon,json=subredditIcon,proto3" json:"subreddit_icon,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *RedditPostModel) Reset()         { *m = RedditPostModel{} }
-func (m *RedditPostModel) String() string { return proto.CompactTextString(m) }
-func (*RedditPostModel) ProtoMessage()    {}
-func (*RedditPostModel) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{16}
-}
-func (m *RedditPostModel) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RedditPostModel.Unmarshal(m, b)
-}
-func (m *RedditPostModel) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RedditPostModel.Marshal(b, m, deterministic)
-}
-func (dst *RedditPostModel) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RedditPostModel.Merge(dst, src)
-}
-func (m *RedditPostModel) XXX_Size() int {
-	return xxx_messageInfo_RedditPostModel.Size(m)
-}
-func (m *RedditPostModel) XXX_DiscardUnknown() {
-	xxx_messageInfo_RedditPostModel.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RedditPostModel proto.InternalMessageInfo
-
-func (m *RedditPostModel) GetID() string {
-	if m != nil {
-		return m.ID
-	}
-	return ""
-}
-
-func (m *RedditPostModel) GetCreatedUTC() uint64 {
-	if m != nil {
-		return m.CreatedUTC
-	}
-	return 0
-}
-
-func (m *RedditPostModel) GetTitle() string {
-	if m != nil {
-		return m.Title
-	}
-	return ""
-}
-
-func (m *RedditPostModel) GetURL() string {
-	if m != nil {
-		return m.URL
-	}
-	return ""
-}
-
-func (m *RedditPostModel) GetAuthor() string {
-	if m != nil {
-		return m.Author
-	}
-	return ""
-}
-
-func (m *RedditPostModel) GetSelfText() string {
-	if m != nil {
-		return m.SelfText
-	}
-	return ""
-}
-
-func (m *RedditPostModel) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *RedditPostModel) GetPermalink() string {
-	if m != nil {
-		return m.Permalink
-	}
-	return ""
-}
-
-func (m *RedditPostModel) GetDeleted() bool {
-	if m != nil {
-		return m.Deleted
-	}
-	return false
-}
-
-func (m *RedditPostModel) GetUps() int32 {
-	if m != nil {
-		return m.Ups
-	}
-	return 0
-}
-
-func (m *RedditPostModel) GetDowns() int32 {
-	if m != nil {
-		return m.Downs
-	}
-	return 0
-}
-
-func (m *RedditPostModel) GetLikes() bool {
-	if m != nil {
-		return m.Likes
-	}
-	return false
-}
-
-func (m *RedditPostModel) GetNumComments() int32 {
-	if m != nil {
-		return m.NumComments
-	}
-	return 0
-}
-
-func (m *RedditPostModel) GetScore() int32 {
-	if m != nil {
-		return m.Score
-	}
-	return 0
-}
-
-func (m *RedditPostModel) GetReplies() []*Comment {
-	if m != nil {
-		return m.Replies
-	}
-	return nil
-}
-
-func (m *RedditPostModel) GetDomain() string {
-	if m != nil {
-		return m.Domain
-	}
-	return ""
-}
-
-func (m *RedditPostModel) GetSubredditID() string {
-	if m != nil {
-		return m.SubredditID
-	}
-	return ""
-}
-
-func (m *RedditPostModel) GetHidden() bool {
-	if m != nil {
-		return m.Hidden
-	}
-	return false
-}
-
-func (m *RedditPostModel) GetLocked() bool {
-	if m != nil {
-		return m.Locked
-	}
-	return false
-}
-
-func (m *RedditPostModel) GetThumbnail() string {
-	if m != nil {
-		return m.Thumbnail
-	}
-	return ""
-}
-
-func (m *RedditPostModel) GetGilded() int32 {
-	if m != nil {
-		return m.Gilded
-	}
-	return 0
-}
-
-func (m *RedditPostModel) GetDistinguished() string {
-	if m != nil {
-		return m.Distinguished
-	}
-	return ""
-}
-
-func (m *RedditPostModel) GetStickied() bool {
-	if m != nil {
-		return m.Stickied
-	}
-	return false
-}
-
-func (m *RedditPostModel) GetIsRedditMediaDomain() bool {
-	if m != nil {
-		return m.IsRedditMediaDomain
-	}
-	return false
-}
-
-func (m *RedditPostModel) GetCommentCountSnapshot() []*CommentCountTimeSnapshot {
-	if m != nil {
-		return m.CommentCountSnapshot
-	}
-	return nil
-}
-
-func (m *RedditPostModel) GetHotRate() float64 {
-	if m != nil {
-		return m.HotRate
-	}
-	return 0
-}
-
-func (m *RedditPostModel) GetSubreddit() string {
-	if m != nil {
-		return m.Subreddit
-	}
-	return ""
-}
-
-func (m *RedditPostModel) GetIsSelf() bool {
-	if m != nil {
-		return m.IsSelf
-	}
-	return false
-}
-
-func (m *RedditPostModel) GetNsfw() bool {
-	if m != nil {
-		return m.Nsfw
-	}
-	return false
-}
-
-func (m *RedditPostModel) GetIsUpdate() bool {
-	if m != nil {
-		return m.IsUpdate
-	}
-	return false
-}
-
-func (m *RedditPostModel) GetSubredditIcon() string {
-	if m != nil {
-		return m.SubredditIcon
-	}
-	return ""
-}
-
-type RedditPost struct {
-	Base      *BaseModel      `protobuf:"bytes,1,opt,name=base,proto3" json:"base,omitempty"`
-	Sentiment *SentimentModel `protobuf:"bytes,2,opt,name=sentiment,proto3" json:"sentiment,omitempty"`
-	// named entities from content
-	NamedEntities *NamedEntitiesModel `protobuf:"bytes,3,opt,name=named_entities,json=namedEntities,proto3" json:"named_entities,omitempty"`
-	// named entities from title
-	TitleData *NamedEntitiesModel `protobuf:"bytes,4,opt,name=title_data,json=titleData,proto3" json:"title_data,omitempty"`
-	// data from original reddit post
-	RedditPost           *RedditPostModel `protobuf:"bytes,5,opt,name=reddit_post,json=redditPost,proto3" json:"reddit_post,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
-	XXX_unrecognized     []byte           `json:"-"`
-	XXX_sizecache        int32            `json:"-"`
-}
-
-func (m *RedditPost) Reset()         { *m = RedditPost{} }
-func (m *RedditPost) String() string { return proto.CompactTextString(m) }
-func (*RedditPost) ProtoMessage()    {}
-func (*RedditPost) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{17}
-}
-func (m *RedditPost) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RedditPost.Unmarshal(m, b)
-}
-func (m *RedditPost) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RedditPost.Marshal(b, m, deterministic)
-}
-func (dst *RedditPost) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RedditPost.Merge(dst, src)
-}
-func (m *RedditPost) XXX_Size() int {
-	return xxx_messageInfo_RedditPost.Size(m)
-}
-func (m *RedditPost) XXX_DiscardUnknown() {
-	xxx_messageInfo_RedditPost.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RedditPost proto.InternalMessageInfo
-
-func (m *RedditPost) GetBase() *BaseModel {
-	if m != nil {
-		return m.Base
-	}
-	return nil
-}
-
-func (m *RedditPost) GetSentiment() *SentimentModel {
-	if m != nil {
-		return m.Sentiment
-	}
-	return nil
-}
-
-func (m *RedditPost) GetNamedEntities() *NamedEntitiesModel {
-	if m != nil {
-		return m.NamedEntities
-	}
-	return nil
-}
-
-func (m *RedditPost) GetTitleData() *NamedEntitiesModel {
-	if m != nil {
-		return m.TitleData
-	}
-	return nil
-}
-
-func (m *RedditPost) GetRedditPost() *RedditPostModel {
-	if m != nil {
-		return m.RedditPost
-	}
-	return nil
-}
-
-// *
-// Stores some useful data form original tweet
-type ExtendedTweet struct {
-	FavouriteCount            int32    `protobuf:"varint,1,opt,name=favourite_count,json=favouriteCount,proto3" json:"favourite_count,omitempty"`
-	FilterLevel               string   `protobuf:"bytes,2,opt,name=filter_level,json=filterLevel,proto3" json:"filter_level,omitempty"`
-	IdStr                     string   `protobuf:"bytes,3,opt,name=id_str,json=idStr,proto3" json:"id_str,omitempty"`
-	InReplyToScreenName       string   `protobuf:"bytes,4,opt,name=in_reply_to_screen_name,json=inReplyToScreenName,proto3" json:"in_reply_to_screen_name,omitempty"`
-	InReplyToStatusIdStr      string   `protobuf:"bytes,5,opt,name=in_reply_to_status_id_str,json=inReplyToStatusIdStr,proto3" json:"in_reply_to_status_id_str,omitempty"`
-	InReplyToUserIdStr        string   `protobuf:"bytes,6,opt,name=in_reply_to_user_id_str,json=inReplyToUserIdStr,proto3" json:"in_reply_to_user_id_str,omitempty"`
-	IsQuoteStatus             string   `protobuf:"bytes,7,opt,name=is_quote_status,json=isQuoteStatus,proto3" json:"is_quote_status,omitempty"`
-	Lang                      string   `protobuf:"bytes,8,opt,name=lang,proto3" json:"lang,omitempty"`
-	PossiblySensitive         bool     `protobuf:"varint,9,opt,name=possibly_sensitive,json=possiblySensitive,proto3" json:"possibly_sensitive,omitempty"`
-	QuoteCount                int32    `protobuf:"varint,10,opt,name=quote_count,json=quoteCount,proto3" json:"quote_count,omitempty"`
-	ReplyCount                int32    `protobuf:"varint,11,opt,name=reply_count,json=replyCount,proto3" json:"reply_count,omitempty"`
-	RetweetCount              int32    `protobuf:"varint,12,opt,name=retweet_count,json=retweetCount,proto3" json:"retweet_count,omitempty"`
-	UserMentions              []string `protobuf:"bytes,13,rep,name=user_mentions,json=userMentions,proto3" json:"user_mentions,omitempty"`
-	Source                    string   `protobuf:"bytes,14,opt,name=source,proto3" json:"source,omitempty"`
-	AuthorCreatedAt           string   `protobuf:"bytes,15,opt,name=author_created_at,json=authorCreatedAt,proto3" json:"author_created_at,omitempty"`
-	AuthorDefaultProfile      bool     `protobuf:"varint,16,opt,name=author_default_profile,json=authorDefaultProfile,proto3" json:"author_default_profile,omitempty"`
-	AuthorDefaultProfileImage bool     `protobuf:"varint,17,opt,name=author_default_profile_image,json=authorDefaultProfileImage,proto3" json:"author_default_profile_image,omitempty"`
-	AuthorFollowersCount      int32    `protobuf:"varint,18,opt,name=author_followers_count,json=authorFollowersCount,proto3" json:"author_followers_count,omitempty"`
-	AuthorFriendsCount        int32    `protobuf:"varint,19,opt,name=author_friends_count,json=authorFriendsCount,proto3" json:"author_friends_count,omitempty"`
-	AuthorIdStr               string   `protobuf:"bytes,20,opt,name=author_id_str,json=authorIdStr,proto3" json:"author_id_str,omitempty"`
-	AuthorLang                string   `protobuf:"bytes,21,opt,name=author_lang,json=authorLang,proto3" json:"author_lang,omitempty"`
-	AuthorLocation            string   `protobuf:"bytes,22,opt,name=author_location,json=authorLocation,proto3" json:"author_location,omitempty"`
-	AuthorName                string   `protobuf:"bytes,23,opt,name=author_name,json=authorName,proto3" json:"author_name,omitempty"`
-	AuthorScreenName          string   `protobuf:"bytes,24,opt,name=author_screen_name,json=authorScreenName,proto3" json:"author_screen_name,omitempty"`
-	AuthorProfileImageUrlHttp string   `protobuf:"bytes,25,opt,name=author_profile_image_url_http,json=authorProfileImageUrlHttp,proto3" json:"author_profile_image_url_http,omitempty"`
-	AuthorStatusesCount       int32    `protobuf:"varint,26,opt,name=author_statuses_count,json=authorStatusesCount,proto3" json:"author_statuses_count,omitempty"`
-	Categories                []string `protobuf:"bytes,27,rep,name=categories,proto3" json:"categories,omitempty"`
-	Truncated                 bool     `protobuf:"varint,28,opt,name=truncated,proto3" json:"truncated,omitempty"`
-	FullText                  string   `protobuf:"bytes,29,opt,name=full_text,json=fullText,proto3" json:"full_text,omitempty"`
-	RetweetedStatus           bool     `protobuf:"varint,30,opt,name=retweeted_status,json=retweetedStatus,proto3" json:"retweeted_status,omitempty"`
-	RetweetSourceId           string   `protobuf:"bytes,31,opt,name=retweet_source_id,json=retweetSourceId,proto3" json:"retweet_source_id,omitempty"`
-	XXX_NoUnkeyedLiteral      struct{} `json:"-"`
-	XXX_unrecognized          []byte   `json:"-"`
-	XXX_sizecache             int32    `json:"-"`
-}
-
-func (m *ExtendedTweet) Reset()         { *m = ExtendedTweet{} }
-func (m *ExtendedTweet) String() string { return proto.CompactTextString(m) }
-func (*ExtendedTweet) ProtoMessage()    {}
-func (*ExtendedTweet) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{18}
-}
-func (m *ExtendedTweet) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ExtendedTweet.Unmarshal(m, b)
-}
-func (m *ExtendedTweet) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ExtendedTweet.Marshal(b, m, deterministic)
-}
-func (dst *ExtendedTweet) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ExtendedTweet.Merge(dst, src)
-}
-func (m *ExtendedTweet) XXX_Size() int {
-	return xxx_messageInfo_ExtendedTweet.Size(m)
-}
-func (m *ExtendedTweet) XXX_DiscardUnknown() {
-	xxx_messageInfo_ExtendedTweet.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ExtendedTweet proto.InternalMessageInfo
-
-func (m *ExtendedTweet) GetFavouriteCount() int32 {
-	if m != nil {
-		return m.FavouriteCount
-	}
-	return 0
-}
-
-func (m *ExtendedTweet) GetFilterLevel() string {
-	if m != nil {
-		return m.FilterLevel
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetIdStr() string {
-	if m != nil {
-		return m.IdStr
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetInReplyToScreenName() string {
-	if m != nil {
-		return m.InReplyToScreenName
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetInReplyToStatusIdStr() string {
-	if m != nil {
-		return m.InReplyToStatusIdStr
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetInReplyToUserIdStr() string {
-	if m != nil {
-		return m.InReplyToUserIdStr
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetIsQuoteStatus() string {
-	if m != nil {
-		return m.IsQuoteStatus
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetLang() string {
-	if m != nil {
-		return m.Lang
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetPossiblySensitive() bool {
-	if m != nil {
-		return m.PossiblySensitive
-	}
-	return false
-}
-
-func (m *ExtendedTweet) GetQuoteCount() int32 {
-	if m != nil {
-		return m.QuoteCount
-	}
-	return 0
-}
-
-func (m *ExtendedTweet) GetReplyCount() int32 {
-	if m != nil {
-		return m.ReplyCount
-	}
-	return 0
-}
-
-func (m *ExtendedTweet) GetRetweetCount() int32 {
-	if m != nil {
-		return m.RetweetCount
-	}
-	return 0
-}
-
-func (m *ExtendedTweet) GetUserMentions() []string {
-	if m != nil {
-		return m.UserMentions
-	}
-	return nil
-}
-
-func (m *ExtendedTweet) GetSource() string {
-	if m != nil {
-		return m.Source
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetAuthorCreatedAt() string {
-	if m != nil {
-		return m.AuthorCreatedAt
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetAuthorDefaultProfile() bool {
-	if m != nil {
-		return m.AuthorDefaultProfile
-	}
-	return false
-}
-
-func (m *ExtendedTweet) GetAuthorDefaultProfileImage() bool {
-	if m != nil {
-		return m.AuthorDefaultProfileImage
-	}
-	return false
-}
-
-func (m *ExtendedTweet) GetAuthorFollowersCount() int32 {
-	if m != nil {
-		return m.AuthorFollowersCount
-	}
-	return 0
-}
-
-func (m *ExtendedTweet) GetAuthorFriendsCount() int32 {
-	if m != nil {
-		return m.AuthorFriendsCount
-	}
-	return 0
-}
-
-func (m *ExtendedTweet) GetAuthorIdStr() string {
-	if m != nil {
-		return m.AuthorIdStr
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetAuthorLang() string {
-	if m != nil {
-		return m.AuthorLang
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetAuthorLocation() string {
-	if m != nil {
-		return m.AuthorLocation
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetAuthorName() string {
-	if m != nil {
-		return m.AuthorName
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetAuthorScreenName() string {
-	if m != nil {
-		return m.AuthorScreenName
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetAuthorProfileImageUrlHttp() string {
-	if m != nil {
-		return m.AuthorProfileImageUrlHttp
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetAuthorStatusesCount() int32 {
-	if m != nil {
-		return m.AuthorStatusesCount
-	}
-	return 0
-}
-
-func (m *ExtendedTweet) GetCategories() []string {
-	if m != nil {
-		return m.Categories
-	}
-	return nil
-}
-
-func (m *ExtendedTweet) GetTruncated() bool {
-	if m != nil {
-		return m.Truncated
-	}
-	return false
-}
-
-func (m *ExtendedTweet) GetFullText() string {
-	if m != nil {
-		return m.FullText
-	}
-	return ""
-}
-
-func (m *ExtendedTweet) GetRetweetedStatus() bool {
-	if m != nil {
-		return m.RetweetedStatus
-	}
-	return false
-}
-
-func (m *ExtendedTweet) GetRetweetSourceId() string {
-	if m != nil {
-		return m.RetweetSourceId
-	}
-	return ""
-}
-
-type Tweet struct {
-	Base          *BaseModel          `protobuf:"bytes,1,opt,name=base,proto3" json:"base,omitempty"`
-	Sentiment     *SentimentModel     `protobuf:"bytes,2,opt,name=sentiment,proto3" json:"sentiment,omitempty"`
-	NamedEntities *NamedEntitiesModel `protobuf:"bytes,3,opt,name=named_entities,json=namedEntities,proto3" json:"named_entities,omitempty"`
-	// data from original tweet
-	ExtendedTweet        *ExtendedTweet `protobuf:"bytes,4,opt,name=extended_tweet,json=extendedTweet,proto3" json:"extended_tweet,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
-	XXX_unrecognized     []byte         `json:"-"`
-	XXX_sizecache        int32          `json:"-"`
-}
-
-func (m *Tweet) Reset()         { *m = Tweet{} }
-func (m *Tweet) String() string { return proto.CompactTextString(m) }
-func (*Tweet) ProtoMessage()    {}
-func (*Tweet) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{19}
-}
-func (m *Tweet) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Tweet.Unmarshal(m, b)
-}
-func (m *Tweet) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Tweet.Marshal(b, m, deterministic)
-}
-func (dst *Tweet) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Tweet.Merge(dst, src)
-}
-func (m *Tweet) XXX_Size() int {
-	return xxx_messageInfo_Tweet.Size(m)
-}
-func (m *Tweet) XXX_DiscardUnknown() {
-	xxx_messageInfo_Tweet.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Tweet proto.InternalMessageInfo
-
-func (m *Tweet) GetBase() *BaseModel {
-	if m != nil {
-		return m.Base
-	}
-	return nil
-}
-
-func (m *Tweet) GetSentiment() *SentimentModel {
-	if m != nil {
-		return m.Sentiment
-	}
-	return nil
-}
-
-func (m *Tweet) GetNamedEntities() *NamedEntitiesModel {
-	if m != nil {
-		return m.NamedEntities
-	}
-	return nil
-}
-
-func (m *Tweet) GetExtendedTweet() *ExtendedTweet {
-	if m != nil {
-		return m.ExtendedTweet
-	}
-	return nil
-}
-
-// *
-// Sentiment message holds informations about aggregated sentiment for specific time window.
-// It is emitted every second for each asset and resolution. If your application needs to receive
-// sentiment updates for only one specific asset, it need to be filtered on your side .
+//*
+//Sentiment message holds informations about aggregated sentiment for specific time window.
+//It is emitted every second for each asset and resolution. If your application needs to receive
+//sentiment updates for only one specific asset, it need to be filtered on your side .
 type SentimentCandle struct {
 	// unique identifier
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -2089,16 +1109,17 @@ func (m *SentimentCandle) Reset()         { *m = SentimentCandle{} }
 func (m *SentimentCandle) String() string { return proto.CompactTextString(m) }
 func (*SentimentCandle) ProtoMessage()    {}
 func (*SentimentCandle) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{20}
+	return fileDescriptor_d938547f84707355, []int{12}
 }
+
 func (m *SentimentCandle) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_SentimentCandle.Unmarshal(m, b)
 }
 func (m *SentimentCandle) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_SentimentCandle.Marshal(b, m, deterministic)
 }
-func (dst *SentimentCandle) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SentimentCandle.Merge(dst, src)
+func (m *SentimentCandle) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SentimentCandle.Merge(m, src)
 }
 func (m *SentimentCandle) XXX_Size() int {
 	return xxx_messageInfo_SentimentCandle.Size(m)
@@ -2220,16 +1241,17 @@ func (m *AssetsFilter) Reset()         { *m = AssetsFilter{} }
 func (m *AssetsFilter) String() string { return proto.CompactTextString(m) }
 func (*AssetsFilter) ProtoMessage()    {}
 func (*AssetsFilter) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{21}
+	return fileDescriptor_d938547f84707355, []int{13}
 }
+
 func (m *AssetsFilter) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AssetsFilter.Unmarshal(m, b)
 }
 func (m *AssetsFilter) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AssetsFilter.Marshal(b, m, deterministic)
 }
-func (dst *AssetsFilter) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AssetsFilter.Merge(dst, src)
+func (m *AssetsFilter) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AssetsFilter.Merge(m, src)
 }
 func (m *AssetsFilter) XXX_Size() int {
 	return xxx_messageInfo_AssetsFilter.Size(m)
@@ -2267,16 +1289,17 @@ func (m *AggregationCandleFilter) Reset()         { *m = AggregationCandleFilter
 func (m *AggregationCandleFilter) String() string { return proto.CompactTextString(m) }
 func (*AggregationCandleFilter) ProtoMessage()    {}
 func (*AggregationCandleFilter) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{22}
+	return fileDescriptor_d938547f84707355, []int{14}
 }
+
 func (m *AggregationCandleFilter) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AggregationCandleFilter.Unmarshal(m, b)
 }
 func (m *AggregationCandleFilter) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AggregationCandleFilter.Marshal(b, m, deterministic)
 }
-func (dst *AggregationCandleFilter) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AggregationCandleFilter.Merge(dst, src)
+func (m *AggregationCandleFilter) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AggregationCandleFilter.Merge(m, src)
 }
 func (m *AggregationCandleFilter) XXX_Size() int {
 	return xxx_messageInfo_AggregationCandleFilter.Size(m)
@@ -2301,8 +1324,8 @@ func (m *AggregationCandleFilter) GetAssetsFilter() *AssetsFilter {
 	return nil
 }
 
-// *
-// Each request for historic data should be limited by date
+//*
+//Each request for historic data should be limited by date
 type SentimentHistoricRequest struct {
 	// unix timestamp for start - included in results (greater or equal)
 	From *timestamp.Timestamp `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
@@ -2321,16 +1344,17 @@ func (m *SentimentHistoricRequest) Reset()         { *m = SentimentHistoricReque
 func (m *SentimentHistoricRequest) String() string { return proto.CompactTextString(m) }
 func (*SentimentHistoricRequest) ProtoMessage()    {}
 func (*SentimentHistoricRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{23}
+	return fileDescriptor_d938547f84707355, []int{15}
 }
+
 func (m *SentimentHistoricRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_SentimentHistoricRequest.Unmarshal(m, b)
 }
 func (m *SentimentHistoricRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_SentimentHistoricRequest.Marshal(b, m, deterministic)
 }
-func (dst *SentimentHistoricRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SentimentHistoricRequest.Merge(dst, src)
+func (m *SentimentHistoricRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SentimentHistoricRequest.Merge(m, src)
 }
 func (m *SentimentHistoricRequest) XXX_Size() int {
 	return xxx_messageInfo_SentimentHistoricRequest.Size(m)
@@ -2369,8 +1393,8 @@ func (m *SentimentHistoricRequest) GetAsset() string {
 	return ""
 }
 
-// *
-// Each request for historic data should be limited by date
+//*
+//Each request for historic data should be limited by date
 type HistoricRequest struct {
 	// unix timestamp for start - included in results (greater or equal)
 	From *timestamp.Timestamp `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
@@ -2386,16 +1410,17 @@ func (m *HistoricRequest) Reset()         { *m = HistoricRequest{} }
 func (m *HistoricRequest) String() string { return proto.CompactTextString(m) }
 func (*HistoricRequest) ProtoMessage()    {}
 func (*HistoricRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{24}
+	return fileDescriptor_d938547f84707355, []int{16}
 }
+
 func (m *HistoricRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_HistoricRequest.Unmarshal(m, b)
 }
 func (m *HistoricRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_HistoricRequest.Marshal(b, m, deterministic)
 }
-func (dst *HistoricRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HistoricRequest.Merge(dst, src)
+func (m *HistoricRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HistoricRequest.Merge(m, src)
 }
 func (m *HistoricRequest) XXX_Size() int {
 	return xxx_messageInfo_HistoricRequest.Size(m)
@@ -2427,8 +1452,8 @@ func (m *HistoricRequest) GetFilter() *AssetsFilter {
 	return nil
 }
 
-// *
-// Represent one asset.
+//*
+//Represent one asset.
 type Asset struct {
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// symbol can be duplicated throughout the db
@@ -2444,16 +1469,17 @@ func (m *Asset) Reset()         { *m = Asset{} }
 func (m *Asset) String() string { return proto.CompactTextString(m) }
 func (*Asset) ProtoMessage()    {}
 func (*Asset) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{25}
+	return fileDescriptor_d938547f84707355, []int{17}
 }
+
 func (m *Asset) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Asset.Unmarshal(m, b)
 }
 func (m *Asset) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Asset.Marshal(b, m, deterministic)
 }
-func (dst *Asset) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Asset.Merge(dst, src)
+func (m *Asset) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Asset.Merge(m, src)
 }
 func (m *Asset) XXX_Size() int {
 	return xxx_messageInfo_Asset.Size(m)
@@ -2496,16 +1522,17 @@ func (m *AssetItems) Reset()         { *m = AssetItems{} }
 func (m *AssetItems) String() string { return proto.CompactTextString(m) }
 func (*AssetItems) ProtoMessage()    {}
 func (*AssetItems) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{26}
+	return fileDescriptor_d938547f84707355, []int{18}
 }
+
 func (m *AssetItems) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AssetItems.Unmarshal(m, b)
 }
 func (m *AssetItems) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AssetItems.Marshal(b, m, deterministic)
 }
-func (dst *AssetItems) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AssetItems.Merge(dst, src)
+func (m *AssetItems) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AssetItems.Merge(m, src)
 }
 func (m *AssetItems) XXX_Size() int {
 	return xxx_messageInfo_AssetItems.Size(m)
@@ -2534,7 +1561,7 @@ type Transaction struct {
 	Comment              string               `protobuf:"bytes,8,opt,name=comment,proto3" json:"comment,omitempty"`
 	Asset                string               `protobuf:"bytes,9,opt,name=asset,proto3" json:"asset,omitempty"`
 	Size                 float64              `protobuf:"fixed64,10,opt,name=size,proto3" json:"size,omitempty"`
-	USDSize              float64              `protobuf:"fixed64,11,opt,name=USD_size,json=uSDSize,proto3" json:"USD_size,omitempty"`
+	USDSize              float64              `protobuf:"fixed64,11,opt,name=USD_size,json=USDSize,proto3" json:"USD_size,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
@@ -2544,16 +1571,17 @@ func (m *Transaction) Reset()         { *m = Transaction{} }
 func (m *Transaction) String() string { return proto.CompactTextString(m) }
 func (*Transaction) ProtoMessage()    {}
 func (*Transaction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{27}
+	return fileDescriptor_d938547f84707355, []int{19}
 }
+
 func (m *Transaction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Transaction.Unmarshal(m, b)
 }
 func (m *Transaction) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Transaction.Marshal(b, m, deterministic)
 }
-func (dst *Transaction) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Transaction.Merge(dst, src)
+func (m *Transaction) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Transaction.Merge(m, src)
 }
 func (m *Transaction) XXX_Size() int {
 	return xxx_messageInfo_Transaction.Size(m)
@@ -2656,16 +1684,17 @@ func (m *AggId) Reset()         { *m = AggId{} }
 func (m *AggId) String() string { return proto.CompactTextString(m) }
 func (*AggId) ProtoMessage()    {}
 func (*AggId) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{28}
+	return fileDescriptor_d938547f84707355, []int{20}
 }
+
 func (m *AggId) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AggId.Unmarshal(m, b)
 }
 func (m *AggId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AggId.Marshal(b, m, deterministic)
 }
-func (dst *AggId) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AggId.Merge(dst, src)
+func (m *AggId) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AggId.Merge(m, src)
 }
 func (m *AggId) XXX_Size() int {
 	return xxx_messageInfo_AggId.Size(m)
@@ -2729,16 +1758,17 @@ func (m *AggregationCandle) Reset()         { *m = AggregationCandle{} }
 func (m *AggregationCandle) String() string { return proto.CompactTextString(m) }
 func (*AggregationCandle) ProtoMessage()    {}
 func (*AggregationCandle) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{29}
+	return fileDescriptor_d938547f84707355, []int{21}
 }
+
 func (m *AggregationCandle) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AggregationCandle.Unmarshal(m, b)
 }
 func (m *AggregationCandle) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AggregationCandle.Marshal(b, m, deterministic)
 }
-func (dst *AggregationCandle) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AggregationCandle.Merge(dst, src)
+func (m *AggregationCandle) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AggregationCandle.Merge(m, src)
 }
 func (m *AggregationCandle) XXX_Size() int {
 	return xxx_messageInfo_AggregationCandle.Size(m)
@@ -2838,16 +1868,17 @@ func (m *PublicModel) Reset()         { *m = PublicModel{} }
 func (m *PublicModel) String() string { return proto.CompactTextString(m) }
 func (*PublicModel) ProtoMessage()    {}
 func (*PublicModel) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{30}
+	return fileDescriptor_d938547f84707355, []int{22}
 }
+
 func (m *PublicModel) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_PublicModel.Unmarshal(m, b)
 }
 func (m *PublicModel) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_PublicModel.Marshal(b, m, deterministic)
 }
-func (dst *PublicModel) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PublicModel.Merge(dst, src)
+func (m *PublicModel) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PublicModel.Merge(m, src)
 }
 func (m *PublicModel) XXX_Size() int {
 	return xxx_messageInfo_PublicModel.Size(m)
@@ -2955,16 +1986,17 @@ func (m *PublicModelExtensions) Reset()         { *m = PublicModelExtensions{} }
 func (m *PublicModelExtensions) String() string { return proto.CompactTextString(m) }
 func (*PublicModelExtensions) ProtoMessage()    {}
 func (*PublicModelExtensions) Descriptor() ([]byte, []int) {
-	return fileDescriptor_types_3990317d9c5561b1, []int{31}
+	return fileDescriptor_d938547f84707355, []int{23}
 }
+
 func (m *PublicModelExtensions) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_PublicModelExtensions.Unmarshal(m, b)
 }
 func (m *PublicModelExtensions) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_PublicModelExtensions.Marshal(b, m, deterministic)
 }
-func (dst *PublicModelExtensions) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PublicModelExtensions.Merge(dst, src)
+func (m *PublicModelExtensions) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PublicModelExtensions.Merge(m, src)
 }
 func (m *PublicModelExtensions) XXX_Size() int {
 	return xxx_messageInfo_PublicModelExtensions.Size(m)
@@ -2983,6 +2015,7 @@ func (m *PublicModelExtensions) GetAssets() []string {
 }
 
 func init() {
+	proto.RegisterEnum("NamedEntity", NamedEntity_name, NamedEntity_value)
 	proto.RegisterType((*BaseModel)(nil), "BaseModel")
 	proto.RegisterType((*SentimentModel)(nil), "SentimentModel")
 	proto.RegisterType((*CryptopanicEntrySource)(nil), "CryptopanicEntrySource")
@@ -2996,14 +2029,6 @@ func init() {
 	proto.RegisterMapType((map[string]int32)(nil), "NamedEntitiesModel.AssetMentionsEntry")
 	proto.RegisterType((*Article)(nil), "Article")
 	proto.RegisterType((*UserMessage)(nil), "UserMessage")
-	proto.RegisterType((*BitmexUserMessage)(nil), "BitmexUserMessage")
-	proto.RegisterType((*TelegramUserMessage)(nil), "TelegramUserMessage")
-	proto.RegisterType((*CommentCountTimeSnapshot)(nil), "CommentCountTimeSnapshot")
-	proto.RegisterType((*Comment)(nil), "Comment")
-	proto.RegisterType((*RedditPostModel)(nil), "RedditPostModel")
-	proto.RegisterType((*RedditPost)(nil), "RedditPost")
-	proto.RegisterType((*ExtendedTweet)(nil), "ExtendedTweet")
-	proto.RegisterType((*Tweet)(nil), "Tweet")
 	proto.RegisterType((*SentimentCandle)(nil), "SentimentCandle")
 	proto.RegisterType((*AssetsFilter)(nil), "AssetsFilter")
 	proto.RegisterType((*AggregationCandleFilter)(nil), "AggregationCandleFilter")
@@ -3016,39 +2041,168 @@ func init() {
 	proto.RegisterType((*AggregationCandle)(nil), "AggregationCandle")
 	proto.RegisterType((*PublicModel)(nil), "PublicModel")
 	proto.RegisterType((*PublicModelExtensions)(nil), "PublicModelExtensions")
-	proto.RegisterEnum("NamedEntity", NamedEntity_name, NamedEntity_value)
+}
+
+func init() { proto.RegisterFile("types.proto", fileDescriptor_d938547f84707355) }
+
+var fileDescriptor_d938547f84707355 = []byte{
+	// 2118 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe4, 0x38, 0x5f, 0x6f, 0x1c, 0x49,
+	0xf1, 0x99, 0xfd, 0xe3, 0xf5, 0xd6, 0xee, 0xda, 0x4e, 0x3b, 0x76, 0x26, 0xfe, 0xfd, 0x2e, 0x67,
+	0xe6, 0x74, 0x28, 0x0a, 0xc7, 0xf8, 0xb4, 0x84, 0x03, 0x22, 0x1e, 0x58, 0x1c, 0x5f, 0x62, 0x14,
+	0xdb, 0xd1, 0xac, 0x73, 0x70, 0xbc, 0xac, 0xda, 0x33, 0x9d, 0xf5, 0x28, 0x33, 0xd3, 0xc3, 0x74,
+	0x8f, 0xed, 0xcd, 0x03, 0x20, 0x3e, 0x03, 0x4f, 0x7c, 0x06, 0x24, 0xde, 0x11, 0x48, 0x3c, 0x21,
+	0xbe, 0x04, 0x2f, 0x48, 0x7c, 0x0f, 0xd4, 0xd5, 0xdd, 0xb3, 0x63, 0x7b, 0xed, 0xf0, 0x4f, 0x08,
+	0x89, 0xb7, 0xfa, 0xdf, 0xd5, 0x55, 0xd5, 0x55, 0x35, 0x03, 0x3d, 0x39, 0xcb, 0x99, 0xf0, 0xf3,
+	0x82, 0x4b, 0xbe, 0xf5, 0xe1, 0x94, 0xf3, 0x69, 0xc2, 0x76, 0x10, 0x3b, 0x29, 0xdf, 0xec, 0xc8,
+	0x38, 0x65, 0x42, 0xd2, 0x34, 0x37, 0x02, 0xff, 0x77, 0x55, 0x80, 0xa5, 0xb9, 0x9c, 0x69, 0xa6,
+	0xf7, 0xdb, 0x26, 0x74, 0xbf, 0x4f, 0x05, 0x3b, 0xe0, 0x11, 0x4b, 0xc8, 0x0a, 0x34, 0xe2, 0xc8,
+	0x75, 0xb6, 0x9d, 0x47, 0xdd, 0xa0, 0x11, 0x47, 0xe4, 0x1e, 0xb4, 0x65, 0x2c, 0x13, 0xe6, 0x36,
+	0x90, 0xa4, 0x11, 0xe2, 0x42, 0x27, 0xe4, 0x99, 0x64, 0x99, 0x74, 0x9b, 0x48, 0xb7, 0x28, 0x72,
+	0x0a, 0x7a, 0x9e, 0xb0, 0xc2, 0x6d, 0x19, 0x8e, 0x46, 0xc9, 0x37, 0x61, 0x39, 0x2f, 0x4f, 0x26,
+	0x11, 0x95, 0xcc, 0x6d, 0x6f, 0x3b, 0x8f, 0x7a, 0xc3, 0x2d, 0x5f, 0xfb, 0xe5, 0x5b, 0xbf, 0xfc,
+	0x63, 0xeb, 0x78, 0xd0, 0xc9, 0xcb, 0x93, 0x67, 0x54, 0x32, 0xf2, 0x44, 0x19, 0x64, 0x54, 0xb2,
+	0xc8, 0x5d, 0x7a, 0xbf, 0x96, 0x11, 0x25, 0x9b, 0xb0, 0x24, 0x78, 0x59, 0x84, 0xcc, 0xed, 0xa0,
+	0x17, 0x06, 0x53, 0xee, 0xb1, 0x8b, 0x90, 0x15, 0xb9, 0x74, 0x97, 0xb5, 0x7b, 0x06, 0x55, 0x1a,
+	0x67, 0x71, 0xc4, 0xb8, 0x70, 0xbb, 0xdb, 0x4d, 0xa5, 0xa1, 0x31, 0x45, 0x8f, 0x53, 0x3a, 0x65,
+	0xc2, 0x05, 0x4d, 0xd7, 0x98, 0x0a, 0x4c, 0x12, 0x67, 0x6f, 0x85, 0xdb, 0x43, 0xb2, 0x46, 0x94,
+	0x34, 0x2d, 0xe5, 0x29, 0x2f, 0xdc, 0xbe, 0x3e, 0x57, 0x63, 0x84, 0x40, 0x2b, 0xa1, 0xd9, 0xd4,
+	0x1d, 0x20, 0x15, 0x61, 0x25, 0x7b, 0xce, 0xe2, 0xe9, 0xa9, 0x74, 0x57, 0xb6, 0x9d, 0x47, 0x4e,
+	0x60, 0x30, 0x25, 0x2b, 0x72, 0x9a, 0xba, 0xab, 0x48, 0x45, 0x58, 0xc9, 0x46, 0x3c, 0xa5, 0x71,
+	0xe6, 0xae, 0x69, 0xbb, 0x1a, 0xf3, 0x7e, 0xee, 0xc0, 0xca, 0x98, 0x65, 0x2a, 0xe1, 0x99, 0xd4,
+	0x19, 0xfc, 0x7f, 0xe8, 0x0a, 0x4b, 0xc1, 0x44, 0x3a, 0xc1, 0x9c, 0x40, 0x3e, 0x82, 0x41, 0x4a,
+	0x8b, 0xb7, 0x4c, 0x4e, 0xe2, 0x34, 0xa7, 0xa1, 0xc4, 0xbc, 0x3a, 0x41, 0x5f, 0x13, 0xf7, 0x91,
+	0x46, 0xbe, 0x06, 0x77, 0x2b, 0x8d, 0x49, 0xc1, 0xf2, 0x24, 0x66, 0x02, 0x13, 0xed, 0x04, 0x6b,
+	0x15, 0x23, 0xd0, 0x74, 0xaf, 0x80, 0xcd, 0xdd, 0x62, 0x96, 0x4b, 0x9e, 0xd3, 0x2c, 0x0e, 0xf7,
+	0x32, 0x59, 0xcc, 0xc6, 0x3a, 0xd8, 0x55, 0xed, 0x38, 0xf5, 0xda, 0xd9, 0x84, 0xa5, 0x82, 0x4d,
+	0x63, 0x9e, 0x99, 0x92, 0x32, 0x58, 0xed, 0x8a, 0xcd, 0xfa, 0x15, 0x55, 0x38, 0x72, 0x2a, 0x4f,
+	0x4d, 0x39, 0x21, 0xec, 0xfd, 0xd9, 0x81, 0x8d, 0xab, 0x87, 0x7e, 0xc1, 0x25, 0x13, 0x64, 0x0b,
+	0x96, 0x33, 0x36, 0xa5, 0x32, 0x3e, 0xd3, 0xc7, 0xb6, 0x83, 0x0a, 0x57, 0xbc, 0x9c, 0x8b, 0x18,
+	0x79, 0x0d, 0xcd, 0xb3, 0xb8, 0x8a, 0x5a, 0x9c, 0xe6, 0xbc, 0x90, 0xd4, 0xd4, 0x74, 0x3b, 0x98,
+	0x13, 0x74, 0xb2, 0xdf, 0xb2, 0x08, 0x9d, 0x68, 0x07, 0x1a, 0x51, 0xf6, 0xa2, 0x58, 0x68, 0x46,
+	0x5b, 0xdb, 0xb3, 0x38, 0x59, 0x83, 0x66, 0xc2, 0x13, 0x2c, 0xd9, 0x76, 0xa0, 0x40, 0x8c, 0x06,
+	0xbf, 0x88, 0x43, 0xac, 0xc8, 0x76, 0xa0, 0x11, 0x45, 0x15, 0xf4, 0x8c, 0x45, 0x58, 0x8e, 0xed,
+	0x40, 0x23, 0xde, 0x17, 0xe0, 0x5e, 0xbd, 0xde, 0x01, 0x93, 0x34, 0xa2, 0x92, 0xaa, 0x12, 0x4e,
+	0x99, 0x10, 0x74, 0x6a, 0xe3, 0x6a, 0x51, 0xb2, 0x0d, 0xbd, 0x88, 0x89, 0xb0, 0x88, 0x73, 0x39,
+	0x0f, 0x6f, 0x9d, 0xe4, 0xfd, 0xb5, 0x01, 0xeb, 0x35, 0xc3, 0x01, 0x3d, 0x47, 0xdb, 0x2a, 0xc6,
+	0x6f, 0xe3, 0xcc, 0xbe, 0x7b, 0x84, 0x6b, 0xf9, 0x68, 0x5c, 0xca, 0xc7, 0x4e, 0xf5, 0xb4, 0x9a,
+	0xf8, 0x1e, 0xef, 0xfb, 0x8b, 0xd3, 0x5f, 0xbd, 0xb9, 0xaa, 0x0c, 0x5a, 0xf5, 0x32, 0xf8, 0x0a,
+	0xf4, 0xf3, 0xf2, 0x24, 0x89, 0xc5, 0x29, 0x8b, 0x26, 0x54, 0x62, 0x00, 0xbb, 0x41, 0xaf, 0xa2,
+	0x8d, 0xf4, 0x43, 0x48, 0xca, 0x29, 0x06, 0xb1, 0x1b, 0x20, 0x6c, 0xfa, 0x93, 0x0e, 0xa1, 0xea,
+	0x4f, 0x6b, 0xd0, 0x2c, 0x8b, 0xc4, 0x3c, 0x66, 0x05, 0x92, 0x0f, 0x00, 0x4c, 0x17, 0x50, 0x66,
+	0xbb, 0xc8, 0xe8, 0x1a, 0xca, 0x48, 0x92, 0x4f, 0xa0, 0x7d, 0xa6, 0x2a, 0xc5, 0x05, 0xf4, 0x7e,
+	0xd3, 0x5f, 0x58, 0x47, 0x81, 0x16, 0x52, 0x4d, 0x2b, 0x35, 0x81, 0x77, 0x7b, 0xa8, 0xf0, 0xc0,
+	0xbf, 0x29, 0x33, 0x41, 0x25, 0xea, 0xfd, 0x10, 0x56, 0x6b, 0x52, 0x9f, 0x33, 0x86, 0x8d, 0x34,
+	0xe4, 0xa5, 0x79, 0x92, 0xed, 0x40, 0x23, 0xc4, 0x87, 0x4e, 0xc1, 0x44, 0x99, 0x48, 0xe1, 0x36,
+	0xb6, 0x9b, 0x8f, 0x7a, 0xc3, 0x7b, 0xfe, 0x82, 0xfc, 0x04, 0x56, 0xc8, 0xfb, 0xd9, 0x25, 0xc3,
+	0xaf, 0xb8, 0x90, 0xe4, 0x05, 0x6c, 0x84, 0x73, 0xd2, 0xa4, 0xa0, 0xe7, 0x13, 0xa6, 0x94, 0xf0,
+	0xa0, 0x9b, 0x0c, 0xae, 0x87, 0x0b, 0xaa, 0xc0, 0x83, 0x0e, 0x2d, 0x64, 0x1c, 0x9a, 0x6e, 0xdf,
+	0x1b, 0x2e, 0xfb, 0x23, 0x8d, 0x07, 0x96, 0xe1, 0x9d, 0xc3, 0xc6, 0x21, 0x4d, 0x59, 0xb4, 0x97,
+	0xc9, 0x58, 0xce, 0x8e, 0xc2, 0xb0, 0x2c, 0x0a, 0x96, 0x85, 0x8c, 0x78, 0xd0, 0x4e, 0xe8, 0x09,
+	0x4b, 0xf0, 0xd8, 0x95, 0x61, 0xdf, 0xaf, 0x89, 0x05, 0x9a, 0x85, 0xc5, 0x2e, 0x69, 0xa1, 0x9b,
+	0xce, 0x20, 0xd0, 0x88, 0x4a, 0x21, 0xcb, 0x22, 0xac, 0xa6, 0x41, 0xa0, 0x40, 0x95, 0x78, 0xc9,
+	0x2e, 0xa4, 0x7d, 0xf2, 0x0a, 0xf6, 0xfe, 0xd2, 0x02, 0x32, 0x37, 0x19, 0x33, 0xa1, 0xbb, 0x9d,
+	0x0b, 0x1d, 0x31, 0x4b, 0x4f, 0x78, 0x22, 0x5c, 0x07, 0x1b, 0xb1, 0x45, 0x89, 0x0f, 0x4b, 0x54,
+	0x08, 0x56, 0x45, 0x76, 0xd3, 0x5f, 0xe8, 0x78, 0x60, 0xa4, 0xc8, 0xa7, 0xd0, 0xc9, 0x59, 0x21,
+	0x78, 0xa6, 0x5a, 0xdd, 0x6d, 0x0a, 0x56, 0x8c, 0x3c, 0x81, 0x6e, 0xc8, 0x53, 0x15, 0x43, 0x26,
+	0xdc, 0xd6, 0xad, 0x3a, 0x73, 0x41, 0xf2, 0x5d, 0x18, 0xf0, 0x62, 0x4a, 0xb3, 0xf8, 0x1d, 0x55,
+	0x6f, 0x52, 0xb8, 0xed, 0x5b, 0x35, 0x2f, 0x0b, 0xab, 0x33, 0x13, 0x1e, 0x1a, 0xcd, 0xa5, 0xdb,
+	0xcf, 0xac, 0x04, 0x95, 0x16, 0xbb, 0x08, 0x4f, 0x69, 0xa6, 0xe6, 0x58, 0xe7, 0x76, 0xad, 0x4a,
+	0x90, 0x3c, 0x86, 0x56, 0x1a, 0x8b, 0xd0, 0x5d, 0xbe, 0x55, 0x01, 0x65, 0x30, 0x65, 0x74, 0x6a,
+	0x87, 0x27, 0xc2, 0xe4, 0x00, 0x56, 0x30, 0xb6, 0x13, 0x35, 0x2e, 0xd0, 0x61, 0x40, 0x4b, 0x5f,
+	0xf5, 0xaf, 0x27, 0xd2, 0x1f, 0x29, 0xc9, 0x03, 0x23, 0xa8, 0x8b, 0x74, 0x40, 0xeb, 0x34, 0xf2,
+	0x21, 0xf4, 0x74, 0x47, 0x99, 0x60, 0x71, 0xf4, 0xb0, 0x38, 0x40, 0x93, 0x8e, 0xd9, 0x85, 0xdc,
+	0xfa, 0x1e, 0x90, 0xeb, 0x56, 0x54, 0x79, 0xbd, 0x65, 0x33, 0xd3, 0xda, 0x14, 0xa8, 0xca, 0xf0,
+	0x8c, 0x26, 0xa5, 0x1d, 0x02, 0x1a, 0x79, 0xda, 0xf8, 0xb6, 0xe3, 0xfd, 0xc9, 0x81, 0x8e, 0x29,
+	0x79, 0xf2, 0x10, 0x5a, 0x27, 0x54, 0x30, 0xf3, 0x8c, 0xc0, 0xaf, 0x76, 0xa4, 0x00, 0xe9, 0xe4,
+	0xeb, 0xf5, 0x39, 0xab, 0xdf, 0xcb, 0xaa, 0x7f, 0x79, 0x16, 0xd7, 0x07, 0xef, 0x53, 0x58, 0xc9,
+	0xd4, 0xad, 0xd5, 0xe3, 0xc4, 0x6b, 0x9b, 0xf6, 0xb9, 0xbe, 0x20, 0x18, 0xc1, 0x20, 0xab, 0xd3,
+	0xc8, 0x10, 0x00, 0x9b, 0xe6, 0x04, 0xfb, 0x50, 0xeb, 0x66, 0xbd, 0x2e, 0x8a, 0x3d, 0x53, 0x2d,
+	0xe8, 0x8f, 0x0e, 0xf4, 0x5e, 0x0b, 0x56, 0x1c, 0x98, 0xe1, 0xf0, 0x5f, 0x74, 0x1d, 0x02, 0xad,
+	0x52, 0x54, 0x0b, 0x22, 0xc2, 0xf5, 0xa9, 0xd6, 0xbe, 0x34, 0xd5, 0xbc, 0xdf, 0xb7, 0x60, 0xb5,
+	0xf2, 0x63, 0x97, 0x66, 0x51, 0xc2, 0xae, 0x6d, 0xa9, 0xdf, 0x01, 0xc0, 0x5e, 0x32, 0x51, 0x52,
+	0xc6, 0xfb, 0xdb, 0xf6, 0xc4, 0x2e, 0x4a, 0x2b, 0x9c, 0x3c, 0x04, 0x28, 0x98, 0xe0, 0x49, 0x89,
+	0x33, 0x53, 0xaf, 0x1e, 0x35, 0x8a, 0x2a, 0x16, 0x2c, 0x43, 0x3b, 0xbd, 0x10, 0x51, 0xd3, 0xcb,
+	0xae, 0x15, 0x13, 0x51, 0xa6, 0xe8, 0xb3, 0x13, 0xf4, 0x2c, 0x6d, 0x5c, 0xa6, 0xe4, 0x63, 0x58,
+	0xa9, 0x44, 0x74, 0xe7, 0xd7, 0xcb, 0xc0, 0xc0, 0x52, 0x77, 0x71, 0x02, 0xa8, 0x39, 0x68, 0x96,
+	0x10, 0xb4, 0xd4, 0xd1, 0x96, 0x2c, 0xcd, 0x58, 0xaa, 0x44, 0xb4, 0x25, 0xbd, 0x2c, 0x0c, 0x2c,
+	0x55, 0x5b, 0xfa, 0x08, 0x06, 0xf3, 0xad, 0x8d, 0x9e, 0x4d, 0x71, 0xf6, 0x39, 0x41, 0xbf, 0x22,
+	0x8e, 0xce, 0xa6, 0xe4, 0x09, 0x6c, 0xf2, 0x9c, 0x65, 0x93, 0xba, 0x24, 0x2b, 0x54, 0xd8, 0x01,
+	0xa5, 0xef, 0x29, 0xee, 0x78, 0xae, 0x81, 0x3c, 0xa5, 0x75, 0x1a, 0x4f, 0x4f, 0x17, 0x68, 0xf5,
+	0xb4, 0x96, 0xe2, 0x5e, 0xd3, 0x1a, 0xc2, 0x46, 0xc2, 0xcf, 0x17, 0x28, 0xf5, 0x51, 0x69, 0x3d,
+	0xe1, 0xe7, 0xd7, 0x74, 0x3e, 0x83, 0xfb, 0x61, 0xc2, 0x05, 0x5b, 0xa0, 0x35, 0x40, 0xad, 0x0d,
+	0x64, 0x5f, 0xd3, 0x73, 0xa1, 0x53, 0xe6, 0x11, 0x7e, 0x26, 0xa8, 0x6d, 0x7a, 0x39, 0xb0, 0xa8,
+	0xb7, 0x07, 0x7d, 0xec, 0x0a, 0xe2, 0xf3, 0x38, 0x91, 0xac, 0xc0, 0x15, 0x5d, 0xcf, 0x85, 0x96,
+	0x5e, 0xe8, 0x4d, 0xff, 0xff, 0x00, 0x80, 0x26, 0xc9, 0xc4, 0xf0, 0xda, 0x68, 0xa4, 0x4b, 0x93,
+	0x44, 0x2b, 0x7b, 0x29, 0xdc, 0x1f, 0x4d, 0xa7, 0x05, 0xe6, 0x8e, 0x67, 0xba, 0x0e, 0x8d, 0xc5,
+	0xcb, 0x25, 0xe4, 0x5c, 0x2b, 0xa1, 0x21, 0xe8, 0x4e, 0x26, 0x26, 0x6f, 0x50, 0xc1, 0x14, 0xe8,
+	0xc0, 0xaf, 0xfb, 0x15, 0xf4, 0x69, 0x0d, 0xf3, 0x7e, 0xed, 0x80, 0x5b, 0x5d, 0xf2, 0x45, 0x2c,
+	0x24, 0x2f, 0xe2, 0x30, 0x60, 0x3f, 0x29, 0x99, 0x50, 0x5b, 0x43, 0xeb, 0x4d, 0xc1, 0x53, 0xf3,
+	0x96, 0x6f, 0x2b, 0x74, 0x94, 0x23, 0x8f, 0xa1, 0x21, 0xf9, 0xdf, 0xf1, 0x2c, 0x1a, 0x92, 0xff,
+	0x73, 0xef, 0xc1, 0xfb, 0xa5, 0x03, 0xab, 0xff, 0x49, 0x2f, 0x3f, 0x86, 0x25, 0x13, 0xcb, 0xd6,
+	0xa2, 0x58, 0x1a, 0xa6, 0xf7, 0x1c, 0xda, 0x48, 0x57, 0x2d, 0x47, 0xf5, 0x20, 0xbb, 0xe0, 0x2a,
+	0x18, 0xbf, 0x11, 0x71, 0x57, 0xb0, 0x0b, 0xae, 0xc6, 0x94, 0x6c, 0xc8, 0x23, 0x66, 0xee, 0x8e,
+	0xb0, 0xf7, 0x09, 0x00, 0x1a, 0xda, 0x97, 0x2c, 0x15, 0xe4, 0x61, 0x55, 0x42, 0x0e, 0x0e, 0xb4,
+	0x25, 0x7d, 0xba, 0x2d, 0x25, 0xef, 0x77, 0x0d, 0xe8, 0x1d, 0x17, 0x34, 0x13, 0x34, 0xc4, 0x98,
+	0x5d, 0x6d, 0x57, 0x04, 0x5a, 0xa7, 0x54, 0x9c, 0x9a, 0x73, 0x11, 0x56, 0x7d, 0x40, 0x45, 0x61,
+	0x42, 0xa3, 0xa8, 0x60, 0x42, 0x98, 0xd3, 0x7b, 0x8a, 0x36, 0xd2, 0x24, 0x55, 0xa1, 0x92, 0x57,
+	0x02, 0x3a, 0xfe, 0x5d, 0xc9, 0x6b, 0x6c, 0xb4, 0xc0, 0xcf, 0x33, 0x56, 0x98, 0x2e, 0xda, 0x55,
+	0x94, 0x23, 0x45, 0x20, 0x0f, 0x60, 0x59, 0x72, 0xc3, 0xd4, 0x1b, 0x75, 0x47, 0x72, 0xcd, 0xf2,
+	0xa1, 0x85, 0x8d, 0xb3, 0xf3, 0xfe, 0x4c, 0x29, 0x39, 0xfd, 0xf9, 0x9f, 0xe2, 0xa4, 0x58, 0xb6,
+	0x9f, 0xff, 0x88, 0xce, 0xab, 0xa3, 0x5b, 0xef, 0x96, 0x6a, 0x91, 0x8f, 0xdf, 0xd9, 0x16, 0x83,
+	0xb0, 0x72, 0xe7, 0xf5, 0xf8, 0xd9, 0x04, 0xe9, 0xba, 0x89, 0x74, 0x5e, 0x8f, 0x9f, 0x8d, 0xe3,
+	0x77, 0xcc, 0xe3, 0xd0, 0x1e, 0x4d, 0xa7, 0xfb, 0x18, 0xa7, 0x19, 0xa3, 0x85, 0x59, 0x99, 0x11,
+	0x56, 0x27, 0xa4, 0x3c, 0x93, 0xa7, 0x76, 0x78, 0x23, 0xa2, 0x86, 0x7c, 0x44, 0x67, 0xe6, 0xc3,
+	0x4d, 0x81, 0x18, 0x63, 0x5e, 0x16, 0xe6, 0x8b, 0x0d, 0x61, 0x95, 0xf1, 0x34, 0xce, 0x4a, 0xf3,
+	0x03, 0xa2, 0x1d, 0x18, 0xcc, 0xfb, 0x8d, 0x03, 0x77, 0xaf, 0x3d, 0x6e, 0xb2, 0x59, 0x65, 0x0d,
+	0x33, 0xac, 0x3c, 0xb2, 0xbf, 0x44, 0xf4, 0x1d, 0x1b, 0xf5, 0x3b, 0xbe, 0xef, 0xdd, 0xac, 0x40,
+	0x23, 0x3f, 0x43, 0x6f, 0x9a, 0x41, 0x23, 0x3f, 0x53, 0x78, 0x76, 0x86, 0x7e, 0x34, 0x83, 0x46,
+	0x86, 0x78, 0x2e, 0x30, 0x31, 0x4e, 0xd0, 0xc8, 0x05, 0xf2, 0x85, 0x99, 0x06, 0x8d, 0x4c, 0x90,
+	0x3e, 0x38, 0x14, 0xa3, 0xed, 0x04, 0x0e, 0xf5, 0x7e, 0xd1, 0x84, 0xde, 0x2b, 0xf5, 0xa9, 0x14,
+	0xfe, 0x7b, 0x7e, 0xdb, 0xfc, 0xaf, 0xfc, 0x9c, 0x59, 0xf4, 0x13, 0x85, 0x7c, 0x06, 0xc0, 0x2e,
+	0x24, 0xcb, 0x04, 0xee, 0xa8, 0x91, 0xf9, 0x2e, 0xac, 0x85, 0x77, 0xaf, 0xe2, 0x06, 0x35, 0x49,
+	0x6f, 0x07, 0x36, 0x16, 0x0a, 0xd5, 0x46, 0x8c, 0x53, 0x1f, 0x31, 0x8f, 0x7f, 0xe5, 0x40, 0xaf,
+	0xb6, 0x44, 0x93, 0x35, 0xe8, 0x8f, 0xc6, 0xe3, 0xbd, 0xe3, 0xc9, 0xde, 0xe1, 0xf1, 0xfe, 0xf1,
+	0x97, 0x6b, 0x77, 0xc8, 0x5d, 0x18, 0xbc, 0xda, 0x0b, 0xc6, 0x47, 0x87, 0x96, 0xe4, 0x90, 0x75,
+	0x58, 0x7d, 0x79, 0xb4, 0x3b, 0x3a, 0xde, 0x9f, 0x13, 0x1b, 0x84, 0xc0, 0xca, 0xee, 0xd1, 0xc1,
+	0xab, 0xd1, 0xe1, 0x97, 0x96, 0xd6, 0x54, 0x82, 0x7b, 0x3f, 0xda, 0x7d, 0x31, 0x3a, 0x7c, 0xbe,
+	0x67, 0x89, 0x2d, 0xb2, 0x0a, 0xbd, 0x83, 0xfd, 0xf1, 0xae, 0x25, 0xb4, 0xc9, 0x7d, 0x58, 0x3f,
+	0x0a, 0x9e, 0x8f, 0x0e, 0xf7, 0x7f, 0x7c, 0xc9, 0xe4, 0xd2, 0x70, 0x06, 0x03, 0xb3, 0x2b, 0x8a,
+	0x57, 0x05, 0xbf, 0x98, 0x91, 0x6f, 0xc1, 0xbd, 0x71, 0x79, 0x22, 0xc2, 0x22, 0x3e, 0x61, 0x6a,
+	0x5b, 0xb4, 0x8b, 0xf1, 0xe5, 0x5e, 0xbb, 0xd5, 0xaf, 0x47, 0xca, 0xbb, 0xf3, 0xa9, 0x43, 0x76,
+	0x60, 0xad, 0x52, 0xbc, 0x41, 0xa9, 0xfa, 0xb2, 0x54, 0x0a, 0xc3, 0xa7, 0xd0, 0x51, 0x3b, 0xab,
+	0x7a, 0x46, 0x3b, 0xb0, 0xa4, 0x05, 0xc9, 0xe6, 0xb5, 0x52, 0xda, 0x4b, 0x73, 0x39, 0xdb, 0xea,
+	0xf9, 0xf3, 0x4e, 0xec, 0xdd, 0x19, 0xfe, 0x14, 0xfa, 0x76, 0xf0, 0x28, 0x1b, 0xe4, 0x29, 0xdc,
+	0xb3, 0x78, 0xcd, 0x69, 0x41, 0xd6, 0xfc, 0x2b, 0xf3, 0x69, 0x81, 0xe3, 0x43, 0x58, 0xb3, 0x42,
+	0xb7, 0xe8, 0x5d, 0xf6, 0xfd, 0x0f, 0x0d, 0x80, 0x6a, 0x50, 0x0b, 0xf2, 0x12, 0xee, 0x5b, 0xf9,
+	0x31, 0x0f, 0x63, 0x9a, 0x54, 0x3c, 0xf2, 0xc0, 0xbf, 0x69, 0xa0, 0x6f, 0x11, 0xff, 0x5a, 0xfb,
+	0x41, 0x87, 0x7e, 0x00, 0x1b, 0x56, 0xf4, 0x90, 0x9d, 0x8b, 0x7f, 0xc9, 0xd6, 0x4b, 0x70, 0xab,
+	0xac, 0x5c, 0x75, 0xcd, 0xf5, 0x6f, 0xd8, 0x6d, 0x6e, 0xf1, 0x6c, 0xb3, 0xb2, 0x76, 0xd9, 0xb5,
+	0x7f, 0xd8, 0xd6, 0xc9, 0x12, 0x66, 0xf8, 0x1b, 0x7f, 0x0b, 0x00, 0x00, 0xff, 0xff, 0x48, 0x42,
+	0x8e, 0xf0, 0xd5, 0x16, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConn
+var _ grpc.ClientConnInterface
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
+const _ = grpc.SupportPackageIsVersion6
 
 // MessagesProxyClient is the client API for MessagesProxy service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MessagesProxyClient interface {
 	SubscribeBaseArticle(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseArticleClient, error)
-	SubscribeBaseTweet(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseTweetClient, error)
-	SubscribeBaseReddit(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseRedditClient, error)
-	SubscribeBaseTelegram(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseTelegramClient, error)
-	SubscribeBaseBitmex(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseBitmexClient, error)
 	SubscribeArticle(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeArticleClient, error)
-	SubscribeTweet(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeTweetClient, error)
-	SubscribeReddit(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeRedditClient, error)
-	SubscribeTelegram(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeTelegramClient, error)
-	SubscribeBitmex(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBitmexClient, error)
-	SubscribeTransaction(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeTransactionClient, error)
 }
 
 type messagesProxyClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewMessagesProxyClient(cc *grpc.ClientConn) MessagesProxyClient {
+func NewMessagesProxyClient(cc grpc.ClientConnInterface) MessagesProxyClient {
 	return &messagesProxyClient{cc}
 }
 
@@ -3084,136 +2238,8 @@ func (x *messagesProxySubscribeBaseArticleClient) Recv() (*PublicModel, error) {
 	return m, nil
 }
 
-func (c *messagesProxyClient) SubscribeBaseTweet(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseTweetClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[1], "/MessagesProxy/SubscribeBaseTweet", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &messagesProxySubscribeBaseTweetClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type MessagesProxy_SubscribeBaseTweetClient interface {
-	Recv() (*PublicModel, error)
-	grpc.ClientStream
-}
-
-type messagesProxySubscribeBaseTweetClient struct {
-	grpc.ClientStream
-}
-
-func (x *messagesProxySubscribeBaseTweetClient) Recv() (*PublicModel, error) {
-	m := new(PublicModel)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *messagesProxyClient) SubscribeBaseReddit(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseRedditClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[2], "/MessagesProxy/SubscribeBaseReddit", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &messagesProxySubscribeBaseRedditClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type MessagesProxy_SubscribeBaseRedditClient interface {
-	Recv() (*PublicModel, error)
-	grpc.ClientStream
-}
-
-type messagesProxySubscribeBaseRedditClient struct {
-	grpc.ClientStream
-}
-
-func (x *messagesProxySubscribeBaseRedditClient) Recv() (*PublicModel, error) {
-	m := new(PublicModel)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *messagesProxyClient) SubscribeBaseTelegram(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseTelegramClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[3], "/MessagesProxy/SubscribeBaseTelegram", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &messagesProxySubscribeBaseTelegramClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type MessagesProxy_SubscribeBaseTelegramClient interface {
-	Recv() (*PublicModel, error)
-	grpc.ClientStream
-}
-
-type messagesProxySubscribeBaseTelegramClient struct {
-	grpc.ClientStream
-}
-
-func (x *messagesProxySubscribeBaseTelegramClient) Recv() (*PublicModel, error) {
-	m := new(PublicModel)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *messagesProxyClient) SubscribeBaseBitmex(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBaseBitmexClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[4], "/MessagesProxy/SubscribeBaseBitmex", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &messagesProxySubscribeBaseBitmexClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type MessagesProxy_SubscribeBaseBitmexClient interface {
-	Recv() (*PublicModel, error)
-	grpc.ClientStream
-}
-
-type messagesProxySubscribeBaseBitmexClient struct {
-	grpc.ClientStream
-}
-
-func (x *messagesProxySubscribeBaseBitmexClient) Recv() (*PublicModel, error) {
-	m := new(PublicModel)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 func (c *messagesProxyClient) SubscribeArticle(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeArticleClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[5], "/MessagesProxy/SubscribeArticle", opts...)
+	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[1], "/MessagesProxy/SubscribeArticle", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3244,179 +2270,21 @@ func (x *messagesProxySubscribeArticleClient) Recv() (*Article, error) {
 	return m, nil
 }
 
-func (c *messagesProxyClient) SubscribeTweet(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeTweetClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[6], "/MessagesProxy/SubscribeTweet", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &messagesProxySubscribeTweetClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type MessagesProxy_SubscribeTweetClient interface {
-	Recv() (*Tweet, error)
-	grpc.ClientStream
-}
-
-type messagesProxySubscribeTweetClient struct {
-	grpc.ClientStream
-}
-
-func (x *messagesProxySubscribeTweetClient) Recv() (*Tweet, error) {
-	m := new(Tweet)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *messagesProxyClient) SubscribeReddit(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeRedditClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[7], "/MessagesProxy/SubscribeReddit", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &messagesProxySubscribeRedditClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type MessagesProxy_SubscribeRedditClient interface {
-	Recv() (*RedditPost, error)
-	grpc.ClientStream
-}
-
-type messagesProxySubscribeRedditClient struct {
-	grpc.ClientStream
-}
-
-func (x *messagesProxySubscribeRedditClient) Recv() (*RedditPost, error) {
-	m := new(RedditPost)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *messagesProxyClient) SubscribeTelegram(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeTelegramClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[8], "/MessagesProxy/SubscribeTelegram", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &messagesProxySubscribeTelegramClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type MessagesProxy_SubscribeTelegramClient interface {
-	Recv() (*TelegramUserMessage, error)
-	grpc.ClientStream
-}
-
-type messagesProxySubscribeTelegramClient struct {
-	grpc.ClientStream
-}
-
-func (x *messagesProxySubscribeTelegramClient) Recv() (*TelegramUserMessage, error) {
-	m := new(TelegramUserMessage)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *messagesProxyClient) SubscribeBitmex(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeBitmexClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[9], "/MessagesProxy/SubscribeBitmex", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &messagesProxySubscribeBitmexClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type MessagesProxy_SubscribeBitmexClient interface {
-	Recv() (*BitmexUserMessage, error)
-	grpc.ClientStream
-}
-
-type messagesProxySubscribeBitmexClient struct {
-	grpc.ClientStream
-}
-
-func (x *messagesProxySubscribeBitmexClient) Recv() (*BitmexUserMessage, error) {
-	m := new(BitmexUserMessage)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *messagesProxyClient) SubscribeTransaction(ctx context.Context, in *AssetsFilter, opts ...grpc.CallOption) (MessagesProxy_SubscribeTransactionClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_MessagesProxy_serviceDesc.Streams[10], "/MessagesProxy/SubscribeTransaction", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &messagesProxySubscribeTransactionClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type MessagesProxy_SubscribeTransactionClient interface {
-	Recv() (*Transaction, error)
-	grpc.ClientStream
-}
-
-type messagesProxySubscribeTransactionClient struct {
-	grpc.ClientStream
-}
-
-func (x *messagesProxySubscribeTransactionClient) Recv() (*Transaction, error) {
-	m := new(Transaction)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 // MessagesProxyServer is the server API for MessagesProxy service.
 type MessagesProxyServer interface {
 	SubscribeBaseArticle(*AssetsFilter, MessagesProxy_SubscribeBaseArticleServer) error
-	SubscribeBaseTweet(*AssetsFilter, MessagesProxy_SubscribeBaseTweetServer) error
-	SubscribeBaseReddit(*AssetsFilter, MessagesProxy_SubscribeBaseRedditServer) error
-	SubscribeBaseTelegram(*AssetsFilter, MessagesProxy_SubscribeBaseTelegramServer) error
-	SubscribeBaseBitmex(*AssetsFilter, MessagesProxy_SubscribeBaseBitmexServer) error
 	SubscribeArticle(*AssetsFilter, MessagesProxy_SubscribeArticleServer) error
-	SubscribeTweet(*AssetsFilter, MessagesProxy_SubscribeTweetServer) error
-	SubscribeReddit(*AssetsFilter, MessagesProxy_SubscribeRedditServer) error
-	SubscribeTelegram(*AssetsFilter, MessagesProxy_SubscribeTelegramServer) error
-	SubscribeBitmex(*AssetsFilter, MessagesProxy_SubscribeBitmexServer) error
-	SubscribeTransaction(*AssetsFilter, MessagesProxy_SubscribeTransactionServer) error
+}
+
+// UnimplementedMessagesProxyServer can be embedded to have forward compatible implementations.
+type UnimplementedMessagesProxyServer struct {
+}
+
+func (*UnimplementedMessagesProxyServer) SubscribeBaseArticle(req *AssetsFilter, srv MessagesProxy_SubscribeBaseArticleServer) error {
+	return status.Errorf(codes.Unimplemented, "method SubscribeBaseArticle not implemented")
+}
+func (*UnimplementedMessagesProxyServer) SubscribeArticle(req *AssetsFilter, srv MessagesProxy_SubscribeArticleServer) error {
+	return status.Errorf(codes.Unimplemented, "method SubscribeArticle not implemented")
 }
 
 func RegisterMessagesProxyServer(s *grpc.Server, srv MessagesProxyServer) {
@@ -3444,90 +2312,6 @@ func (x *messagesProxySubscribeBaseArticleServer) Send(m *PublicModel) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _MessagesProxy_SubscribeBaseTweet_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(AssetsFilter)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(MessagesProxyServer).SubscribeBaseTweet(m, &messagesProxySubscribeBaseTweetServer{stream})
-}
-
-type MessagesProxy_SubscribeBaseTweetServer interface {
-	Send(*PublicModel) error
-	grpc.ServerStream
-}
-
-type messagesProxySubscribeBaseTweetServer struct {
-	grpc.ServerStream
-}
-
-func (x *messagesProxySubscribeBaseTweetServer) Send(m *PublicModel) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _MessagesProxy_SubscribeBaseReddit_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(AssetsFilter)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(MessagesProxyServer).SubscribeBaseReddit(m, &messagesProxySubscribeBaseRedditServer{stream})
-}
-
-type MessagesProxy_SubscribeBaseRedditServer interface {
-	Send(*PublicModel) error
-	grpc.ServerStream
-}
-
-type messagesProxySubscribeBaseRedditServer struct {
-	grpc.ServerStream
-}
-
-func (x *messagesProxySubscribeBaseRedditServer) Send(m *PublicModel) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _MessagesProxy_SubscribeBaseTelegram_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(AssetsFilter)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(MessagesProxyServer).SubscribeBaseTelegram(m, &messagesProxySubscribeBaseTelegramServer{stream})
-}
-
-type MessagesProxy_SubscribeBaseTelegramServer interface {
-	Send(*PublicModel) error
-	grpc.ServerStream
-}
-
-type messagesProxySubscribeBaseTelegramServer struct {
-	grpc.ServerStream
-}
-
-func (x *messagesProxySubscribeBaseTelegramServer) Send(m *PublicModel) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _MessagesProxy_SubscribeBaseBitmex_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(AssetsFilter)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(MessagesProxyServer).SubscribeBaseBitmex(m, &messagesProxySubscribeBaseBitmexServer{stream})
-}
-
-type MessagesProxy_SubscribeBaseBitmexServer interface {
-	Send(*PublicModel) error
-	grpc.ServerStream
-}
-
-type messagesProxySubscribeBaseBitmexServer struct {
-	grpc.ServerStream
-}
-
-func (x *messagesProxySubscribeBaseBitmexServer) Send(m *PublicModel) error {
-	return x.ServerStream.SendMsg(m)
-}
-
 func _MessagesProxy_SubscribeArticle_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(AssetsFilter)
 	if err := stream.RecvMsg(m); err != nil {
@@ -3549,111 +2333,6 @@ func (x *messagesProxySubscribeArticleServer) Send(m *Article) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _MessagesProxy_SubscribeTweet_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(AssetsFilter)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(MessagesProxyServer).SubscribeTweet(m, &messagesProxySubscribeTweetServer{stream})
-}
-
-type MessagesProxy_SubscribeTweetServer interface {
-	Send(*Tweet) error
-	grpc.ServerStream
-}
-
-type messagesProxySubscribeTweetServer struct {
-	grpc.ServerStream
-}
-
-func (x *messagesProxySubscribeTweetServer) Send(m *Tweet) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _MessagesProxy_SubscribeReddit_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(AssetsFilter)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(MessagesProxyServer).SubscribeReddit(m, &messagesProxySubscribeRedditServer{stream})
-}
-
-type MessagesProxy_SubscribeRedditServer interface {
-	Send(*RedditPost) error
-	grpc.ServerStream
-}
-
-type messagesProxySubscribeRedditServer struct {
-	grpc.ServerStream
-}
-
-func (x *messagesProxySubscribeRedditServer) Send(m *RedditPost) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _MessagesProxy_SubscribeTelegram_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(AssetsFilter)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(MessagesProxyServer).SubscribeTelegram(m, &messagesProxySubscribeTelegramServer{stream})
-}
-
-type MessagesProxy_SubscribeTelegramServer interface {
-	Send(*TelegramUserMessage) error
-	grpc.ServerStream
-}
-
-type messagesProxySubscribeTelegramServer struct {
-	grpc.ServerStream
-}
-
-func (x *messagesProxySubscribeTelegramServer) Send(m *TelegramUserMessage) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _MessagesProxy_SubscribeBitmex_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(AssetsFilter)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(MessagesProxyServer).SubscribeBitmex(m, &messagesProxySubscribeBitmexServer{stream})
-}
-
-type MessagesProxy_SubscribeBitmexServer interface {
-	Send(*BitmexUserMessage) error
-	grpc.ServerStream
-}
-
-type messagesProxySubscribeBitmexServer struct {
-	grpc.ServerStream
-}
-
-func (x *messagesProxySubscribeBitmexServer) Send(m *BitmexUserMessage) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _MessagesProxy_SubscribeTransaction_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(AssetsFilter)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(MessagesProxyServer).SubscribeTransaction(m, &messagesProxySubscribeTransactionServer{stream})
-}
-
-type MessagesProxy_SubscribeTransactionServer interface {
-	Send(*Transaction) error
-	grpc.ServerStream
-}
-
-type messagesProxySubscribeTransactionServer struct {
-	grpc.ServerStream
-}
-
-func (x *messagesProxySubscribeTransactionServer) Send(m *Transaction) error {
-	return x.ServerStream.SendMsg(m)
-}
-
 var _MessagesProxy_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "MessagesProxy",
 	HandlerType: (*MessagesProxyServer)(nil),
@@ -3665,53 +2344,8 @@ var _MessagesProxy_serviceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "SubscribeBaseTweet",
-			Handler:       _MessagesProxy_SubscribeBaseTweet_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "SubscribeBaseReddit",
-			Handler:       _MessagesProxy_SubscribeBaseReddit_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "SubscribeBaseTelegram",
-			Handler:       _MessagesProxy_SubscribeBaseTelegram_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "SubscribeBaseBitmex",
-			Handler:       _MessagesProxy_SubscribeBaseBitmex_Handler,
-			ServerStreams: true,
-		},
-		{
 			StreamName:    "SubscribeArticle",
 			Handler:       _MessagesProxy_SubscribeArticle_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "SubscribeTweet",
-			Handler:       _MessagesProxy_SubscribeTweet_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "SubscribeReddit",
-			Handler:       _MessagesProxy_SubscribeReddit_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "SubscribeTelegram",
-			Handler:       _MessagesProxy_SubscribeTelegram_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "SubscribeBitmex",
-			Handler:       _MessagesProxy_SubscribeBitmex_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "SubscribeTransaction",
-			Handler:       _MessagesProxy_SubscribeTransaction_Handler,
 			ServerStreams: true,
 		},
 	},
@@ -3726,10 +2360,10 @@ type DatasetClient interface {
 }
 
 type datasetClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewDatasetClient(cc *grpc.ClientConn) DatasetClient {
+func NewDatasetClient(cc grpc.ClientConnInterface) DatasetClient {
 	return &datasetClient{cc}
 }
 
@@ -3745,6 +2379,14 @@ func (c *datasetClient) Assets(ctx context.Context, in *empty.Empty, opts ...grp
 // DatasetServer is the server API for Dataset service.
 type DatasetServer interface {
 	Assets(context.Context, *empty.Empty) (*AssetItems, error)
+}
+
+// UnimplementedDatasetServer can be embedded to have forward compatible implementations.
+type UnimplementedDatasetServer struct {
+}
+
+func (*UnimplementedDatasetServer) Assets(ctx context.Context, req *empty.Empty) (*AssetItems, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Assets not implemented")
 }
 
 func RegisterDatasetServer(s *grpc.Server, srv DatasetServer) {
@@ -3786,58 +2428,20 @@ var _Dataset_serviceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type HistoricDataClient interface {
-	HistoricBaseTweets(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseTweetsClient, error)
 	HistoricBaseArticles(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseArticlesClient, error)
-	HistoricBaseRedditPosts(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseRedditPostsClient, error)
-	HistoricBaseTelegramMessages(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseTelegramMessagesClient, error)
-	HistoricTweets(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricTweetsClient, error)
 	HistoricArticles(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricArticlesClient, error)
-	HistoricRedditPosts(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricRedditPostsClient, error)
-	HistoricTransactions(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricTransactionsClient, error)
 }
 
 type historicDataClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewHistoricDataClient(cc *grpc.ClientConn) HistoricDataClient {
+func NewHistoricDataClient(cc grpc.ClientConnInterface) HistoricDataClient {
 	return &historicDataClient{cc}
 }
 
-func (c *historicDataClient) HistoricBaseTweets(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseTweetsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[0], "/HistoricData/HistoricBaseTweets", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &historicDataHistoricBaseTweetsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type HistoricData_HistoricBaseTweetsClient interface {
-	Recv() (*PublicModel, error)
-	grpc.ClientStream
-}
-
-type historicDataHistoricBaseTweetsClient struct {
-	grpc.ClientStream
-}
-
-func (x *historicDataHistoricBaseTweetsClient) Recv() (*PublicModel, error) {
-	m := new(PublicModel)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 func (c *historicDataClient) HistoricBaseArticles(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseArticlesClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[1], "/HistoricData/HistoricBaseArticles", opts...)
+	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[0], "/HistoricData/HistoricBaseArticles", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3868,104 +2472,8 @@ func (x *historicDataHistoricBaseArticlesClient) Recv() (*PublicModel, error) {
 	return m, nil
 }
 
-func (c *historicDataClient) HistoricBaseRedditPosts(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseRedditPostsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[2], "/HistoricData/HistoricBaseRedditPosts", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &historicDataHistoricBaseRedditPostsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type HistoricData_HistoricBaseRedditPostsClient interface {
-	Recv() (*PublicModel, error)
-	grpc.ClientStream
-}
-
-type historicDataHistoricBaseRedditPostsClient struct {
-	grpc.ClientStream
-}
-
-func (x *historicDataHistoricBaseRedditPostsClient) Recv() (*PublicModel, error) {
-	m := new(PublicModel)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *historicDataClient) HistoricBaseTelegramMessages(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricBaseTelegramMessagesClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[3], "/HistoricData/HistoricBaseTelegramMessages", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &historicDataHistoricBaseTelegramMessagesClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type HistoricData_HistoricBaseTelegramMessagesClient interface {
-	Recv() (*PublicModel, error)
-	grpc.ClientStream
-}
-
-type historicDataHistoricBaseTelegramMessagesClient struct {
-	grpc.ClientStream
-}
-
-func (x *historicDataHistoricBaseTelegramMessagesClient) Recv() (*PublicModel, error) {
-	m := new(PublicModel)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *historicDataClient) HistoricTweets(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricTweetsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[4], "/HistoricData/HistoricTweets", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &historicDataHistoricTweetsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type HistoricData_HistoricTweetsClient interface {
-	Recv() (*Tweet, error)
-	grpc.ClientStream
-}
-
-type historicDataHistoricTweetsClient struct {
-	grpc.ClientStream
-}
-
-func (x *historicDataHistoricTweetsClient) Recv() (*Tweet, error) {
-	m := new(Tweet)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 func (c *historicDataClient) HistoricArticles(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricArticlesClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[5], "/HistoricData/HistoricArticles", opts...)
+	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[1], "/HistoricData/HistoricArticles", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3996,105 +2504,25 @@ func (x *historicDataHistoricArticlesClient) Recv() (*Article, error) {
 	return m, nil
 }
 
-func (c *historicDataClient) HistoricRedditPosts(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricRedditPostsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[6], "/HistoricData/HistoricRedditPosts", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &historicDataHistoricRedditPostsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type HistoricData_HistoricRedditPostsClient interface {
-	Recv() (*RedditPost, error)
-	grpc.ClientStream
-}
-
-type historicDataHistoricRedditPostsClient struct {
-	grpc.ClientStream
-}
-
-func (x *historicDataHistoricRedditPostsClient) Recv() (*RedditPost, error) {
-	m := new(RedditPost)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *historicDataClient) HistoricTransactions(ctx context.Context, in *HistoricRequest, opts ...grpc.CallOption) (HistoricData_HistoricTransactionsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_HistoricData_serviceDesc.Streams[7], "/HistoricData/HistoricTransactions", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &historicDataHistoricTransactionsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type HistoricData_HistoricTransactionsClient interface {
-	Recv() (*Transaction, error)
-	grpc.ClientStream
-}
-
-type historicDataHistoricTransactionsClient struct {
-	grpc.ClientStream
-}
-
-func (x *historicDataHistoricTransactionsClient) Recv() (*Transaction, error) {
-	m := new(Transaction)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 // HistoricDataServer is the server API for HistoricData service.
 type HistoricDataServer interface {
-	HistoricBaseTweets(*HistoricRequest, HistoricData_HistoricBaseTweetsServer) error
 	HistoricBaseArticles(*HistoricRequest, HistoricData_HistoricBaseArticlesServer) error
-	HistoricBaseRedditPosts(*HistoricRequest, HistoricData_HistoricBaseRedditPostsServer) error
-	HistoricBaseTelegramMessages(*HistoricRequest, HistoricData_HistoricBaseTelegramMessagesServer) error
-	HistoricTweets(*HistoricRequest, HistoricData_HistoricTweetsServer) error
 	HistoricArticles(*HistoricRequest, HistoricData_HistoricArticlesServer) error
-	HistoricRedditPosts(*HistoricRequest, HistoricData_HistoricRedditPostsServer) error
-	HistoricTransactions(*HistoricRequest, HistoricData_HistoricTransactionsServer) error
+}
+
+// UnimplementedHistoricDataServer can be embedded to have forward compatible implementations.
+type UnimplementedHistoricDataServer struct {
+}
+
+func (*UnimplementedHistoricDataServer) HistoricBaseArticles(req *HistoricRequest, srv HistoricData_HistoricBaseArticlesServer) error {
+	return status.Errorf(codes.Unimplemented, "method HistoricBaseArticles not implemented")
+}
+func (*UnimplementedHistoricDataServer) HistoricArticles(req *HistoricRequest, srv HistoricData_HistoricArticlesServer) error {
+	return status.Errorf(codes.Unimplemented, "method HistoricArticles not implemented")
 }
 
 func RegisterHistoricDataServer(s *grpc.Server, srv HistoricDataServer) {
 	s.RegisterService(&_HistoricData_serviceDesc, srv)
-}
-
-func _HistoricData_HistoricBaseTweets_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(HistoricRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(HistoricDataServer).HistoricBaseTweets(m, &historicDataHistoricBaseTweetsServer{stream})
-}
-
-type HistoricData_HistoricBaseTweetsServer interface {
-	Send(*PublicModel) error
-	grpc.ServerStream
-}
-
-type historicDataHistoricBaseTweetsServer struct {
-	grpc.ServerStream
-}
-
-func (x *historicDataHistoricBaseTweetsServer) Send(m *PublicModel) error {
-	return x.ServerStream.SendMsg(m)
 }
 
 func _HistoricData_HistoricBaseArticles_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -4115,69 +2543,6 @@ type historicDataHistoricBaseArticlesServer struct {
 }
 
 func (x *historicDataHistoricBaseArticlesServer) Send(m *PublicModel) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _HistoricData_HistoricBaseRedditPosts_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(HistoricRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(HistoricDataServer).HistoricBaseRedditPosts(m, &historicDataHistoricBaseRedditPostsServer{stream})
-}
-
-type HistoricData_HistoricBaseRedditPostsServer interface {
-	Send(*PublicModel) error
-	grpc.ServerStream
-}
-
-type historicDataHistoricBaseRedditPostsServer struct {
-	grpc.ServerStream
-}
-
-func (x *historicDataHistoricBaseRedditPostsServer) Send(m *PublicModel) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _HistoricData_HistoricBaseTelegramMessages_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(HistoricRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(HistoricDataServer).HistoricBaseTelegramMessages(m, &historicDataHistoricBaseTelegramMessagesServer{stream})
-}
-
-type HistoricData_HistoricBaseTelegramMessagesServer interface {
-	Send(*PublicModel) error
-	grpc.ServerStream
-}
-
-type historicDataHistoricBaseTelegramMessagesServer struct {
-	grpc.ServerStream
-}
-
-func (x *historicDataHistoricBaseTelegramMessagesServer) Send(m *PublicModel) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _HistoricData_HistoricTweets_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(HistoricRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(HistoricDataServer).HistoricTweets(m, &historicDataHistoricTweetsServer{stream})
-}
-
-type HistoricData_HistoricTweetsServer interface {
-	Send(*Tweet) error
-	grpc.ServerStream
-}
-
-type historicDataHistoricTweetsServer struct {
-	grpc.ServerStream
-}
-
-func (x *historicDataHistoricTweetsServer) Send(m *Tweet) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -4202,91 +2567,19 @@ func (x *historicDataHistoricArticlesServer) Send(m *Article) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _HistoricData_HistoricRedditPosts_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(HistoricRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(HistoricDataServer).HistoricRedditPosts(m, &historicDataHistoricRedditPostsServer{stream})
-}
-
-type HistoricData_HistoricRedditPostsServer interface {
-	Send(*RedditPost) error
-	grpc.ServerStream
-}
-
-type historicDataHistoricRedditPostsServer struct {
-	grpc.ServerStream
-}
-
-func (x *historicDataHistoricRedditPostsServer) Send(m *RedditPost) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _HistoricData_HistoricTransactions_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(HistoricRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(HistoricDataServer).HistoricTransactions(m, &historicDataHistoricTransactionsServer{stream})
-}
-
-type HistoricData_HistoricTransactionsServer interface {
-	Send(*Transaction) error
-	grpc.ServerStream
-}
-
-type historicDataHistoricTransactionsServer struct {
-	grpc.ServerStream
-}
-
-func (x *historicDataHistoricTransactionsServer) Send(m *Transaction) error {
-	return x.ServerStream.SendMsg(m)
-}
-
 var _HistoricData_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "HistoricData",
 	HandlerType: (*HistoricDataServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "HistoricBaseTweets",
-			Handler:       _HistoricData_HistoricBaseTweets_Handler,
-			ServerStreams: true,
-		},
-		{
 			StreamName:    "HistoricBaseArticles",
 			Handler:       _HistoricData_HistoricBaseArticles_Handler,
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "HistoricBaseRedditPosts",
-			Handler:       _HistoricData_HistoricBaseRedditPosts_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "HistoricBaseTelegramMessages",
-			Handler:       _HistoricData_HistoricBaseTelegramMessages_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "HistoricTweets",
-			Handler:       _HistoricData_HistoricTweets_Handler,
-			ServerStreams: true,
-		},
-		{
 			StreamName:    "HistoricArticles",
 			Handler:       _HistoricData_HistoricArticles_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "HistoricRedditPosts",
-			Handler:       _HistoricData_HistoricRedditPosts_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "HistoricTransactions",
-			Handler:       _HistoricData_HistoricTransactions_Handler,
 			ServerStreams: true,
 		},
 	},
@@ -4304,10 +2597,10 @@ type SentimentsClient interface {
 }
 
 type sentimentsClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewSentimentsClient(cc *grpc.ClientConn) SentimentsClient {
+func NewSentimentsClient(cc grpc.ClientConnInterface) SentimentsClient {
 	return &sentimentsClient{cc}
 }
 
@@ -4447,6 +2740,23 @@ type SentimentsServer interface {
 	SubscribeNewsSentiment(*AggregationCandleFilter, Sentiments_SubscribeNewsSentimentServer) error
 }
 
+// UnimplementedSentimentsServer can be embedded to have forward compatible implementations.
+type UnimplementedSentimentsServer struct {
+}
+
+func (*UnimplementedSentimentsServer) HistoricSocialSentiment(req *SentimentHistoricRequest, srv Sentiments_HistoricSocialSentimentServer) error {
+	return status.Errorf(codes.Unimplemented, "method HistoricSocialSentiment not implemented")
+}
+func (*UnimplementedSentimentsServer) HistoricNewsSentiment(req *SentimentHistoricRequest, srv Sentiments_HistoricNewsSentimentServer) error {
+	return status.Errorf(codes.Unimplemented, "method HistoricNewsSentiment not implemented")
+}
+func (*UnimplementedSentimentsServer) SubscribeSocialSentiment(req *AggregationCandleFilter, srv Sentiments_SubscribeSocialSentimentServer) error {
+	return status.Errorf(codes.Unimplemented, "method SubscribeSocialSentiment not implemented")
+}
+func (*UnimplementedSentimentsServer) SubscribeNewsSentiment(req *AggregationCandleFilter, srv Sentiments_SubscribeNewsSentimentServer) error {
+	return status.Errorf(codes.Unimplemented, "method SubscribeNewsSentiment not implemented")
+}
+
 func RegisterSentimentsServer(s *grpc.Server, srv SentimentsServer) {
 	s.RegisterService(&_Sentiments_serviceDesc, srv)
 }
@@ -4562,227 +2872,4 @@ var _Sentiments_serviceDesc = grpc.ServiceDesc{
 		},
 	},
 	Metadata: "types.proto",
-}
-
-func init() { proto.RegisterFile("types.proto", fileDescriptor_types_3990317d9c5561b1) }
-
-var fileDescriptor_types_3990317d9c5561b1 = []byte{
-	// 3468 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe4, 0x39, 0x5d, 0x6f, 0x24, 0x49,
-	0x52, 0x5b, 0xed, 0x6e, 0xb7, 0x3b, 0xba, 0xdb, 0x1f, 0xe9, 0xaf, 0x1a, 0xef, 0xce, 0xce, 0x6c,
-	0x1d, 0x77, 0xb7, 0xcc, 0xed, 0xf5, 0xec, 0x79, 0x3f, 0x6e, 0x58, 0x1d, 0xe2, 0xbc, 0xb6, 0x77,
-	0xc7, 0x68, 0xbe, 0xa8, 0xf6, 0x1c, 0x1c, 0x2f, 0xa5, 0x74, 0x55, 0xba, 0x9d, 0x9a, 0xaa, 0xca,
-	0xba, 0xca, 0x2c, 0x7b, 0xbc, 0x2f, 0x20, 0x7e, 0x03, 0x08, 0x89, 0xdf, 0x80, 0xc4, 0x23, 0x12,
-	0x02, 0x89, 0x27, 0x04, 0x3f, 0x82, 0x07, 0x90, 0xee, 0x89, 0xff, 0x80, 0x50, 0x46, 0x66, 0x56,
-	0x57, 0xdb, 0x6d, 0xcf, 0x1c, 0x77, 0x42, 0x8b, 0xee, 0x2d, 0xe3, 0x2b, 0x3f, 0x22, 0x22, 0x23,
-	0x22, 0x23, 0xa1, 0xaf, 0x2e, 0x0b, 0x26, 0x47, 0x45, 0x29, 0x94, 0xd8, 0xb9, 0x37, 0x11, 0x62,
-	0x92, 0xb2, 0x87, 0x08, 0x9d, 0x54, 0xa7, 0x0f, 0x15, 0xcf, 0x98, 0x54, 0x34, 0x2b, 0x2c, 0xc3,
-	0xbb, 0x57, 0x19, 0x58, 0x56, 0xa8, 0x4b, 0x43, 0x0c, 0xfe, 0x61, 0x01, 0x7a, 0x5f, 0x52, 0xc9,
-	0x9e, 0x8a, 0x84, 0xa5, 0x64, 0x19, 0x5a, 0x3c, 0xf1, 0xbd, 0xfb, 0xde, 0x87, 0xbd, 0xb0, 0xc5,
-	0x13, 0xb2, 0x01, 0x1d, 0xc5, 0x55, 0xca, 0xfc, 0x16, 0xa2, 0x0c, 0x40, 0x7c, 0xe8, 0xc6, 0x22,
-	0x57, 0x2c, 0x57, 0xfe, 0x02, 0xe2, 0x1d, 0x88, 0x94, 0x92, 0x5e, 0xa4, 0xac, 0xf4, 0xdb, 0x96,
-	0x62, 0x40, 0xf2, 0x19, 0x2c, 0x15, 0xd5, 0x49, 0x94, 0x50, 0xc5, 0xfc, 0xce, 0x7d, 0xef, 0xc3,
-	0xfe, 0xee, 0xce, 0xc8, 0xec, 0x6b, 0xe4, 0xf6, 0x35, 0x3a, 0x76, 0x1b, 0x0f, 0xbb, 0x45, 0x75,
-	0x72, 0x40, 0x15, 0x23, 0x9f, 0xea, 0x09, 0x19, 0x55, 0x2c, 0xf1, 0x17, 0xdf, 0x2c, 0x65, 0x59,
-	0xc9, 0x16, 0x2c, 0x4a, 0x51, 0x95, 0x31, 0xf3, 0xbb, 0xb8, 0x0b, 0x0b, 0xe9, 0xed, 0xb1, 0xd7,
-	0x31, 0x2b, 0x0b, 0xe5, 0x2f, 0x99, 0xed, 0x59, 0x50, 0x4b, 0x9c, 0xf3, 0x84, 0x09, 0xe9, 0xf7,
-	0xee, 0x2f, 0x68, 0x09, 0x03, 0x69, 0x3c, 0xcf, 0xe8, 0x84, 0x49, 0x1f, 0x0c, 0xde, 0x40, 0x5a,
-	0x31, 0x29, 0xcf, 0x5f, 0x49, 0xbf, 0x8f, 0x68, 0x03, 0x68, 0x6e, 0x5a, 0xa9, 0x33, 0x51, 0xfa,
-	0x03, 0xb3, 0xae, 0x81, 0x08, 0x81, 0x76, 0x4a, 0xf3, 0x89, 0x3f, 0x44, 0x2c, 0x8e, 0x35, 0xef,
-	0x05, 0xe3, 0x93, 0x33, 0xe5, 0x2f, 0xdf, 0xf7, 0x3e, 0xf4, 0x42, 0x0b, 0x69, 0x5e, 0x59, 0xd0,
-	0xcc, 0x5f, 0x41, 0x2c, 0x8e, 0x35, 0x6f, 0x22, 0x32, 0xca, 0x73, 0x7f, 0xd5, 0xcc, 0x6b, 0xa0,
-	0xe0, 0xcf, 0x3d, 0x58, 0x1e, 0xb3, 0x5c, 0x1b, 0x3c, 0x57, 0xc6, 0x82, 0xef, 0x41, 0x4f, 0x3a,
-	0x0c, 0x1a, 0xd2, 0x0b, 0xa7, 0x08, 0xf2, 0x1d, 0x18, 0x66, 0xb4, 0x7c, 0xc5, 0x54, 0xc4, 0xb3,
-	0x82, 0xc6, 0x0a, 0xed, 0xea, 0x85, 0x03, 0x83, 0x3c, 0x42, 0x1c, 0xf9, 0x01, 0xac, 0xd5, 0x12,
-	0x51, 0xc9, 0x8a, 0x94, 0x33, 0x89, 0x86, 0xf6, 0xc2, 0xd5, 0x9a, 0x10, 0x1a, 0x7c, 0x50, 0xc2,
-	0xd6, 0x7e, 0x79, 0x59, 0x28, 0x51, 0xd0, 0x9c, 0xc7, 0x87, 0xb9, 0x2a, 0x2f, 0xc7, 0x46, 0xd9,
-	0xb5, 0xef, 0x78, 0x4d, 0xdf, 0xd9, 0x82, 0xc5, 0x92, 0x4d, 0xb8, 0xc8, 0xad, 0x4b, 0x59, 0xa8,
-	0x71, 0xc4, 0x85, 0xe6, 0x11, 0xb5, 0x3a, 0x0a, 0xaa, 0xce, 0xac, 0x3b, 0xe1, 0x38, 0xf8, 0x77,
-	0x0f, 0x36, 0xaf, 0x2e, 0xfa, 0x33, 0xa1, 0x98, 0x24, 0x3b, 0xb0, 0x94, 0xb3, 0x09, 0x55, 0xfc,
-	0xdc, 0x2c, 0xdb, 0x09, 0x6b, 0x58, 0xd3, 0x0a, 0x21, 0x39, 0xd2, 0x5a, 0x86, 0xe6, 0x60, 0xad,
-	0x35, 0x9e, 0x15, 0xa2, 0x54, 0xd4, 0xfa, 0x74, 0x27, 0x9c, 0x22, 0x8c, 0xb1, 0x5f, 0xb1, 0x04,
-	0x37, 0xd1, 0x09, 0x0d, 0xa0, 0xe7, 0x4b, 0xb8, 0x34, 0x84, 0x8e, 0x99, 0xcf, 0xc1, 0x64, 0x15,
-	0x16, 0x52, 0x91, 0xa2, 0xcb, 0x76, 0x42, 0x3d, 0x44, 0x6d, 0x88, 0xd7, 0x3c, 0x46, 0x8f, 0xec,
-	0x84, 0x06, 0xd0, 0x58, 0x49, 0xcf, 0x59, 0x82, 0xee, 0xd8, 0x09, 0x0d, 0x10, 0xfc, 0x0c, 0xfc,
-	0xab, 0xc7, 0x7b, 0xca, 0x14, 0x4d, 0xa8, 0xa2, 0xda, 0x85, 0x33, 0x26, 0x25, 0x9d, 0x38, 0xbd,
-	0x3a, 0x90, 0xdc, 0x87, 0x7e, 0xc2, 0x64, 0x5c, 0xf2, 0x42, 0x4d, 0xd5, 0xdb, 0x44, 0x05, 0xbf,
-	0x6c, 0xc1, 0x7a, 0x63, 0xe2, 0x90, 0x5e, 0xe0, 0xdc, 0x5a, 0xc7, 0xaf, 0x78, 0xee, 0xee, 0x3d,
-	0x8e, 0x1b, 0xf6, 0x68, 0xcd, 0xd8, 0xe3, 0x61, 0x7d, 0xb5, 0x16, 0xf0, 0x3e, 0x6e, 0x8f, 0xe6,
-	0x9b, 0xbf, 0xbe, 0x73, 0xb5, 0x1b, 0xb4, 0x9b, 0x6e, 0xf0, 0x01, 0x0c, 0x8a, 0xea, 0x24, 0xe5,
-	0xf2, 0x8c, 0x25, 0x11, 0x55, 0xa8, 0xc0, 0x5e, 0xd8, 0xaf, 0x71, 0x7b, 0xe6, 0x22, 0xa4, 0xd5,
-	0x04, 0x95, 0xd8, 0x0b, 0x71, 0x6c, 0xe3, 0x93, 0x51, 0xa1, 0x8e, 0x4f, 0xab, 0xb0, 0x50, 0x95,
-	0xa9, 0xbd, 0xcc, 0x7a, 0x48, 0xee, 0x02, 0xd8, 0x28, 0xa0, 0xa7, 0xed, 0x21, 0xa1, 0x67, 0x31,
-	0x7b, 0x8a, 0x7c, 0x04, 0x9d, 0x73, 0xed, 0x29, 0x3e, 0xe0, 0xee, 0xb7, 0x46, 0x73, 0xfd, 0x28,
-	0x34, 0x4c, 0x3a, 0x68, 0x65, 0x56, 0xf1, 0x7e, 0x1f, 0x05, 0xee, 0x8c, 0x6e, 0xb2, 0x4c, 0x58,
-	0xb3, 0x06, 0x7f, 0x0c, 0x2b, 0x0d, 0xae, 0xaf, 0x18, 0xc3, 0x40, 0x1a, 0x8b, 0xca, 0x5e, 0xc9,
-	0x4e, 0x68, 0x00, 0x32, 0x82, 0x6e, 0xc9, 0x64, 0x95, 0x2a, 0xe9, 0xb7, 0xee, 0x2f, 0x7c, 0xd8,
-	0xdf, 0xdd, 0x18, 0xcd, 0xb1, 0x4f, 0xe8, 0x98, 0x82, 0x3f, 0x9b, 0x99, 0xf8, 0x85, 0x90, 0x8a,
-	0x3c, 0x86, 0xcd, 0x78, 0x8a, 0x8a, 0x4a, 0x7a, 0x11, 0x31, 0x2d, 0x84, 0x0b, 0xdd, 0x34, 0xe1,
-	0x7a, 0x3c, 0xc7, 0x0b, 0x02, 0xe8, 0xd2, 0x52, 0xf1, 0xd8, 0x46, 0xfb, 0xfe, 0xee, 0xd2, 0x68,
-	0xcf, 0xc0, 0xa1, 0x23, 0x04, 0x17, 0xb0, 0xf9, 0x8c, 0x66, 0x2c, 0x39, 0xcc, 0x15, 0x57, 0x97,
-	0xcf, 0xe3, 0xb8, 0x2a, 0x4b, 0x96, 0xc7, 0x8c, 0x04, 0xd0, 0x49, 0xe9, 0x09, 0x4b, 0x71, 0xd9,
-	0xe5, 0xdd, 0xc1, 0xa8, 0xc1, 0x16, 0x1a, 0x12, 0x3a, 0xbb, 0xa2, 0xa5, 0x09, 0x3a, 0xc3, 0xd0,
-	0x00, 0xda, 0x84, 0x2c, 0x4f, 0xd0, 0x9b, 0x86, 0xa1, 0x1e, 0x6a, 0xc3, 0x2b, 0xf6, 0x5a, 0xb9,
-	0x2b, 0xaf, 0xc7, 0xc1, 0x7f, 0xb6, 0x81, 0x4c, 0xa7, 0xe4, 0x4c, 0x9a, 0x68, 0xe7, 0x43, 0x57,
-	0x5e, 0x66, 0x27, 0x22, 0x95, 0xbe, 0x87, 0x81, 0xd8, 0x81, 0x64, 0x04, 0x8b, 0x54, 0x4a, 0x56,
-	0x6b, 0x76, 0x6b, 0x34, 0x77, 0xe3, 0xa1, 0xe5, 0x22, 0x1f, 0x43, 0xb7, 0x60, 0xa5, 0x14, 0xb9,
-	0x0e, 0x75, 0xb7, 0x09, 0x38, 0x36, 0xf2, 0x29, 0xf4, 0x62, 0x91, 0x69, 0x1d, 0x32, 0xe9, 0xb7,
-	0x6f, 0x95, 0x99, 0x32, 0x92, 0x9f, 0xc0, 0x50, 0x94, 0x13, 0x9a, 0xf3, 0x6f, 0xa8, 0xbe, 0x93,
-	0xd2, 0xef, 0xdc, 0x2a, 0x39, 0xcb, 0xac, 0xd7, 0x4c, 0x45, 0x6c, 0x25, 0x17, 0x6f, 0x5f, 0xb3,
-	0x66, 0xd4, 0x52, 0xec, 0x75, 0x7c, 0x46, 0x73, 0x9d, 0xc7, 0xba, 0xb7, 0x4b, 0xd5, 0x8c, 0xe4,
-	0x01, 0xb4, 0x33, 0x2e, 0x63, 0x7f, 0xe9, 0x56, 0x01, 0xe4, 0x41, 0x93, 0xd1, 0x89, 0x4b, 0x9e,
-	0x38, 0x26, 0x4f, 0x61, 0x19, 0x75, 0x1b, 0xe9, 0x74, 0x81, 0x1b, 0x06, 0x9c, 0xe9, 0x7b, 0xa3,
-	0xeb, 0x86, 0x1c, 0xed, 0x69, 0xce, 0xa7, 0x96, 0xd1, 0x38, 0xe9, 0x90, 0x36, 0x71, 0xe4, 0x1e,
-	0xf4, 0x4d, 0x44, 0x89, 0xd0, 0x39, 0xfa, 0xe8, 0x1c, 0x60, 0x50, 0xc7, 0xec, 0xb5, 0xda, 0xf9,
-	0x29, 0x90, 0xeb, 0xb3, 0x68, 0xf7, 0x7a, 0xc5, 0x2e, 0x6d, 0x68, 0xd3, 0x43, 0xed, 0x86, 0xe7,
-	0x34, 0xad, 0x5c, 0x12, 0x30, 0xc0, 0x17, 0xad, 0x47, 0x5e, 0xf0, 0xaf, 0x1e, 0x74, 0xad, 0xcb,
-	0x93, 0xf7, 0xa1, 0x7d, 0x42, 0x25, 0xb3, 0xd7, 0x08, 0x46, 0x75, 0x8d, 0x14, 0x22, 0x9e, 0xfc,
-	0xb0, 0x99, 0x67, 0xcd, 0x7d, 0x59, 0x19, 0xcd, 0xe6, 0xe2, 0x66, 0xe2, 0xfd, 0x02, 0x96, 0x73,
-	0x7d, 0x6a, 0x7d, 0x39, 0xf1, 0xd8, 0x36, 0x7c, 0xae, 0xcf, 0x51, 0x46, 0x38, 0xcc, 0x9b, 0x38,
-	0xb2, 0x0b, 0x80, 0x41, 0x33, 0xc2, 0x38, 0xd4, 0xbe, 0x59, 0xae, 0x87, 0x6c, 0x07, 0x3a, 0x04,
-	0xfd, 0x8b, 0x07, 0xfd, 0x97, 0x92, 0x95, 0x4f, 0x6d, 0x72, 0xf8, 0x16, 0x1d, 0x87, 0x40, 0xbb,
-	0x92, 0x75, 0x81, 0x88, 0xe3, 0x66, 0x56, 0xeb, 0xcc, 0x64, 0xb5, 0xe0, 0x00, 0xd6, 0xbe, 0xe4,
-	0x2a, 0x63, 0xaf, 0x9b, 0xa7, 0x79, 0x08, 0x03, 0x2d, 0x16, 0x35, 0x33, 0x61, 0x7f, 0x77, 0x30,
-	0x6a, 0xf0, 0x84, 0xfd, 0x6a, 0x0a, 0x04, 0xbf, 0xf4, 0x60, 0xfd, 0x98, 0xa5, 0x6c, 0x52, 0xd2,
-	0xec, 0xd7, 0x99, 0x88, 0x7c, 0x17, 0x96, 0x6d, 0x84, 0x89, 0x4e, 0x68, 0xfc, 0xaa, 0x2a, 0x30,
-	0xbc, 0xf4, 0xc2, 0xa1, 0xc5, 0x7e, 0x89, 0x48, 0xcc, 0x42, 0x67, 0x34, 0xcf, 0x59, 0x1a, 0xf1,
-	0xc4, 0x15, 0x14, 0x16, 0x73, 0x94, 0x90, 0x47, 0xe0, 0x3b, 0xb2, 0xac, 0x4e, 0x74, 0x82, 0x3e,
-	0x61, 0x65, 0x64, 0x12, 0x84, 0xa9, 0x31, 0xb6, 0x2c, 0x7d, 0x5c, 0x93, 0xf7, 0x31, 0x63, 0xdc,
-	0x05, 0xb0, 0x7b, 0xd5, 0x13, 0x6b, 0x5d, 0x2d, 0x84, 0x3d, 0x8b, 0x39, 0x4a, 0x02, 0x01, 0xfe,
-	0xbe, 0xc8, 0xb4, 0x89, 0x90, 0x5d, 0x97, 0xc6, 0xe3, 0x9c, 0x16, 0xf2, 0x4c, 0xe8, 0x64, 0xd3,
-	0xd6, 0xd6, 0xb3, 0x67, 0xbc, 0xad, 0x8e, 0x46, 0x3e, 0x5d, 0x2b, 0xc6, 0x66, 0x2e, 0xbb, 0x33,
-	0x73, 0x5f, 0x06, 0x71, 0x63, 0x81, 0xe0, 0xef, 0x5b, 0xd0, 0xb5, 0x2b, 0xea, 0xe4, 0x7c, 0x74,
-	0x50, 0x3f, 0x1e, 0x0e, 0xb4, 0xa1, 0xb5, 0xe5, 0x6d, 0x01, 0x81, 0x63, 0x5d, 0x68, 0x15, 0xac,
-	0xcc, 0xa8, 0xae, 0x97, 0x6d, 0xa5, 0x37, 0x45, 0x90, 0xf7, 0xeb, 0xe4, 0xfd, 0xf2, 0x78, 0x1f,
-	0x35, 0xd1, 0x0e, 0x1b, 0x18, 0xed, 0x26, 0x09, 0x4b, 0x99, 0xb2, 0x15, 0xd7, 0x52, 0xe8, 0x40,
-	0x2c, 0x04, 0x0a, 0x89, 0xa5, 0x74, 0x27, 0xd4, 0x43, 0x7d, 0xcd, 0x13, 0x71, 0x91, 0x4b, 0x2c,
-	0xa4, 0x3b, 0xa1, 0x01, 0x5c, 0x29, 0x27, 0xb1, 0x90, 0x5e, 0x32, 0xa5, 0x1c, 0xba, 0xe4, 0x89,
-	0x48, 0x2e, 0x5d, 0xa9, 0xa1, 0xc7, 0x58, 0x48, 0x57, 0x27, 0x25, 0x4b, 0x12, 0xae, 0xec, 0x33,
-	0x62, 0x8a, 0xd0, 0xc9, 0xd2, 0x55, 0xc6, 0x26, 0x3e, 0x2e, 0x8d, 0xac, 0x1a, 0x42, 0x47, 0x98,
-	0x2d, 0xc5, 0x7b, 0x57, 0x4a, 0xf1, 0xe0, 0xaf, 0xbb, 0xb0, 0x12, 0xe2, 0x64, 0x3a, 0x8f, 0xd7,
-	0xcf, 0xaf, 0x19, 0x0d, 0xce, 0xea, 0xa3, 0x75, 0x4d, 0x1f, 0x75, 0x6d, 0xb5, 0xd0, 0xac, 0xad,
-	0x56, 0x61, 0xe1, 0x65, 0xf8, 0xc4, 0xde, 0xaf, 0x85, 0x2a, 0x7c, 0xd2, 0x78, 0x97, 0x74, 0x66,
-	0xde, 0x25, 0xef, 0xea, 0x1d, 0xa6, 0xa7, 0x26, 0xa2, 0x9a, 0xc3, 0x2f, 0x69, 0x84, 0x8e, 0xa7,
-	0xb5, 0xf9, 0xfa, 0x37, 0x99, 0x6f, 0x70, 0xd5, 0x7c, 0x0d, 0xf3, 0x0c, 0x7f, 0x93, 0xe6, 0xf9,
-	0x00, 0x06, 0x79, 0x95, 0x45, 0xd6, 0xf1, 0xa4, 0xbf, 0x86, 0x22, 0xfd, 0xbc, 0xca, 0xac, 0xce,
-	0x51, 0x50, 0xc6, 0xa2, 0x64, 0x3e, 0xb1, 0x85, 0xb4, 0x06, 0x9a, 0x56, 0x5a, 0xbf, 0xc9, 0x4a,
-	0xd3, 0x42, 0x77, 0x63, 0xa6, 0xd0, 0xbd, 0x0f, 0xfd, 0xb1, 0x33, 0xf7, 0xd1, 0x81, 0xbf, 0x69,
-	0x0a, 0x54, 0x39, 0x45, 0x69, 0xc9, 0x33, 0x9e, 0x24, 0x2c, 0xf7, 0xb7, 0x70, 0xb7, 0x16, 0xd2,
-	0xf8, 0x54, 0xc4, 0xfa, 0x59, 0xb0, 0x6d, 0xf0, 0x06, 0xd2, 0xca, 0x53, 0x67, 0x55, 0x76, 0x92,
-	0x53, 0x9e, 0xfa, 0xbe, 0x51, 0x5e, 0x8d, 0xd0, 0x52, 0x13, 0x9e, 0x26, 0x2c, 0xf1, 0xef, 0xe0,
-	0x11, 0x2c, 0x44, 0x7e, 0x07, 0x86, 0x09, 0x97, 0x8a, 0xe7, 0x93, 0x0a, 0x2b, 0x63, 0x7f, 0x07,
-	0x25, 0x67, 0x91, 0xfa, 0x31, 0x22, 0x15, 0x8f, 0x5f, 0x71, 0x96, 0xf8, 0xef, 0xe2, 0xaa, 0x35,
-	0x4c, 0x3e, 0x81, 0x2d, 0x2e, 0x23, 0xb3, 0xed, 0x28, 0x63, 0x09, 0xa7, 0x91, 0x3d, 0xf1, 0x7b,
-	0xc8, 0xb9, 0xce, 0xa5, 0x71, 0xc4, 0xa7, 0x9a, 0x76, 0x60, 0x8e, 0xff, 0x1c, 0xb6, 0x66, 0x6e,
-	0x7f, 0x24, 0x6d, 0x1c, 0xb1, 0x05, 0xc4, 0x9d, 0xd1, 0x4d, 0x81, 0x26, 0xdc, 0x68, 0x46, 0x88,
-	0x3a, 0xfc, 0xdc, 0x81, 0xa5, 0x33, 0xa1, 0xa2, 0x92, 0x2a, 0x86, 0xf5, 0xba, 0x17, 0x76, 0x35,
-	0xb3, 0x7e, 0xe4, 0xcf, 0x5c, 0xb5, 0xde, 0xd5, 0xab, 0xb6, 0x0d, 0x5d, 0x2e, 0x23, 0xed, 0x96,
-	0x58, 0xb4, 0x2f, 0x85, 0x8b, 0x5c, 0x8e, 0x59, 0x7a, 0x8a, 0x0e, 0x2a, 0x4f, 0x2f, 0xfc, 0xbb,
-	0x88, 0xc5, 0xb1, 0xf6, 0x68, 0x2e, 0xa3, 0xaa, 0xc0, 0x3e, 0xc3, 0xfb, 0x46, 0x11, 0x5c, 0xbe,
-	0x44, 0x18, 0x83, 0xb7, 0x9b, 0x36, 0xe2, 0xb1, 0xc8, 0xfd, 0x7b, 0x46, 0x97, 0x53, 0xab, 0xc6,
-	0x22, 0x0f, 0xfe, 0xdb, 0x03, 0x98, 0xde, 0xcc, 0xff, 0xe7, 0x95, 0x00, 0xf9, 0x11, 0xf4, 0xed,
-	0x89, 0x0b, 0x21, 0x95, 0xed, 0xbd, 0xac, 0x8e, 0xae, 0x84, 0x9e, 0x10, 0xca, 0x1a, 0x11, 0xfc,
-	0x15, 0xc0, 0xf0, 0xf0, 0xb5, 0x62, 0x79, 0xc2, 0x92, 0xe3, 0x0b, 0xc6, 0x14, 0xf9, 0x3e, 0xac,
-	0x9c, 0xd2, 0x73, 0x51, 0x95, 0x5c, 0xb1, 0xa8, 0xf9, 0x90, 0x59, 0xae, 0xd1, 0x26, 0x3f, 0x7d,
-	0x00, 0x83, 0x53, 0x9e, 0x2a, 0x56, 0x46, 0x29, 0x3b, 0x67, 0xa9, 0x7b, 0x85, 0x1a, 0xdc, 0x13,
-	0x8d, 0x22, 0x9b, 0xb0, 0xc8, 0x93, 0x48, 0xaa, 0xd2, 0x45, 0x2d, 0x9e, 0x8c, 0x55, 0x49, 0x3e,
-	0x85, 0x6d, 0x9e, 0x63, 0xbb, 0xe1, 0x32, 0x52, 0x22, 0x92, 0x71, 0xc9, 0x58, 0x1e, 0x61, 0x04,
-	0x32, 0x91, 0x6c, 0x9d, 0xe7, 0xa1, 0xa6, 0x1e, 0x8b, 0x31, 0xd2, 0xf4, 0xb1, 0xc9, 0x8f, 0xe1,
-	0xce, 0x8c, 0x94, 0xa2, 0xaa, 0x92, 0x91, 0x9d, 0xdf, 0x04, 0xbb, 0x8d, 0xa9, 0x1c, 0x52, 0x8f,
-	0x70, 0xb9, 0x4f, 0x66, 0x97, 0xc3, 0x2a, 0xc0, 0x8a, 0x99, 0x40, 0x48, 0x6a, 0x31, 0x5d, 0x0c,
-	0x18, 0xa1, 0xef, 0xc1, 0x0a, 0x97, 0xd1, 0x2f, 0x2a, 0xa1, 0x98, 0x5d, 0xca, 0x66, 0x86, 0x21,
-	0x97, 0x7f, 0xa4, 0xb1, 0x66, 0x85, 0xba, 0xdf, 0xb3, 0xd4, 0xe8, 0xf7, 0xfc, 0x10, 0x48, 0x21,
-	0xa4, 0xe4, 0x27, 0xe9, 0x65, 0x24, 0x59, 0x6e, 0x1b, 0x11, 0x3d, 0x74, 0xd1, 0x35, 0x47, 0x19,
-	0x3b, 0x82, 0x2e, 0x77, 0xcd, 0x3a, 0x46, 0xdb, 0x80, 0xda, 0x06, 0x44, 0x19, 0x4d, 0xdf, 0xd3,
-	0x76, 0xd5, 0xbb, 0x37, 0x0c, 0x7d, 0xc3, 0x80, 0x28, 0xc3, 0xf0, 0x1d, 0x18, 0x96, 0x4c, 0x69,
-	0xf3, 0x59, 0x96, 0x81, 0xc9, 0xdf, 0x16, 0x59, 0x33, 0xd9, 0x02, 0xc8, 0xd6, 0xe8, 0x43, 0x2c,
-	0x67, 0x06, 0xa6, 0xe6, 0xb1, 0xa5, 0xf7, 0xb4, 0x9d, 0xb6, 0x3c, 0xd3, 0x4e, 0x7b, 0x00, 0x6b,
-	0x26, 0x91, 0x44, 0x8d, 0x27, 0xf7, 0x0a, 0xb2, 0xac, 0x18, 0xc2, 0x7e, 0xfd, 0xf0, 0xfe, 0x14,
-	0xb6, 0x2c, 0x6f, 0xc2, 0x4e, 0x69, 0x95, 0xaa, 0xa8, 0x28, 0xc5, 0x29, 0x4f, 0x99, 0x0d, 0xf5,
-	0x1b, 0x86, 0x7a, 0x60, 0x88, 0x2f, 0x0c, 0x8d, 0xfc, 0x01, 0xbc, 0x37, 0x5f, 0x2a, 0xc2, 0x3e,
-	0x1c, 0x66, 0x82, 0xa5, 0xf0, 0xce, 0x3c, 0xd9, 0x23, 0xcd, 0xd0, 0x58, 0xf6, 0x54, 0xa4, 0xa9,
-	0xb8, 0x60, 0xa5, 0xb4, 0xda, 0x30, 0x89, 0xc2, 0x2e, 0xfb, 0x95, 0x23, 0x1a, 0xad, 0x7c, 0x0c,
-	0x1b, 0x4e, 0xaa, 0xe4, 0x2c, 0x4f, 0x9c, 0xcc, 0x3a, 0xca, 0x10, 0x2b, 0x63, 0x48, 0x46, 0x22,
-	0x80, 0xa1, 0x95, 0xb0, 0x4e, 0x64, 0x92, 0x49, 0xdf, 0x20, 0x8d, 0xf7, 0xdc, 0x03, 0x0b, 0x46,
-	0xe8, 0x1c, 0x26, 0xa3, 0x80, 0x41, 0x3d, 0xd1, 0x2e, 0xf2, 0x7d, 0x58, 0x71, 0x0c, 0xf6, 0xed,
-	0x86, 0x99, 0xa5, 0x17, 0x2e, 0x5b, 0x26, 0x8b, 0x6d, 0xcc, 0x84, 0xf7, 0x63, 0xbb, 0x39, 0x13,
-	0x5e, 0x8b, 0x8f, 0xc0, 0x6e, 0x72, 0xe6, 0x1e, 0x99, 0x9c, 0xb3, 0x6a, 0x28, 0x8d, 0x4b, 0xf4,
-	0x53, 0xb8, 0x6b, 0xb9, 0x67, 0xb4, 0x1b, 0x55, 0x65, 0x1a, 0x9d, 0x29, 0x55, 0x60, 0x46, 0xea,
-	0x39, 0x35, 0x37, 0xf5, 0xfb, 0xb2, 0x4c, 0x1f, 0x2b, 0x55, 0x90, 0x5d, 0xd8, 0x74, 0xeb, 0xe1,
-	0x0d, 0x60, 0x4e, 0x63, 0x3b, 0xa8, 0xb1, 0x75, 0xbb, 0xa4, 0xa5, 0x19, 0x95, 0xe9, 0xe2, 0x86,
-	0x2a, 0x36, 0x11, 0xa5, 0x0e, 0x82, 0xef, 0xa2, 0xdf, 0x35, 0x30, 0x98, 0x2e, 0xcb, 0x2a, 0x8f,
-	0xb1, 0xf9, 0x6b, 0x32, 0xd5, 0x14, 0xa1, 0x03, 0xfd, 0x69, 0x95, 0xa6, 0xa6, 0x74, 0xb9, 0x6b,
-	0x4a, 0x17, 0x8d, 0xc0, 0xd2, 0xe5, 0x77, 0x61, 0xd5, 0x7a, 0x39, 0x4b, 0xdc, 0x45, 0x35, 0xc9,
-	0x60, 0xa5, 0xc6, 0xdb, 0xab, 0xfa, 0x00, 0xd6, 0xdc, 0x2d, 0xb1, 0xcf, 0x4b, 0x9e, 0xd8, 0xb4,
-	0xe0, 0x78, 0x4d, 0x43, 0xeb, 0x28, 0x09, 0xfe, 0xcd, 0x83, 0x8e, 0x89, 0x87, 0xdf, 0xa2, 0x9c,
-	0xf0, 0x19, 0x2c, 0x33, 0x1b, 0xab, 0x23, 0xdc, 0xae, 0xcd, 0x0b, 0xcb, 0xa3, 0x99, 0x10, 0x1e,
-	0x0e, 0x59, 0x13, 0x0c, 0xfe, 0xa9, 0x0d, 0x2b, 0xf5, 0x86, 0xf6, 0x69, 0x9e, 0xa4, 0xec, 0x5a,
-	0xf7, 0xff, 0xf7, 0x00, 0xb0, 0x47, 0x13, 0xe1, 0xbb, 0xa1, 0xf5, 0xc6, 0x77, 0x43, 0x0f, 0xb9,
-	0x35, 0xac, 0x8d, 0x5b, 0x32, 0x29, 0xd2, 0x0a, 0xbd, 0xd8, 0x04, 0xfa, 0x06, 0x46, 0xd7, 0x6b,
-	0xf8, 0xbc, 0x77, 0x5d, 0x41, 0x04, 0xb0, 0xd0, 0xb3, 0xed, 0xda, 0x48, 0x56, 0x19, 0x06, 0x70,
-	0x2f, 0xec, 0x3b, 0xdc, 0xb8, 0xca, 0x74, 0x0e, 0xaf, 0x59, 0x8c, 0x8b, 0x99, 0x26, 0xeb, 0xd0,
-	0x61, 0xeb, 0x3c, 0xe4, 0x9a, 0xbb, 0x38, 0x53, 0xd7, 0xcc, 0xe4, 0x70, 0x76, 0xa6, 0x9a, 0xc5,
-	0xcc, 0x64, 0x9a, 0xb0, 0x43, 0x87, 0xad, 0x23, 0xe4, 0xb4, 0x1b, 0x4e, 0xcf, 0x27, 0xb6, 0x92,
-	0x1f, 0xd4, 0xc8, 0xbd, 0xf3, 0x89, 0x0e, 0x33, 0xa2, 0x60, 0x79, 0xd4, 0xe4, 0x64, 0xa5, 0x8e,
-	0x50, 0x80, 0xdc, 0x1b, 0x9a, 0x3a, 0x9e, 0x4a, 0x20, 0x4d, 0x4b, 0x9d, 0xf1, 0xc9, 0xd9, 0x1c,
-	0xa9, 0xbe, 0x91, 0xd2, 0xd4, 0x6b, 0x52, 0xbb, 0xb0, 0x99, 0x8a, 0x8b, 0x39, 0x42, 0x03, 0x14,
-	0x5a, 0x4f, 0xc5, 0xc5, 0x35, 0x99, 0xcf, 0x61, 0x3b, 0x4e, 0x85, 0x64, 0x73, 0xa4, 0x86, 0x28,
-	0xb5, 0x89, 0xe4, 0x6b, 0x72, 0x3e, 0x74, 0x4d, 0x2d, 0x95, 0x60, 0xe8, 0x5f, 0x0a, 0x1d, 0x18,
-	0x1c, 0xc2, 0x00, 0xbb, 0x2d, 0xf2, 0x2b, 0x4c, 0xed, 0xf8, 0xc4, 0x30, 0xfd, 0xb6, 0xb6, 0xf9,
-	0x28, 0xb1, 0x7d, 0xb5, 0xbb, 0x00, 0x34, 0x4d, 0x23, 0x4b, 0x33, 0xaf, 0xb6, 0x1e, 0x4d, 0x53,
-	0x23, 0x1c, 0x64, 0xb0, 0xbd, 0x37, 0x99, 0x94, 0x68, 0x3b, 0x91, 0x1b, 0x3f, 0xb4, 0x33, 0xce,
-	0xba, 0x90, 0x77, 0xcd, 0x85, 0x76, 0xc1, 0x74, 0x88, 0x64, 0x64, 0xaa, 0x0b, 0xeb, 0xa0, 0xc3,
-	0x51, 0x73, 0x5f, 0xe1, 0x80, 0x36, 0xa0, 0xe0, 0x6f, 0x3d, 0xf0, 0xeb, 0x43, 0x3e, 0xe6, 0x52,
-	0x89, 0x92, 0xc7, 0x21, 0xfb, 0x45, 0xc5, 0x24, 0x3e, 0x90, 0x4f, 0x4b, 0x91, 0xbd, 0xcd, 0x03,
-	0x59, 0xf3, 0x91, 0x07, 0xd0, 0x52, 0xe2, 0x2d, 0xae, 0x45, 0x4b, 0x89, 0xff, 0xdd, 0x7d, 0x08,
-	0xfe, 0xd2, 0x83, 0x95, 0xff, 0xcb, 0x5d, 0x7e, 0x17, 0x16, 0xad, 0x2e, 0xdb, 0xf3, 0x74, 0x69,
-	0x89, 0xc1, 0xd7, 0xd0, 0x41, 0x7c, 0xfd, 0x44, 0xf4, 0x1a, 0x4f, 0x44, 0x5d, 0x2c, 0x60, 0x2f,
-	0xc4, 0x7d, 0x1c, 0x18, 0x48, 0xf3, 0xc6, 0x22, 0x71, 0x4f, 0x55, 0x1c, 0x07, 0x1f, 0x01, 0xe0,
-	0x44, 0x47, 0x8a, 0x65, 0x92, 0xbc, 0x5f, 0xbb, 0x90, 0x87, 0x4f, 0x8c, 0x45, 0xb3, 0xba, 0x73,
-	0xa5, 0xe0, 0x1f, 0x5b, 0xd0, 0x3f, 0x2e, 0x69, 0x2e, 0x69, 0x8c, 0x3a, 0xbb, 0x1a, 0xae, 0x08,
-	0xb4, 0xcf, 0xa8, 0x3c, 0x73, 0xfd, 0x06, 0x3d, 0xc6, 0x7a, 0xb4, 0x14, 0x59, 0x44, 0x93, 0xa4,
-	0x64, 0x52, 0xda, 0xd5, 0xfb, 0x1a, 0xb7, 0x67, 0x50, 0xda, 0x43, 0x95, 0xa8, 0x19, 0xda, 0xf6,
-	0x5d, 0x26, 0x1a, 0x64, 0x9c, 0x41, 0x5c, 0xe4, 0xcc, 0x95, 0x94, 0x3d, 0x8d, 0x79, 0xae, 0x11,
-	0xfa, 0x59, 0xa3, 0x84, 0x25, 0x9a, 0xc2, 0xb1, 0xab, 0x84, 0x21, 0xb9, 0x86, 0x4b, 0xf7, 0x2d,
-	0x1b, 0x2e, 0xf8, 0xad, 0x8a, 0x2f, 0x27, 0xf7, 0x3b, 0x69, 0xc1, 0xa9, 0x77, 0xf4, 0x9a, 0xd1,
-	0x92, 0x40, 0x5b, 0xf2, 0x6f, 0x5c, 0x88, 0xc1, 0xb1, 0xde, 0xce, 0xcb, 0xf1, 0x41, 0x84, 0x78,
-	0x13, 0x44, 0xba, 0xd5, 0xf8, 0x60, 0xcc, 0xbf, 0x61, 0x81, 0x80, 0xce, 0xde, 0x64, 0x72, 0x84,
-	0x7a, 0xba, 0x64, 0xb4, 0xb4, 0x15, 0x3c, 0x8e, 0xf5, 0x0a, 0x99, 0xc8, 0xd5, 0x99, 0x6b, 0x8a,
-	0x22, 0xa0, 0x9f, 0xed, 0x09, 0xbd, 0xb4, 0xfd, 0x2b, 0x3d, 0x44, 0x1d, 0x8b, 0xaa, 0xb4, 0x5d,
-	0x2a, 0x1c, 0x6b, 0x8b, 0x67, 0x3c, 0xaf, 0xec, 0xc7, 0x6e, 0x27, 0xb4, 0x50, 0xf0, 0x77, 0x1e,
-	0xac, 0x5d, 0xbb, 0xdc, 0x64, 0xab, 0xb6, 0x1a, 0x5a, 0x58, 0xef, 0xc8, 0x7d, 0x35, 0x9b, 0x33,
-	0xb6, 0x9a, 0x67, 0x7c, 0xd3, 0xbd, 0x59, 0x86, 0x56, 0x71, 0x8e, 0xbb, 0x59, 0x08, 0x5b, 0xc5,
-	0xb9, 0x86, 0xf3, 0x73, 0xdb, 0x17, 0x6b, 0xe5, 0x08, 0x17, 0x12, 0x0d, 0xe3, 0x85, 0xad, 0x42,
-	0x22, 0x5d, 0xda, 0x6c, 0xd0, 0xca, 0x25, 0x19, 0x80, 0x47, 0xed, 0x73, 0xd4, 0xa3, 0xc1, 0x5f,
-	0x2c, 0x40, 0xff, 0x45, 0x75, 0x92, 0xf2, 0xf8, 0x37, 0xf3, 0x1d, 0xfe, 0xdb, 0xf2, 0xe9, 0x3d,
-	0xef, 0x73, 0x9a, 0x7c, 0x0e, 0x80, 0x25, 0x87, 0xc4, 0x77, 0x45, 0x62, 0xff, 0xdb, 0x1a, 0xea,
-	0x3d, 0xac, 0xa9, 0x61, 0x83, 0x33, 0x78, 0x08, 0x9b, 0x73, 0x99, 0x1a, 0x29, 0xc6, 0x6b, 0xa6,
-	0x98, 0x07, 0x7f, 0xe3, 0x41, 0xbf, 0xf1, 0x39, 0x41, 0x56, 0x61, 0xb0, 0x37, 0x1e, 0x1f, 0x1e,
-	0x47, 0x87, 0xcf, 0x8e, 0x8f, 0x8e, 0x7f, 0xbe, 0xfa, 0x0e, 0x59, 0x83, 0xe1, 0x8b, 0xc3, 0x70,
-	0xfc, 0xfc, 0x99, 0x43, 0x79, 0x64, 0x1d, 0x56, 0x9e, 0x3c, 0xdf, 0xdf, 0x3b, 0x3e, 0x9a, 0x22,
-	0x5b, 0x84, 0xc0, 0xf2, 0xfe, 0xf3, 0xa7, 0x2f, 0xf6, 0x9e, 0xfd, 0xdc, 0xe1, 0x16, 0x34, 0xe3,
-	0xe1, 0x9f, 0xec, 0x3f, 0xde, 0x7b, 0xf6, 0xf5, 0xa1, 0x43, 0xb6, 0xc9, 0x0a, 0xf4, 0x9f, 0x1e,
-	0x8d, 0xf7, 0x1d, 0xa2, 0x43, 0xb6, 0x61, 0xfd, 0x79, 0xf8, 0xf5, 0xde, 0xb3, 0xa3, 0x3f, 0x9d,
-	0x99, 0x72, 0x71, 0xf7, 0xbf, 0xda, 0x30, 0xb4, 0xcd, 0x63, 0xf9, 0xa2, 0x14, 0xaf, 0x2f, 0xc9,
-	0x8f, 0x61, 0xa3, 0xee, 0xea, 0xea, 0xba, 0xd1, 0xfd, 0x38, 0xcc, 0x06, 0xdb, 0x9d, 0x41, 0x53,
-	0x55, 0xc1, 0x3b, 0x1f, 0x7b, 0xe4, 0x33, 0x20, 0x33, 0x82, 0xa6, 0x14, 0x7d, 0xa3, 0xd8, 0xe7,
-	0xb0, 0x3e, 0x23, 0x66, 0x5e, 0xfe, 0x6f, 0x96, 0x7b, 0x04, 0x9b, 0xb3, 0xcb, 0xd9, 0xfe, 0xf9,
-	0xaf, 0xbe, 0xa2, 0x69, 0xe0, 0xbf, 0x59, 0xee, 0x21, 0xac, 0xd6, 0x72, 0x37, 0x68, 0xa5, 0xfe,
-	0x93, 0x44, 0x81, 0x1f, 0xc0, 0x72, 0x2d, 0x30, 0x57, 0x1b, 0x8b, 0x23, 0x53, 0xed, 0x6a, 0xe6,
-	0x1f, 0xc1, 0x4a, 0xcd, 0x3c, 0x5f, 0x07, 0xfd, 0x46, 0x57, 0x04, 0x45, 0x7e, 0x02, 0x6b, 0xd3,
-	0xf9, 0x6f, 0x38, 0xfe, 0xc6, 0x68, 0xce, 0xc7, 0x82, 0x55, 0xe0, 0x74, 0xc1, 0xf9, 0x2a, 0x20,
-	0xa3, 0x6b, 0x7f, 0x1b, 0x28, 0xd9, 0x74, 0x91, 0x66, 0xc6, 0xbb, 0xa6, 0xc1, 0x06, 0x51, 0x0b,
-	0xee, 0x7e, 0x01, 0xdd, 0x03, 0xaa, 0xa8, 0x8e, 0x9c, 0x0f, 0x61, 0xd1, 0x30, 0x93, 0xad, 0x6b,
-	0xd1, 0xe3, 0x30, 0x2b, 0xd4, 0xe5, 0x4e, 0x7f, 0x34, 0x4d, 0xbe, 0xc1, 0x3b, 0xbb, 0xff, 0xb1,
-	0x00, 0x03, 0x57, 0x6c, 0x60, 0xe7, 0xe8, 0x11, 0x10, 0x07, 0xd7, 0xee, 0x26, 0xc9, 0xea, 0xe8,
-	0x4a, 0x45, 0x32, 0xc7, 0x90, 0x5f, 0xc0, 0x46, 0x53, 0xd2, 0x9a, 0xec, 0xed, 0x64, 0x7f, 0x1f,
-	0xb6, 0x9b, 0xb2, 0x53, 0x8b, 0xbc, 0x9d, 0xf8, 0x97, 0xf0, 0xde, 0xcc, 0xa6, 0xad, 0x6d, 0xdc,
-	0x15, 0x7c, 0xab, 0x39, 0x46, 0xb0, 0xec, 0x98, 0x6e, 0x3c, 0x74, 0xd3, 0xb3, 0x76, 0x61, 0xd5,
-	0x91, 0x6f, 0x39, 0xea, 0xac, 0xeb, 0x3e, 0x82, 0xf5, 0x29, 0xc3, 0x6d, 0x47, 0xbc, 0xe6, 0x94,
-	0x0d, 0xe5, 0x36, 0xcc, 0x3f, 0xff, 0x64, 0x57, 0xfd, 0xe3, 0x9f, 0x5b, 0x00, 0x75, 0xfd, 0x2b,
-	0xc9, 0x93, 0xa9, 0xae, 0xc7, 0x22, 0xe6, 0x34, 0xad, 0x69, 0xe4, 0xce, 0xe8, 0xa6, 0x3a, 0x79,
-	0x87, 0x8c, 0xae, 0x65, 0x75, 0xdc, 0xd8, 0x1f, 0xc2, 0xa6, 0x63, 0x7d, 0xc6, 0x2e, 0xe4, 0xaf,
-	0x35, 0xd7, 0x13, 0xf0, 0xeb, 0x1b, 0x70, 0x75, 0x6b, 0xfe, 0xe8, 0x86, 0x27, 0xc3, 0x2d, 0x3b,
-	0xdb, 0xaa, 0x67, 0x9b, 0xdd, 0xda, 0xaf, 0x3c, 0xd7, 0xc9, 0x22, 0xde, 0xa2, 0x4f, 0xfe, 0x27,
-	0x00, 0x00, 0xff, 0xff, 0x3c, 0x3a, 0xad, 0xe0, 0x84, 0x27, 0x00, 0x00,
 }

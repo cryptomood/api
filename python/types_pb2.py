@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0btypes.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xbf\x02\n\tBaseModel\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x0f\n\x07\x63rawler\x18\x04 \x01(\t\x12,\n\x08pub_date\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x07\x63reated\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0e\n\x06source\x18\x07 \x01(\t\x12\x0f\n\x07\x65xcerpt\x18\x08 \x01(\t\x12\x0e\n\x06videos\x18\t \x03(\t\x12\x0e\n\x06images\x18\n \x03(\t\x12\r\n\x05links\x18\x0b \x03(\t\x12\x0e\n\x06\x61uthor\x18\x0c \x01(\t\x12\x0c\n\x04lang\x18\r \x01(\t\x12\x0e\n\x06weight\x18\x0e \x01(\x01\x12\x0c\n\x04spam\x18\x0f \x01(\x01\x12\x0e\n\x06\x64omain\x18\x10 \x01(\t\"U\n\x0eSentimentModel\x12\x11\n\tsentiment\x18\x01 \x01(\x01\x12\x15\n\rmarket_impact\x18\x02 \x01(\x01\x12\x19\n\x11sentiment_replies\x18\x03 \x01(\x01\"U\n\x16\x43ryptopanicEntrySource\x12\r\n\x05title\x18\x01 \x01(\t\x12\x0e\n\x06region\x18\x02 \x01(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0c\n\x04path\x18\x04 \x01(\t\"\x9a\x01\n\x15\x43ryptopanicEntryVotes\x12\x10\n\x08negative\x18\x01 \x01(\x05\x12\x10\n\x08positive\x18\x02 \x01(\x05\x12\x11\n\timportant\x18\x03 \x01(\x05\x12\r\n\x05liked\x18\x04 \x01(\x05\x12\x10\n\x08\x64isliked\x18\x05 \x01(\x05\x12\x0b\n\x03lol\x18\x06 \x01(\x05\x12\r\n\x05toxic\x18\x07 \x01(\x05\x12\r\n\x05saved\x18\x08 \x01(\x05\"@\n\x18\x43ryptopanicEntryMetadata\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\"\x90\x02\n\x13\x43ryptopanicRawEntry\x12\x0c\n\x04kind\x18\x01 \x01(\t\x12\x0e\n\x06\x64omain\x18\x02 \x01(\t\x12\'\n\x06source\x18\x03 \x01(\x0b\x32\x17.CryptopanicEntrySource\x12\r\n\x05title\x18\x04 \x01(\t\x12\x14\n\x0cpublished_at\x18\x05 \x01(\t\x12\x0c\n\x04slug\x18\x06 \x01(\t\x12\n\n\x02id\x18\x07 \x01(\x05\x12\x0b\n\x03url\x18\x08 \x01(\t\x12\x12\n\ncreated_at\x18\t \x01(\t\x12%\n\x05votes\x18\n \x01(\x0b\x32\x16.CryptopanicEntryVotes\x12+\n\x08metadata\x18\x0b \x01(\x0b\x32\x19.CryptopanicEntryMetadata\"G\n\x0f\x43ryptopanicFeed\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\x12%\n\x07results\x18\x02 \x03(\x0b\x32\x14.CryptopanicRawEntry\"a\n\x0f\x43ryptopanicPost\x12\x33\n\x15\x63ryptopanic_raw_entry\x18\x01 \x01(\x0b\x32\x14.CryptopanicRawEntry\x12\x19\n\x07\x61rticle\x18\x02 \x01(\x0b\x32\x08.Article\"^\n\x15NamedEntityOccurrence\x12\x1b\n\x05label\x18\x01 \x01(\x0e\x32\x0c.NamedEntity\x12\r\n\x05start\x18\x02 \x01(\r\x12\x0b\n\x03\x65nd\x18\x03 \x01(\r\x12\x0c\n\x04text\x18\x04 \x01(\t\"\xe5\x03\n\x12NamedEntitiesModel\x12\x0f\n\x07symbols\x18\x01 \x03(\t\x12&\n\x06\x61ssets\x18\x02 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12\'\n\x07persons\x18\x03 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\tcompanies\x18\x04 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12-\n\rorganizations\x18\x05 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\tlocations\x18\x06 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\texchanges\x18\x07 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12$\n\x04misc\x18\x08 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12\x0c\n\x04tags\x18\t \x03(\t\x12>\n\x0e\x61sset_mentions\x18\n \x03(\x0b\x32&.NamedEntitiesModel.AssetMentionsEntry\x12\x13\n\x0bsource_text\x18\x0b \x01(\t\x1a\x34\n\x12\x41ssetMentionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"\x9d\x01\n\x07\x41rticle\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\'\n\ntitle_data\x18\x04 \x01(\x0b\x32\x13.NamedEntitiesModel\"\x97\x01\n\x0bUserMessage\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\x0c\n\x04user\x18\x04 \x01(\t\x12\x0f\n\x07message\x18\x05 \x01(\t\"7\n\x11\x42itmexUserMessage\x12\"\n\x0cuser_message\x18\x01 \x01(\x0b\x32\x0c.UserMessage\"\x9b\x01\n\x13TelegramUserMessage\x12\"\n\x0cuser_message\x18\x01 \x01(\x0b\x32\x0c.UserMessage\x12\x16\n\x0esymbols_backup\x18\x02 \x03(\t\x12\x12\n\nchannel_id\x18\x03 \x01(\x05\x12 \n\x18\x63hannel_subscriber_count\x18\x04 \x01(\x05\x12\x12\n\nmessage_id\x18\x05 \x01(\x03\"[\n\x18\x43ommentCountTimeSnapshot\x12(\n\x04time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x15\n\rcomment_count\x18\x02 \x01(\x05\"\xd5\x01\n\x07\x43omment\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tpermalink\x18\x03 \x01(\t\x12\x12\n\ncreatedUTC\x18\x04 \x01(\x04\x12\x0f\n\x07\x64\x65leted\x18\x05 \x01(\x08\x12\x0b\n\x03ups\x18\x0e \x01(\x05\x12\r\n\x05\x64owns\x18\x0f \x01(\x05\x12\r\n\x05likes\x18\x10 \x01(\x08\x12\x0c\n\x04\x62ody\x18\x06 \x01(\t\x12\x11\n\tsubreddit\x18\x07 \x01(\t\x12\x19\n\x07replies\x18\x08 \x03(\x0b\x32\x08.Comment\x12\x11\n\tsentiment\x18\t \x01(\x01\"\xe8\x04\n\x0fRedditPostModel\x12\n\n\x02ID\x18\x01 \x01(\t\x12\x12\n\ncreatedUTC\x18\x02 \x01(\x04\x12\r\n\x05title\x18\x03 \x01(\t\x12\x0b\n\x03URL\x18\x04 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x05 \x01(\t\x12\x11\n\tself_text\x18\x06 \x01(\t\x12\x0c\n\x04name\x18\x0b \x01(\t\x12\x11\n\tpermalink\x18\x0c \x01(\t\x12\x0f\n\x07\x64\x65leted\x18\r \x01(\x08\x12\x0b\n\x03ups\x18\x0e \x01(\x05\x12\r\n\x05\x64owns\x18\x0f \x01(\x05\x12\r\n\x05likes\x18\x10 \x01(\x08\x12\x14\n\x0cnum_comments\x18\x11 \x01(\x05\x12\r\n\x05score\x18\x12 \x01(\x05\x12\x19\n\x07replies\x18\x13 \x03(\x0b\x32\x08.Comment\x12\x0e\n\x06\x64omain\x18\x14 \x01(\t\x12\x13\n\x0bSubredditID\x18\x15 \x01(\t\x12\x0e\n\x06hidden\x18\x16 \x01(\x08\x12\x0e\n\x06locked\x18\x17 \x01(\x08\x12\x11\n\tthumbnail\x18\x18 \x01(\t\x12\x0e\n\x06gilded\x18\x19 \x01(\x05\x12\x15\n\rdistinguished\x18\x1a \x01(\t\x12\x10\n\x08stickied\x18\x1b \x01(\x08\x12\x1e\n\x16is_reddit_media_domain\x18\x1c \x01(\x08\x12\x39\n\x16\x63omment_count_snapshot\x18\x07 \x03(\x0b\x32\x19.CommentCountTimeSnapshot\x12\x10\n\x08hot_rate\x18\x08 \x01(\x01\x12\x11\n\tsubreddit\x18\t \x01(\t\x12\x0f\n\x07is_self\x18\n \x01(\x08\x12\x0c\n\x04nsfw\x18\x1d \x01(\x08\x12\x11\n\tis_update\x18\x1e \x01(\x08\x12\x16\n\x0esubreddit_icon\x18\x1f \x01(\t\"\xc7\x01\n\nRedditPost\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\'\n\ntitle_data\x18\x04 \x01(\x0b\x32\x13.NamedEntitiesModel\x12%\n\x0breddit_post\x18\x05 \x01(\x0b\x32\x10.RedditPostModel\"\xa8\x06\n\rExtendedTweet\x12\x17\n\x0f\x66\x61vourite_count\x18\x01 \x01(\x05\x12\x14\n\x0c\x66ilter_level\x18\x02 \x01(\t\x12\x0e\n\x06id_str\x18\x03 \x01(\t\x12\x1f\n\x17in_reply_to_screen_name\x18\x04 \x01(\t\x12!\n\x19in_reply_to_status_id_str\x18\x05 \x01(\t\x12\x1f\n\x17in_reply_to_user_id_str\x18\x06 \x01(\t\x12\x17\n\x0fis_quote_status\x18\x07 \x01(\t\x12\x0c\n\x04lang\x18\x08 \x01(\t\x12\x1a\n\x12possibly_sensitive\x18\t \x01(\x08\x12\x13\n\x0bquote_count\x18\n \x01(\x05\x12\x13\n\x0breply_count\x18\x0b \x01(\x05\x12\x15\n\rretweet_count\x18\x0c \x01(\x05\x12\x15\n\ruser_mentions\x18\r \x03(\t\x12\x0e\n\x06source\x18\x0e \x01(\t\x12\x19\n\x11\x61uthor_created_at\x18\x0f \x01(\t\x12\x1e\n\x16\x61uthor_default_profile\x18\x10 \x01(\x08\x12$\n\x1c\x61uthor_default_profile_image\x18\x11 \x01(\x08\x12\x1e\n\x16\x61uthor_followers_count\x18\x12 \x01(\x05\x12\x1c\n\x14\x61uthor_friends_count\x18\x13 \x01(\x05\x12\x15\n\rauthor_id_str\x18\x14 \x01(\t\x12\x13\n\x0b\x61uthor_lang\x18\x15 \x01(\t\x12\x17\n\x0f\x61uthor_location\x18\x16 \x01(\t\x12\x13\n\x0b\x61uthor_name\x18\x17 \x01(\t\x12\x1a\n\x12\x61uthor_screen_name\x18\x18 \x01(\t\x12%\n\x1d\x61uthor_profile_image_url_http\x18\x19 \x01(\t\x12\x1d\n\x15\x61uthor_statuses_count\x18\x1a \x01(\x05\x12\x12\n\ncategories\x18\x1b \x03(\t\x12\x11\n\ttruncated\x18\x1c \x01(\x08\x12\x11\n\tfull_text\x18\x1d \x01(\t\x12\x18\n\x10retweeted_status\x18\x1e \x01(\x08\x12\x19\n\x11retweet_source_id\x18\x1f \x01(\t\"\x9a\x01\n\x05Tweet\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12&\n\x0e\x65xtended_tweet\x18\x04 \x01(\x0b\x32\x0e.ExtendedTweet\"\xf4\x02\n\x0fSentimentCandle\x12\n\n\x02id\x18\x01 \x01(\t\x12.\n\nstart_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\r\n\x05\x61sset\x18\x04 \x01(\t\x12\x14\n\x0cnegative_sum\x18\x05 \x01(\x01\x12\x16\n\x0enegative_count\x18\x06 \x01(\x05\x12\x14\n\x0cpositive_sum\x18\x07 \x01(\x01\x12\x16\n\x0epositive_count\x18\x08 \x01(\x05\x12\x15\n\rsentiment_avg\x18\t \x01(\x01\x12\x1e\n\x16open_sentiment_average\x18\n \x01(\x01\x12\x1e\n\x16high_sentiment_average\x18\x0b \x01(\x01\x12\x1d\n\x15low_sentiment_average\x18\x0c \x01(\x01\x12\x1f\n\x17\x63lose_sentiment_average\x18\r \x01(\x01\x12\x0f\n\x07updated\x18\x0e \x01(\x08\"2\n\x0c\x41ssetsFilter\x12\x0e\n\x06\x61ssets\x18\x04 \x03(\t\x12\x12\n\nall_assets\x18\x05 \x01(\x08\"S\n\x17\x41ggregationCandleFilter\x12\x12\n\nresolution\x18\x01 \x01(\t\x12$\n\rassets_filter\x18\x02 \x01(\x0b\x32\r.AssetsFilter\"\x8f\x01\n\x18SentimentHistoricRequest\x12(\n\x04\x66rom\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\r\n\x05\x61sset\x18\x04 \x01(\t\"\x82\x01\n\x0fHistoricRequest\x12(\n\x04\x66rom\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1d\n\x06\x66ilter\x18\x04 \x01(\x0b\x32\r.AssetsFilter\"3\n\x05\x41sset\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06symbol\x18\x02 \x01(\t\x12\x0c\n\x04\x63ode\x18\x03 \x01(\t\"$\n\nAssetItems\x12\x16\n\x06\x61ssets\x18\x01 \x03(\x0b\x32\x06.Asset\"\xe1\x01\n\x0bTransaction\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04hash\x18\x02 \x01(\t\x12\x14\n\x0c\x66rom_address\x18\x03 \x01(\t\x12\x12\n\nto_address\x18\x04 \x01(\t\x12\x12\n\nfrom_owner\x18\x05 \x01(\t\x12\x10\n\x08to_owner\x18\x06 \x01(\t\x12(\n\x04time\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07\x63omment\x18\x08 \x01(\t\x12\r\n\x05\x61sset\x18\t \x01(\t\x12\x0c\n\x04size\x18\n \x01(\x01\x12\x10\n\x08USD_size\x18\x0b \x01(\x01\"O\n\x05\x41ggId\x12\x0c\n\x04year\x18\x01 \x01(\x05\x12\r\n\x05month\x18\x02 \x01(\x05\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\x05\x12\x0c\n\x04hour\x18\x04 \x01(\x05\x12\x0e\n\x06minute\x18\x05 \x01(\x05\"\x85\x01\n\x11\x41ggregationCandle\x12\x12\n\x02id\x18\x01 \x01(\x0b\x32\x06.AggId\x12\r\n\x05\x61sset\x18\x02 \x01(\t\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\n\n\x02pv\x18\x04 \x01(\x03\x12\n\n\x02nv\x18\x05 \x01(\x03\x12\n\n\x02ps\x18\x06 \x01(\x01\x12\n\n\x02ns\x18\x07 \x01(\x01\x12\t\n\x01\x61\x18\x08 \x01(\x01\"\xa0\x02\n\x0bPublicModel\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12,\n\x08pub_date\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x07\x63reated\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0e\n\x06source\x18\x07 \x01(\t\x12\x0f\n\x07\x65xcerpt\x18\x08 \x01(\t\x12\x0e\n\x06videos\x18\t \x03(\t\x12\x0e\n\x06images\x18\n \x03(\t\x12\r\n\x05links\x18\x0b \x03(\t\x12\x0e\n\x06\x64omain\x18\x10 \x01(\t\x12*\n\nextensions\x18\x64 \x01(\x0b\x32\x16.PublicModelExtensions\"\'\n\x15PublicModelExtensions\x12\x0e\n\x06\x61ssets\x18\x01 \x03(\t*\x9a\x01\n\x0bNamedEntity\x12\x10\n\x0c\x41SSET_ENTITY\x10\x00\x12\x11\n\rPERSON_ENTITY\x10\x01\x12\x13\n\x0fLOCATION_ENTITY\x10\x02\x12\x12\n\x0e\x43OMPANY_ENTITY\x10\x03\x12\x13\n\x0f\x45XCHANGE_ENTITY\x10\x04\x12\x0f\n\x0bMISC_ENTITY\x10\x05\x12\x17\n\x13ORGANIZATION_ENTITY\x10\x06\x32\xeb\x04\n\rMessagesProxy\x12\x37\n\x14SubscribeBaseArticle\x12\r.AssetsFilter\x1a\x0c.PublicModel\"\x00\x30\x01\x12\x35\n\x12SubscribeBaseTweet\x12\r.AssetsFilter\x1a\x0c.PublicModel\"\x00\x30\x01\x12\x36\n\x13SubscribeBaseReddit\x12\r.AssetsFilter\x1a\x0c.PublicModel\"\x00\x30\x01\x12\x38\n\x15SubscribeBaseTelegram\x12\r.AssetsFilter\x1a\x0c.PublicModel\"\x00\x30\x01\x12\x36\n\x13SubscribeBaseBitmex\x12\r.AssetsFilter\x1a\x0c.PublicModel\"\x00\x30\x01\x12/\n\x10SubscribeArticle\x12\r.AssetsFilter\x1a\x08.Article\"\x00\x30\x01\x12+\n\x0eSubscribeTweet\x12\r.AssetsFilter\x1a\x06.Tweet\"\x00\x30\x01\x12\x31\n\x0fSubscribeReddit\x12\r.AssetsFilter\x1a\x0b.RedditPost\"\x00\x30\x01\x12<\n\x11SubscribeTelegram\x12\r.AssetsFilter\x1a\x14.TelegramUserMessage\"\x00\x30\x01\x12\x38\n\x0fSubscribeBitmex\x12\r.AssetsFilter\x1a\x12.BitmexUserMessage\"\x00\x30\x01\x12\x37\n\x14SubscribeTransaction\x12\r.AssetsFilter\x1a\x0c.Transaction\"\x00\x30\x01\x32:\n\x07\x44\x61taset\x12/\n\x06\x41ssets\x12\x16.google.protobuf.Empty\x1a\x0b.AssetItems\"\x00\x32\xe1\x03\n\x0cHistoricData\x12\x38\n\x12HistoricBaseTweets\x12\x10.HistoricRequest\x1a\x0c.PublicModel\"\x00\x30\x01\x12:\n\x14HistoricBaseArticles\x12\x10.HistoricRequest\x1a\x0c.PublicModel\"\x00\x30\x01\x12=\n\x17HistoricBaseRedditPosts\x12\x10.HistoricRequest\x1a\x0c.PublicModel\"\x00\x30\x01\x12\x42\n\x1cHistoricBaseTelegramMessages\x12\x10.HistoricRequest\x1a\x0c.PublicModel\"\x00\x30\x01\x12.\n\x0eHistoricTweets\x12\x10.HistoricRequest\x1a\x06.Tweet\"\x00\x30\x01\x12\x32\n\x10HistoricArticles\x12\x10.HistoricRequest\x1a\x08.Article\"\x00\x30\x01\x12\x38\n\x13HistoricRedditPosts\x12\x10.HistoricRequest\x1a\x0b.RedditPost\"\x00\x30\x01\x12:\n\x14HistoricTransactions\x12\x10.HistoricRequest\x1a\x0c.Transaction\"\x00\x30\x01\x32\xc0\x02\n\nSentiments\x12L\n\x17HistoricSocialSentiment\x12\x19.SentimentHistoricRequest\x1a\x12.AggregationCandle\"\x00\x30\x01\x12J\n\x15HistoricNewsSentiment\x12\x19.SentimentHistoricRequest\x1a\x12.AggregationCandle\"\x00\x30\x01\x12L\n\x18SubscribeSocialSentiment\x12\x18.AggregationCandleFilter\x1a\x12.AggregationCandle\"\x00\x30\x01\x12J\n\x16SubscribeNewsSentiment\x12\x18.AggregationCandleFilter\x1a\x12.AggregationCandle\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x0btypes.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xbf\x02\n\tBaseModel\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12\x0f\n\x07\x63rawler\x18\x04 \x01(\t\x12,\n\x08pub_date\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x07\x63reated\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0e\n\x06source\x18\x07 \x01(\t\x12\x0f\n\x07\x65xcerpt\x18\x08 \x01(\t\x12\x0e\n\x06videos\x18\t \x03(\t\x12\x0e\n\x06images\x18\n \x03(\t\x12\r\n\x05links\x18\x0b \x03(\t\x12\x0e\n\x06\x61uthor\x18\x0c \x01(\t\x12\x0c\n\x04lang\x18\r \x01(\t\x12\x0e\n\x06weight\x18\x0e \x01(\x01\x12\x0c\n\x04spam\x18\x0f \x01(\x01\x12\x0e\n\x06\x64omain\x18\x10 \x01(\t\"U\n\x0eSentimentModel\x12\x11\n\tsentiment\x18\x01 \x01(\x01\x12\x15\n\rmarket_impact\x18\x02 \x01(\x01\x12\x19\n\x11sentiment_replies\x18\x03 \x01(\x01\"U\n\x16\x43ryptopanicEntrySource\x12\r\n\x05title\x18\x01 \x01(\t\x12\x0e\n\x06region\x18\x02 \x01(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x12\x0c\n\x04path\x18\x04 \x01(\t\"\x9a\x01\n\x15\x43ryptopanicEntryVotes\x12\x10\n\x08negative\x18\x01 \x01(\x05\x12\x10\n\x08positive\x18\x02 \x01(\x05\x12\x11\n\timportant\x18\x03 \x01(\x05\x12\r\n\x05liked\x18\x04 \x01(\x05\x12\x10\n\x08\x64isliked\x18\x05 \x01(\x05\x12\x0b\n\x03lol\x18\x06 \x01(\x05\x12\r\n\x05toxic\x18\x07 \x01(\x05\x12\r\n\x05saved\x18\x08 \x01(\x05\"@\n\x18\x43ryptopanicEntryMetadata\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\"\x90\x02\n\x13\x43ryptopanicRawEntry\x12\x0c\n\x04kind\x18\x01 \x01(\t\x12\x0e\n\x06\x64omain\x18\x02 \x01(\t\x12\'\n\x06source\x18\x03 \x01(\x0b\x32\x17.CryptopanicEntrySource\x12\r\n\x05title\x18\x04 \x01(\t\x12\x14\n\x0cpublished_at\x18\x05 \x01(\t\x12\x0c\n\x04slug\x18\x06 \x01(\t\x12\n\n\x02id\x18\x07 \x01(\x05\x12\x0b\n\x03url\x18\x08 \x01(\t\x12\x12\n\ncreated_at\x18\t \x01(\t\x12%\n\x05votes\x18\n \x01(\x0b\x32\x16.CryptopanicEntryVotes\x12+\n\x08metadata\x18\x0b \x01(\x0b\x32\x19.CryptopanicEntryMetadata\"G\n\x0f\x43ryptopanicFeed\x12\r\n\x05\x63ount\x18\x01 \x01(\x05\x12%\n\x07results\x18\x02 \x03(\x0b\x32\x14.CryptopanicRawEntry\"a\n\x0f\x43ryptopanicPost\x12\x33\n\x15\x63ryptopanic_raw_entry\x18\x01 \x01(\x0b\x32\x14.CryptopanicRawEntry\x12\x19\n\x07\x61rticle\x18\x02 \x01(\x0b\x32\x08.Article\"^\n\x15NamedEntityOccurrence\x12\x1b\n\x05label\x18\x01 \x01(\x0e\x32\x0c.NamedEntity\x12\r\n\x05start\x18\x02 \x01(\r\x12\x0b\n\x03\x65nd\x18\x03 \x01(\r\x12\x0c\n\x04text\x18\x04 \x01(\t\"\xe5\x03\n\x12NamedEntitiesModel\x12\x0f\n\x07symbols\x18\x01 \x03(\t\x12&\n\x06\x61ssets\x18\x02 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12\'\n\x07persons\x18\x03 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\tcompanies\x18\x04 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12-\n\rorganizations\x18\x05 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\tlocations\x18\x06 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12)\n\texchanges\x18\x07 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12$\n\x04misc\x18\x08 \x03(\x0b\x32\x16.NamedEntityOccurrence\x12\x0c\n\x04tags\x18\t \x03(\t\x12>\n\x0e\x61sset_mentions\x18\n \x03(\x0b\x32&.NamedEntitiesModel.AssetMentionsEntry\x12\x13\n\x0bsource_text\x18\x0b \x01(\t\x1a\x34\n\x12\x41ssetMentionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"\x9d\x01\n\x07\x41rticle\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\'\n\ntitle_data\x18\x04 \x01(\x0b\x32\x13.NamedEntitiesModel\"\x97\x01\n\x0bUserMessage\x12\x18\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\n.BaseModel\x12\"\n\tsentiment\x18\x02 \x01(\x0b\x32\x0f.SentimentModel\x12+\n\x0enamed_entities\x18\x03 \x01(\x0b\x32\x13.NamedEntitiesModel\x12\x0c\n\x04user\x18\x04 \x01(\t\x12\x0f\n\x07message\x18\x05 \x01(\t\"\xf4\x02\n\x0fSentimentCandle\x12\n\n\x02id\x18\x01 \x01(\t\x12.\n\nstart_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\r\n\x05\x61sset\x18\x04 \x01(\t\x12\x14\n\x0cnegative_sum\x18\x05 \x01(\x01\x12\x16\n\x0enegative_count\x18\x06 \x01(\x05\x12\x14\n\x0cpositive_sum\x18\x07 \x01(\x01\x12\x16\n\x0epositive_count\x18\x08 \x01(\x05\x12\x15\n\rsentiment_avg\x18\t \x01(\x01\x12\x1e\n\x16open_sentiment_average\x18\n \x01(\x01\x12\x1e\n\x16high_sentiment_average\x18\x0b \x01(\x01\x12\x1d\n\x15low_sentiment_average\x18\x0c \x01(\x01\x12\x1f\n\x17\x63lose_sentiment_average\x18\r \x01(\x01\x12\x0f\n\x07updated\x18\x0e \x01(\x08\"2\n\x0c\x41ssetsFilter\x12\x0e\n\x06\x61ssets\x18\x04 \x03(\t\x12\x12\n\nall_assets\x18\x05 \x01(\x08\"S\n\x17\x41ggregationCandleFilter\x12\x12\n\nresolution\x18\x01 \x01(\t\x12$\n\rassets_filter\x18\x02 \x01(\x0b\x32\r.AssetsFilter\"\x8f\x01\n\x18SentimentHistoricRequest\x12(\n\x04\x66rom\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\r\n\x05\x61sset\x18\x04 \x01(\t\"\x82\x01\n\x0fHistoricRequest\x12(\n\x04\x66rom\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12&\n\x02to\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x1d\n\x06\x66ilter\x18\x04 \x01(\x0b\x32\r.AssetsFilter\"3\n\x05\x41sset\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06symbol\x18\x02 \x01(\t\x12\x0c\n\x04\x63ode\x18\x03 \x01(\t\"$\n\nAssetItems\x12\x16\n\x06\x61ssets\x18\x01 \x03(\x0b\x32\x06.Asset\"\xe1\x01\n\x0bTransaction\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04hash\x18\x02 \x01(\t\x12\x14\n\x0c\x66rom_address\x18\x03 \x01(\t\x12\x12\n\nto_address\x18\x04 \x01(\t\x12\x12\n\nfrom_owner\x18\x05 \x01(\t\x12\x10\n\x08to_owner\x18\x06 \x01(\t\x12(\n\x04time\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07\x63omment\x18\x08 \x01(\t\x12\r\n\x05\x61sset\x18\t \x01(\t\x12\x0c\n\x04size\x18\n \x01(\x01\x12\x10\n\x08USD_size\x18\x0b \x01(\x01\"O\n\x05\x41ggId\x12\x0c\n\x04year\x18\x01 \x01(\x05\x12\r\n\x05month\x18\x02 \x01(\x05\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\x05\x12\x0c\n\x04hour\x18\x04 \x01(\x05\x12\x0e\n\x06minute\x18\x05 \x01(\x05\"\x85\x01\n\x11\x41ggregationCandle\x12\x12\n\x02id\x18\x01 \x01(\x0b\x32\x06.AggId\x12\r\n\x05\x61sset\x18\x02 \x01(\t\x12\x12\n\nresolution\x18\x03 \x01(\t\x12\n\n\x02pv\x18\x04 \x01(\x03\x12\n\n\x02nv\x18\x05 \x01(\x03\x12\n\n\x02ps\x18\x06 \x01(\x01\x12\n\n\x02ns\x18\x07 \x01(\x01\x12\t\n\x01\x61\x18\x08 \x01(\x01\"\xa0\x02\n\x0bPublicModel\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x03 \x01(\t\x12,\n\x08pub_date\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x07\x63reated\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0e\n\x06source\x18\x07 \x01(\t\x12\x0f\n\x07\x65xcerpt\x18\x08 \x01(\t\x12\x0e\n\x06videos\x18\t \x03(\t\x12\x0e\n\x06images\x18\n \x03(\t\x12\r\n\x05links\x18\x0b \x03(\t\x12\x0e\n\x06\x64omain\x18\x10 \x01(\t\x12*\n\nextensions\x18\x64 \x01(\x0b\x32\x16.PublicModelExtensions\"\'\n\x15PublicModelExtensions\x12\x0e\n\x06\x61ssets\x18\x01 \x03(\t*\x9a\x01\n\x0bNamedEntity\x12\x10\n\x0c\x41SSET_ENTITY\x10\x00\x12\x11\n\rPERSON_ENTITY\x10\x01\x12\x13\n\x0fLOCATION_ENTITY\x10\x02\x12\x12\n\x0e\x43OMPANY_ENTITY\x10\x03\x12\x13\n\x0f\x45XCHANGE_ENTITY\x10\x04\x12\x0f\n\x0bMISC_ENTITY\x10\x05\x12\x17\n\x13ORGANIZATION_ENTITY\x10\x06\x32y\n\rMessagesProxy\x12\x37\n\x14SubscribeBaseArticle\x12\r.AssetsFilter\x1a\x0c.PublicModel\"\x00\x30\x01\x12/\n\x10SubscribeArticle\x12\r.AssetsFilter\x1a\x08.Article\"\x00\x30\x01\x32:\n\x07\x44\x61taset\x12/\n\x06\x41ssets\x12\x16.google.protobuf.Empty\x1a\x0b.AssetItems\"\x00\x32~\n\x0cHistoricData\x12:\n\x14HistoricBaseArticles\x12\x10.HistoricRequest\x1a\x0c.PublicModel\"\x00\x30\x01\x12\x32\n\x10HistoricArticles\x12\x10.HistoricRequest\x1a\x08.Article\"\x00\x30\x01\x32\xc0\x02\n\nSentiments\x12L\n\x17HistoricSocialSentiment\x12\x19.SentimentHistoricRequest\x1a\x12.AggregationCandle\"\x00\x30\x01\x12J\n\x15HistoricNewsSentiment\x12\x19.SentimentHistoricRequest\x1a\x12.AggregationCandle\"\x00\x30\x01\x12L\n\x18SubscribeSocialSentiment\x12\x18.AggregationCandleFilter\x1a\x12.AggregationCandle\"\x00\x30\x01\x12J\n\x16SubscribeNewsSentiment\x12\x18.AggregationCandleFilter\x1a\x12.AggregationCandle\"\x00\x30\x01\x62\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
 
@@ -64,8 +64,8 @@ _NAMEDENTITY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=6114,
-  serialized_end=6268,
+  serialized_start=3801,
+  serialized_end=3955,
 )
 _sym_db.RegisterEnumDescriptor(_NAMEDENTITY)
 
@@ -909,835 +909,6 @@ _USERMESSAGE = _descriptor.Descriptor(
 )
 
 
-_BITMEXUSERMESSAGE = _descriptor.Descriptor(
-  name='BitmexUserMessage',
-  full_name='BitmexUserMessage',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='user_message', full_name='BitmexUserMessage.user_message', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2141,
-  serialized_end=2196,
-)
-
-
-_TELEGRAMUSERMESSAGE = _descriptor.Descriptor(
-  name='TelegramUserMessage',
-  full_name='TelegramUserMessage',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='user_message', full_name='TelegramUserMessage.user_message', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='symbols_backup', full_name='TelegramUserMessage.symbols_backup', index=1,
-      number=2, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='channel_id', full_name='TelegramUserMessage.channel_id', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='channel_subscriber_count', full_name='TelegramUserMessage.channel_subscriber_count', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='message_id', full_name='TelegramUserMessage.message_id', index=4,
-      number=5, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2199,
-  serialized_end=2354,
-)
-
-
-_COMMENTCOUNTTIMESNAPSHOT = _descriptor.Descriptor(
-  name='CommentCountTimeSnapshot',
-  full_name='CommentCountTimeSnapshot',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='time', full_name='CommentCountTimeSnapshot.time', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='comment_count', full_name='CommentCountTimeSnapshot.comment_count', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2356,
-  serialized_end=2447,
-)
-
-
-_COMMENT = _descriptor.Descriptor(
-  name='Comment',
-  full_name='Comment',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='ID', full_name='Comment.ID', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='name', full_name='Comment.name', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='permalink', full_name='Comment.permalink', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='createdUTC', full_name='Comment.createdUTC', index=3,
-      number=4, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='deleted', full_name='Comment.deleted', index=4,
-      number=5, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='ups', full_name='Comment.ups', index=5,
-      number=14, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='downs', full_name='Comment.downs', index=6,
-      number=15, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='likes', full_name='Comment.likes', index=7,
-      number=16, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='body', full_name='Comment.body', index=8,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='subreddit', full_name='Comment.subreddit', index=9,
-      number=7, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='replies', full_name='Comment.replies', index=10,
-      number=8, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='sentiment', full_name='Comment.sentiment', index=11,
-      number=9, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2450,
-  serialized_end=2663,
-)
-
-
-_REDDITPOSTMODEL = _descriptor.Descriptor(
-  name='RedditPostModel',
-  full_name='RedditPostModel',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='ID', full_name='RedditPostModel.ID', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='createdUTC', full_name='RedditPostModel.createdUTC', index=1,
-      number=2, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='title', full_name='RedditPostModel.title', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='URL', full_name='RedditPostModel.URL', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='author', full_name='RedditPostModel.author', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='self_text', full_name='RedditPostModel.self_text', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='name', full_name='RedditPostModel.name', index=6,
-      number=11, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='permalink', full_name='RedditPostModel.permalink', index=7,
-      number=12, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='deleted', full_name='RedditPostModel.deleted', index=8,
-      number=13, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='ups', full_name='RedditPostModel.ups', index=9,
-      number=14, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='downs', full_name='RedditPostModel.downs', index=10,
-      number=15, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='likes', full_name='RedditPostModel.likes', index=11,
-      number=16, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='num_comments', full_name='RedditPostModel.num_comments', index=12,
-      number=17, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='score', full_name='RedditPostModel.score', index=13,
-      number=18, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='replies', full_name='RedditPostModel.replies', index=14,
-      number=19, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='domain', full_name='RedditPostModel.domain', index=15,
-      number=20, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='SubredditID', full_name='RedditPostModel.SubredditID', index=16,
-      number=21, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='hidden', full_name='RedditPostModel.hidden', index=17,
-      number=22, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='locked', full_name='RedditPostModel.locked', index=18,
-      number=23, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='thumbnail', full_name='RedditPostModel.thumbnail', index=19,
-      number=24, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='gilded', full_name='RedditPostModel.gilded', index=20,
-      number=25, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='distinguished', full_name='RedditPostModel.distinguished', index=21,
-      number=26, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='stickied', full_name='RedditPostModel.stickied', index=22,
-      number=27, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='is_reddit_media_domain', full_name='RedditPostModel.is_reddit_media_domain', index=23,
-      number=28, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='comment_count_snapshot', full_name='RedditPostModel.comment_count_snapshot', index=24,
-      number=7, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='hot_rate', full_name='RedditPostModel.hot_rate', index=25,
-      number=8, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='subreddit', full_name='RedditPostModel.subreddit', index=26,
-      number=9, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='is_self', full_name='RedditPostModel.is_self', index=27,
-      number=10, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='nsfw', full_name='RedditPostModel.nsfw', index=28,
-      number=29, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='is_update', full_name='RedditPostModel.is_update', index=29,
-      number=30, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='subreddit_icon', full_name='RedditPostModel.subreddit_icon', index=30,
-      number=31, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2666,
-  serialized_end=3282,
-)
-
-
-_REDDITPOST = _descriptor.Descriptor(
-  name='RedditPost',
-  full_name='RedditPost',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='base', full_name='RedditPost.base', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='sentiment', full_name='RedditPost.sentiment', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='named_entities', full_name='RedditPost.named_entities', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='title_data', full_name='RedditPost.title_data', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='reddit_post', full_name='RedditPost.reddit_post', index=4,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3285,
-  serialized_end=3484,
-)
-
-
-_EXTENDEDTWEET = _descriptor.Descriptor(
-  name='ExtendedTweet',
-  full_name='ExtendedTweet',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='favourite_count', full_name='ExtendedTweet.favourite_count', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='filter_level', full_name='ExtendedTweet.filter_level', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='id_str', full_name='ExtendedTweet.id_str', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='in_reply_to_screen_name', full_name='ExtendedTweet.in_reply_to_screen_name', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='in_reply_to_status_id_str', full_name='ExtendedTweet.in_reply_to_status_id_str', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='in_reply_to_user_id_str', full_name='ExtendedTweet.in_reply_to_user_id_str', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='is_quote_status', full_name='ExtendedTweet.is_quote_status', index=6,
-      number=7, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='lang', full_name='ExtendedTweet.lang', index=7,
-      number=8, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='possibly_sensitive', full_name='ExtendedTweet.possibly_sensitive', index=8,
-      number=9, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='quote_count', full_name='ExtendedTweet.quote_count', index=9,
-      number=10, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='reply_count', full_name='ExtendedTweet.reply_count', index=10,
-      number=11, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='retweet_count', full_name='ExtendedTweet.retweet_count', index=11,
-      number=12, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='user_mentions', full_name='ExtendedTweet.user_mentions', index=12,
-      number=13, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='source', full_name='ExtendedTweet.source', index=13,
-      number=14, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='author_created_at', full_name='ExtendedTweet.author_created_at', index=14,
-      number=15, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='author_default_profile', full_name='ExtendedTweet.author_default_profile', index=15,
-      number=16, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='author_default_profile_image', full_name='ExtendedTweet.author_default_profile_image', index=16,
-      number=17, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='author_followers_count', full_name='ExtendedTweet.author_followers_count', index=17,
-      number=18, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='author_friends_count', full_name='ExtendedTweet.author_friends_count', index=18,
-      number=19, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='author_id_str', full_name='ExtendedTweet.author_id_str', index=19,
-      number=20, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='author_lang', full_name='ExtendedTweet.author_lang', index=20,
-      number=21, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='author_location', full_name='ExtendedTweet.author_location', index=21,
-      number=22, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='author_name', full_name='ExtendedTweet.author_name', index=22,
-      number=23, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='author_screen_name', full_name='ExtendedTweet.author_screen_name', index=23,
-      number=24, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='author_profile_image_url_http', full_name='ExtendedTweet.author_profile_image_url_http', index=24,
-      number=25, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='author_statuses_count', full_name='ExtendedTweet.author_statuses_count', index=25,
-      number=26, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='categories', full_name='ExtendedTweet.categories', index=26,
-      number=27, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='truncated', full_name='ExtendedTweet.truncated', index=27,
-      number=28, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='full_text', full_name='ExtendedTweet.full_text', index=28,
-      number=29, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='retweeted_status', full_name='ExtendedTweet.retweeted_status', index=29,
-      number=30, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='retweet_source_id', full_name='ExtendedTweet.retweet_source_id', index=30,
-      number=31, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3487,
-  serialized_end=4295,
-)
-
-
-_TWEET = _descriptor.Descriptor(
-  name='Tweet',
-  full_name='Tweet',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='base', full_name='Tweet.base', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='sentiment', full_name='Tweet.sentiment', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='named_entities', full_name='Tweet.named_entities', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='extended_tweet', full_name='Tweet.extended_tweet', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4298,
-  serialized_end=4452,
-)
-
-
 _SENTIMENTCANDLE = _descriptor.Descriptor(
   name='SentimentCandle',
   full_name='SentimentCandle',
@@ -1855,8 +1026,8 @@ _SENTIMENTCANDLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4455,
-  serialized_end=4827,
+  serialized_start=2142,
+  serialized_end=2514,
 )
 
 
@@ -1893,8 +1064,8 @@ _ASSETSFILTER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4829,
-  serialized_end=4879,
+  serialized_start=2516,
+  serialized_end=2566,
 )
 
 
@@ -1931,8 +1102,8 @@ _AGGREGATIONCANDLEFILTER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4881,
-  serialized_end=4964,
+  serialized_start=2568,
+  serialized_end=2651,
 )
 
 
@@ -1983,8 +1154,8 @@ _SENTIMENTHISTORICREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4967,
-  serialized_end=5110,
+  serialized_start=2654,
+  serialized_end=2797,
 )
 
 
@@ -2028,8 +1199,8 @@ _HISTORICREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5113,
-  serialized_end=5243,
+  serialized_start=2800,
+  serialized_end=2930,
 )
 
 
@@ -2073,8 +1244,8 @@ _ASSET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5245,
-  serialized_end=5296,
+  serialized_start=2932,
+  serialized_end=2983,
 )
 
 
@@ -2104,8 +1275,8 @@ _ASSETITEMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5298,
-  serialized_end=5334,
+  serialized_start=2985,
+  serialized_end=3021,
 )
 
 
@@ -2205,8 +1376,8 @@ _TRANSACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5337,
-  serialized_end=5562,
+  serialized_start=3024,
+  serialized_end=3249,
 )
 
 
@@ -2264,8 +1435,8 @@ _AGGID = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5564,
-  serialized_end=5643,
+  serialized_start=3251,
+  serialized_end=3330,
 )
 
 
@@ -2344,8 +1515,8 @@ _AGGREGATIONCANDLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5646,
-  serialized_end=5779,
+  serialized_start=3333,
+  serialized_end=3466,
 )
 
 
@@ -2452,8 +1623,8 @@ _PUBLICMODEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5782,
-  serialized_end=6070,
+  serialized_start=3469,
+  serialized_end=3757,
 )
 
 
@@ -2483,8 +1654,8 @@ _PUBLICMODELEXTENSIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6072,
-  serialized_end=6111,
+  serialized_start=3759,
+  serialized_end=3798,
 )
 
 _BASEMODEL.fields_by_name['pub_date'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
@@ -2512,21 +1683,6 @@ _ARTICLE.fields_by_name['title_data'].message_type = _NAMEDENTITIESMODEL
 _USERMESSAGE.fields_by_name['base'].message_type = _BASEMODEL
 _USERMESSAGE.fields_by_name['sentiment'].message_type = _SENTIMENTMODEL
 _USERMESSAGE.fields_by_name['named_entities'].message_type = _NAMEDENTITIESMODEL
-_BITMEXUSERMESSAGE.fields_by_name['user_message'].message_type = _USERMESSAGE
-_TELEGRAMUSERMESSAGE.fields_by_name['user_message'].message_type = _USERMESSAGE
-_COMMENTCOUNTTIMESNAPSHOT.fields_by_name['time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_COMMENT.fields_by_name['replies'].message_type = _COMMENT
-_REDDITPOSTMODEL.fields_by_name['replies'].message_type = _COMMENT
-_REDDITPOSTMODEL.fields_by_name['comment_count_snapshot'].message_type = _COMMENTCOUNTTIMESNAPSHOT
-_REDDITPOST.fields_by_name['base'].message_type = _BASEMODEL
-_REDDITPOST.fields_by_name['sentiment'].message_type = _SENTIMENTMODEL
-_REDDITPOST.fields_by_name['named_entities'].message_type = _NAMEDENTITIESMODEL
-_REDDITPOST.fields_by_name['title_data'].message_type = _NAMEDENTITIESMODEL
-_REDDITPOST.fields_by_name['reddit_post'].message_type = _REDDITPOSTMODEL
-_TWEET.fields_by_name['base'].message_type = _BASEMODEL
-_TWEET.fields_by_name['sentiment'].message_type = _SENTIMENTMODEL
-_TWEET.fields_by_name['named_entities'].message_type = _NAMEDENTITIESMODEL
-_TWEET.fields_by_name['extended_tweet'].message_type = _EXTENDEDTWEET
 _SENTIMENTCANDLE.fields_by_name['start_time'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _AGGREGATIONCANDLEFILTER.fields_by_name['assets_filter'].message_type = _ASSETSFILTER
 _SENTIMENTHISTORICREQUEST.fields_by_name['from'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
@@ -2552,14 +1708,6 @@ DESCRIPTOR.message_types_by_name['NamedEntityOccurrence'] = _NAMEDENTITYOCCURREN
 DESCRIPTOR.message_types_by_name['NamedEntitiesModel'] = _NAMEDENTITIESMODEL
 DESCRIPTOR.message_types_by_name['Article'] = _ARTICLE
 DESCRIPTOR.message_types_by_name['UserMessage'] = _USERMESSAGE
-DESCRIPTOR.message_types_by_name['BitmexUserMessage'] = _BITMEXUSERMESSAGE
-DESCRIPTOR.message_types_by_name['TelegramUserMessage'] = _TELEGRAMUSERMESSAGE
-DESCRIPTOR.message_types_by_name['CommentCountTimeSnapshot'] = _COMMENTCOUNTTIMESNAPSHOT
-DESCRIPTOR.message_types_by_name['Comment'] = _COMMENT
-DESCRIPTOR.message_types_by_name['RedditPostModel'] = _REDDITPOSTMODEL
-DESCRIPTOR.message_types_by_name['RedditPost'] = _REDDITPOST
-DESCRIPTOR.message_types_by_name['ExtendedTweet'] = _EXTENDEDTWEET
-DESCRIPTOR.message_types_by_name['Tweet'] = _TWEET
 DESCRIPTOR.message_types_by_name['SentimentCandle'] = _SENTIMENTCANDLE
 DESCRIPTOR.message_types_by_name['AssetsFilter'] = _ASSETSFILTER
 DESCRIPTOR.message_types_by_name['AggregationCandleFilter'] = _AGGREGATIONCANDLEFILTER
@@ -2667,62 +1815,6 @@ UserMessage = _reflection.GeneratedProtocolMessageType('UserMessage', (_message.
   })
 _sym_db.RegisterMessage(UserMessage)
 
-BitmexUserMessage = _reflection.GeneratedProtocolMessageType('BitmexUserMessage', (_message.Message,), {
-  'DESCRIPTOR' : _BITMEXUSERMESSAGE,
-  '__module__' : 'types_pb2'
-  # @@protoc_insertion_point(class_scope:BitmexUserMessage)
-  })
-_sym_db.RegisterMessage(BitmexUserMessage)
-
-TelegramUserMessage = _reflection.GeneratedProtocolMessageType('TelegramUserMessage', (_message.Message,), {
-  'DESCRIPTOR' : _TELEGRAMUSERMESSAGE,
-  '__module__' : 'types_pb2'
-  # @@protoc_insertion_point(class_scope:TelegramUserMessage)
-  })
-_sym_db.RegisterMessage(TelegramUserMessage)
-
-CommentCountTimeSnapshot = _reflection.GeneratedProtocolMessageType('CommentCountTimeSnapshot', (_message.Message,), {
-  'DESCRIPTOR' : _COMMENTCOUNTTIMESNAPSHOT,
-  '__module__' : 'types_pb2'
-  # @@protoc_insertion_point(class_scope:CommentCountTimeSnapshot)
-  })
-_sym_db.RegisterMessage(CommentCountTimeSnapshot)
-
-Comment = _reflection.GeneratedProtocolMessageType('Comment', (_message.Message,), {
-  'DESCRIPTOR' : _COMMENT,
-  '__module__' : 'types_pb2'
-  # @@protoc_insertion_point(class_scope:Comment)
-  })
-_sym_db.RegisterMessage(Comment)
-
-RedditPostModel = _reflection.GeneratedProtocolMessageType('RedditPostModel', (_message.Message,), {
-  'DESCRIPTOR' : _REDDITPOSTMODEL,
-  '__module__' : 'types_pb2'
-  # @@protoc_insertion_point(class_scope:RedditPostModel)
-  })
-_sym_db.RegisterMessage(RedditPostModel)
-
-RedditPost = _reflection.GeneratedProtocolMessageType('RedditPost', (_message.Message,), {
-  'DESCRIPTOR' : _REDDITPOST,
-  '__module__' : 'types_pb2'
-  # @@protoc_insertion_point(class_scope:RedditPost)
-  })
-_sym_db.RegisterMessage(RedditPost)
-
-ExtendedTweet = _reflection.GeneratedProtocolMessageType('ExtendedTweet', (_message.Message,), {
-  'DESCRIPTOR' : _EXTENDEDTWEET,
-  '__module__' : 'types_pb2'
-  # @@protoc_insertion_point(class_scope:ExtendedTweet)
-  })
-_sym_db.RegisterMessage(ExtendedTweet)
-
-Tweet = _reflection.GeneratedProtocolMessageType('Tweet', (_message.Message,), {
-  'DESCRIPTOR' : _TWEET,
-  '__module__' : 'types_pb2'
-  # @@protoc_insertion_point(class_scope:Tweet)
-  })
-_sym_db.RegisterMessage(Tweet)
-
 SentimentCandle = _reflection.GeneratedProtocolMessageType('SentimentCandle', (_message.Message,), {
   'DESCRIPTOR' : _SENTIMENTCANDLE,
   '__module__' : 'types_pb2'
@@ -2816,8 +1908,8 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=6271,
-  serialized_end=6890,
+  serialized_start=3957,
+  serialized_end=4078,
   methods=[
   _descriptor.MethodDescriptor(
     name='SubscribeBaseArticle',
@@ -2829,93 +1921,12 @@ _MESSAGESPROXY = _descriptor.ServiceDescriptor(
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='SubscribeBaseTweet',
-    full_name='MessagesProxy.SubscribeBaseTweet',
+    name='SubscribeArticle',
+    full_name='MessagesProxy.SubscribeArticle',
     index=1,
     containing_service=None,
     input_type=_ASSETSFILTER,
-    output_type=_PUBLICMODEL,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SubscribeBaseReddit',
-    full_name='MessagesProxy.SubscribeBaseReddit',
-    index=2,
-    containing_service=None,
-    input_type=_ASSETSFILTER,
-    output_type=_PUBLICMODEL,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SubscribeBaseTelegram',
-    full_name='MessagesProxy.SubscribeBaseTelegram',
-    index=3,
-    containing_service=None,
-    input_type=_ASSETSFILTER,
-    output_type=_PUBLICMODEL,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SubscribeBaseBitmex',
-    full_name='MessagesProxy.SubscribeBaseBitmex',
-    index=4,
-    containing_service=None,
-    input_type=_ASSETSFILTER,
-    output_type=_PUBLICMODEL,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SubscribeArticle',
-    full_name='MessagesProxy.SubscribeArticle',
-    index=5,
-    containing_service=None,
-    input_type=_ASSETSFILTER,
     output_type=_ARTICLE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SubscribeTweet',
-    full_name='MessagesProxy.SubscribeTweet',
-    index=6,
-    containing_service=None,
-    input_type=_ASSETSFILTER,
-    output_type=_TWEET,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SubscribeReddit',
-    full_name='MessagesProxy.SubscribeReddit',
-    index=7,
-    containing_service=None,
-    input_type=_ASSETSFILTER,
-    output_type=_REDDITPOST,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SubscribeTelegram',
-    full_name='MessagesProxy.SubscribeTelegram',
-    index=8,
-    containing_service=None,
-    input_type=_ASSETSFILTER,
-    output_type=_TELEGRAMUSERMESSAGE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SubscribeBitmex',
-    full_name='MessagesProxy.SubscribeBitmex',
-    index=9,
-    containing_service=None,
-    input_type=_ASSETSFILTER,
-    output_type=_BITMEXUSERMESSAGE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='SubscribeTransaction',
-    full_name='MessagesProxy.SubscribeTransaction',
-    index=10,
-    containing_service=None,
-    input_type=_ASSETSFILTER,
-    output_type=_TRANSACTION,
     serialized_options=None,
   ),
 ])
@@ -2930,8 +1941,8 @@ _DATASET = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=1,
   serialized_options=None,
-  serialized_start=6892,
-  serialized_end=6950,
+  serialized_start=4080,
+  serialized_end=4138,
   methods=[
   _descriptor.MethodDescriptor(
     name='Assets',
@@ -2954,12 +1965,12 @@ _HISTORICDATA = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=2,
   serialized_options=None,
-  serialized_start=6953,
-  serialized_end=7434,
+  serialized_start=4140,
+  serialized_end=4266,
   methods=[
   _descriptor.MethodDescriptor(
-    name='HistoricBaseTweets',
-    full_name='HistoricData.HistoricBaseTweets',
+    name='HistoricBaseArticles',
+    full_name='HistoricData.HistoricBaseArticles',
     index=0,
     containing_service=None,
     input_type=_HISTORICREQUEST,
@@ -2967,66 +1978,12 @@ _HISTORICDATA = _descriptor.ServiceDescriptor(
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
-    name='HistoricBaseArticles',
-    full_name='HistoricData.HistoricBaseArticles',
+    name='HistoricArticles',
+    full_name='HistoricData.HistoricArticles',
     index=1,
     containing_service=None,
     input_type=_HISTORICREQUEST,
-    output_type=_PUBLICMODEL,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='HistoricBaseRedditPosts',
-    full_name='HistoricData.HistoricBaseRedditPosts',
-    index=2,
-    containing_service=None,
-    input_type=_HISTORICREQUEST,
-    output_type=_PUBLICMODEL,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='HistoricBaseTelegramMessages',
-    full_name='HistoricData.HistoricBaseTelegramMessages',
-    index=3,
-    containing_service=None,
-    input_type=_HISTORICREQUEST,
-    output_type=_PUBLICMODEL,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='HistoricTweets',
-    full_name='HistoricData.HistoricTweets',
-    index=4,
-    containing_service=None,
-    input_type=_HISTORICREQUEST,
-    output_type=_TWEET,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='HistoricArticles',
-    full_name='HistoricData.HistoricArticles',
-    index=5,
-    containing_service=None,
-    input_type=_HISTORICREQUEST,
     output_type=_ARTICLE,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='HistoricRedditPosts',
-    full_name='HistoricData.HistoricRedditPosts',
-    index=6,
-    containing_service=None,
-    input_type=_HISTORICREQUEST,
-    output_type=_REDDITPOST,
-    serialized_options=None,
-  ),
-  _descriptor.MethodDescriptor(
-    name='HistoricTransactions',
-    full_name='HistoricData.HistoricTransactions',
-    index=7,
-    containing_service=None,
-    input_type=_HISTORICREQUEST,
-    output_type=_TRANSACTION,
     serialized_options=None,
   ),
 ])
@@ -3041,8 +1998,8 @@ _SENTIMENTS = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=3,
   serialized_options=None,
-  serialized_start=7437,
-  serialized_end=7757,
+  serialized_start=4269,
+  serialized_end=4589,
   methods=[
   _descriptor.MethodDescriptor(
     name='HistoricSocialSentiment',

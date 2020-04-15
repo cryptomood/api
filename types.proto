@@ -218,167 +218,6 @@ message UserMessage {
     string message = 5;
 }
 
-/**
-User message from bitmex
-*/
-message BitmexUserMessage {
-    UserMessage user_message = 1;
-}
-
-/**
-Message from telegram channel
-Weight is calculated from number of members in channel
-*/
-message TelegramUserMessage {
-    UserMessage user_message = 1;
-
-    // symbols loaded from db
-    repeated string symbols_backup = 2;
-
-    // telegram channel ID
-    int32 channel_id = 3;
-
-    // telegram channel members
-    int32 channel_subscriber_count = 4;
-
-    // telegram message ID
-    int64 message_id = 5;
-}
-
-/**
-Stores time/count snapshot of Reddit post comment count
-this is mainly for measuring amount of added comments during period of time
-*/
-message CommentCountTimeSnapshot {
-    google.protobuf.Timestamp time = 1;
-    int32 comment_count = 2;
-}
-
-/**
-Reddit comment
-*/
-message Comment {
-    string ID = 1;
-    string name = 2;
-    string permalink = 3;
-    uint64 createdUTC = 4;
-    bool deleted = 5;
-    int32 ups = 14;
-    int32 downs = 15;
-    bool likes = 16;
-    string body = 6;
-    string subreddit = 7;
-    repeated Comment replies = 8;
-    double sentiment = 9;
-}
-
-/**
-Stores useful data from original reddit post
-*/
-message RedditPostModel {
-    string ID = 1;
-    uint64 createdUTC = 2;
-    string title = 3;
-    string URL = 4;
-    string author = 5;
-    string self_text = 6;
-    string name = 11;
-    string permalink = 12;
-    bool deleted = 13;
-    int32 ups = 14;
-    int32 downs = 15;
-    bool likes = 16;
-    int32 num_comments = 17;
-    int32 score = 18;
-
-    //list of comments
-    repeated Comment replies = 19;
-    string domain = 20;
-
-    // unique ID of subreddit
-    string SubredditID = 21;
-    bool hidden = 22;
-    bool locked = 23;
-    string thumbnail = 24;
-    int32 gilded = 25;
-    string distinguished = 26;
-    bool stickied = 27;
-    bool is_reddit_media_domain = 28;
-
-    // time/count snapshot of Reddit post comment count
-    repeated CommentCountTimeSnapshot comment_count_snapshot = 7;
-
-    // Reddit post actual hot rate in queue
-    double hot_rate = 8;
-
-    // Reference to parent subreddit
-    string subreddit = 9;
-
-    bool is_self = 10;
-    bool nsfw = 29;
-    bool is_update = 30;
-    string subreddit_icon = 31;
-}
-
-message RedditPost {
-    BaseModel base = 1;
-    SentimentModel sentiment = 2;
-
-    // named entities from content
-    NamedEntitiesModel named_entities = 3;
-
-    // named entities from title
-    NamedEntitiesModel title_data = 4;
-
-    // data from original reddit post
-    RedditPostModel reddit_post = 5;
-}
-
-/**
-Stores some useful data form original tweet
-*/
-message ExtendedTweet {
-    int32 favourite_count = 1;
-    string filter_level = 2;
-    string id_str = 3;
-    string in_reply_to_screen_name = 4;
-    string in_reply_to_status_id_str = 5;
-    string in_reply_to_user_id_str = 6;
-    string is_quote_status = 7;
-    string lang = 8;
-    bool possibly_sensitive = 9;
-    int32 quote_count = 10;
-    int32 reply_count = 11;
-    int32 retweet_count = 12;
-    repeated string user_mentions = 13;
-    string source = 14;
-    string author_created_at = 15;
-    bool author_default_profile = 16;
-    bool author_default_profile_image = 17;
-    int32 author_followers_count = 18;
-    int32 author_friends_count = 19;
-    string author_id_str = 20;
-    string author_lang = 21;
-    string author_location = 22;
-    string author_name = 23;
-    string author_screen_name = 24;
-    string author_profile_image_url_http = 25;
-    int32 author_statuses_count = 26;
-    repeated string categories = 27;
-    bool truncated = 28;
-    string full_text = 29;
-    bool retweeted_status = 30;
-    string retweet_source_id = 31;
-}
-
-message Tweet {
-    BaseModel base = 1;
-    SentimentModel sentiment = 2;
-    NamedEntitiesModel named_entities = 3;
-
-    // data from original tweet
-    ExtendedTweet extended_tweet = 4;
-}
 
 /**
 Sentiment message holds informations about aggregated sentiment for specific time window.
@@ -435,26 +274,9 @@ Service for entries streaming
 service MessagesProxy {
     rpc SubscribeBaseArticle (AssetsFilter) returns (stream PublicModel) {
     }
-    rpc SubscribeBaseTweet (AssetsFilter) returns (stream PublicModel) {
-    }
-    rpc SubscribeBaseReddit (AssetsFilter) returns (stream PublicModel) {
-    }
-    rpc SubscribeBaseTelegram (AssetsFilter) returns (stream PublicModel) {
-    }
-    rpc SubscribeBaseBitmex (AssetsFilter) returns (stream PublicModel) {
-    }
     rpc SubscribeArticle (AssetsFilter) returns (stream Article) {
     }
-    rpc SubscribeTweet (AssetsFilter) returns (stream Tweet) {
-    }
-    rpc SubscribeReddit (AssetsFilter) returns (stream RedditPost) {
-    }
-    rpc SubscribeTelegram (AssetsFilter) returns (stream TelegramUserMessage) {
-    }
-    rpc SubscribeBitmex (AssetsFilter) returns (stream BitmexUserMessage) {
-    }
-    rpc SubscribeTransaction (AssetsFilter) returns (stream Transaction) {
-    }
+
 }
 
 message AssetsFilter {
@@ -520,22 +342,11 @@ service Dataset {
 Service for requesting historic data
 */
 service HistoricData {
-    rpc HistoricBaseTweets (HistoricRequest) returns (stream PublicModel) {
-    }
     rpc HistoricBaseArticles (HistoricRequest) returns (stream PublicModel) {
-    }
-    rpc HistoricBaseRedditPosts (HistoricRequest) returns (stream PublicModel) {
-    }
-    rpc HistoricBaseTelegramMessages (HistoricRequest) returns (stream PublicModel) {
-    }
-    rpc HistoricTweets (HistoricRequest) returns (stream Tweet) {
     }
     rpc HistoricArticles (HistoricRequest) returns (stream Article) {
     }
-    rpc HistoricRedditPosts (HistoricRequest) returns (stream RedditPost) {
-    }
-    rpc HistoricTransactions (HistoricRequest) returns (stream Transaction) {
-    }
+
 }
 
 service Sentiments {
