@@ -23,9 +23,8 @@ const client = new proto.MessagesProxy(
 
 var metadata = new grpc.Metadata();
 
-// uncomment commands below if token auth is required
-// const TOKEN = 'YOUR_TOKEN';
-// metadata.add('authorization', `Bearer ${TOKEN}`);
+const TOKEN = 'YOUR_TOKEN';
+metadata.add('authorization', `Bearer ${TOKEN}`);
 
 let channel = client.SubscribeBaseArticle({assets: ["BTC", "ETH"], all_assets: false}, metadata);
 channel.on("data", function (message) {

@@ -12,6 +12,7 @@ import (
 
 const CertFile = "../../../certs/cert.pem"
 const Server = "SERVER"
+const Token = "YOUR_TOKEN"
 
 type tokenAuth struct {
 	token string
@@ -32,9 +33,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	// in case you need token auth use command below
-	// conn, err := grpc.Dial(Server, grpc.WithTransportCredentials(creds), grpc.WithPerRPCCredentials(tokenAuth{"YOUR_TOKEN"}), grpc.WithTimeout(5*time.Second), grpc.WithBlock())
-	conn, err := grpc.Dial(Server, grpc.WithTransportCredentials(creds), grpc.WithTimeout(5*time.Second), grpc.WithBlock())
+	conn, err := grpc.Dial(Server, grpc.WithTransportCredentials(creds), grpc.WithPerRPCCredentials(tokenAuth{Token}), grpc.WithTimeout(5*time.Second), grpc.WithBlock())
 	if err != nil {
 		panic(fmt.Sprintf("did not connect: %v", err))
 	}

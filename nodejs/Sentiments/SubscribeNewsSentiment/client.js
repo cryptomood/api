@@ -23,9 +23,8 @@ const client = new proto.Sentiments(
 
 var metadata = new grpc.Metadata();
 
-// uncomment commands below if token auth is required
-// const TOKEN = 'YOUR_TOKEN';
-// metadata.add('authorization', `Bearer ${TOKEN}`);
+const TOKEN = 'YOUR_TOKEN';
+metadata.add('authorization', `Bearer ${TOKEN}`);
 
 let channel = client.SubscribeNewsSentiment({
     resolution: "M1",
