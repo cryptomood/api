@@ -2,7 +2,7 @@
 
 # Client example
 
-1.  Ensure that you have x509 .pem file (cert.pem). You won't be able to access the server without it
+1.  When connecting to the server use x509 cert.pem file located in certs directory. You won't be able to access the server without it
 2.  Make sure you have Python 2.7 or Python 3.4 or higher
 3.  Ensure you have `pip` version 9.0.1 or higher 
 	`python -m pip install --upgrade pip`
@@ -15,7 +15,7 @@
 	
 	Steps 3 is optional, because this directory already contains prepared `types_pb2.py` and `types_pb2_grpc.py` files 
 
-4.  Create credentials and join channel. You have to provide valid path to .pem file(from 1. step). and  valid host address.  
+4.  Create credentials and join channel. You have to provide valid path to .pem file(from 1. step) and  valid host address.  
 	```python
     creds = grpc.ssl_channel_credentials(open(PATH_TO_CERT_FILE, 'rb').read())
     channel = grpc.secure_channel(SERVER_ADDRESS, creds)
@@ -31,5 +31,5 @@
         print(tweet)
 	```
     
-For full example, see [client.py](./client.py) file in this directory.
+For full example, see any example directory.
 For additional resources, see the [grpc library](https://grpc.io/docs/tutorials/basic/python/)

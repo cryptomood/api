@@ -2,8 +2,8 @@
 
 # Client example
 
-1.  ensure that you have x509 .pem file (cert.pem). You won't be able to access the server without it
-2.  make sure you have at least the latest stable version of Node.js
+1.  When connecting to the server use x509 cert.pem file located in certs directory. You won't be able to access the server without it
+2.  Make sure you have at least the latest stable version of Node.js
 3.  `npm install`
 4.  Load the protobuffer definitions
     
@@ -23,7 +23,7 @@
     ```
     const client = new proto.MessagesProxy(
       SERVER,
-      grpc.credentials.createSsl(fs.readFileSync('./cert.pem'))
+      grpc.credentials.createSsl(fs.readFileSync(PATH_TO_CERT_FILE))
     );
     ```
 6.  Subscribe to required stream and listen to incoming data
@@ -34,5 +34,5 @@
     });
     ```
     
-For full example, see [client.js](./client.js) file in this directory.
+For full example, see any example directory.
 For additional resources, see the [grpc library](https://github.com/grpc/grpc-node)

@@ -2,8 +2,8 @@
 
 # Client example
 
-1.  ensure that you have x509 .pem file (cert.pem). You won't be able to access the server without it
-2.  make sure you have at least the latest stable version of Golang
+1.  When connecting to the server use x509 cert.pem file located in certs directory. You won't be able to access the server without it
+2.  Make sure you have at least the latest stable version of Golang
 3.  (optional) install [protoc tool](https://github.com/golang/protobuf) and [protoc-gen-go](https://github.com/golang/protobuf/tree/master/protoc-gen-go)
 4.  (optional) transpile proto file to `*.go` file with `protoc -I .. -I $GOPATH/src --go_out=plugins=grpc:./ ../types.proto`
     This will generate transpiled file into current directory. To adhere golang conventions and also to make these examples work,
