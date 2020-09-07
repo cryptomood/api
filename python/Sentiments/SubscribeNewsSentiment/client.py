@@ -7,7 +7,7 @@ import types_pb2_grpc
 
 
 SERVER_ADDRESS = 'SERVER'
-PATH_TO_CERT_FILE = './cert.pem'
+PATH_TO_CERT_FILE = '../../../certs/cert.pem'
 
 def main():
     # Create credentials for use with an secured channel

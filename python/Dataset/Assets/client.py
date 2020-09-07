@@ -9,7 +9,7 @@ from google.protobuf import empty_pb2
 import time
 
 SERVER_ADDRESS = 'SERVER'
-PATH_TO_CERT_FILE = './cert.pem'
+PATH_TO_CERT_FILE = '../../../certs/cert.pem'
 
 
 def main():

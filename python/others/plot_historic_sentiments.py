@@ -12,7 +12,7 @@ from google.protobuf import timestamp_pb2
 from matplotlib import pyplot as plt
 
 SERVER_ADDRESS = 'SERVER'
-PATH_TO_CERT_FILE = './cert.pem'
+PATH_TO_CERT_FILE = '../../certs/cert.pem'
 
 
 def datetime_from_candle(val):

@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-const CertFile = "./cert.pem"
+const CertFile = "../../../certs/cert.pem"
 const Server = "SERVER"
 
 type tokenAuth struct {

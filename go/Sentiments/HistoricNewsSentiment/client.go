@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-const CertFile = "./cert.pem"
+const CertFile = "../../../certs/cert.pem"
 const Server = "SERVER"
 
 func main() {
@@ -33,7 +33,7 @@ func main() {
 	timestampNow, _ := ptypes.TimestampProto(now)
 	timestamp2HAgo, _ := ptypes.TimestampProto(twoHoursAgo)
 
-	historicRequest := &types.SentimentHistoricRequest{From: timestamp2HAgo, To: timestampNow , Resolution: "M1", Asset: "BTC"}
+	historicRequest := &types.SentimentHistoricRequest{From: timestamp2HAgo, To: timestampNow, Resolution: "M1", Asset: "BTC"}
 	sub, err := historicClient.HistoricNewsSentiment(context.Background(), historicRequest)
 	if err != nil {
 		panic(err)

@@ -3,7 +3,7 @@ const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
 
 const SERVER = "SERVER";
-const CERT_FILE_PATH = "./cert.pem";
+const CERT_FILE_PATH = "../../../certs/cert.pem";
 const PROTO_FILE_PATH = "../../../types.proto";
 
 const proto = grpc.loadPackageDefinition(
