@@ -5,12 +5,13 @@ import grpc
 import types_pb2
 import types_pb2_grpc
 
-SERVER_ADDRESS = 'SERVER'
+SERVER_ADDRESS = 'apiv1.cryptomood.com'
 PATH_TO_CERT_FILE = '../../../certs/cert.pem'
-TOKEN = 'YOUR_TOKEN'
+TOKEN = '' # put your token here (if you don't have token please visit https://cryptomood.com/business/products/sentiment-analysis-api/
 
 
 def main():
+    assert TOKEN != '', 'You need to set TOKEN. To obtain your token visit https://cryptomood.com/business/products/sentiment-analysis-api/.'
     # Create credentials for use with an secured channel
     credentials = grpc.ssl_channel_credentials(open(PATH_TO_CERT_FILE, 'rb').read())
 

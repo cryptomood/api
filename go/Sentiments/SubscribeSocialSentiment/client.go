@@ -1,18 +1,19 @@
 package main
 
 import (
-	types "../.."
 	"fmt"
+	"io"
+	"time"
+
+	types "../.."
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
-	"io"
-	"time"
 )
 
 const CertFile = "../../../certs/cert.pem"
-const Server = "SERVER"
-const Token = "YOUR_TOKEN"
+const Server = "apiv1.cryptomood.com"
+const Token = "" // put your token here (if you don't have token please visit https://cryptomood.com/business/products/sentiment-analysis-api/
 
 type tokenAuth struct {
 	token string
@@ -29,6 +30,9 @@ func (tokenAuth) RequireTransportSecurity() bool {
 }
 
 func main() {
+	if Token == "" {
+		panic("You need to set Token. To obtain your token visit https://cryptomood.com/business/products/sentiment-analysis-api/.")
+	}
 	creds, err := credentials.NewClientTLSFromFile(CertFile, "")
 	if err != nil {
 		panic(err)
