@@ -14,23 +14,23 @@
     
 5.  Load credentials
     
-    ```
+    ```go
     creds, err := credentials.NewClientTLSFromFile(CertFile, "")
     ``` 
     
-6.  Dial the server
-    ```
-	conn, err := grpc.Dial(Server, grpc.WithTransportCredentials(creds), grpc.WithTimeout(5 * time.Second), grpc.WithBlock())
+6.  Dial the server. You must provide your api token (to obtain it visit our [website](https://cryptomood.com/business/products/sentiment-analysis-api/)) to authorize your requests
+    ```go
+	conn, err := grpc.Dial(Server, grpc.WithTransportCredentials(creds), grpc.WithPerRPCCredentials(tokenAuth{Token}), grpc.WithTimeout(5*time.Second), grpc.WithBlock())
     ```
     
 7.  Initialize required service and call required method (in this case subscription)
-    ```
+    ```go
 	proxyClient := types.NewMessagesProxyClient(conn)
 	sub, err := proxyClient.SubscribeTweet(context.Background(), &empty.Empty{})
     ```
     
 8.  Read data indefinitely
-    ```
+    ```go
     for {
     		msg, err := sub.Recv()
     		if err == io.EOF {

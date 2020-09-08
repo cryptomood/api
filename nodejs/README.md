@@ -7,7 +7,7 @@
 3.  `npm install`
 4.  Load the protobuffer definitions
     
-    ```
+    ```js
     const proto = grpc.loadPackageDefinition(
       protoLoader.loadSync("types.proto", {
         keepCase: true,
@@ -18,17 +18,24 @@
       })
     );
     ``` 
-    
-5.  Initialize the MessagesProxy service. You have to provide valid host address and valid path to .pem file(from 1. step).
-    ```
+
+5.  Initialize the MessagesProxy service. You have to provide valid host address and valid path to .pem file (from 1. step)
+    ```js
     const client = new proto.MessagesProxy(
       SERVER,
       grpc.credentials.createSsl(fs.readFileSync(PATH_TO_CERT_FILE))
     );
     ```
-6.  Subscribe to required stream and listen to incoming data
+
+6. Create grpc metadata with your api token (to obtain it visit our [website](https://cryptomood.com/business/products/sentiment-analysis-api/))
+    ```js
+    var metadata = new grpc.Metadata();
+    metadata.add('authorization', `Bearer ${TOKEN}`);
     ```
-    let channel = client.SubscribeTweet();
+
+7.  Subscribe to required stream and listen to incoming data
+    ```js
+    let channel = client.SubscribeArticle({assets: ["BTC", "ETH"], all_assets: false}, metadata);
     channel.on("data", function(message) {
       console.log(message);
     });

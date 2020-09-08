@@ -15,9 +15,11 @@
 	
 	Steps 3 is optional, because this directory already contains prepared `types_pb2.py` and `types_pb2_grpc.py` files 
 
-4.  Create credentials and join channel. You have to provide valid path to .pem file(from 1. step) and  valid host address.  
+4.  Create credentials and join channel. You have to provide valid path to .pem file (from 1. step), your api token (to obtain it visit our [website](https://cryptomood.com/business/products/sentiment-analysis-api/)) and valid host address.  
 	```python
     creds = grpc.ssl_channel_credentials(open(PATH_TO_CERT_FILE, 'rb').read())
+	call_creds = grpc.access_token_call_credentials(TOKEN)
+    creds = grpc.composite_channel_credentials(creds, call_creds)
     channel = grpc.secure_channel(SERVER_ADDRESS, creds)
 	``` 
 5.  Initialize the MessagesProxy service.  
@@ -26,9 +28,9 @@
 	```
 6.  Subscribe to required stream and listen to incoming data  
 	```python
-    tweet_stream = stub.SubscribeTweet(empty_pb2.Empty())
-    for tweet in tweet_stream:
-        print(tweet)
+    article_stream = stub.SubscribeArticle(assets_filter)
+    for article in article_stream:
+        print(article)
 	```
     
 For full example, see any example directory.
