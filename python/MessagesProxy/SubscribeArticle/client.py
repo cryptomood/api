@@ -5,7 +5,7 @@ import grpc
 import types_pb2
 import types_pb2_grpc
 
-SERVER_ADDRESS = 'apiv1.cryptomood.com'
+SERVER_ADDRESS = 'apiv1.cryptomood.com:443'
 PATH_TO_CERT_FILE = '../../../certs/cert.pem'
 TOKEN = '' # put your token here (if you don't have token please visit https://cryptomood.com/business/products/sentiment-analysis-api/
 

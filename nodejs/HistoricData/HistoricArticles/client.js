@@ -3,7 +3,7 @@ const assert = require('assert');
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
 
-const SERVER = 'apiv1.cryptomood.com';
+const SERVER = 'apiv1.cryptomood.com:443';
 const CERT_FILE_PATH = "../../../certs/cert.pem";
 const PROTO_FILE_PATH = "../../../types.proto";
 

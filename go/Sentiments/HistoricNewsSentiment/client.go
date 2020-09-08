@@ -13,7 +13,7 @@ import (
 )
 
 const CertFile = "../../../certs/cert.pem"
-const Server = "apiv1.cryptomood.com"
+const Server = "apiv1.cryptomood.com:443"
 const Token = "" // put your token here (if you don't have token please visit https://cryptomood.com/business/products/sentiment-analysis-api/
 
 type tokenAuth struct {
