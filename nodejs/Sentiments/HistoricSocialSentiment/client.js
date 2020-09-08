@@ -32,9 +32,9 @@ metadata.add('authorization', `Bearer ${TOKEN}`);
 const now = Date.now() / 1000 | 0; // unix timestamp
 
 let channel = client.HistoricSocialSentiment({
-    from: {seconds: now - 7200},
-    to: {seconds: now},
-    resolution: "H1",
+    from: {seconds: now - 172800},
+    to: {seconds: now - 14400},
+    resolution: "D1",
     asset: "BTC"
 }, metadata, function (err, req) {
     console.log(req, err)

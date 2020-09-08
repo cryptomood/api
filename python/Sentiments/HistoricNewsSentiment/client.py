@@ -29,13 +29,13 @@ def main():
     # create timeframe 
     now = time.time()
     seconds = int(now)
-    to_time = timestamp_pb2.Timestamp(seconds=seconds)
-    from_time = timestamp_pb2.Timestamp(seconds=to_time.seconds - int(86400 / 24))  # last hour
+    to_time = timestamp_pb2.Timestamp(seconds=seconds - int(86400 / 6))
+    from_time = timestamp_pb2.Timestamp(seconds=to_time.seconds - int(2 * 86400)) # last two days
 
     # in our case we have to use kwarg because `from` is
     # is recognized as python keyword so there would syntax be error
     # if you want get value you have to use getattr()
-    sentiment_historic_request_kwargs = { 'from': from_time, 'to': to_time, 'resolution': 'M1', 'asset': 'BTC' }
+    sentiment_historic_request_kwargs = { 'from': from_time, 'to': to_time, 'resolution': 'D1', 'asset': 'BTC' }
     req = types_pb2.SentimentHistoricRequest(**sentiment_historic_request_kwargs)
     
     candle_stream = stub.HistoricNewsSentiment(req)

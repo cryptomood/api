@@ -48,11 +48,11 @@ func main() {
 
 	// create time frame
 	now := time.Now()
-	twoHoursAgo := now.Add(-2 * time.Hour)
-	timestampNow, _ := ptypes.TimestampProto(now)
-	timestamp2HAgo, _ := ptypes.TimestampProto(twoHoursAgo)
+	twoDaysAgo := now.Add(-48 * time.Hour)
+	timestampNow, _ := ptypes.TimestampProto(now.Add(-4 * time.Hour))
+	timestamp2DAgo, _ := ptypes.TimestampProto(twoDaysAgo)
 
-	historicRequest := &types.SentimentHistoricRequest{From: timestamp2HAgo, To: timestampNow, Resolution: "M1", Asset: "BTC"}
+	historicRequest := &types.SentimentHistoricRequest{From: timestamp2DAgo, To: timestampNow, Resolution: "D1", Asset: "BTC"}
 	sub, err := historicClient.HistoricNewsSentiment(context.Background(), historicRequest)
 	if err != nil {
 		panic(err)
